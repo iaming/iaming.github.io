@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on liming.pub</title>
+    <link>https://liming.pub/categories/</link>
+    <description>Recent content in Categories on liming.pub</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	<atom:link href="https://liming.pub/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>自我</title>
+      <link>https://liming.pub/categories/%E8%87%AA%E6%88%91/</link>
+      <pubDate>Sun, 30 Dec 2018 18:31:13 +0800</pubDate>
+      
+      <guid>https://liming.pub/categories/%E8%87%AA%E6%88%91/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on liming.pub</title>
+    <link>https://liming.pub/post/</link>
+    <description>Recent content in Posts on liming.pub</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 30 Dec 2018 18:31:13 +0800</lastBuildDate>
+    
+	<atom:link href="https://liming.pub/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>重拾码字的快乐</title>
+      <link>https://liming.pub/post/start-writing-again/</link>
+      <pubDate>Sun, 30 Dec 2018 18:31:13 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/start-writing-again/</guid>
+      <description>&lt;p&gt;前几天，一个同事问我要博客地址，不经意间一问，却深深的触动了我。&lt;/p&gt;
+
+&lt;p&gt;博客我曾经有过，而且还不少，但真正投入大量精力的有两个，一个是05年开的好网博客，另一个是08年自己改程序购买主机搭建的阿明在线独立博客，大概是12年左右吧，两个博客先后都关闭了。现在唯一还在坚持的就只有QQ空间，虽然写的越来越少，至少每年元旦都会有做一下年终总结，并立一下当年flag，但这个唯一的QQ空间现在也已经设置为只有自己可见。&lt;/p&gt;
+
+&lt;p&gt;所以现在自己还真的没有博客，没有博客！而且这么多年都没有码字，表达能力已经严重退化，满脑子想说的感慨，却半天蹦不出一个词儿。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

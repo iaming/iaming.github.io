@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://liming.pub/sitemap.xml

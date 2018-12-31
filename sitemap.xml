@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liming.pub/post/api-problem-json/</loc>
+    <lastmod>2018-12-31T11:05:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/post/start-writing-again/</loc>
     <lastmod>2018-12-30T18:31:13+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -17,7 +24,7 @@
   
   <url>
     <loc>https://liming.pub/post/</loc>
-    <lastmod>2018-12-30T18:31:13+08:00</lastmod>
+    <lastmod>2018-12-31T11:05:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -44,7 +51,14 @@
   
   <url>
     <loc>https://liming.pub/</loc>
-    <lastmod>2018-12-30T18:31:13+08:00</lastmod>
+    <lastmod>2018-12-31T11:05:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2018-12-31T11:05:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -52,6 +66,20 @@
   <url>
     <loc>https://liming.pub/categories/%E8%87%AA%E6%88%91/</loc>
     <lastmod>2018-12-30T18:31:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/tags/%E8%A7%84%E8%8C%83/</loc>
+    <lastmod>2018-12-31T11:05:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/tags/%E9%94%99%E8%AF%AF%E7%A0%81/</loc>
+    <lastmod>2018-12-31T11:05:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

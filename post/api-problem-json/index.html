@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>API错误码规范 - liming.pub</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="liming" /><meta name="description" content="做了这么多年项目，倾听了太多开发人员对API接口返回错误码吐槽，收到了太多用户也对系统中云里雾里的错误提示吐槽，也在不同的项目中尝试过不同的解决方案，今天就做一下总结。
+" /><meta name="keywords" content="liming, iaming, 李明" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://liming.pub/post/api-problem-json/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.93844dae.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="API错误码规范" />
+<meta property="og:description" content="做了这么多年项目，倾听了太多开发人员对API接口返回错误码吐槽，收到了太多用户也对系统中云里雾里的错误提示吐槽，也在不同的项目中尝试过不同的解决方案，今天就做一下总结。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liming.pub/post/api-problem-json/" /><meta property="article:published_time" content="2018-12-31T11:05:49&#43;08:00"/>
+<meta property="article:modified_time" content="2018-12-31T11:05:49&#43;08:00"/>
+
+<meta itemprop="name" content="API错误码规范">
+<meta itemprop="description" content="做了这么多年项目，倾听了太多开发人员对API接口返回错误码吐槽，收到了太多用户也对系统中云里雾里的错误提示吐槽，也在不同的项目中尝试过不同的解决方案，今天就做一下总结。">
+
+
+<meta itemprop="datePublished" content="2018-12-31T11:05:49&#43;08:00" />
+<meta itemprop="dateModified" content="2018-12-31T11:05:49&#43;08:00" />
+<meta itemprop="wordCount" content="957">
+
+
+
+<meta itemprop="keywords" content="错误码,规范," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="API错误码规范"/>
+<meta name="twitter:description" content="做了这么多年项目，倾听了太多开发人员对API接口返回错误码吐槽，收到了太多用户也对系统中云里雾里的错误提示吐槽，也在不同的项目中尝试过不同的解决方案，今天就做一下总结。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">liming.pub</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">栏目</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">liming.pub</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">栏目</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">API错误码规范</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-31 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
+            </div>
+          <span class="more-meta"> 约 957 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#错误码应考虑因素">错误码应考虑因素</a></li>
+<li><a href="#自定义规范">自定义规范</a></li>
+<li><a href="#spring规范">spring规范</a></li>
+<li><a href="#problem-json规范">Problem+json规范</a>
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#示例">示例</a></li>
+</ul></li>
+<li><a href="#推荐实践">推荐实践</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>做了这么多年项目，倾听了太多开发人员对API接口返回错误码吐槽，收到了太多用户也对系统中云里雾里的错误提示吐槽，也在不同的项目中尝试过不同的解决方案，今天就做一下总结。</p>
+
+<h1 id="错误码应考虑因素">错误码应考虑因素</h1>
+
+<ol>
+<li>给用户展示的信息，友好、温馨、易懂的措辞</li>
+<li>给客户端开发者排查定位的信息，包含准确细节，如exception信息、stacktrace等，方便程序定位和处理</li>
+<li>错误码详细信息，如：错误码url展示网页，包括错误定义、产生原因、解决办法等</li>
+<li>给服务端开发者排查定位的信息，如错误唯一id，服务端开发人员可以根据此id定位到该次请求的所有相关log。</li>
+</ol>
+
+<p>在具体实践中，建议使用HTTP Status为主，错误码code为辅的设计方案，以下是我曾尝试过的三种错误码规范。</p>
+
+<h1 id="自定义规范">自定义规范</h1>
+
+<p>一般会使用一个枚举类来统一定义系统中所有的错误码，然后自定义错误处理，例如github的规范</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">Headers:
+    Content-Type: application/json;charset=UTF-8
+    X-RateLimit-Limit: 3000
+    X-RateLimit-Reset: 1503162176432
+    X-RateLimit-Remaining: 0
+{
+    &#34;message&#34;: &#34;Message title&#34;,
+    &#34;errors&#34;: [
+        {
+            &#34;code&#34;: &#34;rate_limit_exceeded&#34;,
+            &#34;message&#34;: &#34;Too Many Requests. API rate limit exceeded&#34;,
+            &#34;document&#34;: &#34;https://developer.github.com/v3/gists/&#34;
+        }
+    ]
+}</pre></td></tr></table>
+</div>
+</div>
+<h1 id="spring规范">spring规范</h1>
+
+<p>在spring中，只需要抛出异常，spring会自动转换为如下格式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{
+    &#34;timestamp&#34;: &#34;2018-11-31T03:43:50.881+0000&#34;,
+    &#34;status&#34;: 500,
+    &#34;error&#34;: &#34;Internal Server Error&#34;,
+    &#34;message&#34;: &#34;No message available&#34;,
+    &#34;path&#34;: &#34;/v3/test/1&#34;
+}</pre></td></tr></table>
+</div>
+</div>
+<h1 id="problem-json规范">Problem+json规范</h1>
+
+<h2 id="简介">简介</h2>
+
+<p>采用problem+json格式我们可以让错误输出更具有描述性，可以让API消费者更好进行错误处理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">type: 提供一个描述问题的连接(required)
+title: 对错误做一个简短的描述(required)
+status: HTTP status code(required)
+detail: 详细的人可理解的错误信息(optional)
+instance: 返回错误产生的URL, 绝对地址(optional)</pre></td></tr></table>
+</div>
+</div>
+<p>相关规范和实现:
+- <a href="https://tools.ietf.org/html/rfc7807">规范草案</a>
+- <a href="https://github.com/zalando/problem-spring-web">java实现</a>
+- <a href="https://www.npmjs.com/package/problem-json">node.js实现</a></p>
+
+<h2 id="示例">示例</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">HTTP/1.1 403 Forbidden
+Content-Type: application/problem+json
+Response Body:
+{
+    &#34;type&#34;: &#34;https://example.com/probs/out-of-credit&#34;,
+    &#34;title&#34;: &#34;You do not have enough credit.&#34;,
+    &#34;detail&#34;: &#34;Your current balance is 30, but that costs 50.&#34;,
+    &#34;instance&#34;: &#34;/account/12345/msgs/abc&#34;,
+    &#34;balance&#34;: 30,
+    &#34;accounts&#34;: [&#34;/account/12345&#34;,
+                 &#34;/account/67890&#34;]
+}</pre></td></tr></table>
+</div>
+</div>
+<h1 id="推荐实践">推荐实践</h1>
+
+<p>错误码最大问题不在规范，而是在执行，也就是说一开始错误码定义都是非常美好，但是经过一段时间的开发后，错误码总是在往坏的方向不断累积。所以对于一个小的团队，建议直接采用Problem/Problem+json规范，这样团队成员在执行上，不会太排斥。</p>
+
+<p>由于Problem/Problem+json规范中唯一定位一个错误是type，没有code，建议做一下小的改进，比如将title当错误码code，另外对于其他字段比如时间戳、服务端错误日志ID可以使用自定义扩展字段。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">liming</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2018-12-31</span>
+  </p>
+  
+  
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E9%94%99%E8%AF%AF%E7%A0%81/">错误码</a>
+          <a href="/tags/%E8%A7%84%E8%8C%83/">规范</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/start-writing-again/">
+            <span class="next-text nav-default">重拾码字的快乐</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/iaming" class="iconfont icon-github" title="github"></a>
+  <a href="https://liming.pub/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2018 <span class="division"> published by </span> 
+    <span class="author">liming <span class="division">|</span> generated by hugo&even <span class="division">|</span> hosted by coding.me&github</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

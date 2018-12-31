@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>规范 on liming.pub</title>
+    <link>https://liming.pub/tags/%E8%A7%84%E8%8C%83/</link>
+    <description>Recent content in 规范 on liming.pub</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 31 Dec 2018 11:05:49 +0800</lastBuildDate>
+    
+	<atom:link href="https://liming.pub/tags/%E8%A7%84%E8%8C%83/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>API错误码规范</title>
+      <link>https://liming.pub/post/api-problem-json/</link>
+      <pubDate>Mon, 31 Dec 2018 11:05:49 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/api-problem-json/</guid>
+      <description>&lt;p&gt;做了这么多年项目，倾听了太多开发人员对API接口返回错误码吐槽，收到了太多用户也对系统中云里雾里的错误提示吐槽，也在不同的项目中尝试过不同的解决方案，今天就做一下总结。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

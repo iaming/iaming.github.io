@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>生理周期 on liming.pub</title>
+    <link>https://liming.pub/tags/%E7%94%9F%E7%90%86%E5%91%A8%E6%9C%9F/</link>
+    <description>Recent content in 生理周期 on liming.pub</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 01 Jan 2019 19:33:20 +0800</lastBuildDate>
+    
+	<atom:link href="https://liming.pub/tags/%E7%94%9F%E7%90%86%E5%91%A8%E6%9C%9F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>打造自我管理大杂烩：晨间日记&#43;生理周期&#43;天气预报&#43;坚持打卡&#43;倒数提醒……</title>
+      <link>https://liming.pub/post/morning-diary-with-hugo/</link>
+      <pubDate>Tue, 01 Jan 2019 19:33:20 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/morning-diary-with-hugo/</guid>
+      <description>&lt;p&gt;趁着这个元旦假期在家“陪”爸妈和娃（其实是爸妈在看电视，娃在玩积木，我在敲代码），用python和shell升级了晨间日记的新写法：
+&amp;gt;&amp;gt;每天早上起床后打开电脑，在命令行里敲下&lt;code&gt;md&lt;/code&gt;，程序自动从网上抓取近十天的天气预报，自动计算近十天的生理周期指数（身体、智力、情绪、直觉）显示在命令行里，大眼一扫后按回车键，程序自动按照晨间日记的模板（模板包含当天天气，当天生理指数信息，重要日期倒数日，坚持项目坚持天数，以及距出生共过了多少天等等）生成按yyyy/mm/dd-title.md的文件并以&lt;code&gt;vim&lt;/code&gt;方式打开进行编辑，完成后直接使用hugo本地打开进行预览，还可以点击日期tag或者星期tag查看上月今日、去年今年以及上周今日等的日记进行回顾。&lt;/p&gt;
+
+&lt;p&gt;下面我简单罗列一下实现思路。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

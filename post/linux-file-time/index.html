@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>linux文件时间 - liming.pub</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="liming" /><meta name="description" content="写了个脚本把之前三年的晨间日记转为hugo格式，其中最核心的处理就是生成日记时间，由于linux下没有创建时间，只有最后修改时间，为了把日记所属日期准确找出来，认真研究了下linux里的三个时间。
+" /><meta name="keywords" content="linux" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://liming.pub/post/linux-file-time/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.93844dae.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="linux文件时间" />
+<meta property="og:description" content="写了个脚本把之前三年的晨间日记转为hugo格式，其中最核心的处理就是生成日记时间，由于linux下没有创建时间，只有最后修改时间，为了把日记所属日期准确找出来，认真研究了下linux里的三个时间。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liming.pub/post/linux-file-time/" /><meta property="article:published_time" content="2019-01-06T22:14:22&#43;08:00"/>
+<meta property="article:modified_time" content="2019-01-06T22:14:22&#43;08:00"/>
+
+<meta itemprop="name" content="linux文件时间">
+<meta itemprop="description" content="写了个脚本把之前三年的晨间日记转为hugo格式，其中最核心的处理就是生成日记时间，由于linux下没有创建时间，只有最后修改时间，为了把日记所属日期准确找出来，认真研究了下linux里的三个时间。">
+
+
+<meta itemprop="datePublished" content="2019-01-06T22:14:22&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-06T22:14:22&#43;08:00" />
+<meta itemprop="wordCount" content="661">
+
+
+
+<meta itemprop="keywords" content="linux,mac,shell," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="linux文件时间"/>
+<meta name="twitter:description" content="写了个脚本把之前三年的晨间日记转为hugo格式，其中最核心的处理就是生成日记时间，由于linux下没有创建时间，只有最后修改时间，为了把日记所属日期准确找出来，认真研究了下linux里的三个时间。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">liming.pub</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">栏目</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">liming.pub</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">栏目</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">linux文件时间</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-01-06 22:14:22 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> linux </a>
+            </div>
+          <span class="more-meta"> 约 661 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#概念">概念</a>
+<ul>
+<li><a href="#修改时间">修改时间</a></li>
+<li><a href="#状态改变时间">状态改变时间</a></li>
+<li><a href="#访问时间">访问时间</a></li>
+</ul></li>
+<li><a href="#应用">应用</a>
+<ul>
+<li><a href="#根据时间查找文件">根据时间查找文件</a></li>
+<li><a href="#列出文件的最后修改时间">列出文件的最后修改时间</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>写了个脚本把之前三年的晨间日记转为hugo格式，其中最核心的处理就是生成日记时间，由于linux下没有创建时间，只有最后修改时间，为了把日记所属日期准确找出来，认真研究了下linux里的三个时间。</p>
+
+<h1 id="概念">概念</h1>
+
+<h2 id="修改时间">修改时间</h2>
+
+<p>简称：mtime,modify time
+文件内容变更的时间，影响该值的如<code>vi</code>（注意：<code>vi</code>时内容有修改，并且使用<code>:wq</code>保存退出，该值才会变化）
+查看命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#列举当前目录的文件，默认显示修改时间</span>
+ls -l</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="状态改变时间">状态改变时间</h2>
+
+<p>简称：ctime,change time
+文件属性变更的时间，影响该值的典型命令如<code>chmod\chown</code>，当然，内容变更该值也会同步更新。
+查看命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">ls -lc</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="访问时间">访问时间</h2>
+
+<p>简称：atime,access time
+文件的访问时间，影响该值的典型命令如<code>tail\more\less\cat</code>（注意：<code>ls\stat</code>这样的命令不会影响该值）
+查看命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">ls -lu</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="应用">应用</h1>
+
+<h2 id="根据时间查找文件">根据时间查找文件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#查找当前目录最后一次修改时间在n天以前的文件:(当前时间-mtime)&gt;(n+1)*24</span>
+find . -mtime +n
+<span class="c1">#查找当前目录最后一次修改时间刚好在n天那一天的文件:n*24&lt;(当前时间-mtime)&lt;(n+1)*24</span>
+find . -mtime n
+<span class="c1">#查找当前目录最后一次修改时间在n天以内的文件:(当前时间-mtime)&lt;n*24</span>
+find . -mtime -n</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="列出文件的最后修改时间">列出文件的最后修改时间</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">stat -x -t <span class="s2">&#34;%Y-%m-%dT%H:%M:%S%:z&#34;</span> <span class="p">|</span> grep -i Modify <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span></code></pre></td></tr></table>
+</div>
+</div>
+<div class="admonition note"><p class="admonition-title">Note</p>
+  <p>上面这个格式化语句<code>%Y-%m-%dT%H:%M:%S%:z</code>在mac中无法使用，mac只能使用<code>%Y-%m-%dT%H:%M:%S%z</code>输出<code>+0800</code>，无法输出标准iso8601时区<code>+08:00</code>。</p>
+
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">liming</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-01-06 22:14:22</span>
+  </p>
+  
+  
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/mac/">mac</a>
+          <a href="/tags/shell/">shell</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/morning-diary-with-hugo/">
+            <span class="next-text nav-default">打造自我管理大杂烩：晨间日记&#43;生理周期&#43;天气预报&#43;坚持打卡&#43;倒数提醒……</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'liming-pub';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/iaming" class="iconfont icon-github" title="github"></a>
+  <a href="https://liming.pub/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019 <span class="division"> published by </span> 
+    <span class="author">liming <span class="division">|</span> generated by hugo&even <span class="division">|</span> hosted by coding.me&github</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -6,10 +6,19 @@
     <description>Recent content on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 01 Jan 2019 19:33:20 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 06 Jan 2019 22:14:22 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>linux文件时间</title>
+      <link>https://liming.pub/post/linux-file-time/</link>
+      <pubDate>Sun, 06 Jan 2019 22:14:22 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/linux-file-time/</guid>
+      <description>&lt;p&gt;写了个脚本把之前三年的晨间日记转为hugo格式，其中最核心的处理就是生成日记时间，由于linux下没有创建时间，只有最后修改时间，为了把日记所属日期准确找出来，认真研究了下linux里的三个时间。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>打造自我管理大杂烩：晨间日记&#43;生理周期&#43;天气预报&#43;坚持打卡&#43;倒数提醒……</title>

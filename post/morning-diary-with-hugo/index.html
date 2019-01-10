@@ -18,7 +18,7 @@
 
 <meta name="author" content="liming" /><meta name="description" content="趁着这个元旦假期在家“陪”爸妈和娃（其实是爸妈在看电视，娃在玩积木，我在敲代码），用python和shell升级了晨间日记的新写法： &amp;gt;&amp;gt;每天早上起床后打开电脑，在命令行里敲下md，程序自动从网上抓取近十天的天气预报，自动计算近十天的生理周期指数（身体、智力、情绪、直觉）显示在命令行里，大眼一扫后按回车键，程序自动按照晨间日记的模板（模板包含当天天气，当天生理指数信息，重要日期倒数日，坚持项目坚持天数，以及距出生共过了多少天等等）生成按yyyy/mm/dd-title.md的文件并以vim方式打开进行编辑，完成后直接使用hugo本地打开进行预览，还可以点击日期tag或者星期tag查看上月今日、去年今年以及上周今日等的日记进行回顾。
 下面我简单罗列一下实现思路。
-" /><meta name="keywords" content="liming, iaming, 李明" />
+" /><meta name="keywords" content="liming, iaming, 李明, 最佳实践, 架构, DevOps, linux, 自我管理" />
 
 
 
@@ -35,7 +35,7 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <link href="/dist/even.93844dae.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
@@ -140,7 +140,7 @@
             </div>
           <span class="more-meta"> 约 1214 字 </span>
           <span class="more-meta"> 预计阅读 3 分钟 </span>
-        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
 
@@ -216,7 +216,11 @@
           <a href="/tags/hugo/">hugo</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/linux-file-time/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">linux文件时间</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/api-problem-json/">
             <span class="next-text nav-default">API错误码规范</span>
             <span class="next-text nav-mobile">下一篇</span>
@@ -226,7 +230,20 @@
     </footer>
   </article>
         </div>
-        
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'liming-pub';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
       </div>
     </main>
@@ -239,7 +256,11 @@
 
 <div class="copyright">
 
-  
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
 
   <span class="copyright-year">
     &copy; 

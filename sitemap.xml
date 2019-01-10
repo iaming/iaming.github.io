@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liming.pub/post/linux-file-time/</loc>
+    <lastmod>2019-01-06T22:14:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/post/morning-diary-with-hugo/</loc>
     <lastmod>2019-01-01T19:33:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -38,7 +45,7 @@
   
   <url>
     <loc>https://liming.pub/post/</loc>
-    <lastmod>2019-01-01T19:33:20+08:00</lastmod>
+    <lastmod>2019-01-06T22:14:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -73,7 +80,28 @@
   
   <url>
     <loc>https://liming.pub/</loc>
-    <lastmod>2019-01-01T19:33:20+08:00</lastmod>
+    <lastmod>2019-01-06T22:14:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/tags/linux/</loc>
+    <lastmod>2019-01-06T22:14:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/categories/linux/</loc>
+    <lastmod>2019-01-06T22:14:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/tags/mac/</loc>
+    <lastmod>2019-01-06T22:14:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -87,7 +115,7 @@
   
   <url>
     <loc>https://liming.pub/tags/shell/</loc>
-    <lastmod>2019-01-01T19:33:20+08:00</lastmod>
+    <lastmod>2019-01-06T22:14:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>规范 on liming.pub</title>
-    <link>https://liming.pub/tags/%E8%A7%84%E8%8C%83/</link>
-    <description>Recent content in 规范 on liming.pub</description>
+    <title>JWT on liming.pub</title>
+    <link>https://liming.pub/tags/jwt/</link>
+    <description>Recent content in JWT on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sat, 19 Jan 2019 22:33:53 +0800</lastBuildDate>
     
-	<atom:link href="https://liming.pub/tags/%E8%A7%84%E8%8C%83/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://liming.pub/tags/jwt/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://liming.pub/post/jwt/</guid>
       <description>&lt;p&gt;在单服务型应用时代，扩容时必须配备F5这样的硬件设备来解决session会话保持的问题；在微服务开始流行时，spring也给出了Spring Session这样的分布式共享会话方案；在Restful和前后端分离架构下，JWT才是正道。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>API错误码规范</title>
-      <link>https://liming.pub/post/api-problem-json/</link>
-      <pubDate>Mon, 31 Dec 2018 11:05:49 +0800</pubDate>
-      
-      <guid>https://liming.pub/post/api-problem-json/</guid>
-      <description>&lt;p&gt;做了这么多年项目，倾听了太多开发人员对API接口返回错误码的吐槽，收到了太多用户对系统中云里雾里错误信息的埋怨。我在这几年实践中尝试过一些的解决方案，今天就做一下总结。&lt;/p&gt;</description>
     </item>
     
   </channel>

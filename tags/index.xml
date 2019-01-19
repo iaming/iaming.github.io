@@ -6,7 +6,7 @@
     <description>Recent content in Tags on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 31 Dec 2018 11:05:49 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 19 Jan 2019 22:33:53 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,16 +14,25 @@
     <item>
       <title>API</title>
       <link>https://liming.pub/tags/api/</link>
-      <pubDate>Mon, 31 Dec 2018 11:05:49 +0800</pubDate>
+      <pubDate>Sat, 19 Jan 2019 22:33:53 +0800</pubDate>
       
       <guid>https://liming.pub/tags/api/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>JWT</title>
+      <link>https://liming.pub/tags/jwt/</link>
+      <pubDate>Sat, 19 Jan 2019 22:33:53 +0800</pubDate>
+      
+      <guid>https://liming.pub/tags/jwt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>RESTful</title>
       <link>https://liming.pub/tags/restful/</link>
-      <pubDate>Mon, 31 Dec 2018 11:05:49 +0800</pubDate>
+      <pubDate>Sat, 19 Jan 2019 22:33:53 +0800</pubDate>
       
       <guid>https://liming.pub/tags/restful/</guid>
       <description></description>
@@ -102,6 +111,15 @@
     </item>
     
     <item>
+      <title>架构</title>
+      <link>https://liming.pub/tags/%E6%9E%B6%E6%9E%84/</link>
+      <pubDate>Sat, 19 Jan 2019 22:33:53 +0800</pubDate>
+      
+      <guid>https://liming.pub/tags/%E6%9E%B6%E6%9E%84/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>生理周期</title>
       <link>https://liming.pub/tags/%E7%94%9F%E7%90%86%E5%91%A8%E6%9C%9F/</link>
       <pubDate>Tue, 01 Jan 2019 19:33:20 +0800</pubDate>
@@ -113,7 +131,7 @@
     <item>
       <title>规范</title>
       <link>https://liming.pub/tags/%E8%A7%84%E8%8C%83/</link>
-      <pubDate>Mon, 31 Dec 2018 11:05:49 +0800</pubDate>
+      <pubDate>Sat, 19 Jan 2019 22:33:53 +0800</pubDate>
       
       <guid>https://liming.pub/tags/%E8%A7%84%E8%8C%83/</guid>
       <description></description>

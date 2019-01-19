@@ -6,10 +6,19 @@
     <description>Recent content in RESTful on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 31 Dec 2018 11:05:49 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 19 Jan 2019 22:33:53 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/tags/restful/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JWT最佳实践</title>
+      <link>https://liming.pub/post/jwt/</link>
+      <pubDate>Sat, 19 Jan 2019 22:33:53 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/jwt/</guid>
+      <description>&lt;p&gt;在单服务型应用时代，扩容时必须配备F5这样的硬件设备来解决session会话保持的问题；在微服务开始流行时，spring也给出了Spring Session这样的分布式共享会话方案；在Restful和前后端分离架构下，JWT才是正道。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>API错误码规范</title>

@@ -246,7 +246,10 @@ find . -mtime -n</code></pre></td></tr></table>
     <span class="item-content">2019-01-06 22:14:22</span>
   </p>
   
-  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
 </div><footer class="post-footer">
       <div class="post-tags">
           <a href="/tags/linux/">linux</a>
@@ -254,7 +257,11 @@ find . -mtime -n</code></pre></td></tr></table>
           <a href="/tags/shell/">shell</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/jwt/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">JWT最佳实践</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/morning-diary-with-hugo/">
             <span class="next-text nav-default">打造自我管理大杂烩：晨间日记&#43;生理周期&#43;天气预报&#43;坚持打卡&#43;倒数提醒……</span>
             <span class="next-text nav-mobile">下一篇</span>
@@ -264,20 +271,25 @@ find . -mtime -n</code></pre></td></tr></table>
     </footer>
   </article>
         </div>
-        <div id="disqus_thread"></div>
+        <div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
-    (function() {
-      
-      
-      if (window.location.hostname === 'localhost') return;
-
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      var disqus_shortname = 'liming-pub';
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
+      var gitment = new Gitment({
+        id: '2019-01-06 22:14:22 \x2b0800 CST',
+        title: 'linux文件时间',
+        link: decodeURI(location.href),
+        desc: '\x3cp\x3e写了个脚本把之前三年的晨间日记转为hugo格式，其中最核心的处理就是生成日记时间，由于linux下没有创建时间，只有最后修改时间，为了把日记所属日期准确找出来，认真研究了下linux里的三个时间。\x3c\/p\x3e',
+        owner: 'iaming',
+        repo: 'iaming.github.io',
+        oauth: {
+          client_id: 'f35ddb3b03b9257b76d0',
+          client_secret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f'
+        }
+      });
+      gitment.render('comments-gitment');
     </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
 
       </div>
     </main>

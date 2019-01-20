@@ -277,7 +277,11 @@
           <a href="/tags/api/">API</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/restful-cache/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Restful缓存实践</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/linux-file-time/">
             <span class="next-text nav-default">linux文件时间</span>
             <span class="next-text nav-mobile">下一篇</span>
@@ -287,25 +291,23 @@
     </footer>
   </article>
         </div>
-        <div id="comments-gitment"></div>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js" crossorigin="anonymous"></script>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
-      var gitment = new Gitment({
+      var gitalk = new Gitalk({
         id: '2019-01-19 22:33:53 \x2b0800 CST',
         title: 'JWT最佳实践',
-        link: decodeURI(location.href),
-        desc: '\x3cp\x3e在单服务型应用时代，扩容时必须配备F5这样的硬件设备来解决session会话保持的问题；在微服务开始流行时，spring也给出了Spring Session这样的分布式共享会话方案；在Restful和前后端分离架构下，JWT才是正道。\x3c\/p\x3e',
-        owner: 'iaming',
+        clientID: 'f35ddb3b03b9257b76d0',
+        clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
         repo: 'iaming.github.io',
-        oauth: {
-          client_id: 'f35ddb3b03b9257b76d0',
-          client_secret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f'
-        }
+        owner: 'iaming',
+        admin: ['iaming'],
+        body: decodeURI(location.href)
       });
-      gitment.render('comments-gitment');
+      gitalk.render('gitalk-container');
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
 
       </div>
     </main>

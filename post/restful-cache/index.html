@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>重拾码字的快乐 - liming.pub</title>
+  <title>Restful缓存实践 - liming.pub</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,11 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="前几天，一个同事问我要博客地址，不经意间一问，却深深的触动了我。
-博客我曾经有过，而且还不少，但真正投入大量精力的有两个，一个是05年开的好网博客，另一个是08年自己改程序购买主机搭建的阿明在线独立博客，大概是12年左右吧，两个博客先后都关闭了。现在唯一还在坚持的就只有QQ空间，虽然写的越来越少，至少每年元旦都会有做一下年终总结，并立一下当年flag，但这个唯一的QQ空间现在也已经设置为只有自己可见。
-所以现在自己还真的没有博客！而且这么多年都没有码字，表达能力已经严重退化，满脑子想说的感慨，却半天蹦不出一个词儿。
-于是趁着元旦放假，酝酿着重拾博客，经过调研，最终按如下方案开始了我的开篇博客：
-" /><meta name="keywords" content="liming, iaming, 李明, 最佳实践, 架构, DevOps, linux, 自我管理" />
+<meta name="author" content="liming" /><meta name="description" content="应用可以通过分布式集群等方式动态扩容，但数据库不行，一个系统的吞吐量最终取决于数据库，而缓存可以在应用和数据库之间起到一层保护，为了竟可能多的提高缓存命中率，降低数据库压力，做到及时性和性能的平衡，根据不同缓存特点和应用场景采用多级缓存，具体如下：
+" /><meta name="keywords" content="缓存" />
 
 
 
@@ -30,7 +27,7 @@
 <meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://liming.pub/post/start-writing-again/" />
+<link rel="canonical" href="https://liming.pub/post/restful-cache/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -42,44 +39,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="重拾码字的快乐" />
-<meta property="og:description" content="前几天，一个同事问我要博客地址，不经意间一问，却深深的触动了我。
-
-博客我曾经有过，而且还不少，但真正投入大量精力的有两个，一个是05年开的好网博客，另一个是08年自己改程序购买主机搭建的阿明在线独立博客，大概是12年左右吧，两个博客先后都关闭了。现在唯一还在坚持的就只有QQ空间，虽然写的越来越少，至少每年元旦都会有做一下年终总结，并立一下当年flag，但这个唯一的QQ空间现在也已经设置为只有自己可见。
-
-所以现在自己还真的没有博客！而且这么多年都没有码字，表达能力已经严重退化，满脑子想说的感慨，却半天蹦不出一个词儿。
-
-于是趁着元旦放假，酝酿着重拾博客，经过调研，最终按如下方案开始了我的开篇博客：" />
+<meta property="og:title" content="Restful缓存实践" />
+<meta property="og:description" content="应用可以通过分布式集群等方式动态扩容，但数据库不行，一个系统的吞吐量最终取决于数据库，而缓存可以在应用和数据库之间起到一层保护，为了竟可能多的提高缓存命中率，降低数据库压力，做到及时性和性能的平衡，根据不同缓存特点和应用场景采用多级缓存，具体如下：" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://liming.pub/post/start-writing-again/" /><meta property="article:published_time" content="2018-12-30T18:31:13&#43;08:00"/>
-<meta property="article:modified_time" content="2018-12-30T18:31:13&#43;08:00"/>
+<meta property="og:url" content="https://liming.pub/post/restful-cache/" /><meta property="article:published_time" content="2019-01-20T21:30:43&#43;08:00"/>
+<meta property="article:modified_time" content="2019-01-20T21:30:43&#43;08:00"/>
 
-<meta itemprop="name" content="重拾码字的快乐">
-<meta itemprop="description" content="前几天，一个同事问我要博客地址，不经意间一问，却深深的触动了我。
-
-博客我曾经有过，而且还不少，但真正投入大量精力的有两个，一个是05年开的好网博客，另一个是08年自己改程序购买主机搭建的阿明在线独立博客，大概是12年左右吧，两个博客先后都关闭了。现在唯一还在坚持的就只有QQ空间，虽然写的越来越少，至少每年元旦都会有做一下年终总结，并立一下当年flag，但这个唯一的QQ空间现在也已经设置为只有自己可见。
-
-所以现在自己还真的没有博客！而且这么多年都没有码字，表达能力已经严重退化，满脑子想说的感慨，却半天蹦不出一个词儿。
-
-于是趁着元旦放假，酝酿着重拾博客，经过调研，最终按如下方案开始了我的开篇博客：">
+<meta itemprop="name" content="Restful缓存实践">
+<meta itemprop="description" content="应用可以通过分布式集群等方式动态扩容，但数据库不行，一个系统的吞吐量最终取决于数据库，而缓存可以在应用和数据库之间起到一层保护，为了竟可能多的提高缓存命中率，降低数据库压力，做到及时性和性能的平衡，根据不同缓存特点和应用场景采用多级缓存，具体如下：">
 
 
-<meta itemprop="datePublished" content="2018-12-30T18:31:13&#43;08:00" />
-<meta itemprop="dateModified" content="2018-12-30T18:31:13&#43;08:00" />
-<meta itemprop="wordCount" content="401">
+<meta itemprop="datePublished" content="2019-01-20T21:30:43&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-20T21:30:43&#43;08:00" />
+<meta itemprop="wordCount" content="910">
 
 
 
-<meta itemprop="keywords" content="hugo,github," />
+<meta itemprop="keywords" content="架构,RESTful,缓存,," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="重拾码字的快乐"/>
-<meta name="twitter:description" content="前几天，一个同事问我要博客地址，不经意间一问，却深深的触动了我。
-
-博客我曾经有过，而且还不少，但真正投入大量精力的有两个，一个是05年开的好网博客，另一个是08年自己改程序购买主机搭建的阿明在线独立博客，大概是12年左右吧，两个博客先后都关闭了。现在唯一还在坚持的就只有QQ空间，虽然写的越来越少，至少每年元旦都会有做一下年终总结，并立一下当年flag，但这个唯一的QQ空间现在也已经设置为只有自己可见。
-
-所以现在自己还真的没有博客！而且这么多年都没有码字，表达能力已经严重退化，满脑子想说的感慨，却半天蹦不出一个词儿。
-
-于是趁着元旦放假，酝酿着重拾博客，经过调研，最终按如下方案开始了我的开篇博客："/>
+<meta name="twitter:title" content="Restful缓存实践"/>
+<meta name="twitter:description" content="应用可以通过分布式集群等方式动态扩容，但数据库不行，一个系统的吞吐量最终取决于数据库，而缓存可以在应用和数据库之间起到一层保护，为了竟可能多的提高缓存命中率，降低数据库压力，做到及时性和性能的平衡，根据不同缓存特点和应用场景采用多级缓存，具体如下："/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -142,15 +121,15 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">重拾码字的快乐</h1>
+      <h1 class="post-title">Restful缓存实践</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2018-12-30 18:31:13 </span>
+        <span class="post-time"> 2019-01-20 21:30:43 </span>
         <div class="post-category">
-            <a href="/categories/%E8%87%AA%E6%88%91%E7%AE%A1%E7%90%86/"> 自我管理 </a>
+            <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
             </div>
-          <span class="more-meta"> 约 401 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+          <span class="more-meta"> 约 910 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -158,25 +137,69 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
-    
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#实践要点">实践要点</a>
+<ul>
+<li><a href="#缓存穿透">缓存穿透</a></li>
+<li><a href="#缓存击穿">缓存击穿</a></li>
+<li><a href="#缓存雪崩">缓存雪崩</a></li>
+<li><a href="#缓存污染">缓存污染</a></li>
+<li><a href="#缓存序列化">缓存序列化</a></li>
+</ul></li>
+</ul>
+</nav>
   </div>
 </div>
     <div class="post-content">
-      <p>前几天，一个同事问我要博客地址，不经意间一问，却深深的触动了我。</p>
-
-<p>博客我曾经有过，而且还不少，但真正投入大量精力的有两个，一个是05年开的好网博客，另一个是08年自己改程序购买主机搭建的阿明在线独立博客，大概是12年左右吧，两个博客先后都关闭了。现在唯一还在坚持的就只有QQ空间，虽然写的越来越少，至少每年元旦都会有做一下年终总结，并立一下当年flag，但这个唯一的QQ空间现在也已经设置为只有自己可见。</p>
-
-<p>所以现在自己还真的没有博客！而且这么多年都没有码字，表达能力已经严重退化，满脑子想说的感慨，却半天蹦不出一个词儿。</p>
-
-<p>于是趁着元旦放假，酝酿着重拾博客，经过调研，最终按如下方案开始了我的开篇博客：</p>
+      <p>应用可以通过分布式集群等方式动态扩容，但数据库不行，一个系统的吞吐量最终取决于数据库，而缓存可以在应用和数据库之间起到一层保护，为了竟可能多的提高缓存命中率，降低数据库压力，做到及时性和性能的平衡，根据不同缓存特点和应用场景采用多级缓存，具体如下：</p>
 
 <ul>
-<li>引擎：<a href="https://gohugo.io">hugo</a></li>
-<li>主题：简洁实用原则，暂用<a href="https://github.com/olOwOlo/hugo-theme-even">even</a>，有时间可以移植一下next.mist。</li>
-<li>部署：使用<a href="https://www.aliyun.com">aliyun</a>域名智能解析，海外路由到<a href="https://www.github.com">github</a>，国内路由到<a href="https://www.coding.me">coding.me</a>。</li>
+<li>客户端缓存：本地存储，浏览器使用LocalStorage，APP可以使用SQLite，客户端和服务端采用HTTP头部信息如<code>If-Modified-Since</code>、<code>Etag</code>、<code>If-None-Match</code>进行沟通。</li>
+<li>服务端一级缓存：采用目前性能最好的缓存框架Caffeine（参考文章《<a href="https://juejin.im/post/5b7593496fb9a009b62904fa#comment">你应该知道的缓存进化史</a>》）</li>
+<li>服务端二级缓存：采用目前排名第一的分布式键值对缓存数据库Redis（参考月度排行网站DB-Engines.com的数据）</li>
 </ul>
 
-<p>先这样吧，没有完美，写起来再说。</p>
+<h1 id="实践要点">实践要点</h1>
+
+<h2 id="缓存穿透">缓存穿透</h2>
+
+<p>缓存穿透是指查询的数据在数据库是没有的，那么在缓存中自然也没有，导致这部分请求必然直达数据库。
+措施：
+1. 区分缓存不存在和数据不存在，比如约定取缓存值为null代表数据不存在，缓存key不存在代表缓存不存在。
+2. 校验缓存key的范围，对于明显不合规的直接阻止其进入缓存系统。</p>
+
+<h2 id="缓存击穿">缓存击穿</h2>
+
+<p>缓存击穿是指由于某个热点缓存失效，瞬间就有大量的请求没命中，然后直达数据库。</p>
+
+<p>措施：
+- 对于热点数据采用定时自动刷新策略。</p>
+
+<h2 id="缓存雪崩">缓存雪崩</h2>
+
+<p>缓存雪崩是指缓存不可用或者大量缓存由于超时时间相同在同一时间段失效，导致大量请求直达数据库。</p>
+
+<p>措施：
+- 监控缓存健康状况
+- 采用多级缓存
+- 缓存的过期时间尽量随机，定时刷新时间也尽量错开</p>
+
+<h2 id="缓存污染">缓存污染</h2>
+
+<p>由于错误的使用缓存数据进行修改，并未更新到数据库，从而导致各实例的缓存数据混乱，并且和数据库不一致的情况</p>
+
+<p>措施：
+- 规范和代码审查</p>
+
+<h2 id="缓存序列化">缓存序列化</h2>
+
+<p>当缓存的是对象时，由于序列号和反序列化的机制不同，导致缓存反序列化报错。</p>
+
+<p>措施：
+- 采用兼容性较好的反序列化框架，如json
+- 对缓存对象修改需要慎重，新增字段放在最后，删除字典建议兼容和过渡，比如用@Deprecated注解进行标注弃用，待所有缓存更新后再手动删除
+- 必要的时候采用双写策略，即同时上线新老两个版本的缓存，更新时两个缓存同时更新，读采用老缓存，待新缓存全部覆盖老缓存时，将读切换至新缓存，同时停止双写。</p>
     </div>
 
     <div class="post-copyright">
@@ -186,7 +209,7 @@
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2018-12-30 18:31:13</span>
+    <span class="item-content">2019-01-20 21:30:43</span>
   </p>
   
   <p class="copyright-item">
@@ -195,16 +218,18 @@
   </p>
 </div><footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/hugo/">hugo</a>
-          <a href="/tags/github/">github</a>
+          <a href="/tags/%E6%9E%B6%E6%9E%84/">架构</a>
+          <a href="/tags/restful/">RESTful</a>
+          <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+          <a href="/tags//"></a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/api-problem-json/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">API错误码规范</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
         
+        <a class="next" href="/post/jwt/">
+            <span class="next-text nav-default">JWT最佳实践</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
       </nav>
     </footer>
   </article>
@@ -214,8 +239,8 @@
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2018-12-30 18:31:13 \x2b0800 CST',
-        title: '重拾码字的快乐',
+        id: '2019-01-20 21:30:43 \x2b0800 CST',
+        title: 'Restful缓存实践',
         clientID: 'f35ddb3b03b9257b76d0',
         clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
         repo: 'iaming.github.io',

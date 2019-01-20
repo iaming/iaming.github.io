@@ -233,25 +233,23 @@
     </footer>
   </article>
         </div>
-        <div id="comments-gitment"></div>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js" crossorigin="anonymous"></script>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
-      var gitment = new Gitment({
+      var gitalk = new Gitalk({
         id: '2019-01-01 19:33:20 \x2b0800 CST',
         title: '打造自我管理大杂烩：晨间日记\x2b生理周期\x2b天气预报\x2b坚持打卡\x2b倒数提醒……',
-        link: decodeURI(location.href),
-        desc: '\x3cp\x3e趁着这个元旦假期在家“陪”爸妈和娃（其实是爸妈在看电视，娃在玩积木，我在敲代码），用python和shell升级了晨间日记的新写法：\n\x26gt;\x26gt;每天早上起床后打开电脑，在命令行里敲下\x3ccode\x3emd\x3c\/code\x3e，程序自动从网上抓取近十天的天气预报，自动计算近十天的生理周期指数（身体、智力、情绪、直觉）显示在命令行里，大眼一扫后按回车键，程序自动按照晨间日记的模板（模板包含当天天气，当天生理指数信息，重要日期倒数日，坚持项目坚持天数，以及距出生共过了多少天等等）生成按yyyy\/mm\/dd-title.md的文件并以\x3ccode\x3evim\x3c\/code\x3e方式打开进行编辑，完成后直接使用hugo本地打开进行预览，还可以点击日期tag或者星期tag查看上月今日、去年今年以及上周今日等的日记进行回顾。\x3c\/p\x3e\n\n\x3cp\x3e下面我简单罗列一下实现思路。\x3c\/p\x3e',
-        owner: 'iaming',
+        clientID: 'f35ddb3b03b9257b76d0',
+        clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
         repo: 'iaming.github.io',
-        oauth: {
-          client_id: 'f35ddb3b03b9257b76d0',
-          client_secret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f'
-        }
+        owner: 'iaming',
+        admin: ['iaming'],
+        body: decodeURI(location.href)
       });
-      gitment.render('comments-gitment');
+      gitalk.render('gitalk-container');
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
 
       </div>
     </main>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Git实用配置和技巧 - liming.pub</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="liming" /><meta name="description" content="git命令博大精深，做为git深度用户，这里介绍几个自己一直在用的自认为很实用的git的配置和技巧。
+" /><meta name="keywords" content="git, git命令别名, git合并仓库, git同时提交两个仓库, git命令乱码" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://liming.pub/post/git-practical-skills/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.93844dae.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Git实用配置和技巧" />
+<meta property="og:description" content="git命令博大精深，做为git深度用户，这里介绍几个自己一直在用的自认为很实用的git的配置和技巧。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liming.pub/post/git-practical-skills/" /><meta property="article:published_time" content="2019-01-26T10:10:46&#43;08:00"/>
+<meta property="article:modified_time" content="2019-01-26T10:10:46&#43;08:00"/>
+
+<meta itemprop="name" content="Git实用配置和技巧">
+<meta itemprop="description" content="git命令博大精深，做为git深度用户，这里介绍几个自己一直在用的自认为很实用的git的配置和技巧。">
+
+
+<meta itemprop="datePublished" content="2019-01-26T10:10:46&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-26T10:10:46&#43;08:00" />
+<meta itemprop="wordCount" content="1009">
+
+
+
+<meta itemprop="keywords" content="git,IDEA,windos,mac,linux," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Git实用配置和技巧"/>
+<meta name="twitter:description" content="git命令博大精深，做为git深度用户，这里介绍几个自己一直在用的自认为很实用的git的配置和技巧。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">liming.pub</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">栏目</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">liming.pub</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">栏目</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Git实用配置和技巧</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-01-26 10:10:46 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
+            </div>
+          <span class="more-meta"> 约 1009 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#命令简化">命令简化</a></li>
+<li><a href="#高频命令">高频命令</a></li>
+<li><a href="#复杂命令">复杂命令</a></li>
+<li><a href="#美化提交记录-显示提交树">美化提交记录，显示提交树</a></li>
+<li><a href="#账户设置">账户设置</a></li>
+<li><a href="#切换远程仓库">切换远程仓库</a></li>
+<li><a href="#中文显示为unicode编码">中文显示为Unicode编码</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>git命令博大精深，做为git深度用户，这里介绍几个自己一直在用的自认为很实用的git的配置和技巧。</p>
+
+<h1 id="命令简化">命令简化</h1>
+
+<p>通过git的配置来对命令设置别名，git的配置文件优先级为 local &gt; global &gt; system，其中：
+- local：位于git项目目录中的.git/config,只对特定git项目有效
+- global：位于~/.gitconfig,只对当前登录用户有效
+- system：位于 git的安装目录 /etc/gitconfig,对系统所有用户和所有项目有效</p>
+
+<p>下面是两种设置方式：</p>
+
+<ol>
+<li><p>执行命令
+```</p>
+
+<h1 id="高频命令">高频命令</h1>
+
+<p>git config &ndash;global alias.ci commit
+git config &ndash;global alias.co checkout
+git config &ndash;global alias.st status
+git config &ndash;global alias.br branch</p></li>
+</ol>
+
+<h1 id="复杂命令">复杂命令</h1>
+
+<h1 id="美化提交记录-显示提交树">美化提交记录，显示提交树</h1>
+
+<p>git config &ndash;global alias.lg &ldquo;log &ndash;color &ndash;graph &ndash;pretty=format:&lsquo;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&rsquo; &ndash;abbrev-commit&rdquo;</p>
+
+<h1 id="账户设置">账户设置</h1>
+
+<p>git config &ndash;global alias.nameme &lsquo;config user.name iaming&rsquo;
+git config &ndash;global alias.mailme &lsquo;config user.email iaming@me.com&rsquo;
+git config &ndash;global alias.mailqq &lsquo;config user.email net.liming@qq.com&rsquo;</p>
+
+<h1 id="切换远程仓库">切换远程仓库</h1>
+
+<p>git config &ndash;global alias.repo1 &lsquo;remote set-url origin /path/to/repository1&rsquo;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">2. 编辑配置
+`vim ~/.gitconfig`</pre></td></tr></table>
+</div>
+</div>
+<p>[alias]
+	lg = log &ndash;color &ndash;graph &ndash;pretty=format:&lsquo;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&rsquo; &ndash;abbrev-commit
+	st = status
+	co = checkout
+	ci = commit
+	br = branch
+	nameme = config user.name iaming
+	mailme = config user.email iaming@me.com
+	mailqq = config user.email net.liming@qq.com
+	repo1 = remote set-url origin /path/to/repository1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">- [命令格式化配置参考](https://git-scm.com/docs/pretty-formats)
+
+# 合并分支
+合并内容，但不保留待合并分支上的历史信息，相当于把待合并分支上的多个commit合并成一个，放到当前分支。判断是否使用--squash选项最根本的标准是，待合并分支上的历史是否有意义</pre></td></tr></table>
+</div>
+</div>
+<p>git merge master &ndash;squash</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 合并仓库
+先克隆仓库1，然后切换到仓库2，在本地合并仓库2:</pre></td></tr></table>
+</div>
+</div>
+<p>git remote add origin2 /path/to/repository2
+git fetch origin2</p>
+
+<p>git pull &ndash;allow-unrelated-histories</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">本地解决冲突后提交即可
+
+# 同时提交两个仓库
+`vim .git/config`</pre></td></tr></table>
+</div>
+</div>
+<p>[remote &ldquo;origin&rdquo;]
+        url = /path/to/repository1
+        url = /path/to/repository2
+        fetch = +refs/heads/<em>:refs/remotes/origin/</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 忽略文件属性变更
+问题：因为windows和mac、linux对文件属性处理不一样，会到这跟踪混乱。
+`vim ~/.gitconfig`</pre></td></tr></table>
+</div>
+</div>
+<p>[core]
+	filemode = false
+```
+NOTE: 有安全风险或权限错误，建议脚本、二进制程序权限还是明确配置。</p>
+
+<h1 id="中文显示为unicode编码">中文显示为Unicode编码</h1>
+
+<ol>
+<li><p>问题：当工程中有中文目录时，命令行里会显示为Unicode编码。解决方法：
+<code>vim ~/.gitconfig</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[core]
+    quotepath = false</pre></td></tr></table>
+</div>
+</div>
+<p>或者</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">git config --global core.quotepath false
+git config --global i18n.commit.encoding utf-8 # 提交信息编码
+git config --global i18n.logoutputencoding utf-8    # 输出 log 编码</pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>问题：Windows决IDEA下的terminal中文Unicode编码。解决办法：</p>
+
+<ul>
+<li>将settings-&gt;Tools-&gt;Terminal，将Shell path修改为：C:\Program Files\Git\bin\bash.exe</li>
+
+<li><p>修改C:\Program Files\Git\etc\bash.bashrc，最后追加：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 解决IDEA下的terminal中文Unicode编码问题</span>
+<span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+<span class="nb">export</span> <span class="nv">LC_ALL</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>NOTE:如果提示没有权限，请以管理员身份运行编辑修改。</p></li>
+</ul></li>
+</ol>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">liming</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-01-26 10:10:46</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/git/">git</a>
+          <a href="/tags/idea/">IDEA</a>
+          <a href="/tags/windos/">windos</a>
+          <a href="/tags/mac/">mac</a>
+          <a href="/tags/linux/">linux</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/restful-cache/">
+            <span class="next-text nav-default">Restful缓存实践</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2019-01-26 10:10:46 \x2b0800 CST',
+        title: 'Git实用配置和技巧',
+        clientID: 'f35ddb3b03b9257b76d0',
+        clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
+        repo: 'iaming.github.io',
+        owner: 'iaming',
+        admin: ['iaming'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/iaming" class="iconfont icon-github" title="github"></a>
+  <a href="https://liming.pub/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019 <span class="division"> published by </span> 
+    <span class="author">liming <span class="division">|</span> generated by hugo&even <span class="division">|</span> hosted by coding.me&github</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -6,10 +6,19 @@
     <description>Recent content in mac on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 06 Jan 2019 22:14:22 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 26 Jan 2019 10:10:46 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/tags/mac/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git实用配置和技巧</title>
+      <link>https://liming.pub/post/git-practical-skills/</link>
+      <pubDate>Sat, 26 Jan 2019 10:10:46 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/git-practical-skills/</guid>
+      <description>&lt;p&gt;git命令博大精深，做为git深度用户，这里介绍几个自己一直在用的自认为很实用的git的配置和技巧。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>linux文件时间</title>

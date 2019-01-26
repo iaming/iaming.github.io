@@ -6,10 +6,19 @@
     <description>Recent content on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 20 Jan 2019 21:30:43 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 26 Jan 2019 10:10:46 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git实用配置和技巧</title>
+      <link>https://liming.pub/post/git-practical-skills/</link>
+      <pubDate>Sat, 26 Jan 2019 10:10:46 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/git-practical-skills/</guid>
+      <description>&lt;p&gt;git命令博大精深，做为git深度用户，这里介绍几个自己一直在用的自认为很实用的git的配置和技巧。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Restful缓存实践</title>
@@ -39,7 +48,7 @@
     </item>
     
     <item>
-      <title>打造自我管理大杂烩：晨间日记&#43;生理周期&#43;天气预报&#43;坚持打卡&#43;倒数提醒……</title>
+      <title>自我管理实践：晨间日记&#43;生理周期&#43;天气预报&#43;坚持打卡&#43;倒数提醒</title>
       <link>https://liming.pub/post/morning-diary-with-hugo/</link>
       <pubDate>Tue, 01 Jan 2019 19:33:20 +0800</pubDate>
       

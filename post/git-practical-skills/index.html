@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-01-26T10:10:46&#43;08:00" />
 <meta itemprop="dateModified" content="2019-01-26T10:10:46&#43;08:00" />
-<meta itemprop="wordCount" content="1009">
+<meta itemprop="wordCount" content="989">
 
 
 
@@ -128,8 +128,8 @@
         <div class="post-category">
             <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
             </div>
-          <span class="more-meta"> 约 1009 字 </span>
-          <span class="more-meta"> 预计阅读 3 分钟 </span>
+          <span class="more-meta"> 约 989 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -140,11 +140,10 @@
     <nav id="TableOfContents">
 <ul>
 <li><a href="#命令简化">命令简化</a></li>
-<li><a href="#高频命令">高频命令</a></li>
-<li><a href="#复杂命令">复杂命令</a></li>
-<li><a href="#美化提交记录-显示提交树">美化提交记录，显示提交树</a></li>
-<li><a href="#账户设置">账户设置</a></li>
-<li><a href="#切换远程仓库">切换远程仓库</a></li>
+<li><a href="#合并分支">合并分支</a></li>
+<li><a href="#合并仓库">合并仓库</a></li>
+<li><a href="#同时提交两个仓库">同时提交两个仓库</a></li>
+<li><a href="#忽略文件属性变更">忽略文件属性变更</a></li>
 <li><a href="#中文显示为unicode编码">中文显示为Unicode编码</a></li>
 </ul>
 </nav>
@@ -163,52 +162,89 @@
 <p>下面是两种设置方式：</p>
 
 <ol>
-<li><p>执行命令
-```</p>
+<li><p>执行命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#高频命令</span>
+git config --global alias.ci commit
+git config --global alias.co checkout
+git config --global alias.st status
+git config --global alias.br branch
 
-<h1 id="高频命令">高频命令</h1>
+<span class="c1">#复杂命令</span>
+<span class="c1">#美化提交记录，显示提交树</span>
+git config --global alias.lg <span class="s2">&#34;log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit&#34;</span>
+<span class="c1">#账户设置</span>
+git config --global alias.nameme <span class="s1">&#39;config user.name iaming&#39;</span>
+git config --global alias.mailme <span class="s1">&#39;config user.email iaming@me.com&#39;</span>
+git config --global alias.mailqq <span class="s1">&#39;config user.email net.liming@qq.com&#39;</span> 
+<span class="c1">#切换远程仓库</span>
+git config --global alias.repo1 <span class="s1">&#39;remote set-url origin /path/to/repository1&#39;</span></code></pre></td></tr></table>
+</div>
+</div></li>
 
-<p>git config &ndash;global alias.ci commit
-git config &ndash;global alias.co checkout
-git config &ndash;global alias.st status
-git config &ndash;global alias.br branch</p></li>
+<li><p>编辑配置<br />
+<code>vim ~/.gitconfig</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[alias]
+    lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit
+    st = status
+    co = checkout
+    ci = commit
+    br = branch
+    nameme = config user.name iaming
+    mailme = config user.email iaming@me.com
+    mailqq = config user.email net.liming@qq.com
+    repo1 = remote set-url origin /path/to/repository1</pre></td></tr></table>
+</div>
+</div>
+<p><a href="https://git-scm.com/docs/pretty-formats">命令格式化配置参考</a></p></li>
 </ol>
 
-<h1 id="复杂命令">复杂命令</h1>
+<h1 id="合并分支">合并分支</h1>
 
-<h1 id="美化提交记录-显示提交树">美化提交记录，显示提交树</h1>
-
-<p>git config &ndash;global alias.lg &ldquo;log &ndash;color &ndash;graph &ndash;pretty=format:&lsquo;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&rsquo; &ndash;abbrev-commit&rdquo;</p>
-
-<h1 id="账户设置">账户设置</h1>
-
-<p>git config &ndash;global alias.nameme &lsquo;config user.name iaming&rsquo;
-git config &ndash;global alias.mailme &lsquo;config user.email iaming@me.com&rsquo;
-git config &ndash;global alias.mailqq &lsquo;config user.email net.liming@qq.com&rsquo;</p>
-
-<h1 id="切换远程仓库">切换远程仓库</h1>
-
-<p>git config &ndash;global alias.repo1 &lsquo;remote set-url origin /path/to/repository1&rsquo;</p>
+<p>合并内容，但不保留待合并分支上的历史信息，相当于把待合并分支上的多个commit合并成一个，放到当前分支。判断是否使用&ndash;squash选项最根本的标准是，待合并分支上的历史是否有意义</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">2. 编辑配置
-`vim ~/.gitconfig`</pre></td></tr></table>
+<pre class="chroma">git merge master --squash</pre></td></tr></table>
 </div>
 </div>
-<p>[alias]
-	lg = log &ndash;color &ndash;graph &ndash;pretty=format:&lsquo;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&rsquo; &ndash;abbrev-commit
-	st = status
-	co = checkout
-	ci = commit
-	br = branch
-	nameme = config user.name iaming
-	mailme = config user.email iaming@me.com
-	mailqq = config user.email net.liming@qq.com
-	repo1 = remote set-url origin /path/to/repository1</p>
+<h1 id="合并仓库">合并仓库</h1>
+
+<p>先克隆仓库1，然后切换到仓库2，在本地合并仓库2:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -217,27 +253,17 @@ git config &ndash;global alias.mailqq &lsquo;config user.email net.liming@qq.com
 </span><span class="lnt">4
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">- [命令格式化配置参考](https://git-scm.com/docs/pretty-formats)
+<pre class="chroma">git remote add origin2 /path/to/repository2
+git fetch origin2
 
-# 合并分支
-合并内容，但不保留待合并分支上的历史信息，相当于把待合并分支上的多个commit合并成一个，放到当前分支。判断是否使用--squash选项最根本的标准是，待合并分支上的历史是否有意义</pre></td></tr></table>
+git pull --allow-unrelated-histories</pre></td></tr></table>
 </div>
 </div>
-<p>git merge master &ndash;squash</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma"># 合并仓库
-先克隆仓库1，然后切换到仓库2，在本地合并仓库2:</pre></td></tr></table>
-</div>
-</div>
-<p>git remote add origin2 /path/to/repository2
-git fetch origin2</p>
+<p>本地解决冲突后提交即可</p>
 
-<p>git pull &ndash;allow-unrelated-histories</p>
+<h1 id="同时提交两个仓库">同时提交两个仓库</h1>
+
+<p><code>vim .git/config</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -246,32 +272,27 @@ git fetch origin2</p>
 </span><span class="lnt">4
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">本地解决冲突后提交即可
-
-# 同时提交两个仓库
-`vim .git/config`</pre></td></tr></table>
-</div>
-</div>
-<p>[remote &ldquo;origin&rdquo;]
+<pre class="chroma">[remote &#34;origin&#34;]
         url = /path/to/repository1
         url = /path/to/repository2
-        fetch = +refs/heads/<em>:refs/remotes/origin/</em></p>
+        fetch = +refs/heads/*:refs/remotes/origin/*</pre></td></tr></table>
+</div>
+</div>
+<h1 id="忽略文件属性变更">忽略文件属性变更</h1>
+
+<p>问题：因为windows和mac、linux对文件属性处理不一样，会到这跟踪混乱。<br />
+<code>vim ~/.gitconfig</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma"># 忽略文件属性变更
-问题：因为windows和mac、linux对文件属性处理不一样，会到这跟踪混乱。
-`vim ~/.gitconfig`</pre></td></tr></table>
+<pre class="chroma">[core]
+	filemode = false</pre></td></tr></table>
 </div>
 </div>
-<p>[core]
-	filemode = false
-```
-NOTE: 有安全风险或权限错误，建议脚本、二进制程序权限还是明确配置。</p>
+<p>NOTE: 有安全风险或权限错误，建议脚本、二进制程序权限还是明确配置。</p>
 
 <h1 id="中文显示为unicode编码">中文显示为Unicode编码</h1>
 
@@ -291,14 +312,14 @@ NOTE: 有安全风险或权限错误，建议脚本、二进制程序权限还�
 <p>或者</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">git config --global core.quotepath false
-git config --global i18n.commit.encoding utf-8 # 提交信息编码
-git config --global i18n.logoutputencoding utf-8    # 输出 log 编码</pre></td></tr></table>
+<pre class="chroma"><code class="language-bash" data-lang="bash">git config --global core.quotepath <span class="nb">false</span>
+git config --global i18n.commit.encoding utf-8 <span class="c1"># 提交信息编码</span>
+git config --global i18n.logoutputencoding utf-8    <span class="c1"># 输出 log 编码</span></code></pre></td></tr></table>
 </div>
 </div></li>
 
@@ -306,8 +327,8 @@ git config --global i18n.logoutputencoding utf-8    # 输出 log 编码</pre></t
 
 <ul>
 <li>将settings-&gt;Tools-&gt;Terminal，将Shell path修改为：C:\Program Files\Git\bin\bash.exe</li>
-
-<li><p>修改C:\Program Files\Git\etc\bash.bashrc，最后追加：</p>
+<li>修改C:\Program Files\Git\etc\bash.bashrc，最后追加：</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
@@ -321,7 +342,6 @@ git config --global i18n.logoutputencoding utf-8    # 输出 log 编码</pre></t
 </div>
 </div>
 <p>NOTE:如果提示没有权限，请以管理员身份运行编辑修改。</p></li>
-</ul></li>
 </ol>
     </div>
 
@@ -348,7 +368,11 @@ git config --global i18n.logoutputencoding utf-8    # 输出 log 编码</pre></t
           <a href="/tags/linux/">linux</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/jamstack/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">JAMStack</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/restful-cache/">
             <span class="next-text nav-default">Restful缓存实践</span>
             <span class="next-text nav-mobile">下一篇</span>

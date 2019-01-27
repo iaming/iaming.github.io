@@ -30,11 +30,38 @@
     </item>
     
     <item>
+      <title>CDN</title>
+      <link>https://liming.pub/tags/cdn/</link>
+      <pubDate>Sun, 27 Jan 2019 19:53:39 +0800</pubDate>
+      
+      <guid>https://liming.pub/tags/cdn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Headless</title>
+      <link>https://liming.pub/tags/headless/</link>
+      <pubDate>Sun, 27 Jan 2019 19:53:39 +0800</pubDate>
+      
+      <guid>https://liming.pub/tags/headless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>IDEA</title>
       <link>https://liming.pub/tags/idea/</link>
       <pubDate>Sat, 26 Jan 2019 10:10:46 +0800</pubDate>
       
       <guid>https://liming.pub/tags/idea/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JAMStack</title>
+      <link>https://liming.pub/tags/jamstack/</link>
+      <pubDate>Sun, 27 Jan 2019 19:53:39 +0800</pubDate>
+      
+      <guid>https://liming.pub/tags/jamstack/</guid>
       <description></description>
     </item>
     
@@ -57,9 +84,27 @@
     </item>
     
     <item>
+      <title>SSG</title>
+      <link>https://liming.pub/tags/ssg/</link>
+      <pubDate>Sun, 27 Jan 2019 19:53:39 +0800</pubDate>
+      
+      <guid>https://liming.pub/tags/ssg/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Serverless</title>
+      <link>https://liming.pub/tags/serverless/</link>
+      <pubDate>Sun, 27 Jan 2019 19:53:39 +0800</pubDate>
+      
+      <guid>https://liming.pub/tags/serverless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>git</title>
       <link>https://liming.pub/tags/git/</link>
-      <pubDate>Sat, 26 Jan 2019 10:10:46 +0800</pubDate>
+      <pubDate>Sun, 27 Jan 2019 19:53:39 +0800</pubDate>
       
       <guid>https://liming.pub/tags/git/</guid>
       <description></description>

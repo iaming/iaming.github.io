@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liming.pub/post/jamstack/</loc>
+    <lastmod>2019-01-27T19:53:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/post/git-practical-skills/</loc>
     <lastmod>2019-01-26T10:10:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -66,7 +73,21 @@
   </url>
   
   <url>
+    <loc>https://liming.pub/tags/cdn/</loc>
+    <lastmod>2019-01-27T19:53:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/categories/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/tags/headless/</loc>
+    <lastmod>2019-01-27T19:53:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -74,6 +95,13 @@
   <url>
     <loc>https://liming.pub/tags/idea/</loc>
     <lastmod>2019-01-26T10:10:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/tags/jamstack/</loc>
+    <lastmod>2019-01-27T19:53:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -87,7 +115,7 @@
   
   <url>
     <loc>https://liming.pub/post/</loc>
-    <lastmod>2019-01-26T10:10:46+08:00</lastmod>
+    <lastmod>2019-01-27T19:53:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -95,6 +123,20 @@
   <url>
     <loc>https://liming.pub/tags/restful/</loc>
     <lastmod>2019-01-20T21:30:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/tags/ssg/</loc>
+    <lastmod>2019-01-27T19:53:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/tags/serverless/</loc>
+    <lastmod>2019-01-27T19:53:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -108,7 +150,7 @@
   
   <url>
     <loc>https://liming.pub/tags/git/</loc>
-    <lastmod>2019-01-26T10:10:46+08:00</lastmod>
+    <lastmod>2019-01-27T19:53:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -129,7 +171,7 @@
   
   <url>
     <loc>https://liming.pub/</loc>
-    <lastmod>2019-01-26T10:10:46+08:00</lastmod>
+    <lastmod>2019-01-27T19:53:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -192,7 +234,7 @@
   
   <url>
     <loc>https://liming.pub/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2019-01-26T10:10:46+08:00</lastmod>
+    <lastmod>2019-01-27T19:53:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

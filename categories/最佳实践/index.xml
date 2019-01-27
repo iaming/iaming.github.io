@@ -6,10 +6,19 @@
     <description>Recent content in 最佳实践 on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 26 Jan 2019 10:10:46 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 27 Jan 2019 19:53:39 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JAMStack</title>
+      <link>https://liming.pub/post/jamstack/</link>
+      <pubDate>Sun, 27 Jan 2019 19:53:39 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/jamstack/</guid>
+      <description>&lt;p&gt;随着我们的架构越来越复杂，技术越来越牛掰，效果越来越酷炫，我们每个人都在不停的学习，以至于我们都忘了技术存在的意义。蓦然回首，其实我们的需求真的很简单，简单到我们完全可以无视这么多市面上大部分技术，解放程序员，让我们一起JAMStack。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Git实用配置和技巧</title>

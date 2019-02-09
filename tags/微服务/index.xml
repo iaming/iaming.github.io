@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>微服务 on liming.pub</title>
+    <link>https://liming.pub/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+    <description>Recent content in 微服务 on liming.pub</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 09 Feb 2019 15:42:15 +0800</lastBuildDate>
+    
+	<atom:link href="https://liming.pub/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>微服务架构实践</title>
+      <link>https://liming.pub/post/micro-service/</link>
+      <pubDate>Sat, 09 Feb 2019 15:42:15 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/micro-service/</guid>
+      <description>微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全</description>
+    </item>
+    
+  </channel>
+</rss>

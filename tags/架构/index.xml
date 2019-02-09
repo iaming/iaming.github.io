@@ -6,10 +6,19 @@
     <description>Recent content in 架构 on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 20 Jan 2019 21:30:43 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 09 Feb 2019 15:42:15 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/tags/%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>微服务架构实践</title>
+      <link>https://liming.pub/post/micro-service/</link>
+      <pubDate>Sat, 09 Feb 2019 15:42:15 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/micro-service/</guid>
+      <description>微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全</description>
+    </item>
     
     <item>
       <title>Restful缓存实践</title>

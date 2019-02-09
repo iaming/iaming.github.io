@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>JAMStack - liming.pub</title>
+  <title>微服务架构实践 - liming.pub</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,8 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="随着我们的架构越来越复杂，技术越来越牛掰，效果越来越酷炫，我们每个人都在不停的学习，以至于我们都忘了技术存在的意义。蓦然回首，其实我们的需求真的很简单，简单到我们完全可以无视市面上大部分技术，解放程序员，让我们一起JAMStack吧！
-" /><meta name="keywords" content="JAMStack" />
+<meta name="author" content="liming" /><meta name="description" content="微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全" /><meta name="keywords" content="微服务, 架构, 实践" />
 
 
 
@@ -27,7 +26,7 @@
 <meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://liming.pub/post/jamstack/" />
+<link rel="canonical" href="https://liming.pub/post/micro-service/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,26 +38,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="JAMStack" />
-<meta property="og:description" content="随着我们的架构越来越复杂，技术越来越牛掰，效果越来越酷炫，我们每个人都在不停的学习，以至于我们都忘了技术存在的意义。蓦然回首，其实我们的需求真的很简单，简单到我们完全可以无视市面上大部分技术，解放程序员，让我们一起JAMStack吧！" />
+<meta property="og:title" content="微服务架构实践" />
+<meta property="og:description" content="微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://liming.pub/post/jamstack/" /><meta property="article:published_time" content="2019-01-27T19:53:39&#43;08:00"/>
-<meta property="article:modified_time" content="2019-01-27T19:53:39&#43;08:00"/>
+<meta property="og:url" content="https://liming.pub/post/micro-service/" /><meta property="article:published_time" content="2019-02-09T15:42:15&#43;08:00"/>
+<meta property="article:modified_time" content="2019-02-09T15:42:15&#43;08:00"/>
 
-<meta itemprop="name" content="JAMStack">
-<meta itemprop="description" content="随着我们的架构越来越复杂，技术越来越牛掰，效果越来越酷炫，我们每个人都在不停的学习，以至于我们都忘了技术存在的意义。蓦然回首，其实我们的需求真的很简单，简单到我们完全可以无视市面上大部分技术，解放程序员，让我们一起JAMStack吧！">
-
-
-<meta itemprop="datePublished" content="2019-01-27T19:53:39&#43;08:00" />
-<meta itemprop="dateModified" content="2019-01-27T19:53:39&#43;08:00" />
-<meta itemprop="wordCount" content="570">
+<meta itemprop="name" content="微服务架构实践">
+<meta itemprop="description" content="微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全">
 
 
+<meta itemprop="datePublished" content="2019-02-09T15:42:15&#43;08:00" />
+<meta itemprop="dateModified" content="2019-02-09T15:42:15&#43;08:00" />
+<meta itemprop="wordCount" content="1194">
 
-<meta itemprop="keywords" content="JAMStack,SSG,Headless,Serverless,git,CDN," />
+
+
+<meta itemprop="keywords" content="微服务,架构," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="JAMStack"/>
-<meta name="twitter:description" content="随着我们的架构越来越复杂，技术越来越牛掰，效果越来越酷炫，我们每个人都在不停的学习，以至于我们都忘了技术存在的意义。蓦然回首，其实我们的需求真的很简单，简单到我们完全可以无视市面上大部分技术，解放程序员，让我们一起JAMStack吧！"/>
+<meta name="twitter:title" content="微服务架构实践"/>
+<meta name="twitter:description" content="微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -121,15 +120,15 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">JAMStack</h1>
+      <h1 class="post-title">微服务架构实践</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-01-27 19:53:39 </span>
+        <span class="post-time"> 2019-02-09 15:42:15 </span>
         <div class="post-category">
             <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
             </div>
-          <span class="more-meta"> 约 570 字 </span>
-          <span class="more-meta"> 预计阅读 2 分钟 </span>
+          <span class="more-meta"> 约 1194 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -139,76 +138,62 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#jamstack简介">JAMStack简介</a></li>
-<li><a href="#jamstack优点">JAMStack优点</a></li>
-<li><a href="#最佳实践">最佳实践</a></li>
-<li><a href="#相关概念">相关概念</a></li>
-<li><a href="#参考">参考</a></li>
+<li><a href="#微服务优势">微服务优势</a></li>
+<li><a href="#微服务挑战">微服务挑战</a></li>
+<li><a href="#spring-cloud">Spring Cloud</a></li>
+<li><a href="#实践建议">实践建议</a></li>
 </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p>随着我们的架构越来越复杂，技术越来越牛掰，效果越来越酷炫，我们每个人都在不停的学习，以至于我们都忘了技术存在的意义。蓦然回首，其实我们的需求真的很简单，简单到我们完全可以无视市面上大部分技术，解放程序员，让我们一起JAMStack吧！</p>
+      
 
-<h1 id="jamstack简介">JAMStack简介</h1>
+<p>微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全自动部署工具来实现独立部署。这些服务都是围绕业务能力来构建，可以使用不同的编程语言和不同的数据存储技术，并保持最小化集中管理。
+&lt;!&ndash;more-&gt;</p>
 
-<p><a href="https://jamstack.org/resources/">JAMStack</a>不是什么新技术，他们其实只是三个简单技术的神奇组合：</p>
+<h1 id="微服务优势">微服务优势</h1>
 
-<ul>
-<li>JavaScript</li>
-<li>APIs</li>
-<li>Markup</li>
-</ul>
+<ol>
+<li>拆分，大拆小，复杂简化（包括团队拆分、业务拆分、系统拆分）</li>
+<li>并行开发，一个微服务只需要关注特定业务，不同团队、不同代码库，互不影响</li>
+<li>技术栈不受限制，微服务之间采用标准Restful接口规范，跨语言，跨系统整合更简单</li>
+<li>最小化升级迭代，一个微服务的升级不影响整个对外服务</li>
+<li>灵活扩容，针对系统具体业务瓶颈，只需要扩容个别微服务，动态调整每个微服务的负载能力，最大化利用硬件性能</li>
+</ol>
 
-<p>一张图就可以看懂JAMStack：
-<img src="https://cdn-images-1.medium.com/max/2000/1*uD1IkSE1cwF1Yr_njKu9qA.png" alt="JAMStack" /></p>
+<h1 id="微服务挑战">微服务挑战</h1>
 
-<h1 id="jamstack优点">JAMStack优点</h1>
+<ol>
+<li>开发成本，微服务开发需要开发人员考虑集群部署、分布式事务、接口幂等、版本控制等，当涉及多微服务联调时，需要启动多个微服务，对开发机器内存也有一定要求</li>
+<li>维护成本，因微服务调用关系复杂，增加了联调测试、问题定位的难度</li>
+<li>分布式事务目前还要自己实现微服务级别回滚</li>
+<li>运维成本，为了发挥微服务的优势，微服务建议集群部署，对服务器的要求较高</li>
+</ol>
 
-<ul>
-<li>节约成本</li>
-<li>快速低成本产品迭代</li>
-<li>更安全</li>
-<li>更高的扩展性、可用性和可靠性</li>
-<li>更好的开发体验</li>
-</ul>
+<h1 id="spring-cloud">Spring Cloud</h1>
 
-<h1 id="最佳实践">最佳实践</h1>
+<p>目前主流的微服务框架有Dubbo和Srping Cloud，Dubbo 主要只是为了解决服务通信、服务注册等问题，而 Spring Cloud 却是提供微服务架构的完整的解决方案。从知名度、社区活跃度、架构完整度、异构系统整合能力，Spring Cloud都远优于Dubbo，Spring Cloud目前已经成为微服务架构的标准框架。Spring Cloud的基础组件如下：
+- 注册中心：主要负责微服务应用的注册、发现和路由
+- 配置中心：主要负责微服务配置的统一管理
+- 服务网关：主要负责微服务对外统一网关
+- 消息队列：主要是微服务之间的异步消息
+- 批处理组件：微服务的定时任务管理及调度
+- 日志分析：微服务日志查看、归总、追踪</p>
 
-<ul>
-<li>全面CDN<br />
-由于没有服务端动态代码，所以可以全部使用CDN，速度和性能无敌。</li>
-<li>Git核心<br />
-基于git，任何人都可以快速的本地搭建开发环境、运行和测试，没有数据库，只有常规的依赖（比如npm install)，不需要复杂的安装。</li>
-<li>先进构建工具<br />
-保持最先进的构建工具，比如目前可以选择的 Babel, PostCSS, Webpack。</li>
-<li>自动构建<br />
-可以利用webhook自己实现，也可以利用成熟的平台来完成构建。</li>
-<li>自动部署<br />
-大量文件上传部署时间将很长，需要有自动部署机制来保证所有文件上传的完整性。</li>
-<li>缓存失效策略<br />
-缓存失效机制的有效性是频繁自动构建的基础</li>
-</ul>
+<h1 id="实践建议">实践建议</h1>
 
-<h1 id="相关概念">相关概念</h1>
+<ol>
+<li>根据场景谨慎选择是否使用微服务，微服务不是万能的也不是所有场景都适用的，切记不要为了微服务而上微服务。</li>
+<li>使用Spring Boot可以轻松地创建独立的、生产级的、基于 Spring 且能直接运行的服务或应用程序，使用Spring Cloud可以将一系列基于Spring Boot的服务或应用协调起来，构建成一个分布式集群系统。</li>
+<li>无论是单体应用还是微服务应用，采用Spring技术栈，可以享受世界最活跃开源社区的支持，也可以享受国内的基数最大的java人才红利。</li>
+<li>Spring Cloud定位于为开发者提供一套开箱即用的微服务组件和可扩展的组件标准，有着丰富的可替换的第三方组件。</li>
+<li>插件式改造<br />
+目前Spring Cloud还在高速迭代中，为了能快速跟上新版本，不建议对内核做深度定制，好在spring的扩展性都非常好，总有一种方法让你以插件式方案来完成自己业务特性定制。</li>
+<li>自动化DevOps<br />
+微服务架构是人肉测试和运维的噩梦，如果不能同步推进自动化DevOps，请不要尝试。</li>
+</ol>
 
-<ul>
-<li><a href="https://www.staticgen.com/">SSG</a> 全称Static site generators。</li>
-<li><a href="https://headlesscms.org/">Headless</a> CMS（无头 CMS）</li>
-<li><a href="https://serverless.com/">Serverless</a> / Webtask 后端功能</li>
-<li><a href="https://www.netlify.com/">Netlify</a> 部署</li>
-<li><a href="https://alligator.io/">Algolia</a> 搜索</li>
-<li><a href="https://snipcart.com">Snipcart</a> 电商</li>
-<li>Disqus/Staticman 评论</li>
-</ul>
-
-<h1 id="参考">参考</h1>
-
-<ul>
-<li><a href="https://jamstack.org/best-practices/">JAMStack最佳实践</a></li>
-<li><a href="https://hackernoon.com/forget-docker-the-future-is-jamstack-aae5bcaf4616">忘记docker，JAMStack才是未来</a></li>
-</ul>
     </div>
 
     <div class="post-copyright">
@@ -218,7 +203,7 @@
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2019-01-27 19:53:39</span>
+    <span class="item-content">2019-02-09 15:42:15</span>
   </p>
   
   <p class="copyright-item">
@@ -227,21 +212,13 @@
   </p>
 </div><footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/jamstack/">JAMStack</a>
-          <a href="/tags/ssg/">SSG</a>
-          <a href="/tags/headless/">Headless</a>
-          <a href="/tags/serverless/">Serverless</a>
-          <a href="/tags/git/">git</a>
-          <a href="/tags/cdn/">CDN</a>
+          <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a>
+          <a href="/tags/%E6%9E%B6%E6%9E%84/">架构</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/micro-service/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">微服务架构实践</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/post/git-practical-skills/">
-            <span class="next-text nav-default">Git实用配置和技巧</span>
+        
+        <a class="next" href="/post/jamstack/">
+            <span class="next-text nav-default">JAMStack</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -254,8 +231,8 @@
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-01-27 19:53:39 \x2b0800 CST',
-        title: 'JAMStack',
+        id: '2019-02-09 15:42:15 \x2b0800 CST',
+        title: '微服务架构实践',
         clientID: 'f35ddb3b03b9257b76d0',
         clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
         repo: 'iaming.github.io',

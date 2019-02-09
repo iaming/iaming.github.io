@@ -6,10 +6,19 @@
     <description>Recent content in Posts on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 27 Jan 2019 19:53:39 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 09 Feb 2019 15:42:15 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>微服务架构实践</title>
+      <link>https://liming.pub/post/micro-service/</link>
+      <pubDate>Sat, 09 Feb 2019 15:42:15 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/micro-service/</guid>
+      <description>微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全</description>
+    </item>
     
     <item>
       <title>JAMStack</title>
@@ -17,7 +26,7 @@
       <pubDate>Sun, 27 Jan 2019 19:53:39 +0800</pubDate>
       
       <guid>https://liming.pub/post/jamstack/</guid>
-      <description>&lt;p&gt;随着我们的架构越来越复杂，技术越来越牛掰，效果越来越酷炫，我们每个人都在不停的学习，以至于我们都忘了技术存在的意义。蓦然回首，其实我们的需求真的很简单，简单到我们完全可以无视这么多市面上大部分技术，解放程序员，让我们一起JAMStack。&lt;/p&gt;</description>
+      <description>&lt;p&gt;随着我们的架构越来越复杂，技术越来越牛掰，效果越来越酷炫，我们每个人都在不停的学习，以至于我们都忘了技术存在的意义。蓦然回首，其实我们的需求真的很简单，简单到我们完全可以无视市面上大部分技术，解放程序员，让我们一起JAMStack吧！&lt;/p&gt;</description>
     </item>
     
     <item>

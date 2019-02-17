@@ -6,10 +6,19 @@
     <description>Recent content in mac on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 17 Feb 2019 10:54:58 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Feb 2019 18:17:15 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/tags/mac/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>mac使用技巧及常用设置</title>
+      <link>https://liming.pub/post/mac-practical-settings/</link>
+      <pubDate>Sun, 17 Feb 2019 18:17:15 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/mac-practical-settings/</guid>
+      <description>&lt;p&gt;做为mac深度用户，越来越享受在Mac下高效工作，这里整理了一些我在日常中使用的设置和技巧，即作为备忘，也做为分享。当然，效率的提升没有终点，本文会持续更新：&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>shell中用$表达式截取和替换字符串</title>

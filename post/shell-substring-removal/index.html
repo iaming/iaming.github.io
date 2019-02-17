@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-02-17T10:54:58&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-17T10:54:58&#43;08:00" />
-<meta itemprop="wordCount" content="766">
+<meta itemprop="wordCount" content="767">
 
 
 
@@ -128,7 +128,7 @@
         <div class="post-category">
             <a href="/categories/linux/"> linux </a>
             </div>
-          <span class="more-meta"> 约 766 字 </span>
+          <span class="more-meta"> 约 767 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -155,12 +155,18 @@
 <h1 id="左删除">左删除</h1>
 
 <ul>
-<li>最小匹配删除${var#Pattern}，从$var中删除与$var从前到后最短匹配$Pattern的字符，即从左边开始删除第一个$Pattern匹配的字符。
-如：<br />
-<code>bash
-echo ${url#*/} #/liming.pub/post/shell-substring-removal/index.html
-echo ${url#*.} #pub/post/shell-substring-removal/index.html
-</code></li>
+<li><p>最小匹配删除${var#Pattern}，从$var中删除与$var从前到后最短匹配$Pattern的字符，即从左边开始删除第一个$Pattern匹配的字符。
+如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">#*/</span><span class="si">}</span> <span class="c1">#/liming.pub/post/shell-substring-removal/index.html</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">#*.</span><span class="si">}</span> <span class="c1">#pub/post/shell-substring-removal/index.html</span></code></pre></td></tr></table>
+</div>
+</div></li>
 
 <li><p>最大匹配删除${var#Pattern}，从$var中删除与$var从前到后最长匹配$Pattern的字符，即从左边开始删除最后一个$Pattern匹配的字符。
 如：</p>
@@ -173,9 +179,12 @@ echo ${url#*.} #pub/post/shell-substring-removal/index.html
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">##*/</span><span class="si">}</span> <span class="c1">#index.html</span>
 <span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">##*.</span><span class="si">}</span> <span class="c1">#html</span></code></pre></td></tr></table>
 </div>
-</div>
-<h1 id="右删除">右删除</h1></li>
+</div></li>
+</ul>
 
+<h1 id="右删除">右删除</h1>
+
+<ul>
 <li><p>最小匹配删除${var%Pattern}，从$var中删除与$var从后到前最短匹配$Pattern的字符，即从右边开始删除第一个$Pattern匹配的字符。
 如：</p>
 <div class="highlight"><div class="chroma">
@@ -200,29 +209,27 @@ echo ${url#*.} #pub/post/shell-substring-removal/index.html
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">%%/*</span><span class="si">}</span> <span class="c1">#https:</span>
 <span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">%%.*</span><span class="si">}</span> <span class="c1">#https://liming</span></code></pre></td></tr></table>
 </div>
-</div>
-<h1 id="抽取">抽取</h1></li>
+</div></li>
+</ul>
 
-<li><p>${var:pos}，抽取从$pos开始到结尾。</p></li>
+<h1 id="抽取">抽取</h1>
 
-<li><p>${var:pos:len}，抽取从$pos开始$len长度的字符串。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">:</span><span class="nv">8</span><span class="si">}</span> <span class="c1">#liming.pub/post/shell-substring-removal/index.html</span>
-<span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">:</span><span class="nv">8</span><span class="p">:</span><span class="nv">10</span><span class="si">}</span> <span class="c1">#liming.pub</span></code></pre></td></tr></table>
-</div>
-</div>
-<h1 id="替换">替换</h1></li>
+<ul>
+<li>${var:pos}，抽取从$pos开始到结尾。</li>
+<li>${var:pos:len}，抽取从$pos开始$len长度的字符串。
+<code>bash
+echo ${url:8} #liming.pub/post/shell-substring-removal/index.html
+echo ${url:8:10} #liming.pub
+</code></li>
+</ul>
 
-<li><p>首次匹配并替换${var/Pattern/Replacement}</p></li>
+<h1 id="替换">替换</h1>
 
-<li><p>全部匹配并替换${var//Pattern/Replacement}</p></li>
-
-<li><p>全部匹配并删除${var//Pattern}，由于Replacement没有，默认会认为是空字符串</p>
+<ul>
+<li>首次匹配并替换<code>${var/Pattern/Replacement}</code></li>
+<li>全部匹配并替换<code>${var//Pattern/Replacement}</code></li>
+<li>全部匹配并删除<code>${var//Pattern}</code>，由于Replacement没有，默认会认为是空字符串：</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
@@ -235,15 +242,17 @@ echo ${url#*.} #pub/post/shell-substring-removal/index.html
 <span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">//-</span><span class="si">}</span>   <span class="c1">#https://liming.pub/post/shellsubstringremoval/index.html</span></code></pre></td></tr></table>
 </div>
 </div>
-<h1 id="要点">要点</h1></li>
+<h1 id="要点">要点</h1>
 
-<li><p>前后：键盘上#在左，%在右，所以#为左删除，%为右删除；</p></li>
+<ul>
+<li>前后：键盘上#在左，%在右，所以#为左删除，%为右删除；</li>
+<li>大小：一个字符为小，两个字符为大，所以#为最小匹配，##为最大匹配。</li>
+</ul>
 
-<li><p>大小：一个字符为小，两个字符为大，所以#为最小匹配，##为最大匹配。</p>
+<h1 id="参考">参考</h1>
 
-<h1 id="参考">参考</h1></li>
-
-<li><p><a href="https://www.tldp.org/LDP/abs/html/parameter-substitution.html">The LDP Wiki</a></p></li>
+<ul>
+<li><a href="https://www.tldp.org/LDP/abs/html/parameter-substitution.html">The LDP Wiki</a></li>
 </ul>
     </div>
 
@@ -268,7 +277,11 @@ echo ${url#*.} #pub/post/shell-substring-removal/index.html
           <a href="/tags/mac/">mac</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/mac-practical-settings/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">mac使用技巧及常用设置</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/micro-service/">
             <span class="next-text nav-default">微服务架构实践</span>
             <span class="next-text nav-mobile">下一篇</span>

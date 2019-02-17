@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liming.pub/post/mac-practical-settings/</loc>
+    <lastmod>2019-02-17T18:17:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/post/shell-substring-removal/</loc>
     <lastmod>2019-02-17T10:54:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -136,7 +143,7 @@
   
   <url>
     <loc>https://liming.pub/post/</loc>
-    <lastmod>2019-02-17T10:54:58+08:00</lastmod>
+    <lastmod>2019-02-17T18:17:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -206,7 +213,7 @@
   
   <url>
     <loc>https://liming.pub/</loc>
-    <lastmod>2019-02-17T10:54:58+08:00</lastmod>
+    <lastmod>2019-02-17T18:17:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -227,7 +234,7 @@
   
   <url>
     <loc>https://liming.pub/tags/mac/</loc>
-    <lastmod>2019-02-17T10:54:58+08:00</lastmod>
+    <lastmod>2019-02-17T18:17:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -268,6 +275,13 @@
   </url>
   
   <url>
+    <loc>https://liming.pub/tags/%E6%95%88%E7%8E%87/</loc>
+    <lastmod>2019-02-17T18:17:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/tags/%E6%99%A8%E9%97%B4%E6%97%A5%E8%AE%B0/</loc>
     <lastmod>2019-01-01T19:33:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -276,7 +290,7 @@
   
   <url>
     <loc>https://liming.pub/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2019-02-09T15:42:15+08:00</lastmod>
+    <lastmod>2019-02-17T18:17:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

@@ -6,10 +6,19 @@
     <description>Recent content in mac on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 26 Jan 2019 10:10:46 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Feb 2019 10:54:58 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/tags/mac/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>shell中用$表达式截取和替换字符串</title>
+      <link>https://liming.pub/post/shell-substring-removal/</link>
+      <pubDate>Sun, 17 Feb 2019 10:54:58 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/shell-substring-removal/</guid>
+      <description>&lt;p&gt;说道截取字符串，我们常常会想到cut\awk等工具，其实shell自身截取字符串命令也很强大，下面以变量字符串&lt;code&gt;url=https://liming.pub/post/shell-substring-removal/index.html&lt;/code&gt;为例介绍几种字符串截取和替换方法：&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Git实用配置和技巧</title>

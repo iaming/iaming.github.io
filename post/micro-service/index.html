@@ -16,7 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全" /><meta name="keywords" content="微服务, 架构, 实践" />
+<meta name="author" content="liming" /><meta name="description" content="微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全自动部署工具来实现独立部署。这些服务都是围绕业务能力来构建，可以使用不同的编程语言和不同的数据存储技术，并保持最小化集中管理。
+" /><meta name="keywords" content="微服务, 架构, 实践, Spring Cloud, Spring Boot" />
 
 
 
@@ -39,25 +40,25 @@
 
 
 <meta property="og:title" content="微服务架构实践" />
-<meta property="og:description" content="微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全" />
+<meta property="og:description" content="微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全自动部署工具来实现独立部署。这些服务都是围绕业务能力来构建，可以使用不同的编程语言和不同的数据存储技术，并保持最小化集中管理。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liming.pub/post/micro-service/" /><meta property="article:published_time" content="2019-02-09T15:42:15&#43;08:00"/>
 <meta property="article:modified_time" content="2019-02-09T15:42:15&#43;08:00"/>
 
 <meta itemprop="name" content="微服务架构实践">
-<meta itemprop="description" content="微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全">
+<meta itemprop="description" content="微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全自动部署工具来实现独立部署。这些服务都是围绕业务能力来构建，可以使用不同的编程语言和不同的数据存储技术，并保持最小化集中管理。">
 
 
 <meta itemprop="datePublished" content="2019-02-09T15:42:15&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-09T15:42:15&#43;08:00" />
-<meta itemprop="wordCount" content="1194">
+<meta itemprop="wordCount" content="1182">
 
 
 
-<meta itemprop="keywords" content="微服务,架构," />
+<meta itemprop="keywords" content="微服务,架构,Spring Cloud,Spring Boot,DevOps,RESTful," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="微服务架构实践"/>
-<meta name="twitter:description" content="微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全"/>
+<meta name="twitter:description" content="微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全自动部署工具来实现独立部署。这些服务都是围绕业务能力来构建，可以使用不同的编程语言和不同的数据存储技术，并保持最小化集中管理。"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -127,7 +128,7 @@
         <div class="post-category">
             <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
             </div>
-          <span class="more-meta"> 约 1194 字 </span>
+          <span class="more-meta"> 约 1182 字 </span>
           <span class="more-meta"> 预计阅读 3 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -147,10 +148,7 @@
   </div>
 </div>
     <div class="post-content">
-      
-
-<p>微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全自动部署工具来实现独立部署。这些服务都是围绕业务能力来构建，可以使用不同的编程语言和不同的数据存储技术，并保持最小化集中管理。
-&lt;!&ndash;more-&gt;</p>
+      <p>微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全自动部署工具来实现独立部署。这些服务都是围绕业务能力来构建，可以使用不同的编程语言和不同的数据存储技术，并保持最小化集中管理。</p>
 
 <h1 id="微服务优势">微服务优势</h1>
 
@@ -173,13 +171,17 @@
 
 <h1 id="spring-cloud">Spring Cloud</h1>
 
-<p>目前主流的微服务框架有Dubbo和Srping Cloud，Dubbo 主要只是为了解决服务通信、服务注册等问题，而 Spring Cloud 却是提供微服务架构的完整的解决方案。从知名度、社区活跃度、架构完整度、异构系统整合能力，Spring Cloud都远优于Dubbo，Spring Cloud目前已经成为微服务架构的标准框架。Spring Cloud的基础组件如下：
-- 注册中心：主要负责微服务应用的注册、发现和路由
-- 配置中心：主要负责微服务配置的统一管理
-- 服务网关：主要负责微服务对外统一网关
-- 消息队列：主要是微服务之间的异步消息
-- 批处理组件：微服务的定时任务管理及调度
-- 日志分析：微服务日志查看、归总、追踪</p>
+<p>目前主流的微服务框架有Dubbo和Srping Cloud，Dubbo 主要只是为了解决服务通信、服务注册等问题，而 Spring Cloud 却是提供微服务架构的完整的解决方案。从知名度、社区活跃度、架构完整度、异构系统整合能力，Spring Cloud都远优于Dubbo，Spring Cloud目前已经成为微服务架构的标准框架。<br />
+Spring Cloud的基础组件如下：</p>
+
+<ul>
+<li>注册中心：主要负责微服务应用的注册、发现和路由</li>
+<li>配置中心：主要负责微服务配置的统一管理</li>
+<li>服务网关：主要负责微服务对外统一网关</li>
+<li>消息队列：主要是微服务之间的异步消息</li>
+<li>批处理组件：微服务的定时任务管理及调度</li>
+<li>日志分析：微服务日志查看、归总、追踪</li>
+</ul>
 
 <h1 id="实践建议">实践建议</h1>
 
@@ -193,7 +195,6 @@
 <li>自动化DevOps<br />
 微服务架构是人肉测试和运维的噩梦，如果不能同步推进自动化DevOps，请不要尝试。</li>
 </ol>
-
     </div>
 
     <div class="post-copyright">
@@ -208,15 +209,23 @@
   
   <p class="copyright-item">
     <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">保留署名-非商业性使用-禁止演绎 4.0-国际许可协议</a></span>
   </p>
 </div><footer class="post-footer">
       <div class="post-tags">
           <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a>
           <a href="/tags/%E6%9E%B6%E6%9E%84/">架构</a>
+          <a href="/tags/spring-cloud/">Spring Cloud</a>
+          <a href="/tags/spring-boot/">Spring Boot</a>
+          <a href="/tags/devops/">DevOps</a>
+          <a href="/tags/restful/">RESTful</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/shell-substring-removal/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">shell中用$表达式截取和替换字符串</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/jamstack/">
             <span class="next-text nav-default">JAMStack</span>
             <span class="next-text nav-mobile">下一篇</span>

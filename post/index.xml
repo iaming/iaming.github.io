@@ -6,10 +6,19 @@
     <description>Recent content in Posts on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 09 Feb 2019 15:42:15 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Feb 2019 10:54:58 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>shell中用$表达式截取和替换字符串</title>
+      <link>https://liming.pub/post/shell-substring-removal/</link>
+      <pubDate>Sun, 17 Feb 2019 10:54:58 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/shell-substring-removal/</guid>
+      <description>&lt;p&gt;说道截取字符串，我们常常会想到cut\awk等工具，其实shell自身截取字符串命令也很强大，下面以变量字符串&lt;code&gt;url=https://liming.pub/post/shell-substring-removal/index.html&lt;/code&gt;为例介绍几种字符串截取和替换方法：&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>微服务架构实践</title>
@@ -17,7 +26,7 @@
       <pubDate>Sat, 09 Feb 2019 15:42:15 +0800</pubDate>
       
       <guid>https://liming.pub/post/micro-service/</guid>
-      <description>微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全</description>
+      <description>&lt;p&gt;微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全自动部署工具来实现独立部署。这些服务都是围绕业务能力来构建，可以使用不同的编程语言和不同的数据存储技术，并保持最小化集中管理。&lt;/p&gt;</description>
     </item>
     
     <item>

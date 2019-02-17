@@ -17,7 +17,7 @@
       <pubDate>Sat, 09 Feb 2019 15:42:15 +0800</pubDate>
       
       <guid>https://liming.pub/post/micro-service/</guid>
-      <description>微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全</description>
+      <description>&lt;p&gt;微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全自动部署工具来实现独立部署。这些服务都是围绕业务能力来构建，可以使用不同的编程语言和不同的数据存储技术，并保持最小化集中管理。&lt;/p&gt;</description>
     </item>
     
     <item>

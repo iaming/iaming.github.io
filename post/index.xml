@@ -6,10 +6,22 @@
     <description>Recent content in Posts on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 17 Feb 2019 18:17:15 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 23 Feb 2019 11:47:45 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Maven私有仓库权限设置</title>
+      <link>https://liming.pub/post/nexus-maven-permission/</link>
+      <pubDate>Sat, 23 Feb 2019 11:47:45 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/nexus-maven-permission/</guid>
+      <description>&lt;p&gt;基于nexus3，可以做到maven仓库隔离和权限控制，配置maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：&lt;br /&gt;
+1. 同步中央仓库（权限：公开）
+2. 合作伙伴共享仓库（权限：半公开）
+3. 公司自有仓库（权限：私有）&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>mac使用技巧及常用设置</title>

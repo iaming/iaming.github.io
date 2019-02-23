@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liming.pub/post/nexus-maven-permission/</loc>
+    <lastmod>2019-02-23T11:47:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/post/mac-practical-settings/</loc>
     <lastmod>2019-02-17T18:17:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -143,7 +150,7 @@
   
   <url>
     <loc>https://liming.pub/post/</loc>
-    <lastmod>2019-02-17T18:17:15+08:00</lastmod>
+    <lastmod>2019-02-23T11:47:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -213,7 +220,7 @@
   
   <url>
     <loc>https://liming.pub/</loc>
-    <lastmod>2019-02-17T18:17:15+08:00</lastmod>
+    <lastmod>2019-02-23T11:47:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -235,6 +242,20 @@
   <url>
     <loc>https://liming.pub/tags/mac/</loc>
     <lastmod>2019-02-17T18:17:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/tags/maven/</loc>
+    <lastmod>2019-02-23T11:47:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/tags/nexus/</loc>
+    <lastmod>2019-02-23T11:47:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -290,7 +311,7 @@
   
   <url>
     <loc>https://liming.pub/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2019-02-17T18:17:15+08:00</lastmod>
+    <lastmod>2019-02-23T11:47:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

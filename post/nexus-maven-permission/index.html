@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Maven私有仓库权限设置 - liming.pub</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="liming" /><meta name="description" content="基于nexus3，可以做到maven仓库隔离和权限控制，配置maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：
+1. 同步中央仓库（权限：公开） 2. 合作伙伴共享仓库（权限：半公开） 3. 公司自有仓库（权限：私有）
+" /><meta name="keywords" content="nexus, maven" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://liming.pub/post/nexus-maven-permission/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.93844dae.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Maven私有仓库权限设置" />
+<meta property="og:description" content="基于nexus3，可以做到maven仓库隔离和权限控制，配置maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：
+1. 同步中央仓库（权限：公开）
+2. 合作伙伴共享仓库（权限：半公开）
+3. 公司自有仓库（权限：私有）" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liming.pub/post/nexus-maven-permission/" /><meta property="article:published_time" content="2019-02-23T11:47:45&#43;08:00"/>
+<meta property="article:modified_time" content="2019-02-23T11:47:45&#43;08:00"/>
+
+<meta itemprop="name" content="Maven私有仓库权限设置">
+<meta itemprop="description" content="基于nexus3，可以做到maven仓库隔离和权限控制，配置maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：
+1. 同步中央仓库（权限：公开）
+2. 合作伙伴共享仓库（权限：半公开）
+3. 公司自有仓库（权限：私有）">
+
+
+<meta itemprop="datePublished" content="2019-02-23T11:47:45&#43;08:00" />
+<meta itemprop="dateModified" content="2019-02-23T11:47:45&#43;08:00" />
+<meta itemprop="wordCount" content="2275">
+
+
+
+<meta itemprop="keywords" content="nexus,maven," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Maven私有仓库权限设置"/>
+<meta name="twitter:description" content="基于nexus3，可以做到maven仓库隔离和权限控制，配置maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：
+1. 同步中央仓库（权限：公开）
+2. 合作伙伴共享仓库（权限：半公开）
+3. 公司自有仓库（权限：私有）"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">liming.pub</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">栏目</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">liming.pub</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">栏目</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Maven私有仓库权限设置</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-02-23 11:47:45 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
+            </div>
+          <span class="more-meta"> 约 2275 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#仓库设计">仓库设计</a></li>
+<li><a href="#访问">访问</a>
+<ul>
+<li><a href="#合作伙伴">合作伙伴</a></li>
+<li><a href="#公司员工">公司员工</a></li>
+</ul></li>
+<li><a href="#部署">部署</a></li>
+<li><a href="#附1-pom解析">附1. pom解析</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>基于nexus3，可以做到maven仓库隔离和权限控制，配置maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：<br />
+1. 同步中央仓库（权限：公开）
+2. 合作伙伴共享仓库（权限：半公开）
+3. 公司自有仓库（权限：私有）</p>
+
+<h1 id="仓库设计">仓库设计</h1>
+
+<ul>
+<li>maven-central<br />
+用户同步中央仓库(<a href="https://repo1.maven.org/maven2/)或者(https://maven.aliyun.com/nexus/content/groups/public">https://repo1.maven.org/maven2/)或者(https://maven.aliyun.com/nexus/content/groups/public</a>)</li>
+<li>maven-protect-releases<br />
+共享正式版本部署仓库，仓库类型：hosted，meven类型：Release，部署策略：Disable redeploy</li>
+<li>maven-protect-snapshots<br />
+共享开发版本部署仓库，仓库类型：hosted，meven类型：Snapshot，部署策略：Allow redeploy</li>
+<li>maven-private-releases<br />
+私有正式版本部署仓库，仓库类型：hosted，meven类型：Release，部署策略：Disable redeploy</li>
+<li>maven-private-snapshots<br />
+私有开发版本部署仓库，仓库类型：hosted，meven类型：Snapshot，部署策略：Allow redeploy</li>
+<li>maven-protect<br />
+合作伙伴共享访问仓库，仓库类型：group，聚合仓库：maven-central、maven-protect-releases、maven-protect-snapshots</li>
+<li>maven-private<br />
+公司内部访问仓库，仓库类型：group，聚合仓库：maven-central、maven-protect-releases、maven-protect-snapshots、maven-private-releases、maven-private-snapshots</li>
+</ul>
+
+<p>权限设置:<br />
+Security-&gt;Roles-&gt;Create Role: maven.public.download，Given Privilege：nx-repository-view-maven2-maven-protect-browse\nx-repository-view-maven2-maven-protect-read</p>
+
+<p>用户设置：<br />
+Security-&gt;Users-&gt;Create User：xxx，授予角色：maven.public.download</p>
+
+<h1 id="访问">访问</h1>
+
+<h2 id="合作伙伴">合作伙伴</h2>
+
+<p>修改maven的配置文件(windows机器一般在maven安装目录的conf/settings.xml，mac/linux一般在~/.m2/settings.xml)。</p>
+
+<ol>
+<li><p>在<code>&lt;mirrors&gt;&lt;/mirrors&gt;</code>标签中添加<code>mirror</code>子节点：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;mirror&gt;</span>
+        <span class="nt">&lt;id&gt;</span>maven-xxx-protect<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;mirrorOf&gt;</span>maven-xxx-protect<span class="nt">&lt;/mirrorOf&gt;</span>
+        <span class="nt">&lt;url&gt;</span>https://repo.liming.pub/nexus/repository/maven-protect/<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/mirror&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>或者在<code>&lt;prifiles&gt;&lt;profile&gt;&lt;/profile&gt;&lt;/prifiles&gt;</code>标签中增加增加repositories子节点：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;repositories&gt;</span>
+    <span class="nt">&lt;repository&gt;</span>
+        <span class="nt">&lt;id&gt;</span>maven-xxx-protect<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;url&gt;</span>https://repo.liming.pub/nexus/repository/maven-protect/<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/repository&gt;</span>
+<span class="nt">&lt;/repositories&gt;</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>在<code>&lt;servers&gt;&lt;/servers&gt;</code>标签中添加<code>server</code>子节点：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;server&gt;</span>
+        <span class="nt">&lt;id&gt;</span>maven-xxx-protect<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;username&gt;</span>分发给合作伙伴的用户名<span class="nt">&lt;/username&gt;</span>
+        <span class="nt">&lt;password&gt;</span>密码<span class="nt">&lt;/password&gt;</span>
+    <span class="nt">&lt;/server&gt;</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+
+<h2 id="公司员工">公司员工</h2>
+
+<p>修改maven的配置文件(windows机器一般在maven安装目录的conf/settings.xml，mac/linux一般在~/.m2/settings.xml)</p>
+
+<ol>
+<li><p>在<code>&lt;mirrors&gt;&lt;/mirrors&gt;</code>标签中添加<code>mirror</code>子节点：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;mirror&gt;</span>
+        <span class="nt">&lt;id&gt;</span>maven-private<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;mirrorOf&gt;</span>maven-private<span class="nt">&lt;/mirrorOf&gt;</span>
+        <span class="nt">&lt;url&gt;</span>https://repo.liming.pub/nexus/repository/maven-private/<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/mirror&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>或者在<code>&lt;prifiles&gt;&lt;/prifiles&gt;</code>标签中增加增加profile子节点：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;profile&gt;</span>
+        <span class="nt">&lt;id&gt;</span>maven-private<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;repositories&gt;</span>
+            <span class="nt">&lt;repository&gt;</span>
+                <span class="nt">&lt;id&gt;</span>maven-private<span class="nt">&lt;/id&gt;</span>
+                <span class="nt">&lt;url&gt;</span>https://repo.liming.pub/nexus/repository/maven-private/<span class="nt">&lt;/url&gt;</span>
+                <span class="nt">&lt;snapshots&gt;</span>
+                    <span class="nt">&lt;updatePolicy&gt;</span>always<span class="nt">&lt;/updatePolicy&gt;</span>
+                <span class="nt">&lt;/snapshots&gt;</span>
+            <span class="nt">&lt;/repository&gt;</span>
+        <span class="nt">&lt;/repositories&gt;</span>
+    <span class="nt">&lt;/profile&gt;</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>在<code>&lt;servers&gt;&lt;/servers&gt;</code>标签中添加<code>server</code>子节点：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;server&gt;</span>
+        <span class="nt">&lt;id&gt;</span>maven-private<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;username&gt;</span>用户名<span class="nt">&lt;/username&gt;</span>
+        <span class="nt">&lt;password&gt;</span>密码<span class="nt">&lt;/password&gt;</span>
+    <span class="nt">&lt;/server&gt;</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+
+<h1 id="部署">部署</h1>
+
+<ol>
+<li><p>工程pom中增加发布仓库配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">[...]
+<span class="nt">&lt;profiles&gt;</span>
+    <span class="nt">&lt;profile&gt;</span>
+        <span class="nt">&lt;id&gt;</span>maven-protect<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;distributionManagement&gt;</span>
+            <span class="nt">&lt;repository&gt;</span>
+                <span class="nt">&lt;id&gt;</span>maven-protect-releases<span class="nt">&lt;/id&gt;</span>
+                <span class="nt">&lt;url&gt;</span>https://repo.liming.pub/nexus/repository/maven-protect-releases/<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;/repository&gt;</span>
+            <span class="nt">&lt;repository&gt;</span>
+                <span class="nt">&lt;id&gt;</span>maven-protect-snapshots<span class="nt">&lt;/id&gt;</span>
+                <span class="nt">&lt;url&gt;</span>https://repo.liming.pub/nexus/repository/maven-protect-snapshots/<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;/repository&gt;</span>
+        <span class="nt">&lt;/distributionManagement&gt;</span>
+    <span class="nt">&lt;/profile&gt;</span>
+    <span class="nt">&lt;profile&gt;</span>
+        <span class="nt">&lt;id&gt;</span>maven-private<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;distributionManagement&gt;</span>
+            <span class="nt">&lt;repository&gt;</span>
+                <span class="nt">&lt;id&gt;</span>maven-private-releases<span class="nt">&lt;/id&gt;</span>
+                <span class="nt">&lt;url&gt;</span>https://repo.liming.pub/nexus/repository/maven-private-releases/<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;/repository&gt;</span>
+            <span class="nt">&lt;repository&gt;</span>
+                <span class="nt">&lt;id&gt;</span>maven-private-snapshots<span class="nt">&lt;/id&gt;</span>
+                <span class="nt">&lt;url&gt;</span>https://repo.liming.pub/nexus/repository/maven-private-snapshots/<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;/repository&gt;</span>
+        <span class="nt">&lt;/distributionManagement&gt;</span>
+    <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+[...]</code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>在setting.xml的<code>&lt;servers&gt;&lt;/servers&gt;</code>标签中添加<code>server</code>子节点</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;server&gt;</span>
+        <span class="nt">&lt;id&gt;</span>maven-private-snapshots<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;username&gt;</span>用户名<span class="nt">&lt;/username&gt;</span>
+        <span class="nt">&lt;password&gt;</span>密码<span class="nt">&lt;/password&gt;</span>
+    <span class="nt">&lt;/server&gt;</span>
+    <span class="nt">&lt;server&gt;</span>
+        <span class="nt">&lt;id&gt;</span>maven-private-releases<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;username&gt;</span>用户名<span class="nt">&lt;/username&gt;</span>
+        <span class="nt">&lt;password&gt;</span>密码<span class="nt">&lt;/password&gt;</span>
+    <span class="nt">&lt;/server&gt;</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>部署命令</p></li>
+</ol>
+
+<ul>
+<li><p>通过maven 的-P参数激活指定的profile<br />
+参数的值是profile的id,多个profile以逗号分割,如果不想激活某个默认的profile，就在它的id前加个!</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">mvn deploy -Pmaven-private</pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>查看当前生效的profile：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">mvn help:active-profiles -Pmaven-private</pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+
+<h1 id="附1-pom解析">附1. pom解析</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0&#34;</span>
+
+         <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+
+         <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0
+</span><span class="s">
+</span><span class="s">            http://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+ 
+
+    <span class="c">&lt;!-- 基本配置 --&gt;</span>
+
+    <span class="nt">&lt;groupId&gt;</span>...<span class="nt">&lt;/groupId&gt;</span>
+
+    <span class="nt">&lt;artifactId&gt;</span>...<span class="nt">&lt;/artifactId&gt;</span>
+
+    <span class="nt">&lt;version&gt;</span>...<span class="nt">&lt;/version&gt;</span>
+
+    <span class="nt">&lt;packaging&gt;</span>...<span class="nt">&lt;/packaging&gt;</span>
+
+ 
+
+ 
+
+    <span class="c">&lt;!-- 依赖配置 --&gt;</span>
+
+    <span class="nt">&lt;dependencies&gt;</span>...<span class="nt">&lt;/dependencies&gt;</span>
+
+    <span class="nt">&lt;parent&gt;</span>...<span class="nt">&lt;/parent&gt;</span>
+
+    <span class="nt">&lt;dependencyManagement&gt;</span>...<span class="nt">&lt;/dependencyManagement&gt;</span>
+
+    <span class="nt">&lt;modules&gt;</span>...<span class="nt">&lt;/modules&gt;</span>
+
+    <span class="nt">&lt;properties&gt;</span>...<span class="nt">&lt;/properties&gt;</span>
+
+ 
+
+    <span class="c">&lt;!-- 构建配置 --&gt;</span>
+
+    <span class="nt">&lt;build&gt;</span>...<span class="nt">&lt;/build&gt;</span>
+
+    <span class="nt">&lt;reporting&gt;</span>...<span class="nt">&lt;/reporting&gt;</span>
+
+ 
+
+    <span class="c">&lt;!-- 项目信息 --&gt;</span>
+
+    <span class="nt">&lt;name&gt;</span>...<span class="nt">&lt;/name&gt;</span>
+
+    <span class="nt">&lt;description&gt;</span>...<span class="nt">&lt;/description&gt;</span>
+
+    <span class="nt">&lt;url&gt;</span>...<span class="nt">&lt;/url&gt;</span>
+
+    <span class="nt">&lt;inceptionYear&gt;</span>...<span class="nt">&lt;/inceptionYear&gt;</span>
+
+    <span class="nt">&lt;licenses&gt;</span>...<span class="nt">&lt;/licenses&gt;</span>
+
+    <span class="nt">&lt;organization&gt;</span>...<span class="nt">&lt;/organization&gt;</span>
+
+    <span class="nt">&lt;developers&gt;</span>...<span class="nt">&lt;/developers&gt;</span>
+
+    <span class="nt">&lt;contributors&gt;</span>...<span class="nt">&lt;/contributors&gt;</span>
+
+ 
+
+    <span class="c">&lt;!-- 环境设置 --&gt;</span>
+
+    <span class="nt">&lt;issueManagement&gt;</span>...<span class="nt">&lt;/issueManagement&gt;</span>
+
+    <span class="nt">&lt;ciManagement&gt;</span>...<span class="nt">&lt;/ciManagement&gt;</span>
+
+    <span class="nt">&lt;mailingLists&gt;</span>...<span class="nt">&lt;/mailingLists&gt;</span>
+
+    <span class="nt">&lt;scm&gt;</span>...<span class="nt">&lt;/scm&gt;</span>
+
+    <span class="nt">&lt;prerequisites&gt;</span>...<span class="nt">&lt;/prerequisites&gt;</span>
+
+    <span class="nt">&lt;repositories&gt;</span>...<span class="nt">&lt;/repositories&gt;</span>
+
+    <span class="nt">&lt;pluginRepositories&gt;</span>...<span class="nt">&lt;/pluginRepositories&gt;</span>
+
+    <span class="nt">&lt;distributionManagement&gt;</span>...<span class="nt">&lt;/distributionManagement&gt;</span>
+
+    <span class="nt">&lt;profiles&gt;</span>...<span class="nt">&lt;/profiles&gt;</span>
+
+<span class="nt">&lt;/project&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>一些节点的理解：</p>
+
+<ul>
+<li><p>parent.relativePath：<br />
+Maven首先在当前项目的找父项目的pom，然后在文件系统的这个位置（relativePath），然后在本地仓库，再在远程仓库找。</p></li>
+
+<li><p>dependencyManagement：<br />
+一般在父模块中定义，子模块不会直接引用，但是在引用相同依赖的时候可以不加版本号。</p></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">liming</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-02-23 11:47:45</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">保留署名-非商业性使用-禁止演绎 4.0-国际许可协议</a></span>
+  </p>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/nexus/">nexus</a>
+          <a href="/tags/maven/">maven</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/mac-practical-settings/">
+            <span class="next-text nav-default">mac使用技巧及常用设置</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2019-02-23 11:47:45 \x2b0800 CST',
+        title: 'Maven私有仓库权限设置',
+        clientID: 'f35ddb3b03b9257b76d0',
+        clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
+        repo: 'iaming.github.io',
+        owner: 'iaming',
+        admin: ['iaming'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/iaming" class="iconfont icon-github" title="github"></a>
+  <a href="https://liming.pub/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019 <span class="division"> published by </span> 
+    <span class="author">liming <span class="division">|</span> generated by hugo&even <span class="division">|</span> hosted by coding.me&github</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

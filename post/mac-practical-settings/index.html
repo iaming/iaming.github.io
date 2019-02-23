@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-02-17T18:17:15&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-17T18:17:15&#43;08:00" />
-<meta itemprop="wordCount" content="777">
+<meta itemprop="wordCount" content="797">
 
 
 
@@ -128,7 +128,7 @@
         <div class="post-category">
             <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
             </div>
-          <span class="more-meta"> 约 777 字 </span>
+          <span class="more-meta"> 约 797 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -305,13 +305,23 @@ brew unlink bash-completion <span class="o">&amp;&amp;</span> brew link bash-com
 </span><span class="lnt">25
 </span><span class="lnt">26
 </span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#目录别名：~liming.pub</span>
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#中文乱码</span>
+cat &gt;&gt; ~/.zshrc <span class="s">&lt;&lt; EOF
+</span><span class="s">export LC_ALL=en_US.UTF-8  
+</span><span class="s">export LANG=en_US.UTF-8
+</span><span class="s">EOF</span>
+<span class="c1">#目录别名：~liming.pub</span>
 <span class="nb">echo</span> <span class="s2">&#34;hash -d liming.pub=~/seing/liming.pub/liming&#34;</span> &gt;&gt; ~/.zshrc
 <span class="c1">#命令别名：mdmd-新建晨间日记</span>
 <span class="c1">#echo &#34;alias mdmd=&#39;~/seing/morning-bin/morning&#39;&#34; &gt;&gt; ~/.zshrc</span>
-<span class="nb">echo</span> &gt;&gt; ~/.zshrc <span class="s">&lt;&lt; EOF
+cat &gt;&gt; ~/.zshrc <span class="s">&lt;&lt; EOF
 </span><span class="s">alias mdmd=&#39;~/seing/morning-bin/morning&#39;
 </span><span class="s">alias dockerrmi=&#34;docker images|grep none|awk &#39;{print $3}&#39;|xargs docker rmi&#34;
 </span><span class="s">EOF</span>
@@ -396,7 +406,11 @@ Mac用习惯了，切换到windows虚拟机时，因为windows和mac的快捷键
           <a href="/tags/%E6%95%88%E7%8E%87/">效率</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/nexus-maven-permission/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Maven私有仓库权限设置</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/shell-substring-removal/">
             <span class="next-text nav-default">shell中用$表达式截取和替换字符串</span>
             <span class="next-text nav-mobile">下一篇</span>

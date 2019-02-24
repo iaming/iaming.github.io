@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liming.pub/post/certbot-auto-ssl-certificate/</loc>
+    <lastmod>2019-02-24T10:12:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/post/nexus-maven-permission/</loc>
     <lastmod>2019-02-23T11:47:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -149,8 +156,15 @@
   </url>
   
   <url>
+    <loc>https://liming.pub/tags/lets-encrypt/</loc>
+    <lastmod>2019-02-24T10:12:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/post/</loc>
-    <lastmod>2019-02-23T11:47:45+08:00</lastmod>
+    <lastmod>2019-02-24T10:12:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -198,6 +212,13 @@
   </url>
   
   <url>
+    <loc>https://liming.pub/tags/certbot-auto/</loc>
+    <lastmod>2019-02-24T10:12:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/tags/git/</loc>
     <lastmod>2019-01-27T19:53:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -220,7 +241,7 @@
   
   <url>
     <loc>https://liming.pub/</loc>
-    <lastmod>2019-02-23T11:47:45+08:00</lastmod>
+    <lastmod>2019-02-24T10:12:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -311,7 +332,7 @@
   
   <url>
     <loc>https://liming.pub/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2019-02-23T11:47:45+08:00</lastmod>
+    <lastmod>2019-02-24T10:12:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

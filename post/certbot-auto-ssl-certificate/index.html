@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用Certbot-Auto生成免费的通配符SSl证书 - liming.pub</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="liming" /><meta name="description" content="随着谷歌浏览器对非https网站提示非安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&amp;rsquo;s Encrypt项目，定期自己生成免费的SSL证书。 因为Let&amp;rsquo;s Encrypt证书有效期只有3个月，所以建议自动化，比如本文使用certbot-auto脚本。
+证书分两种：一种是单域名证书，一种是通配符证书，其中单域名证书比较简单，也能自动化续期，本文主要针对通配符证书的生成。
+" /><meta name="keywords" content="certbot-auto, Let&#39;s Encrypt, https, ssl, 免费" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://liming.pub/post/certbot-auto-ssl-certificate/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.93844dae.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="使用Certbot-Auto生成免费的通配符SSl证书" />
+<meta property="og:description" content="随着谷歌浏览器对非https网站提示非安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&rsquo;s Encrypt项目，定期自己生成免费的SSL证书。
+因为Let&rsquo;s Encrypt证书有效期只有3个月，所以建议自动化，比如本文使用certbot-auto脚本。
+证书分两种：一种是单域名证书，一种是通配符证书，其中单域名证书比较简单，也能自动化续期，本文主要针对通配符证书的生成。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liming.pub/post/certbot-auto-ssl-certificate/" /><meta property="article:published_time" content="2019-02-24T10:12:20&#43;08:00"/>
+<meta property="article:modified_time" content="2019-02-24T10:12:20&#43;08:00"/>
+
+<meta itemprop="name" content="使用Certbot-Auto生成免费的通配符SSl证书">
+<meta itemprop="description" content="随着谷歌浏览器对非https网站提示非安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&rsquo;s Encrypt项目，定期自己生成免费的SSL证书。
+因为Let&rsquo;s Encrypt证书有效期只有3个月，所以建议自动化，比如本文使用certbot-auto脚本。
+证书分两种：一种是单域名证书，一种是通配符证书，其中单域名证书比较简单，也能自动化续期，本文主要针对通配符证书的生成。">
+
+
+<meta itemprop="datePublished" content="2019-02-24T10:12:20&#43;08:00" />
+<meta itemprop="dateModified" content="2019-02-24T10:12:20&#43;08:00" />
+<meta itemprop="wordCount" content="1130">
+
+
+
+<meta itemprop="keywords" content="certbot-auto,Let&#39;s Encrypt," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用Certbot-Auto生成免费的通配符SSl证书"/>
+<meta name="twitter:description" content="随着谷歌浏览器对非https网站提示非安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&rsquo;s Encrypt项目，定期自己生成免费的SSL证书。
+因为Let&rsquo;s Encrypt证书有效期只有3个月，所以建议自动化，比如本文使用certbot-auto脚本。
+证书分两种：一种是单域名证书，一种是通配符证书，其中单域名证书比较简单，也能自动化续期，本文主要针对通配符证书的生成。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">liming.pub</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">栏目</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">liming.pub</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">栏目</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用Certbot-Auto生成免费的通配符SSl证书</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-02-24 10:12:20 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
+            </div>
+          <span class="more-meta"> 约 1130 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#下载脚本">下载脚本</a></li>
+<li><a href="#自动部署">自动部署</a></li>
+<li><a href="#生成单域名证书">生成单域名证书</a></li>
+<li><a href="#生成通配符证书">生成通配符证书</a></li>
+<li><a href="#查看生成的证书">查看生成的证书</a></li>
+<li><a href="#手动更新">手动更新</a></li>
+<li><a href="#自动更新">自动更新</a></li>
+<li><a href="#java访问不信任">java访问不信任</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>随着谷歌浏览器对非https网站提示非安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&rsquo;s Encrypt项目，定期自己生成免费的SSL证书。
+因为Let&rsquo;s Encrypt证书有效期只有3个月，所以建议自动化，比如本文使用certbot-auto脚本。<br />
+证书分两种：一种是单域名证书，一种是通配符证书，其中单域名证书比较简单，也能自动化续期，本文主要针对通配符证书的生成。</p>
+
+<h1 id="下载脚本">下载脚本</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">wget https://dl.eff.org/certbot-auto
+chmod a+x ./certbot-auto</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="自动部署">自动部署</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">certbot-auto -v <span class="c1"># 会自动安装部署</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="生成单域名证书">生成单域名证书</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">certbot-auto certonly --webroot -w /var/www/liming.pub -d  liming.pub <span class="c1">#手工生成并部署单域名证书</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="生成通配符证书">生成通配符证书</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">certbot-auto certonly  -d *.liming.pub --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory </code></pre></td></tr></table>
+</div>
+</div>
+<p>然后配置一个txt类型的DNS解析，注意不要删除，否则后续续的时候报错
+测试解析是否生效</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">dig -t txt _acme-challenge.liming.pub</code></pre></td></tr></table>
+</div>
+</div>
+<p>配置nginx</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">    ssl_certificate /etc/letsencrypt/live/liming.pub/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/liming.pub/privkey.pem; # managed by Certbot
+    ssl_session_cache shared:le_nginx_SSL:1m;
+    ssl_session_timeout 1440m;
+
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+
+    ssl_ciphers &#34;ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA:ECDHE-ECDSA-DES-CBC3-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:DES-CBC3-SHA:!DSS&#34;;</pre></td></tr></table>
+</div>
+</div>
+<h1 id="查看生成的证书">查看生成的证书</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">openssl x509 -in  /etc/letsencrypt/live/liming.pub/fullchain.pem -noout -text</code></pre></td></tr></table>
+</div>
+</div>
+<p>相关参数说明：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">certonly 表示插件，Certbot 有很多插件。不同的插件都可以申请证书，用户可以根据需要自行选择。
+-d 为哪些主机申请证书。如果是通配符，输入 *.xxx.com <span class="o">(</span>根据实际情况替换为你自己的域名<span class="o">)</span>。
+--preferred-challenges dns-01，使用 DNS 方式校验域名所有权。
+--server，Let<span class="err">&#39;</span>s Encrypt ACME v2 版本使用的服务器不同于 v1 版本，需要显示指定。</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="手动更新">手动更新</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">./certbot-auto renew -v</code></pre></td></tr></table>
+</div>
+</div>
+<blockquote>
+<p>注意：由于以下原因，上面命令可能无法执行：
+- 域名认证有效期是30天，但是更新操作只有到期时间小于30天才能执行，所以需要重新再配置域名的txt记录（否则更新会报错：<code>PluginError('An authentication script must be provided with --manual-auth-hook when using the manual plugin non-interactively.'</code>）
+- 如果当前机器配置了多个通配符nginx配置，会每个每个去更新，所以建议先将nginx的配置移动一下目录后，只保留要更新的nginx配置，然后再更新:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">mv /etc/nginx/conf.d /etc/nginx/conf.d.bak
+certbot-auto certonly  -d *.liming.pub --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
+mv /etc/nginx/conf.d.bak /etc/nginx/conf.d
+/usr/sbin/nginx -s reload</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+
+<h1 id="自动更新">自动更新</h1>
+
+<p><code>vi /etc/crontab</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">./certbot-auto renew --quiet --no-self-upgrade
+<span class="m">0</span> <span class="m">3</span> <span class="m">1</span> * * certbot-auto renew --quiet –renew-hook <span class="s2">&#34;/usr/sbin/nginx -s reload&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><code>service crond restart</code>
+&gt; 注意: 通配符域名证书暂无法使用，原因见6</p>
+
+<h1 id="java访问不信任">java访问不信任</h1>
+
+<p>Let&rsquo;s Encrypt证书浏览器基本都认，但是java程序去访问的时候回不认，此时可以考虑将证书导入到jre环境中即可。具体方法如下：</p>
+
+<ul>
+<li><p>下载证书<br />
+在web浏览器上(这里我用的是chrome)打开https的链接,然后点击https前面的小锁头,然后点详细信息.就可以看到右侧有一些信息.然后点击view certificate.直接拖拽证书的图标到一个路径,就保存下来了</p></li>
+
+<li><p>导入证书<br />
+进入JDK的security路径：cd $JAVA_HOME/jre/lib/securiy 执行命令导入证书，遇到输入口令的情况, java的默认口令是changeit：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo keytool -keystore cacerts -importcert -alias limingpub -file xxx.cer</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">liming</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-02-24 10:12:20</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">保留署名-非商业性使用-禁止演绎 4.0-国际许可协议</a></span>
+  </p>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/certbot-auto/">certbot-auto</a>
+          <a href="/tags/lets-encrypt/">Let&#39;s Encrypt</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/nexus-maven-permission/">
+            <span class="next-text nav-default">Maven私有仓库权限设置</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2019-02-24 10:12:20 \x2b0800 CST',
+        title: '使用Certbot-Auto生成免费的通配符SSl证书',
+        clientID: 'f35ddb3b03b9257b76d0',
+        clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
+        repo: 'iaming.github.io',
+        owner: 'iaming',
+        admin: ['iaming'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/iaming" class="iconfont icon-github" title="github"></a>
+  <a href="https://liming.pub/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019 <span class="division"> published by </span> 
+    <span class="author">liming <span class="division">|</span> generated by hugo&even <span class="division">|</span> hosted by coding.me&github</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

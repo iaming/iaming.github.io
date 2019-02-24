@@ -6,10 +6,21 @@
     <description>Recent content in Posts on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 23 Feb 2019 11:47:45 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 24 Feb 2019 10:12:20 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用Certbot-Auto生成免费的通配符SSl证书</title>
+      <link>https://liming.pub/post/certbot-auto-ssl-certificate/</link>
+      <pubDate>Sun, 24 Feb 2019 10:12:20 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/certbot-auto-ssl-certificate/</guid>
+      <description>&lt;p&gt;随着谷歌浏览器对非https网站提示非安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&amp;rsquo;s Encrypt项目，定期自己生成免费的SSL证书。
+因为Let&amp;rsquo;s Encrypt证书有效期只有3个月，所以建议自动化，比如本文使用certbot-auto脚本。&lt;br /&gt;
+证书分两种：一种是单域名证书，一种是通配符证书，其中单域名证书比较简单，也能自动化续期，本文主要针对通配符证书的生成。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Maven私有仓库权限设置</title>

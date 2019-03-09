@@ -21,15 +21,6 @@
     </item>
     
     <item>
-      <title>Restful缓存实践</title>
-      <link>https://liming.pub/post/restful-cache/</link>
-      <pubDate>Sun, 20 Jan 2019 21:30:43 +0800</pubDate>
-      
-      <guid>https://liming.pub/post/restful-cache/</guid>
-      <description>&lt;p&gt;应用可以通过分布式集群等方式动态扩容，但数据库不行，一个系统的吞吐量最终取决于数据库，而缓存可以在应用和数据库之间起到一层保护，为了竟可能多的提高缓存命中率，降低数据库压力，做到及时性和性能的平衡，根据不同缓存特点和应用场景采用多级缓存，具体如下：&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>JWT最佳实践</title>
       <link>https://liming.pub/post/jwt/</link>
       <pubDate>Sat, 19 Jan 2019 22:33:53 +0800</pubDate>

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>nginx使用经验及常用配置 - liming.pub</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="liming" /><meta name="description" content="自从10年前接触nginx后，就对它爱不释手，最近两年运维实战也是大量使用，下面就nginx的一些使用经验和常用配置进行一下总结：
+" /><meta name="keywords" content="nginx, http, https, TCP转发, 代理转发, 跨域, 负载均衡" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://liming.pub/post/nginx-experience-and-configuration/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.93844dae.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="nginx使用经验及常用配置" />
+<meta property="og:description" content="自从10年前接触nginx后，就对它爱不释手，最近两年运维实战也是大量使用，下面就nginx的一些使用经验和常用配置进行一下总结：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liming.pub/post/nginx-experience-and-configuration/" /><meta property="article:published_time" content="2019-03-09T21:59:50&#43;08:00"/>
+<meta property="article:modified_time" content="2019-03-09T21:59:50&#43;08:00"/>
+
+<meta itemprop="name" content="nginx使用经验及常用配置">
+<meta itemprop="description" content="自从10年前接触nginx后，就对它爱不释手，最近两年运维实战也是大量使用，下面就nginx的一些使用经验和常用配置进行一下总结：">
+
+
+<meta itemprop="datePublished" content="2019-03-09T21:59:50&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-09T21:59:50&#43;08:00" />
+<meta itemprop="wordCount" content="1171">
+
+
+
+<meta itemprop="keywords" content="nginx,运维,最佳实践," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="nginx使用经验及常用配置"/>
+<meta name="twitter:description" content="自从10年前接触nginx后，就对它爱不释手，最近两年运维实战也是大量使用，下面就nginx的一些使用经验和常用配置进行一下总结："/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">liming.pub</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">栏目</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">liming.pub</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">栏目</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">nginx使用经验及常用配置</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-03-09 21:59:50 </span>
+        <div class="post-category">
+            <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
+            </div>
+          <span class="more-meta"> 约 1171 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#常用命令">常用命令</a>
+<ul>
+<li><a href="#安装">安装</a></li>
+<li><a href="#配置管理">配置管理</a></li>
+<li><a href="#加载配置">加载配置</a></li>
+</ul></li>
+<li><a href="#常用配置">常用配置</a>
+<ul>
+<li><a href="#http代理转发">HTTP代理转发</a></li>
+<li><a href="#https代理转发">HTTPS代理转发</a></li>
+<li><a href="#静态资源跨域配置">静态资源跨域配置</a></li>
+<li><a href="#配置tcp转发">配置tcp转发</a></li>
+<li><a href="#设置用户名密码">设置用户名密码</a></li>
+<li><a href="#负载均衡">负载均衡</a></li>
+<li><a href="#https跳转改写">https跳转改写</a></li>
+<li><a href="#官网配置">官网配置</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>自从10年前接触nginx后，就对它爱不释手，最近两年运维实战也是大量使用，下面就nginx的一些使用经验和常用配置进行一下总结：</p>
+
+<h1 id="常用命令">常用命令</h1>
+
+<h2 id="安装">安装</h2>
+
+<p>centos直接命令：<code>yum install nginx</code><br />
+其他系统请参考<a href="http://nginx.org/en/docs/install.html">官网指引</a>，这里不做详述。</p>
+
+<h2 id="配置管理">配置管理</h2>
+
+<p>建议每个监听端口和域名都单独一个配置，放在<code>/etc/nginx/conf.d</code>目录下，以<code>port_domain.conf</code>格式命名，以便管理。</p>
+
+<h2 id="加载配置">加载配置</h2>
+
+<p>生产环境修改配置需要慎重，配置修改完成后先测试一下<code>/usr/sbin/nginx -t</code>，确保配置正确后再通过<code>/usr/sbin/nginx -s reload</code>动态加载配置实现用户无感切换，慎用<code>service nginx restart</code>。</p>
+
+<h1 id="常用配置">常用配置</h1>
+
+<h2 id="http代理转发">HTTP代理转发</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">server {
+        listen       80;#监听端口
+        server_name  localhost liming.pub;#监听域名或IP
+
+        location / {
+            proxy_pass http://xxx.xxx.xxx.xxx:8888;
+            proxy_set_header Host $host:$server_port;#第一层代理，拿到监听端口
+            #proxy_set_header Host $http_host;#非首层代理，一直传下去
+            proxy_set_header X-Real-IP $remote_addr;#第一层代理，拿到真实IP
+            #proxy_set_header X-Real-IP $http_x_real_ip; #非首层以后的代理，一直传下去
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            #附件大小限制
+            client_max_body_size 100m;
+        }
+
+    }</pre></td></tr></table>
+</div>
+</div>
+<blockquote>
+<p>NOTE:
+* $proxy_add_x_forwarded_for 会累加代理层的IP向后传递
+* $http_x_forwarded_for 仅仅是上层传过来的值</p>
+</blockquote>
+
+<h2 id="https代理转发">HTTPS代理转发</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">server {
+    listen 443;
+    server_name liming.pub;
+    ssl on;
+    ssl_certificate   cert/liming.pub.pem;#证书
+    ssl_certificate_key  cert/liming.pub.key;#证书秘钥
+    ssl_session_timeout 5m;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+    location / {
+            proxy_pass http://127.0.0.1:8080;
+            #代理配置
+            proxy_set_header Host $host:$server_port;#第一层代理，拿到监听端口
+            #proxy_set_header Host $http_host;#非首层代理，一直传下去
+            proxy_set_header X-Real-IP $remote_addr;#第一层代理，拿到真实IP
+            #proxy_set_header X-Real-IP $http_x_real_ip; #非首层以后的代理，一直传下去
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            #HTTPS代理配置
+            proxy_set_header X-Forwarded-Proto  https;
+            proxy_set_header X-Forwarded-Ssl on;
+            #附件大小限制
+            client_max_body_size 100m;
+        }
+}</pre></td></tr></table>
+</div>
+</div>
+<h2 id="静态资源跨域配置">静态资源跨域配置</h2>
+
+<p>vi /etc/nginx/conf.d/static.conf`</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">server {
+    location /static/  {
+        root   /var/www/liming/static/;
+        if ($request_method = &#39;GET&#39;) {
+            #跨域支持
+            add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;
+            add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET&#39;;
+            add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type&#39;;
+        }
+    }
+}</pre></td></tr></table>
+</div>
+</div>
+<h2 id="配置tcp转发">配置tcp转发</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">stream {
+    upstream tcp_a{
+        server  xxx.xxx.xxx.xxx:$端口;
+    }
+ 
+    server {
+        listen $监听端口;
+        proxy_pass tcp_a;
+    }
+}</pre></td></tr></table>
+</div>
+</div>
+<p>例如：</p>
+
+<ol>
+<li><p>mysql转发</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">#Mysql转发
+stream {
+server {
+    listen 3306;
+    proxy_pass xxx.xxx.xxx.xxx:3306;
+
+    # 也支持socket
+    # proxy_pass unix:/var/lib/mysql/mysql.socket;
+}
+}</pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>SSH转发</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">stream {
+upstream ssh {
+    server xxx.xxx.xxx.xxx:22;
+}
+server {
+    listen $监听端口;
+    proxy_pass ssh;
+    proxy_connect_timeout 1h;
+    proxy_timeout 1h;
+}
+}</pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+
+<h2 id="设置用户名密码">设置用户名密码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">cd /etc/nginx
+printf &#34;$用户名:$(openssl passwd -crypt $密码)\n&#34; &gt;htpasswd</pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">location /admin {
+            root   /var/log/admin;
+            auth_basic &#34;$用户名&#34;;
+            auth_basic_user_file htpasswd;
+            autoindex on;
+        }</pre></td></tr></table>
+</div>
+</div>
+<h2 id="负载均衡">负载均衡</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">upstream liming-pub-server {
+    server 192.168.1.1:8080 weight=4;
+    server 192.168.1.2:8081 weight=5;
+}
+
+server {
+    location / {
+        proxy_pass http://liming-pub-server;
+        # 其他配置
+    }
+    
+}</pre></td></tr></table>
+</div>
+</div>
+<h2 id="https跳转改写">https跳转改写</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">        proxy_redirect http:// $scheme://;
+        port_in_redirect on;</pre></td></tr></table>
+</div>
+</div>
+<h2 id="官网配置">官网配置</h2>
+
+<ol>
+<li><p>默认HTTP</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">server {
+    listen       443;
+    server_name  www.liming.pub liming.pub;
+    return 301 http://$host$request_uri;
+}</pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>默认HTTPS</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">server {
+listen       80;
+server_name  www.liming.pub liming.pub;
+return 301 https://$host$request_uri;    
+}</pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>默认二级域名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">server {
+    listen       80;
+    server_name  www.liming.pub liming.pub;
+
+    if ($host = www.liming.pub) {
+        return 301 http://liming.pub$request_uri;
+    }
+
+    location /  {
+        root   /var/www/liming;
+    }
+}</pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">liming</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-03-09 21:59:50</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">保留署名-非商业性使用-禁止演绎 4.0-国际许可协议</a></span>
+  </p>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/nginx/">nginx</a>
+          <a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+          <a href="/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">最佳实践</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/certbot-auto-ssl-certificate/">
+            <span class="next-text nav-default">使用Certbot-Auto生成免费的通配符SSl证书</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2019-03-09 21:59:50 \x2b0800 CST',
+        title: 'nginx使用经验及常用配置',
+        clientID: 'f35ddb3b03b9257b76d0',
+        clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
+        repo: 'iaming.github.io',
+        owner: 'iaming',
+        admin: ['iaming'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/iaming" class="iconfont icon-github" title="github"></a>
+  <a href="https://liming.pub/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019 <span class="division"> published by </span> 
+    <span class="author">liming <span class="division">|</span> generated by hugo&even <span class="division">|</span> hosted by coding.me&github</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

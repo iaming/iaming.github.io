@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>最佳实践 on liming.pub</title>
+    <link>https://liming.pub/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</link>
+    <description>Recent content in 最佳实践 on liming.pub</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 09 Mar 2019 21:59:50 +0800</lastBuildDate>
+    
+	<atom:link href="https://liming.pub/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>nginx使用经验及常用配置</title>
+      <link>https://liming.pub/post/nginx-experience-and-configuration/</link>
+      <pubDate>Sat, 09 Mar 2019 21:59:50 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/nginx-experience-and-configuration/</guid>
+      <description>&lt;p&gt;自从10年前接触nginx后，就对它爱不释手，最近两年运维实战也是大量使用，下面就nginx的一些使用经验和常用配置进行一下总结：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Maven私有仓库权限设置</title>
+      <link>https://liming.pub/post/nexus-maven-permission/</link>
+      <pubDate>Sat, 23 Feb 2019 11:47:45 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/nexus-maven-permission/</guid>
+      <description>&lt;p&gt;基于nexus3，可以做到maven仓库隔离和权限控制，配置maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：&lt;br /&gt;
+1. 同步中央仓库（权限：公开）
+2. 合作伙伴共享仓库（权限：半公开）
+3. 公司自有仓库（权限：私有）&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>微服务架构实践</title>
+      <link>https://liming.pub/post/micro-service/</link>
+      <pubDate>Sat, 09 Feb 2019 15:42:15 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/micro-service/</guid>
+      <description>&lt;p&gt;微服务架构就是把大的复杂系统拆分为若干个小的独立的服务， 每个服务运行在自己的进程中，并采用轻量级的机制进行通信（一般是 HTTP 资源 API），通过全自动部署工具来实现独立部署。这些服务都是围绕业务能力来构建，可以使用不同的编程语言和不同的数据存储技术，并保持最小化集中管理。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JAMStack</title>
+      <link>https://liming.pub/post/jamstack/</link>
+      <pubDate>Sun, 27 Jan 2019 19:53:39 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/jamstack/</guid>
+      <description>&lt;p&gt;随着我们的架构越来越复杂，技术越来越牛掰，效果越来越酷炫，我们每个人都在不停的学习，以至于我们都忘了技术存在的意义。蓦然回首，其实我们的需求真的很简单，简单到我们完全可以无视市面上大部分技术，解放程序员，让我们一起JAMStack吧！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git实用配置和技巧</title>
+      <link>https://liming.pub/post/git-practical-skills/</link>
+      <pubDate>Sat, 26 Jan 2019 10:10:46 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/git-practical-skills/</guid>
+      <description>&lt;p&gt;git命令博大精深，做为git深度用户，这里介绍几个自己一直在用的自认为很实用的git的配置和技巧。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Restful缓存实践</title>
+      <link>https://liming.pub/post/restful-cache/</link>
+      <pubDate>Sun, 20 Jan 2019 21:30:43 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/restful-cache/</guid>
+      <description>&lt;p&gt;应用可以通过分布式集群等方式动态扩容，但数据库不行，一个系统的吞吐量最终取决于数据库，而缓存可以在应用和数据库之间起到一层保护，为了竟可能多的提高缓存命中率，降低数据库压力，做到及时性和性能的平衡，根据不同缓存特点和应用场景采用多级缓存，具体如下：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JWT最佳实践</title>
+      <link>https://liming.pub/post/jwt/</link>
+      <pubDate>Sat, 19 Jan 2019 22:33:53 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/jwt/</guid>
+      <description>&lt;p&gt;在单服务型应用时代，扩容时必须配备F5这样的硬件设备来解决session会话保持的问题；在微服务开始流行时，spring也给出了Spring Session这样的分布式共享会话方案；在Restful和前后端分离架构下，JWT才是正道。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>API错误码规范</title>
+      <link>https://liming.pub/post/api-problem-json/</link>
+      <pubDate>Mon, 31 Dec 2018 11:05:49 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/api-problem-json/</guid>
+      <description>&lt;p&gt;做了这么多年项目，倾听了太多开发人员对API接口返回错误码的吐槽，收到了太多用户对系统中云里雾里错误信息的埋怨。我在这几年实践中尝试过一些的解决方案，今天就做一下总结。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

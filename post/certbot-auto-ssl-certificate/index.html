@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="随着谷歌浏览器对非https网站提示非安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&amp;rsquo;s Encrypt项目，定期自己生成免费的SSL证书。 因为Let&amp;rsquo;s Encrypt证书有效期只有3个月，所以建议自动化，比如本文使用certbot-auto脚本。
+<meta name="author" content="liming" /><meta name="description" content="随着谷歌浏览器对非https网站醒目警示不安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千元一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&amp;rsquo;s Encrypt项目，定期自己生成免费的SSL证书。 因为Let&amp;rsquo;s Encrypt证书有效期只有3个月，所以建议自动化，比如本文使用certbot-auto脚本。
 证书分两种：一种是单域名证书，一种是通配符证书，其中单域名证书比较简单，也能自动化续期，本文主要针对通配符证书的生成。
 " /><meta name="keywords" content="certbot-auto, Let&#39;s Encrypt, https, ssl, 免费" />
 
@@ -41,7 +41,7 @@
 
 
 <meta property="og:title" content="使用Certbot-Auto生成免费的通配符SSl证书" />
-<meta property="og:description" content="随着谷歌浏览器对非https网站提示非安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&rsquo;s Encrypt项目，定期自己生成免费的SSL证书。
+<meta property="og:description" content="随着谷歌浏览器对非https网站醒目警示不安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千元一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&rsquo;s Encrypt项目，定期自己生成免费的SSL证书。
 因为Let&rsquo;s Encrypt证书有效期只有3个月，所以建议自动化，比如本文使用certbot-auto脚本。
 证书分两种：一种是单域名证书，一种是通配符证书，其中单域名证书比较简单，也能自动化续期，本文主要针对通配符证书的生成。" />
 <meta property="og:type" content="article" />
@@ -49,21 +49,21 @@
 <meta property="article:modified_time" content="2019-02-24T10:12:20&#43;08:00"/>
 
 <meta itemprop="name" content="使用Certbot-Auto生成免费的通配符SSl证书">
-<meta itemprop="description" content="随着谷歌浏览器对非https网站提示非安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&rsquo;s Encrypt项目，定期自己生成免费的SSL证书。
+<meta itemprop="description" content="随着谷歌浏览器对非https网站醒目警示不安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千元一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&rsquo;s Encrypt项目，定期自己生成免费的SSL证书。
 因为Let&rsquo;s Encrypt证书有效期只有3个月，所以建议自动化，比如本文使用certbot-auto脚本。
 证书分两种：一种是单域名证书，一种是通配符证书，其中单域名证书比较简单，也能自动化续期，本文主要针对通配符证书的生成。">
 
 
 <meta itemprop="datePublished" content="2019-02-24T10:12:20&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-24T10:12:20&#43;08:00" />
-<meta itemprop="wordCount" content="1130">
+<meta itemprop="wordCount" content="1286">
 
 
 
-<meta itemprop="keywords" content="certbot-auto,Let&#39;s Encrypt," />
+<meta itemprop="keywords" content="Let&#39;s Encrypt,nginx,运维," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用Certbot-Auto生成免费的通配符SSl证书"/>
-<meta name="twitter:description" content="随着谷歌浏览器对非https网站提示非安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&rsquo;s Encrypt项目，定期自己生成免费的SSL证书。
+<meta name="twitter:description" content="随着谷歌浏览器对非https网站醒目警示不安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千元一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&rsquo;s Encrypt项目，定期自己生成免费的SSL证书。
 因为Let&rsquo;s Encrypt证书有效期只有3个月，所以建议自动化，比如本文使用certbot-auto脚本。
 证书分两种：一种是单域名证书，一种是通配符证书，其中单域名证书比较简单，也能自动化续期，本文主要针对通配符证书的生成。"/>
 
@@ -133,9 +133,9 @@
       <div class="post-meta">
         <span class="post-time"> 2019-02-24 10:12:20 </span>
         <div class="post-category">
-            <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
+            <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
             </div>
-          <span class="more-meta"> 约 1130 字 </span>
+          <span class="more-meta"> 约 1286 字 </span>
           <span class="more-meta"> 预计阅读 3 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -159,7 +159,7 @@
   </div>
 </div>
     <div class="post-content">
-      <p>随着谷歌浏览器对非https网站提示非安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&rsquo;s Encrypt项目，定期自己生成免费的SSL证书。
+      <p>随着谷歌浏览器对非https网站醒目警示不安全后，https就成为网站的一个标配，但是现在一个ssl证书动辄几千元一年，对于创业公司也是一笔不小的费用。如果你喜欢自己动手，那么可以了解一下Let&rsquo;s Encrypt项目，定期自己生成免费的SSL证书。
 因为Let&rsquo;s Encrypt证书有效期只有3个月，所以建议自动化，比如本文使用certbot-auto脚本。<br />
 证书分两种：一种是单域名证书，一种是通配符证书，其中单域名证书比较简单，也能自动化续期，本文主要针对通配符证书的生成。</p>
 
@@ -193,6 +193,9 @@ chmod a+x ./certbot-auto</code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="生成通配符证书">生成通配符证书</h1>
+
+<ol>
+<li><p>执行命令：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
@@ -200,8 +203,10 @@ chmod a+x ./certbot-auto</code></pre></td></tr></table>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash">certbot-auto certonly  -d *.liming.pub --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory </code></pre></td></tr></table>
 </div>
-</div>
-<p>然后配置一个txt类型的DNS解析，注意不要删除，否则后续续的时候报错
+</div></li>
+
+<li><p>配置域名验证：
+根据要求配置一个txt类型的DNS解析，注意不要删除，否则后面验证的时候报错。
 测试解析是否生效</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -211,7 +216,10 @@ chmod a+x ./certbot-auto</code></pre></td></tr></table>
 <pre class="chroma"><code class="language-bash" data-lang="bash">dig -t txt _acme-challenge.liming.pub</code></pre></td></tr></table>
 </div>
 </div>
-<p>配置nginx</p>
+<p>确认生效后回车即可完成申请。</p></li>
+
+<li><p>配置nginx
+如果以上命令没有自动配置nginx，则手工配置一下，配置参考：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -225,17 +233,20 @@ chmod a+x ./certbot-auto</code></pre></td></tr></table>
 </span><span class="lnt">9
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">    ssl_certificate /etc/letsencrypt/live/liming.pub/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/liming.pub/privkey.pem; # managed by Certbot
-    ssl_session_cache shared:le_nginx_SSL:1m;
-    ssl_session_timeout 1440m;
+<pre class="chroma">ssl_certificate /etc/letsencrypt/live/liming.pub/fullchain.pem; # managed by Certbot
+ssl_certificate_key /etc/letsencrypt/live/liming.pub/privkey.pem; # managed by Certbot
+ssl_session_cache shared:le_nginx_SSL:1m;
+ssl_session_timeout 1440m;
 
-    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-    ssl_prefer_server_ciphers on;
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ssl_prefer_server_ciphers on;
 
-    ssl_ciphers &#34;ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA:ECDHE-ECDSA-DES-CBC3-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:DES-CBC3-SHA:!DSS&#34;;</pre></td></tr></table>
+ssl_ciphers &#34;ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA:ECDHE-ECDSA-DES-CBC3-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:DES-CBC3-SHA:!DSS&#34;;</pre></td></tr></table>
 </div>
 </div>
+<p>配完后重新加载一下nginx即可生效：<code>/usr/sbin/nginx -s reload</code></p></li>
+</ol>
+
 <h1 id="查看生成的证书">查看生成的证书</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -248,16 +259,16 @@ chmod a+x ./certbot-auto</code></pre></td></tr></table>
 <p>相关参数说明：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+<pre class="chroma"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span></code></pre></td>
+</span></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">certonly 表示插件，Certbot 有很多插件。不同的插件都可以申请证书，用户可以根据需要自行选择。
--d 为哪些主机申请证书。如果是通配符，输入 *.xxx.com <span class="o">(</span>根据实际情况替换为你自己的域名<span class="o">)</span>。
+<pre class="chroma">certonly 表示插件，Certbot 有很多插件。不同的插件都可以申请证书，用户可以根据需要自行选择。
+-d 为哪些主机申请证书。如果是通配符，输入 *.xxx.com (根据实际情况替换为你自己的域名)。
 --preferred-challenges dns-01，使用 DNS 方式校验域名所有权。
---server，Let<span class="err">&#39;</span>s Encrypt ACME v2 版本使用的服务器不同于 v1 版本，需要显示指定。</code></pre></td></tr></table>
+--server，Let&#39;s Encrypt ACME v2 版本使用的服务器不同于 v1 版本，需要显示指定。</pre></td></tr></table>
 </div>
 </div>
 <h1 id="手动更新">手动更新</h1>
@@ -270,9 +281,12 @@ chmod a+x ./certbot-auto</code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
-<p>注意：由于以下原因，上面命令可能无法执行：
-- 域名认证有效期是30天，但是更新操作只有到期时间小于30天才能执行，所以需要重新再配置域名的txt记录（否则更新会报错：<code>PluginError('An authentication script must be provided with --manual-auth-hook when using the manual plugin non-interactively.'</code>）
-- 如果当前机器配置了多个通配符nginx配置，会每个每个去更新，所以建议先将nginx的配置移动一下目录后，只保留要更新的nginx配置，然后再更新:</p>
+<p>注意：由于以下原因，上面命令可能无法执行：</p>
+
+<ul>
+<li><p>域名认证有效期是30天，但是更新操作只有到期时间小于30天才能执行，所以需要重新再配置域名的txt记录（否则更新会报错：<code>PluginError('An authentication script must be provided with --manual-auth-hook when using the manual plugin non-interactively.'</code>）</p></li>
+
+<li><p>如果当前机器配置了多个通配符nginx配置，会每个每个去更新，所以建议先将nginx的配置移动一下目录后，只保留要更新的nginx配置，然后再更新:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
@@ -286,29 +300,48 @@ certbot-auto certonly  -d *.liming.pub --manual --preferred-challenges dns --ser
 mv /etc/nginx/conf.d.bak /etc/nginx/conf.d
 /usr/sbin/nginx -s reload</code></pre></td></tr></table>
 </div>
-</div></blockquote>
+</div></li>
+</ul>
+</blockquote>
 
 <h1 id="自动更新">自动更新</h1>
 
-<p><code>vi /etc/crontab</code></p>
+<p>由于证书的有效期只有3个月，所以可以可以采用定时任务的方式自动续期。</p>
+
+<ol>
+<li><p>设置定时规则<br />
+<code>vi /etc/crontab</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">./certbot-auto renew --quiet --no-self-upgrade
+<pre class="chroma"><code class="language-bash" data-lang="bash">certbot-auto renew --quiet --no-self-upgrade
 <span class="m">0</span> <span class="m">3</span> <span class="m">1</span> * * certbot-auto renew --quiet –renew-hook <span class="s2">&#34;/usr/sbin/nginx -s reload&#34;</span></code></pre></td></tr></table>
 </div>
+</div></li>
+
+<li><p>重启定时任务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">service crond restart</code></pre></td></tr></table>
 </div>
-<p><code>service crond restart</code>
-&gt; 注意: 通配符域名证书暂无法使用，原因见6</p>
+</div></li>
+</ol>
+
+<blockquote>
+<p>注意: 通配符域名证书只能手动更新，暂无法使用自动更新，原因见上。</p>
+</blockquote>
 
 <h1 id="java访问不信任">java访问不信任</h1>
 
 <p>Let&rsquo;s Encrypt证书浏览器基本都认，但是java程序去访问的时候回不认，此时可以考虑将证书导入到jre环境中即可。具体方法如下：</p>
 
-<ul>
+<ol>
 <li><p>下载证书<br />
 在web浏览器上(这里我用的是chrome)打开https的链接,然后点击https前面的小锁头,然后点详细信息.就可以看到右侧有一些信息.然后点击view certificate.直接拖拽证书的图标到一个路径,就保存下来了</p></li>
 
@@ -322,7 +355,7 @@ mv /etc/nginx/conf.d.bak /etc/nginx/conf.d
 <pre class="chroma"><code class="language-bash" data-lang="bash">sudo keytool -keystore cacerts -importcert -alias limingpub -file xxx.cer</code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
+</ol>
     </div>
 
     <div class="post-copyright">
@@ -341,11 +374,16 @@ mv /etc/nginx/conf.d.bak /etc/nginx/conf.d
   </p>
 </div><footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/certbot-auto/">certbot-auto</a>
           <a href="/tags/lets-encrypt/">Let&#39;s Encrypt</a>
+          <a href="/tags/nginx/">nginx</a>
+          <a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/nginx-experience-and-configuration/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">nginx使用经验及常用配置</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/nexus-maven-permission/">
             <span class="next-text nav-default">Maven私有仓库权限设置</span>
             <span class="next-text nav-mobile">下一篇</span>

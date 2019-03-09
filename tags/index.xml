@@ -6,19 +6,10 @@
     <description>Recent content in Tags on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 20 Jan 2019 21:30:43 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 19 Jan 2019 22:33:53 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/tags/</link>
-      <pubDate>Sun, 20 Jan 2019 21:30:43 +0800</pubDate>
-      
-      <guid>https://liming.pub/tags/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>API</title>
@@ -41,7 +32,7 @@
     <item>
       <title>DevOps</title>
       <link>https://liming.pub/tags/devops/</link>
-      <pubDate>Sat, 09 Feb 2019 15:42:15 +0800</pubDate>
+      <pubDate>Sat, 23 Feb 2019 11:47:45 +0800</pubDate>
       
       <guid>https://liming.pub/tags/devops/</guid>
       <description></description>
@@ -138,15 +129,6 @@
     </item>
     
     <item>
-      <title>certbot-auto</title>
-      <link>https://liming.pub/tags/certbot-auto/</link>
-      <pubDate>Sun, 24 Feb 2019 10:12:20 +0800</pubDate>
-      
-      <guid>https://liming.pub/tags/certbot-auto/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>git</title>
       <link>https://liming.pub/tags/git/</link>
       <pubDate>Sun, 27 Jan 2019 19:53:39 +0800</pubDate>
@@ -206,6 +188,15 @@
       <pubDate>Sat, 23 Feb 2019 11:47:45 +0800</pubDate>
       
       <guid>https://liming.pub/tags/nexus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nginx</title>
+      <link>https://liming.pub/tags/nginx/</link>
+      <pubDate>Sat, 09 Mar 2019 21:59:50 +0800</pubDate>
+      
+      <guid>https://liming.pub/tags/nginx/</guid>
       <description></description>
     </item>
     
@@ -273,6 +264,15 @@
     </item>
     
     <item>
+      <title>最佳实践</title>
+      <link>https://liming.pub/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</link>
+      <pubDate>Sat, 09 Mar 2019 21:59:50 +0800</pubDate>
+      
+      <guid>https://liming.pub/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>架构</title>
       <link>https://liming.pub/tags/%E6%9E%B6%E6%9E%84/</link>
       <pubDate>Sat, 09 Feb 2019 15:42:15 +0800</pubDate>
@@ -305,6 +305,15 @@
       <pubDate>Sat, 19 Jan 2019 22:33:53 +0800</pubDate>
       
       <guid>https://liming.pub/tags/%E8%A7%84%E8%8C%83/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>运维</title>
+      <link>https://liming.pub/tags/%E8%BF%90%E7%BB%B4/</link>
+      <pubDate>Sat, 09 Mar 2019 21:59:50 +0800</pubDate>
+      
+      <guid>https://liming.pub/tags/%E8%BF%90%E7%BB%B4/</guid>
       <description></description>
     </item>
     

@@ -6,10 +6,19 @@
     <description>Recent content in Posts on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 09 Mar 2019 21:59:50 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 24 Mar 2019 21:19:38 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>前端框架选型</title>
+      <link>https://liming.pub/post/front-end-framework/</link>
+      <pubDate>Sun, 24 Mar 2019 21:19:38 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/front-end-framework/</guid>
+      <description>&lt;p&gt;前端技术经过近几年快速发展，语言标准、技术框架已经趋于成熟稳定，目前主流的开发框架为：React， Angular ，Vue。相对于后端Spring一统天下，前端三框架并驾齐驱的现状则让前端选择综合征者头痛不已。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>nginx使用经验及常用配置</title>

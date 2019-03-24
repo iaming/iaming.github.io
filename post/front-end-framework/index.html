@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>前端框架选型 - liming.pub</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="liming" /><meta name="description" content="前端技术经过近几年快速发展，语言标准、技术框架已经趋于成熟稳定，目前主流的开发框架为：React， Angular ，Vue。相对于后端Spring一统天下，前端三框架并驾齐驱的现状则让前端选择综合征者头痛不已。
+" /><meta name="keywords" content="React, Angular, Vue, 前端框架" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://liming.pub/post/front-end-framework/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.93844dae.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="前端框架选型" />
+<meta property="og:description" content="前端技术经过近几年快速发展，语言标准、技术框架已经趋于成熟稳定，目前主流的开发框架为：React， Angular ，Vue。相对于后端Spring一统天下，前端三框架并驾齐驱的现状则让前端选择综合征者头痛不已。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liming.pub/post/front-end-framework/" /><meta property="article:published_time" content="2019-03-24T21:19:38&#43;08:00"/>
+<meta property="article:modified_time" content="2019-03-24T21:19:38&#43;08:00"/>
+
+<meta itemprop="name" content="前端框架选型">
+<meta itemprop="description" content="前端技术经过近几年快速发展，语言标准、技术框架已经趋于成熟稳定，目前主流的开发框架为：React， Angular ，Vue。相对于后端Spring一统天下，前端三框架并驾齐驱的现状则让前端选择综合征者头痛不已。">
+
+
+<meta itemprop="datePublished" content="2019-03-24T21:19:38&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-24T21:19:38&#43;08:00" />
+<meta itemprop="wordCount" content="951">
+
+
+
+<meta itemprop="keywords" content="React,Angular,Vue," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="前端框架选型"/>
+<meta name="twitter:description" content="前端技术经过近几年快速发展，语言标准、技术框架已经趋于成熟稳定，目前主流的开发框架为：React， Angular ，Vue。相对于后端Spring一统天下，前端三框架并驾齐驱的现状则让前端选择综合征者头痛不已。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">liming.pub</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">栏目</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">liming.pub</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">栏目</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">前端框架选型</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-03-24 21:19:38 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/"> 技术架构 </a>
+            <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
+            </div>
+          <span class="more-meta"> 约 951 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#angular">Angular</a>
+<ul>
+<li><a href="#优势">优势</a></li>
+<li><a href="#不足">不足</a></li>
+</ul></li>
+<li><a href="#react">React</a>
+<ul>
+<li><a href="#优势-1">优势</a></li>
+<li><a href="#不足-1">不足</a></li>
+</ul></li>
+<li><a href="#vue">Vue</a>
+<ul>
+<li><a href="#优势-2">优势</a></li>
+<li><a href="#不足-2">不足</a></li>
+</ul></li>
+<li><a href="#实践选型建议">实践选型建议</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>前端技术经过近几年快速发展，语言标准、技术框架已经趋于成熟稳定，目前主流的开发框架为：React， Angular ，Vue。相对于后端Spring一统天下，前端三框架并驾齐驱的现状则让前端选择综合征者头痛不已。</p>
+
+<h1 id="angular">Angular</h1>
+
+<p>Angular诞生于2009，后被google收购，最为核心的是：MVW（Model-View-Whatever）、模块化、自动化双向数据绑定、语义化标签、依赖注入等等。</p>
+
+<h2 id="优势">优势</h2>
+
+<ol>
+<li>模板功能强大丰富，并且是声明式的；</li>
+<li>自带了丰富的Angular指令、管道，双向数据绑定；</li>
+<li>是一个比较完善的前端MVC框架；</li>
+<li>更适合于CRUD的管理系统开发。</li>
+</ol>
+
+<h2 id="不足">不足</h2>
+
+<ol>
+<li>学习成本。</li>
+</ol>
+
+<h1 id="react">React</h1>
+
+<p>由 Facebook 创建，于2013 年 5 月开源，是个专注于构建用户界面的 JavaScript 库。</p>
+
+<h2 id="优势-1">优势</h2>
+
+<ol>
+<li>声明式设计<br />
+React采用声明范式，可以轻松描述应用。</li>
+<li>高效<br />
+React通过对DOM的模拟，最大限度地减少与DOM的交互。</li>
+<li>组件<br />
+通过 React 构建组件，使得代码更加容易得到复用。</li>
+<li>单向响应的数据流<br />
+React实现了单向响应的数据流。</li>
+</ol>
+
+<h2 id="不足-1">不足</h2>
+
+<ol>
+<li>React只是个视图库，需要大量其他类库支持；</li>
+<li>JSX的JS里写类似HTML和CSS的方式不是很直观；</li>
+<li>曾经由于版权问题闹得沸沸扬扬，国内目前有弃用趋势。</li>
+</ol>
+
+<h1 id="vue">Vue</h1>
+
+<p>Vue.js 于2016年10月推出，是 发展最为迅速的JS框架。与其他重量级框架不同的是，Vue 采用渐进式开发的设计。</p>
+
+<h2 id="优势-2">优势</h2>
+
+<ol>
+<li>吸取了react，angular的一些优势，同样拥有组件化、支持指令、过滤器，双向数据绑定等特性；</li>
+<li>不断繁荣的生态系统，可以在一个库和一套完整框架之间自如伸缩；</li>
+<li>轻量级−超快虚拟 DOM，三者中渲染性能最好。</li>
+</ol>
+
+<h2 id="不足-2">不足</h2>
+
+<ol>
+<li>资源较少</li>
+</ol>
+
+<h1 id="实践选型建议">实践选型建议</h1>
+
+<ol>
+<li>前端比较成熟的技术栈：node环境，打包管理webpack，es6/typescript，样式开发scss/less，请求axios。</li>
+<li>基于框架的完整性和背后的生态支持等考虑，对于中后台系统优先推荐Angular。</li>
+<li>基于框架灵活性和性能，对于移动产品或体验要求较高的互联网产品优先推荐Vue。</li>
+<li>提供公共复用组件类产品或解决方案时，应该避免使用框架，使用最原始的js将更容易调用方集成，除非你做好了同时维护三套框架对应的版本的预算和计划。</li>
+<li>虽然以上是前端的最佳选型建议，但是任何技术选型都是离不开团队的，如果团队前端很弱，专攻一个前端框架就很有必要了，针对入手难易程度和国内难易程度，Vue则是不二选择。</li>
+</ol>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">liming</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-03-24 21:19:38</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">保留署名-非商业性使用-禁止演绎 4.0-国际许可协议</a></span>
+  </p>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/react/">React</a>
+          <a href="/tags/angular/">Angular</a>
+          <a href="/tags/vue/">Vue</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/nginx-experience-and-configuration/">
+            <span class="next-text nav-default">nginx使用经验及常用配置</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2019-03-24 21:19:38 \x2b0800 CST',
+        title: '前端框架选型',
+        clientID: 'f35ddb3b03b9257b76d0',
+        clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
+        repo: 'iaming.github.io',
+        owner: 'iaming',
+        admin: ['iaming'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/iaming" class="iconfont icon-github" title="github"></a>
+  <a href="https://liming.pub/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019 <span class="division"> published by </span> 
+    <span class="author">liming <span class="division">|</span> generated by hugo&even <span class="division">|</span> hosted by coding.me&github</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

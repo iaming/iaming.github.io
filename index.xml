@@ -6,10 +6,19 @@
     <description>Recent content on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 24 Mar 2019 21:19:38 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 31 Mar 2019 10:27:07 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>数据库设计规范</title>
+      <link>https://liming.pub/post/database-design-specification/</link>
+      <pubDate>Sun, 31 Mar 2019 10:27:07 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/database-design-specification/</guid>
+      <description>&lt;p&gt;当我们使用数据库模型驱动开发时，数据库规范的重要性不言而喻，本文是在日常项目中总结的数据库设计规范，当然这些仅适用于新研项目，对于有历史负债的公司和系统慎用。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>前端框架选型</title>

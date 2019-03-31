@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liming.pub/post/database-design-specification/</loc>
+    <lastmod>2019-03-31T10:27:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/post/front-end-framework/</loc>
     <lastmod>2019-03-24T21:19:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -178,7 +185,7 @@
   
   <url>
     <loc>https://liming.pub/post/</loc>
-    <lastmod>2019-03-24T21:19:38+08:00</lastmod>
+    <lastmod>2019-03-31T10:27:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -262,7 +269,7 @@
   
   <url>
     <loc>https://liming.pub/</loc>
-    <lastmod>2019-03-24T21:19:38+08:00</lastmod>
+    <lastmod>2019-03-31T10:27:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -346,7 +353,7 @@
   
   <url>
     <loc>https://liming.pub/categories/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/</loc>
-    <lastmod>2019-03-24T21:19:38+08:00</lastmod>
+    <lastmod>2019-03-31T10:27:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -361,6 +368,13 @@
   <url>
     <loc>https://liming.pub/categories/%E6%95%88%E7%8E%87%E6%95%88%E8%83%BD/</loc>
     <lastmod>2019-02-17T18:17:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2019-03-31T10:27:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -416,7 +430,7 @@
   
   <url>
     <loc>https://liming.pub/tags/%E8%A7%84%E8%8C%83/</loc>
-    <lastmod>2019-01-19T22:33:53+08:00</lastmod>
+    <lastmod>2019-03-31T10:27:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

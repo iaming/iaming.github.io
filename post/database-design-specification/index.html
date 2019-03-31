@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>前端框架选型 - liming.pub</title>
+  <title>数据库设计规范 - liming.pub</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,8 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="前端技术经过近几年快速发展，语言标准、技术框架已经趋于成熟稳定，目前主流的开发框架为：React， Angular ，Vue。相对于后端Spring一统天下，前端三框架并驾齐驱的现状则让前端选择综合征者头痛不已。
-" /><meta name="keywords" content="React, Angular, Vue, 前端框架" />
+<meta name="author" content="liming" /><meta name="description" content="当我们使用数据库模型驱动开发时，数据库规范的重要性不言而喻，本文是在日常项目中总结的数据库设计规范，当然这些仅适用于新研项目，对于有历史负债的公司和系统慎用。
+" /><meta name="keywords" content="数据库, 设计规范" />
 
 
 
@@ -27,7 +27,7 @@
 <meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://liming.pub/post/front-end-framework/" />
+<link rel="canonical" href="https://liming.pub/post/database-design-specification/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,26 +39,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="前端框架选型" />
-<meta property="og:description" content="前端技术经过近几年快速发展，语言标准、技术框架已经趋于成熟稳定，目前主流的开发框架为：React， Angular ，Vue。相对于后端Spring一统天下，前端三框架并驾齐驱的现状则让前端选择综合征者头痛不已。" />
+<meta property="og:title" content="数据库设计规范" />
+<meta property="og:description" content="当我们使用数据库模型驱动开发时，数据库规范的重要性不言而喻，本文是在日常项目中总结的数据库设计规范，当然这些仅适用于新研项目，对于有历史负债的公司和系统慎用。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://liming.pub/post/front-end-framework/" /><meta property="article:published_time" content="2019-03-24T21:19:38&#43;08:00"/>
-<meta property="article:modified_time" content="2019-03-24T21:19:38&#43;08:00"/>
+<meta property="og:url" content="https://liming.pub/post/database-design-specification/" /><meta property="article:published_time" content="2019-03-31T10:27:07&#43;08:00"/>
+<meta property="article:modified_time" content="2019-03-31T10:27:07&#43;08:00"/>
 
-<meta itemprop="name" content="前端框架选型">
-<meta itemprop="description" content="前端技术经过近几年快速发展，语言标准、技术框架已经趋于成熟稳定，目前主流的开发框架为：React， Angular ，Vue。相对于后端Spring一统天下，前端三框架并驾齐驱的现状则让前端选择综合征者头痛不已。">
-
-
-<meta itemprop="datePublished" content="2019-03-24T21:19:38&#43;08:00" />
-<meta itemprop="dateModified" content="2019-03-24T21:19:38&#43;08:00" />
-<meta itemprop="wordCount" content="951">
+<meta itemprop="name" content="数据库设计规范">
+<meta itemprop="description" content="当我们使用数据库模型驱动开发时，数据库规范的重要性不言而喻，本文是在日常项目中总结的数据库设计规范，当然这些仅适用于新研项目，对于有历史负债的公司和系统慎用。">
 
 
+<meta itemprop="datePublished" content="2019-03-31T10:27:07&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-31T10:27:07&#43;08:00" />
+<meta itemprop="wordCount" content="1194">
 
-<meta itemprop="keywords" content="React,Angular,Vue," />
+
+
+<meta itemprop="keywords" content="规范,数据库," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="前端框架选型"/>
-<meta name="twitter:description" content="前端技术经过近几年快速发展，语言标准、技术框架已经趋于成熟稳定，目前主流的开发框架为：React， Angular ，Vue。相对于后端Spring一统天下，前端三框架并驾齐驱的现状则让前端选择综合征者头痛不已。"/>
+<meta name="twitter:title" content="数据库设计规范"/>
+<meta name="twitter:description" content="当我们使用数据库模型驱动开发时，数据库规范的重要性不言而喻，本文是在日常项目中总结的数据库设计规范，当然这些仅适用于新研项目，对于有历史负债的公司和系统慎用。"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -121,16 +121,15 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">前端框架选型</h1>
+      <h1 class="post-title">数据库设计规范</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-03-24 21:19:38 </span>
+        <span class="post-time"> 2019-03-31 10:27:07 </span>
         <div class="post-category">
             <a href="/categories/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/"> 技术架构 </a>
-            <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
             </div>
-          <span class="more-meta"> 约 951 字 </span>
-          <span class="more-meta"> 预计阅读 2 分钟 </span>
+          <span class="more-meta"> 约 1194 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -140,100 +139,62 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#angular">Angular</a>
-<ul>
-<li><a href="#优势">优势</a></li>
-<li><a href="#不足">不足</a></li>
-</ul></li>
-<li><a href="#react">React</a>
-<ul>
-<li><a href="#优势-1">优势</a></li>
-<li><a href="#不足-1">不足</a></li>
-</ul></li>
-<li><a href="#vue">Vue</a>
-<ul>
-<li><a href="#优势-2">优势</a></li>
-<li><a href="#不足-2">不足</a></li>
-</ul></li>
-<li><a href="#实践选型建议">实践选型建议</a></li>
+<li><a href="#字符编码规范">字符编码规范</a></li>
+<li><a href="#命名规范">命名规范</a></li>
+<li><a href="#特殊字段">特殊字段</a></li>
+<li><a href="#特殊表-可选">特殊表（可选）</a></li>
 </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p>前端技术经过近几年快速发展，语言标准、技术框架已经趋于成熟稳定，目前主流的开发框架为：React， Angular ，Vue。相对于后端Spring一统天下，前端三框架并驾齐驱的现状则让前端选择综合征者头痛不已。</p>
+      <p>当我们使用数据库模型驱动开发时，数据库规范的重要性不言而喻，本文是在日常项目中总结的数据库设计规范，当然这些仅适用于新研项目，对于有历史负债的公司和系统慎用。</p>
 
-<h1 id="angular">Angular</h1>
+<h1 id="字符编码规范">字符编码规范</h1>
 
-<p>Angular诞生于2009，后被google收购，最为核心的是：MVW（Model-View-Whatever）、模块化、自动化双向数据绑定、语义化标签、依赖注入等等。</p>
+<ul>
+<li>统一编码为UTF-8。<br />
+MySQL数据库中请将Character Set设置为utf8mb4、将Collation设置为utf8mb4_unicode_ci，并在数据库配置文件中设置<code>lower_case_table_names=1</code>。</li>
+</ul>
 
-<h2 id="优势">优势</h2>
+<h1 id="命名规范">命名规范</h1>
 
-<ol>
-<li>模板功能强大丰富，并且是声明式的；</li>
-<li>自带了丰富的Angular指令、管道，双向数据绑定；</li>
-<li>是一个比较完善的前端MVC框架；</li>
-<li>更适合于CRUD的管理系统开发。</li>
-</ol>
+<ul>
+<li>数据库、表、字段等所有名称的可用字符范围为：a-z， 0-9 和_下划线，长度要严格控制在30个字符以内。</li>
+<li>数据库、表、字段等所有名称均使用英文单词或英文短语或相应缩写，均使用单数名，禁止使用汉语拼音。</li>
+<li>数据库、表、字段等名称统一使用小写，单词间用_下划线分隔。</li>
+<li>数据库表名统一加模块或者微服务前缀（不超过6个字母）</li>
+<li>表主键统一命名为id，类型统一为varchar(128)，对于部分有业务唯一性的根据唯一索引拼接为String，对于没有业务唯一索引的直接用UUID。</li>
+<li>所有的表字段中，除外键，其它字段名都无需刻意加前后缀，也不要在字段名前出现表名。</li>
+<li>外键约束以fk做前缀，后跟从表名称和主表名称：fk_从表名_主表名。</li>
+<li>表（广义）外键建议命名为：主表名_字段名，类型和主表中字段类型一样。如果一个表中有多个外键（字段）同时引用（对应）一张表的同一个字段，再根据实际情况加前后缀区分</li>
+</ul>
 
-<h2 id="不足">不足</h2>
+<blockquote>
+<p>注意：Oracle的表名和字段名默认是大写的，如果小写的话会自动加上双引号。有两种方法：<br />
+1. 去掉引号。PowerDesign设置方法：Database -&gt; Edit current DBMS -&gt; General -&gt; Script -&gt; Sql -&gt; Format -&gt; CaseSensitivityUsingQuote 设置为NO，如果设置报<code>cannot open for writing</code>错误，用管理员打开后设置。<br />
+2. 转为大写。PowerDesign设置方法: Tools -&gt; Model Options -&gt; NamingConvertion -&gt;Table或Column中进行设置。</p>
+</blockquote>
 
-<ol>
-<li>学习成本。</li>
-</ol>
+<h1 id="特殊字段">特殊字段</h1>
 
-<h1 id="react">React</h1>
+<ul>
+<li>所有表增加creator、created_at、updater、modified_at字段。</li>
+<li>表可选使用名称name,标签集tags字段，categories所属栏目字段。</li>
+<li>对于字典字段，编码字段后面跟code后缀，文本字段跟text后缀。</li>
+<li>表示日期时间的字段，都要有后缀，如果只精确到天则以date为后缀，如果要精确到时分秒那就用_at作后缀，使用Number(15)型时间戳（从1970年1月1日08时整开始的秒数）。</li>
+<li>是否注销、是否成功等类似的布尔型字段，名称前统一加is前缀，比如是否成功（is_success）、是否注销（is_active）、是否显示（is_display）等。</li>
+<li>表或字段应避开oracle或mysql的系统关键字或保留字，比如：date、user、system。</li>
+</ul>
 
-<p>由 Facebook 创建，于2013 年 5 月开源，是个专注于构建用户界面的 JavaScript 库。</p>
+<h1 id="特殊表-可选">特殊表（可选）</h1>
 
-<h2 id="优势-1">优势</h2>
-
-<ol>
-<li>声明式设计<br />
-React采用声明范式，可以轻松描述应用。</li>
-<li>高效<br />
-React通过对DOM的模拟，最大限度地减少与DOM的交互。</li>
-<li>组件<br />
-通过 React 构建组件，使得代码更加容易得到复用。</li>
-<li>单向响应的数据流<br />
-React实现了单向响应的数据流。</li>
-</ol>
-
-<h2 id="不足-1">不足</h2>
-
-<ol>
-<li>React只是个视图库，需要大量其他类库支持；</li>
-<li>JSX的JS里写类似HTML和CSS的方式不是很直观；</li>
-<li>曾经由于版权问题闹得沸沸扬扬，国内目前有弃用趋势。</li>
-</ol>
-
-<h1 id="vue">Vue</h1>
-
-<p>Vue.js 于2016年10月推出，是 发展最为迅速的JS框架。与其他重量级框架不同的是，Vue 采用渐进式开发的设计。</p>
-
-<h2 id="优势-2">优势</h2>
-
-<ol>
-<li>吸取了react，angular的一些优势，同样拥有组件化、支持指令、过滤器，双向数据绑定等特性；</li>
-<li>不断繁荣的生态系统，可以在一个库和一套完整框架之间自如伸缩；</li>
-<li>轻量级−超快虚拟 DOM，三者中渲染性能最好。</li>
-</ol>
-
-<h2 id="不足-2">不足</h2>
-
-<ol>
-<li>资源较少</li>
-</ol>
-
-<h1 id="实践选型建议">实践选型建议</h1>
-
-<ol>
-<li>前端比较成熟的技术栈：node环境，打包管理webpack，es6/typescript，样式开发scss/less，请求axios。</li>
-<li>基于框架的完整性和背后的生态支持等考虑，对于中后台系统优先推荐Angular。</li>
-<li>基于框架灵活性和性能，对于移动产品或体验要求较高的互联网产品优先推荐Vue。</li>
-<li>提供公共复用组件类产品或解决方案时，应该避免使用框架，使用最原始的js将更容易调用方集成，除非你做好了同时维护三套框架对应的版本的预算和计划。</li>
-<li>虽然以上是前端的最佳选型建议，但是任何技术选型都是离不开团队的，如果团队前端很弱，专攻一个前端框架就很有必要了，针对入手难易程度和国内难易程度，Vue则是不二选择。</li>
-</ol>
+<ul>
+<li>xx_tag，以标签维度记录xx列表。</li>
+<li>xx_category，以栏目维度记录xx列表。</li>
+<li>xx_archive，xx的历史归档。</li>
+<li>xx_history，xx的修改记录。</li>
+</ul>
     </div>
 
     <div class="post-copyright">
@@ -243,7 +204,7 @@ React实现了单向响应的数据流。</li>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2019-03-24 21:19:38</span>
+    <span class="item-content">2019-03-31 10:27:07</span>
   </p>
   
   <p class="copyright-item">
@@ -252,18 +213,13 @@ React实现了单向响应的数据流。</li>
   </p>
 </div><footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/react/">React</a>
-          <a href="/tags/angular/">Angular</a>
-          <a href="/tags/vue/">Vue</a>
+          <a href="/tags/%E8%A7%84%E8%8C%83/">规范</a>
+          <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/database-design-specification/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">数据库设计规范</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/post/nginx-experience-and-configuration/">
-            <span class="next-text nav-default">nginx使用经验及常用配置</span>
+        
+        <a class="next" href="/post/front-end-framework/">
+            <span class="next-text nav-default">前端框架选型</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -276,8 +232,8 @@ React实现了单向响应的数据流。</li>
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-03-24 21:19:38 \x2b0800 CST',
-        title: '前端框架选型',
+        id: '2019-03-31 10:27:07 \x2b0800 CST',
+        title: '数据库设计规范',
         clientID: 'f35ddb3b03b9257b76d0',
         clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
         repo: 'iaming.github.io',

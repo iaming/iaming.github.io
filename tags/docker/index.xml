@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on liming.pub</title>
+    <link>https://liming.pub/tags/docker/</link>
+    <description>Recent content in Docker on liming.pub</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 14 Apr 2019 18:56:40 +0800</lastBuildDate>
+    
+	<atom:link href="https://liming.pub/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker介绍</title>
+      <link>https://liming.pub/post/docker-introduction/</link>
+      <pubDate>Sun, 14 Apr 2019 18:56:40 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/docker-introduction/</guid>
+      <description>&lt;p&gt;现如今，Docker已经是开发和运维的必备神器，本文以开发者视角简单介绍一下Docker的基本概念。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

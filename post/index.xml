@@ -6,10 +6,19 @@
     <description>Recent content in Posts on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 31 Mar 2019 10:27:07 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 14 Apr 2019 18:56:40 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Docker介绍</title>
+      <link>https://liming.pub/post/docker-introduction/</link>
+      <pubDate>Sun, 14 Apr 2019 18:56:40 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/docker-introduction/</guid>
+      <description>&lt;p&gt;现如今，Docker已经是开发和运维的必备神器，本文以开发者视角简单介绍一下Docker的基本概念。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>数据库设计规范</title>

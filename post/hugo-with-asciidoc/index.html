@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Docker介绍 - liming.pub</title>
+  <title>用Asciidoc来写作 - liming.pub</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,8 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="现如今，Docker已经是开发和运维的必备神器，本文以开发者视角简单介绍一下Docker的基本概念。
-" /><meta name="keywords" content="Docker" />
+<meta name="author" content="liming" /><meta name="description" content="Markdown语法过于简单，规范不够标准，经常要花很多时间去适配不同工具，别的语言是熟能生巧，这个语言是越用越怀疑，这对于事事都想精细化控制的我来说是不可接受的。最近通过各种对比和实践，尝试了Asciidoc后，就彻底迷上了，现在日常文档已经基本切换到Asciidoc了，本文则是第一篇Asciidoc格式的文章，当然是要贡献给Asciidoc这个主题了。
+" /><meta name="keywords" content="asciidoc, markdown" />
 
 
 
@@ -27,7 +27,7 @@
 <meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://liming.pub/post/docker-introduction/" />
+<link rel="canonical" href="https://liming.pub/post/hugo-with-asciidoc/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,26 +39,32 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Docker介绍" />
-<meta property="og:description" content="现如今，Docker已经是开发和运维的必备神器，本文以开发者视角简单介绍一下Docker的基本概念。" />
+<meta property="og:title" content="用Asciidoc来写作" />
+<meta property="og:description" content="
+Markdown语法过于简单，规范不够标准，经常要花很多时间去适配不同工具，别的语言是熟能生巧，这个语言是越用越怀疑，这对于事事都想精细化控制的我来说是不可接受的。最近通过各种对比和实践，尝试了Asciidoc后，就彻底迷上了，现在日常文档已经基本切换到Asciidoc了，本文则是第一篇Asciidoc格式的文章，当然是要贡献给Asciidoc这个主题了。
+" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://liming.pub/post/docker-introduction/" /><meta property="article:published_time" content="2019-04-14T18:56:40&#43;08:00"/>
-<meta property="article:modified_time" content="2019-04-14T18:56:40&#43;08:00"/>
+<meta property="og:url" content="https://liming.pub/post/hugo-with-asciidoc/" /><meta property="article:published_time" content="2019-04-21T21:11:07&#43;08:00"/>
+<meta property="article:modified_time" content="2019-04-21T21:11:07&#43;08:00"/>
 
-<meta itemprop="name" content="Docker介绍">
-<meta itemprop="description" content="现如今，Docker已经是开发和运维的必备神器，本文以开发者视角简单介绍一下Docker的基本概念。">
-
-
-<meta itemprop="datePublished" content="2019-04-14T18:56:40&#43;08:00" />
-<meta itemprop="dateModified" content="2019-04-14T18:56:40&#43;08:00" />
-<meta itemprop="wordCount" content="1132">
+<meta itemprop="name" content="用Asciidoc来写作">
+<meta itemprop="description" content="
+Markdown语法过于简单，规范不够标准，经常要花很多时间去适配不同工具，别的语言是熟能生巧，这个语言是越用越怀疑，这对于事事都想精细化控制的我来说是不可接受的。最近通过各种对比和实践，尝试了Asciidoc后，就彻底迷上了，现在日常文档已经基本切换到Asciidoc了，本文则是第一篇Asciidoc格式的文章，当然是要贡献给Asciidoc这个主题了。
+">
 
 
+<meta itemprop="datePublished" content="2019-04-21T21:11:07&#43;08:00" />
+<meta itemprop="dateModified" content="2019-04-21T21:11:07&#43;08:00" />
+<meta itemprop="wordCount" content="839">
 
-<meta itemprop="keywords" content="Docker,运维," />
+
+
+<meta itemprop="keywords" content="asciidoc,markdown,晨间日记," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Docker介绍"/>
-<meta name="twitter:description" content="现如今，Docker已经是开发和运维的必备神器，本文以开发者视角简单介绍一下Docker的基本概念。"/>
+<meta name="twitter:title" content="用Asciidoc来写作"/>
+<meta name="twitter:description" content="
+Markdown语法过于简单，规范不够标准，经常要花很多时间去适配不同工具，别的语言是熟能生巧，这个语言是越用越怀疑，这对于事事都想精细化控制的我来说是不可接受的。最近通过各种对比和实践，尝试了Asciidoc后，就彻底迷上了，现在日常文档已经基本切换到Asciidoc了，本文则是第一篇Asciidoc格式的文章，当然是要贡献给Asciidoc这个主题了。
+"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -121,15 +127,15 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Docker介绍</h1>
+      <h1 class="post-title">用Asciidoc来写作</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-04-14 18:56:40 </span>
+        <span class="post-time"> 2019-04-21 21:11:07 </span>
         <div class="post-category">
-            <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
+            <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
             </div>
-          <span class="more-meta"> 约 1132 字 </span>
-          <span class="more-meta"> 预计阅读 3 分钟 </span>
+          <span class="more-meta"> 约 839 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -137,118 +143,79 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
-    <nav id="TableOfContents">
-<ul>
-<li><a href="#一-docker生态">一、Docker生态</a></li>
-<li><a href="#二-docker镜像">二、Docker镜像</a></li>
-<li><a href="#三-docker容器">三、Docker容器</a></li>
-</ul>
-</nav>
+    
   </div>
 </div>
     <div class="post-content">
-      <p>现如今，Docker已经是开发和运维的必备神器，本文以开发者视角简单介绍一下Docker的基本概念。</p>
-
-<h1 id="一-docker生态">一、Docker生态</h1>
-
-<ol>
-<li><p>介绍及安装<br />
-详见：<a href="https://www.docker.com/">https://www.docker.com/</a></p>
-
-<ul>
-<li>镜像<br />
-用于创建 Docker 容器的模板，类似于java中的类</li>
-<li>容器<br />
-独立运行的一个或一组应用，类似于java中的对象实例
-<br /></li>
-</ul></li>
-
-<li><p>学习路径</p>
-
-<ul>
-<li>Docker CLI<br />
-适用于管理单个容器</li>
-<li>Docker Compose<br />
-通过一个.yml配置文件，将所有的容器的部署方法、文件映射、容器连接等等一系列的配置写在一个配置文件里，最后只需要执行docker-compose up命令就会像执行脚本一样的去一个个安装容器并自动部署。</li>
-<li>Swarm/Kubernetes<br />
-适用于多台机器上管理一个容器集群。详见：<a href="https://docs.docker.com/engine/swarm/">https://docs.docker.com/engine/swarm/</a></li>
-</ul></li>
+      <div class="paragraph">
+<p>Markdown语法过于简单，规范不够标准，经常要花很多时间去适配不同工具，别的语言是熟能生巧，这个语言是越用越怀疑，这对于事事都想精细化控制的我来说是不可接受的。最近通过各种对比和实践，尝试了Asciidoc后，就彻底迷上了，现在日常文档已经基本切换到Asciidoc了，本文则是第一篇Asciidoc格式的文章，当然是要贡献给Asciidoc这个主题了。</p>
+</div>
+<div class="sect1">
+<h2 id="_markdown与asciidoc对比">Markdown与Asciidoc对比</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>开始之前建议先过目一下 <a href="https://asciidoctor.org/docs/asciidoc-vs-markdown/#comparison-by-example">Markdown与Asciidoc的语法对比</a>。</p>
+</div>
+<div class="sect2">
+<h3 id="_互相转换">互相转换</h3>
+<div class="paragraph">
+<p>由于目前还是在熟悉asciidoc阶段，所以我是根据需要将markdown语法手工转为asciidoc，后面熟练后可以尝试通过工具（asciidoctor和pandoc）转换，转换方法：markdown &#8594; docbook &#8594; asciidoc 反之亦然。</p>
+</div>
+<div class="paragraph">
+<p>当然，如果嫌过程麻烦，可以自己写个脚本，毕竟大部分文章格式都非常简单，不会使用太多标记语法，比如我的一些文档就是通过批量替换完成的，替换规则：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>`# ` &#8594; `== `，在文档中asciidoc的"="是整个文章的标题，所以markdown中的标题要降级一级标题</p>
+</li>
+<li>
+<p><code>#</code> &#8594; <code>=</code>，在上一步基础上替换</p>
+</li>
+<li>
+<p>`1. ` &#8594; `. `，有序编号替换，以此类推 `2. `、`3. ` &#8230;&#8203;&#8230;&#8203;</p>
+</li>
+<li>
+<p><code>``</code> &#8594; <code>----</code>，代码片段</p>
+</li>
+<li>
+<p>其他常用标记，如url连接，则需要手工修改</p>
+</li>
 </ol>
-
-<h1 id="二-docker镜像">二、Docker镜像</h1>
-
-<p>镜像tag命名规范：<code>镜像仓库/镜像组/镜像名:镜像版本</code>，如:<code>docker.liming.pub/java:8-alpine</code>。</p>
-
-<ol>
-<li><p>镜像仓库</p>
-
-<ul>
-<li>官方：<a href="https://hub.docker.com">https://hub.docker.com</a><br />
-tag中的镜像仓库为：<code>hub.docker.com</code>，默认为空</li>
-<li>私有：<a href="https://docker.liming.pub">https://docker.liming.pub</a><br />
-tag中命名为：<code>docker.liming.pub</code></li>
-</ul></li>
-
-<li><p>镜像组<br />
-一般为该镜像制作者，如公司名，如fangmou、zhitianxia</p></li>
-
-<li><p>镜像名<br />
-镜像的名称，如果镜像为微服务的话则为微服务名称</p></li>
-
-<li><p>版本<br />
-镜像的版本，默认为<code>latest</code>，可以自定义，gitlab上自动构建的镜像的版本为该gitlab仓库对应的工程分支名（如分支名中有/则以-代替），如:<code>develop</code>、<code>release</code>、<code>master</code>、<code>feature-xx</code>、<code>bug-xx</code></p></li>
-
-<li><p>镜像操作常用命令</p>
-
-<ul>
-<li>搜索仓库中的镜像 <code>docker search 镜像名称</code></li>
-<li>获取/更新镜像 <code>docker pull 镜像tag</code></li>
-<li>查看所有镜像 <code>docker images</code></li>
-<li>删除镜像 <code>docker rmi 镜像tagid</code></li>
-</ul></li>
-</ol>
-
-<h1 id="三-docker容器">三、Docker容器</h1>
-
-<p>容器为镜像的运行实例。</p>
-
-<ol>
-<li><p>常用Docker CLI命令如下</p>
-
-<ul>
-<li>运行容器 <code>docker run 容器名 运行命令</code></li>
-<li>进入容器 <code>docker exec -it 容器名或容器id /bin/bash</code></li>
-<li>查看容器列表 <code>docker ps -a</code></li>
-<li>查看容器详情 <code>docker inspect 容器名或容器id</code></li>
-<li>查看容器运行日志 <code>docker logs 容器名或容器id</code></li>
-<li>停止运行中容器 <code>docker stop 容器名或容器id</code></li>
-<li>删除已停止运行的容器 <code>docker rm 容器名或容器id</code></li>
-<li>启动已停止运行的容器 <code>docker start 容器名或容器id</code></li>
-<li>重启运行中的容器 <code>docker restart 容器名或容器id</code></li>
-<li>其他命令可以在命令行输入<code>docker</code> 查看</li>
-</ul></li>
-
-<li><p>常用Docker Compose命令如下</p>
-
-<ul>
-<li>运行容器组 <code>docker-compose up -d</code></li>
-<li>查看运行的容器组状态 <code>docker-compose ps</code></li>
-<li>查看运行的容器组日志 <code>docker-compose logs</code></li>
-<li>停止运行的容器组 <code>docker-compose stop</code></li>
-<li>停止并删除运行的容器组 <code>docker-compose down</code></li>
-<li>其他命令可以在命令行输入<code>docker-compose</code> 查看</li>
-</ul></li>
-
-<li><p>常用Docker Swarm命令如下</p>
-
-<ul>
-<li>管理swarm <code>docker swarm</code></li>
-<li>管理node <code>docker node</code></li>
-<li>管理service <code>docker service</code></li>
-<li>与Docker Compose结合 <code>docker stack</code></li>
-<li>具体命令用法可以在命令行分别输入以上介绍命令即可查看</li>
-</ul></li>
-</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_文本格式">文本格式</h3>
+<div class="paragraph">
+<p>asciidoc做为标记语言，语法优雅而严谨，比如对于markdown暂不支持的表格，不管是文本格式还是预览格式，都非常直观：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-asciidoc" data-lang="asciidoc">. 表格标题
+|=============
+|表头1	|表头2
+|11     |22
+|11     |22
+|=============</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_段落聚合">段落聚合</h3>
+<div class="paragraph">
+<p>asciidoc支持将通过include嵌入的方式将各个段落或文本片段组织聚合起来，这非常有利于写长篇文字的骨架构思，然后在慢慢的填充各个段落细节，或者是半自动文档，比如程序开发指引，人工写指引，然后引用程序自动生成文本片段。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_关于写作工具">关于写作工具</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>尝试过使用过编辑工具AsciidocFX，可以实时预览，可以到处各种文档，但是对于中文支持不是很好。所以欧文现在基本都是用sublime，当然也可以直接使用vim+asciidoc。</p>
+</div>
+</div>
+</div>
     </div>
 
     <div class="post-copyright">
@@ -258,7 +225,7 @@ tag中命名为：<code>docker.liming.pub</code></li>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2019-04-14 18:56:40</span>
+    <span class="item-content">2019-04-21 21:11:07</span>
   </p>
   
   <p class="copyright-item">
@@ -267,17 +234,14 @@ tag中命名为：<code>docker.liming.pub</code></li>
   </p>
 </div><footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/docker/">Docker</a>
-          <a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+          <a href="/tags/asciidoc/">asciidoc</a>
+          <a href="/tags/markdown/">markdown</a>
+          <a href="/tags/%E6%99%A8%E9%97%B4%E6%97%A5%E8%AE%B0/">晨间日记</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/hugo-with-asciidoc/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">用Asciidoc来写作</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/post/database-design-specification/">
-            <span class="next-text nav-default">数据库设计规范</span>
+        
+        <a class="next" href="/post/docker-introduction/">
+            <span class="next-text nav-default">Docker介绍</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -290,8 +254,8 @@ tag中命名为：<code>docker.liming.pub</code></li>
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-04-14 18:56:40 \x2b0800 CST',
-        title: 'Docker介绍',
+        id: '2019-04-21 21:11:07 \x2b0800 CST',
+        title: '用Asciidoc来写作',
         clientID: 'f35ddb3b03b9257b76d0',
         clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
         repo: 'iaming.github.io',

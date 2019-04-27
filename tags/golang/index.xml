@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>golang on liming.pub</title>
+    <link>https://liming.pub/tags/golang/</link>
+    <description>Recent content in golang on liming.pub</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 27 Apr 2019 10:03:40 +0800</lastBuildDate>
+    
+	<atom:link href="https://liming.pub/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>从java语言到Go语言</title>
+      <link>https://liming.pub/post/from-java-to-golang/</link>
+      <pubDate>Sat, 27 Apr 2019 10:03:40 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/from-java-to-golang/</guid>
+      <description>java做为大型企业应用的主力开发语言，一直有着任何语言都无法匹敌的优势。但是java虽好，就是太重了，不适合小规模、小场景、小工具的开发，</description>
+    </item>
+    
+  </channel>
+</rss>

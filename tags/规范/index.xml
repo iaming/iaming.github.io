@@ -6,10 +6,19 @@
     <description>Recent content in 规范 on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 31 Mar 2019 10:27:07 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 12 May 2019 16:07:30 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/tags/%E8%A7%84%E8%8C%83/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>RESTful资源定义规范及实践</title>
+      <link>https://liming.pub/post/restful-resource-specification/</link>
+      <pubDate>Sun, 12 May 2019 16:07:30 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/restful-resource-specification/</guid>
+      <description>&lt;p&gt;面试了N多的程序员，知道PUT的都寥寥无几，更别说HTTP状态码了，也对接过国内各大厂的API，竟没一家是遵守RESTful的！所以想要真正推行RESTful规范，那是真的困难重重，不光要培训和训练那些写API的程序员，还要跟合作方各种说服和引导。所以一直酝酿着想写个RESTful这个主题，但是由于自己在实践过程中，总是不断冒出新的问题，新的认识，所以一直不忍下手。刚过五一的这个大周末，闲在家没出门，写不了RESTful这个主题，整理一下RESTful资源这块的实践经验我觉得还是够格的。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>数据库设计规范</title>

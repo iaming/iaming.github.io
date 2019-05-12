@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liming.pub/post/restful-resource-specification/</loc>
+    <lastmod>2019-05-12T16:07:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/post/from-java-to-golang/</loc>
     <lastmod>2019-04-27T10:03:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -213,14 +220,14 @@
   
   <url>
     <loc>https://liming.pub/post/</loc>
-    <lastmod>2019-04-27T10:03:40+08:00</lastmod>
+    <lastmod>2019-05-12T16:07:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://liming.pub/tags/restful/</loc>
-    <lastmod>2019-02-09T15:42:15+08:00</lastmod>
+    <lastmod>2019-05-12T16:07:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -311,7 +318,7 @@
   
   <url>
     <loc>https://liming.pub/</loc>
-    <lastmod>2019-04-27T10:03:40+08:00</lastmod>
+    <lastmod>2019-05-12T16:07:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -402,7 +409,7 @@
   
   <url>
     <loc>https://liming.pub/categories/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/</loc>
-    <lastmod>2019-03-31T10:27:07+08:00</lastmod>
+    <lastmod>2019-05-12T16:07:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -437,7 +444,7 @@
   
   <url>
     <loc>https://liming.pub/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2019-03-09T21:59:50+08:00</lastmod>
+    <lastmod>2019-05-12T16:07:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -451,7 +458,7 @@
   
   <url>
     <loc>https://liming.pub/tags/%E6%9E%B6%E6%9E%84/</loc>
-    <lastmod>2019-02-09T15:42:15+08:00</lastmod>
+    <lastmod>2019-05-12T16:07:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -479,7 +486,7 @@
   
   <url>
     <loc>https://liming.pub/tags/%E8%A7%84%E8%8C%83/</loc>
-    <lastmod>2019-03-31T10:27:07+08:00</lastmod>
+    <lastmod>2019-05-12T16:07:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

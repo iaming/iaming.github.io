@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>RESTful资源定义规范及实践 - liming.pub</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="liming" /><meta name="description" content="面试了N多的程序员，知道PUT的都寥寥无几，更别说HTTP状态码了，也对接过国内各大厂的API，竟没一家是遵守RESTful的！所以想要真正推行RESTful规范，那是真的困难重重，不光要培训和训练那些写API的程序员，还要跟合作方各种说服和引导。所以一直酝酿着想写个RESTful这个主题，但是由于自己在实践过程中，总是不断冒出新的问题，新的认识，所以一直不忍下手。刚过五一的这个大周末，闲在家没出门，写不了RESTful这个主题，整理一下RESTful资源这块的实践经验我觉得还是够格的。
+" /><meta name="keywords" content="RESTful, 资源, 最佳实践" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://liming.pub/post/restful-resource-specification/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.93844dae.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="RESTful资源定义规范及实践" />
+<meta property="og:description" content="面试了N多的程序员，知道PUT的都寥寥无几，更别说HTTP状态码了，也对接过国内各大厂的API，竟没一家是遵守RESTful的！所以想要真正推行RESTful规范，那是真的困难重重，不光要培训和训练那些写API的程序员，还要跟合作方各种说服和引导。所以一直酝酿着想写个RESTful这个主题，但是由于自己在实践过程中，总是不断冒出新的问题，新的认识，所以一直不忍下手。刚过五一的这个大周末，闲在家没出门，写不了RESTful这个主题，整理一下RESTful资源这块的实践经验我觉得还是够格的。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liming.pub/post/restful-resource-specification/" /><meta property="article:published_time" content="2019-05-12T16:07:30&#43;08:00"/>
+<meta property="article:modified_time" content="2019-05-12T16:07:30&#43;08:00"/>
+
+<meta itemprop="name" content="RESTful资源定义规范及实践">
+<meta itemprop="description" content="面试了N多的程序员，知道PUT的都寥寥无几，更别说HTTP状态码了，也对接过国内各大厂的API，竟没一家是遵守RESTful的！所以想要真正推行RESTful规范，那是真的困难重重，不光要培训和训练那些写API的程序员，还要跟合作方各种说服和引导。所以一直酝酿着想写个RESTful这个主题，但是由于自己在实践过程中，总是不断冒出新的问题，新的认识，所以一直不忍下手。刚过五一的这个大周末，闲在家没出门，写不了RESTful这个主题，整理一下RESTful资源这块的实践经验我觉得还是够格的。">
+
+
+<meta itemprop="datePublished" content="2019-05-12T16:07:30&#43;08:00" />
+<meta itemprop="dateModified" content="2019-05-12T16:07:30&#43;08:00" />
+<meta itemprop="wordCount" content="2248">
+
+
+
+<meta itemprop="keywords" content="RESTful,最佳实践,规范,架构," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="RESTful资源定义规范及实践"/>
+<meta name="twitter:description" content="面试了N多的程序员，知道PUT的都寥寥无几，更别说HTTP状态码了，也对接过国内各大厂的API，竟没一家是遵守RESTful的！所以想要真正推行RESTful规范，那是真的困难重重，不光要培训和训练那些写API的程序员，还要跟合作方各种说服和引导。所以一直酝酿着想写个RESTful这个主题，但是由于自己在实践过程中，总是不断冒出新的问题，新的认识，所以一直不忍下手。刚过五一的这个大周末，闲在家没出门，写不了RESTful这个主题，整理一下RESTful资源这块的实践经验我觉得还是够格的。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">liming.pub</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">栏目</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">liming.pub</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">栏目</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">RESTful资源定义规范及实践</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-05-12 16:07:30 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/"> 技术架构 </a>
+            </div>
+          <span class="more-meta"> 约 2248 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#restful接口成熟度模型">RESTful接口成熟度模型</a></li>
+<li><a href="#资源概述">资源概述</a></li>
+<li><a href="#资源标识">资源标识</a>
+<ul>
+<li><a href="#http-method">HTTP Method</a></li>
+<li><a href="#资源uri">资源URI</a>
+<ul>
+<li><a href="#模块名称">模块名称</a></li>
+<li><a href="#模块版本">模块版本</a></li>
+<li><a href="#资源名称">资源名称</a>
+<ul>
+<li><a href="#资源型">资源型</a></li>
+<li><a href="#服务型">服务型</a></li>
+<li><a href="#系统设置类">系统设置类</a></li>
+<li><a href="#复杂关联关系">复杂关联关系</a></li>
+<li><a href="#对一个资源的多种操作">对一个资源的多种操作</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#资源操作">资源操作</a>
+<ul>
+<li><a href="#请求头">请求头</a></li>
+<li><a href="#请求数据">请求数据</a></li>
+</ul></li>
+<li><a href="#资源表达">资源表达</a>
+<ul>
+<li><a href="#数据格式">数据格式</a></li>
+<li><a href="#数据类型">数据类型</a></li>
+<li><a href="#错误码">错误码</a></li>
+</ul></li>
+<li><a href="#参考">参考</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>面试了N多的程序员，知道PUT的都寥寥无几，更别说HTTP状态码了，也对接过国内各大厂的API，竟没一家是遵守RESTful的！所以想要真正推行RESTful规范，那是真的困难重重，不光要培训和训练那些写API的程序员，还要跟合作方各种说服和引导。所以一直酝酿着想写个RESTful这个主题，但是由于自己在实践过程中，总是不断冒出新的问题，新的认识，所以一直不忍下手。刚过五一的这个大周末，闲在家没出门，写不了RESTful这个主题，整理一下RESTful资源这块的实践经验我觉得还是够格的。</p>
+
+<h1 id="restful接口成熟度模型">RESTful接口成熟度模型</h1>
+
+<ol>
+<li>Level 0:只是使用 HTTP 作为传输方式，实际上只是远程方法调用（RPC）的一种具体形式。</li>
+<li>Level 1:引入了资源的概念。每个资源有对应的标识符和表达。</li>
+<li>Level 2:使用不同的 HTTP 方法来进行不同的操作，并且使用 HTTP 状态码来表示不同的结果。</li>
+<li>Level 3:使用 HATEOAS。</li>
+</ol>
+
+<h1 id="资源概述">资源概述</h1>
+
+<p>如下是一个RESTful请求：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">curl -X [HTTP Method] --data-urlencode [Request Data] --header [Request Header] --user-agent [User agent] [URL]</pre></td></tr></table>
+</div>
+</div>
+<ol>
+<li>资源标识：[HTTP Method] [Schema]://[Host]:[Port]/[URI]
+
+<ul>
+<li>Schema：协议[http/https]</li>
+<li>Host：服务器主机、IP或域名</li>
+<li>Port：端口</li>
+<li>URI：/[模块名称]/[模块版本]/[接口名]/[唯一标识]</li>
+<li>HTTP Method：请求方法</li>
+</ul></li>
+<li>资源操作
+
+<ul>
+<li>Request Header：请求头</li>
+<li>Request Data：请求数据</li>
+<li>Other：其他</li>
+</ul></li>
+<li>资源表达
+
+<ul>
+<li>Response Header：响应头</li>
+<li>Response Data：响应数据</li>
+<li>Other：其他</li>
+</ul></li>
+</ol>
+
+<h1 id="资源标识">资源标识</h1>
+
+<h2 id="http-method">HTTP Method</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">|HTTP Method    |描述           |
+|---            |---           |
+|GET            |获取，查找     |
+|POST           |新增创建       |
+|PUT            |更新           |
+|PATCH          |部分更新       |
+|DELETE         |删除           |</pre></td></tr></table>
+</div>
+</div>
+<h2 id="资源uri">资源URI</h2>
+
+<h3 id="模块名称">模块名称</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">一般为系统名称或者某一个微服务名称</pre></td></tr></table>
+</div>
+</div>
+<h3 id="模块版本">模块版本</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">加入系统版本能使提升接口可用性（上下兼容）和降低重构代价。  
+因为系统版本号放在uri的最前面，可以通过代理路到不同的接口实现，进而使新老版本共存直至平缓过渡后停掉老系统。  
+一般如下几种情况需要变更版本号：
+* 接口名称变更导致新老接口路由冲突  
+例如：v1/orders?user_id=1 --&gt; v2/:user_id/orders
+* 接口入参或出参变更导致新老接口冲突</pre></td></tr></table>
+</div>
+</div>
+<h3 id="资源名称">资源名称</h3>
+
+<p>假设模块地址为[module-uri]</p>
+
+<h4 id="资源型">资源型</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">    GET [module-uri]/orders            获取订单列表
+    GET [module-uri]/orders/:id        根据id获取单个订单
+    POST [module-uri]/orders           创建订单
+    PUT [module-uri]/orders/:id        根据id更新订单
+    PATCH [module-uri]/orders/:id      根据id部分更新订单
+    DELETE [module-uri]/orders/:id     根据id删除订单</pre></td></tr></table>
+</div>
+</div>
+<h4 id="服务型">服务型</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">    GET [module-uri]/services/search    搜索服务</pre></td></tr></table>
+</div>
+</div>
+<h4 id="系统设置类">系统设置类</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">    PUT [module-uri]/settings/langueage          设置系统语言</pre></td></tr></table>
+</div>
+</div>
+<h4 id="复杂关联关系">复杂关联关系</h4>
+
+<p>当有非常复杂的管理关系，对关联关系这种实体的操作就会有多种理解，这是建议根据返回实体确定属于哪个资源，如果是关联关系，则定义为关系名称。<br />
+比如:staff-&gt;role-&gt;permission</p>
+
+<ul>
+<li>GET/POST/PATCH/DELETE /staffs 获取、新增、修改、删除员工，员工属性可以有roles、permissions</li>
+<li>GET/POST/PATCH/DELETE /roles 获取、新增、修改、删除角色，角色属性可以有permissions、staffs</li>
+<li>GET/POST/PATCH/DELETE /perssions 获取、新增、修改、删除权限，权限属性可以有roles、staffs</li>
+<li>GET/POST/PATCH/DELETE /staff_role_relations或者authorizations</li>
+</ul>
+
+<h4 id="对一个资源的多种操作">对一个资源的多种操作</h4>
+
+<p>当标准动词已经不满足时，比如导入导出操作，有两种处理方式，一种是将定义新的的动词，还有一种是定义新的资源，由于定义动词需要该到框架，所以建议采用定义资源的方式。
+假设数据资源为<code>data</code></p>
+
+<ul>
+<li>新增数据：POST /datas</li>
+<li>修改数据：PATCH /datas/{id}</li>
+<li>删除数据：DELETE /datas/{id}</li>
+<li>查询数据：GET /datas/{id}</li>
+<li>生成数据：POST /data_generations</li>
+<li>校验数据：GET /data_validations</li>
+<li>导出数据：GET /data_export</li>
+<li>导入数据：POST /data_import
+<br /></li>
+</ul>
+
+<h1 id="资源操作">资源操作</h1>
+
+<h2 id="请求头">请求头</h2>
+
+<ul>
+<li>Accept：服务器需要返回什么样的content。如果客户端要求返回&rdquo;application/xml&rdquo;，服务器端只能返回&rdquo;application/json&rdquo;，那么最好返回status code 406 not acceptable（RFC2616）。</li>
+<li>If-Modified-Since/If-None-Match：如果客户端提供某个条件，那么当这条件满足时，才返回数据，否则返回304 not modified。</li>
+<li>If-Match：在对某个资源做PUT/PATCH/DELETE操作时，服务器应该要求客户端提供If-Match头，只有客户端提供的Etag与服务器对应资源的Etag一致，才进行操作，否则返回412 precondition failed。</li>
+</ul>
+
+<h2 id="请求数据">请求数据</h2>
+
+<h1 id="资源表达">资源表达</h1>
+
+<h2 id="数据格式">数据格式</h2>
+
+<p>采用<a href="https://tools.ietf.org/html/draft-kelly-json-hal-08">hal+json</a>规范。</p>
+
+<h2 id="数据类型">数据类型</h2>
+
+<p>由于Number、Boolean和Null在不同编程语言会有不确定性，所以建议只使用String、Array、Object。</p>
+
+<ul class="task-list">
+<li><label><input type="checkbox" disabled class="task-list-item"> Number：因为c和java的精度处理不一致，导致在数据转换时会有精度丢失，所以该类型数据需要转换为字符串，转换过程中数据不要做变相处理。比如5%这个数据，要么返回“0.05”，要么返回“5%”，不能返回5。再比如10000000这个数据，要么返回“10000000”，要么返回“10,000,000”，要么返回“1000万”，不能返回“1000”。</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> String：字符串，需要特别注意，Date类型转换为long（时间戳）再转为字符串：c和object-c对日期序列化和java是可能不一致的，导致日期解析不出来，app使用的时区不一致，可能导致日期错误。</label></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> Boolean：需要转换为char，0为false，1为true</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Array：数组包含在方括号[]中</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Object：对象包含在大括号{}中</label></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> Null：空类型，禁止使用</label></li>
+</ul>
+
+<h2 id="错误码">错误码</h2>
+
+<p>采用<a href="https://tools.ietf.org/html/rfc7807">problem+json - RFC 7807</a>规范。并将title作为错误码。参考<a href="../api-problem-json/">API错误码规范</a></p>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+<li><a href="https://blog.florimondmanca.com/restful-api-design-13-best-practices-to-make-your-users-happy">RestfulAPI最佳实践</a></li>
+<li><a href="https://opensource.zalando.com/restful-api-guidelines/">RestfulAPI参考规范</a></li>
+<li><a href="https://github.com/mikekelly/hal_specification/wiki/Libraries">HAL各语言客户端</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">liming</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-05-12 16:07:30</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">保留署名-非商业性使用-禁止演绎 4.0-国际许可协议</a></span>
+  </p>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/restful/">RESTful</a>
+          <a href="/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">最佳实践</a>
+          <a href="/tags/%E8%A7%84%E8%8C%83/">规范</a>
+          <a href="/tags/%E6%9E%B6%E6%9E%84/">架构</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/from-java-to-golang/">
+            <span class="next-text nav-default">从java语言到Go语言</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2019-05-12 16:07:30 \x2b0800 CST',
+        title: 'RESTful资源定义规范及实践',
+        clientID: 'f35ddb3b03b9257b76d0',
+        clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
+        repo: 'iaming.github.io',
+        owner: 'iaming',
+        admin: ['iaming'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/iaming" class="iconfont icon-github" title="github"></a>
+  <a href="https://liming.pub/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019 <span class="division"> published by </span> 
+    <span class="author">liming <span class="division">|</span> generated by hugo&even <span class="division">|</span> hosted by coding.me&github</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -55,7 +55,7 @@ Markdown语法过于简单，规范不够标准，经常要花很多时间去适
 
 <meta itemprop="datePublished" content="2019-04-21T21:11:07&#43;08:00" />
 <meta itemprop="dateModified" content="2019-04-21T21:11:07&#43;08:00" />
-<meta itemprop="wordCount" content="1045">
+<meta itemprop="wordCount" content="1251">
 
 
 
@@ -134,7 +134,7 @@ Markdown语法过于简单，规范不够标准，经常要花很多时间去适
         <div class="post-category">
             <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
             </div>
-          <span class="more-meta"> 约 1045 字 </span>
+          <span class="more-meta"> 约 1251 字 </span>
           <span class="more-meta"> 预计阅读 3 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -201,15 +201,35 @@ Markdown语法过于简单，规范不够标准，经常要花很多时间去适
 </div>
 </div>
 <div class="sect2">
-<h3 id="_段落聚合">段落聚合</h3>
-<div class="paragraph">
-<p>asciidoc支持将通过 <code>include::xx.adoc[]</code> 来嵌入的方式将各个段落或文本片段组织聚合起来，这非常有利于写长篇文字的骨架构思，然后在慢慢的填充各个段落细节，或者是半自动文档，比如程序开发手册，手工写一个指引段落结构，然后引用程序自动生成文本片段。</p>
+<h3 id="_引用">引用</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">几种常见的引用语法</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">include</dt>
+<dd>
+<p>包含外部文件中的内容。语法： <code>include::xx.adoc[]</code> ，可以通过该语法将各个段落或文本片段组织聚合起来，这非常有利于写长篇文字的骨架构思，然后在慢慢的填充各个段落细节，或者是半自动文档，比如程序开发手册，手工写一个指引段落结构，然后引用程序自动生成文本片段。</p>
+</dd>
+<dt class="hdlist1">image</dt>
+<dd>
+<p>嵌入图片。语法： <code>image::xx.jpj[]</code></p>
+</dd>
+<dt class="hdlist1">video</dt>
+<dd>
+<p>嵌入视频。语法： <code>video::xx.mp4[]</code></p>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_段落片段">段落片段</h3>
+<h3 id="_转义">转义</h3>
 <div class="paragraph">
-<p>asciidoc在写段落片段时，经常会纠结该用几级标题，我的做法是有内容的段落偏多都只带标题，如果需要层级，则使用有序列表来实现。目前来看确实很灵活，段落片段可以在任何标题层级下引用。当然这里有些语法小缺陷看起来非常难受，就是要要经常用 <code>+</code> 来连接需要换行的文本，比如:</p>
+<p>asciidoc在写段落片段时，经常会纠结该用几级标题，我的做法是有内容的段落偏多都只带标题，如果需要层级，则使用有序列表来实现。目前来看确实很灵活，段落片段可以在任何标题层级下引用。当然这里有些语法小缺陷看起来非常难受，就是要要经常用 <code>+</code> 来转义换行符，比如:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -236,13 +256,54 @@ Markdown语法过于简单，规范不够标准，经常要花很多时间去适
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_属性">属性</h3>
+<div class="paragraph">
+<p>可以通过定义属性，然后在文本中使用属性。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>定义方法： <code>:属性名: 属性值</code>。</p>
+</li>
+<li>
+<p>使用方法:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>文本： <code>{属性名}</code></p>
+</li>
+<li>
+<p>代码块，在块申明增加subs，如 <code>[source, subs="verbatim,attributes"]</code>，然后在代码块中是 <code>{属性名}</code></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+asciidoctor默认生成html是没有icon小图标，需要手工申明： <code>:icons: font</code>
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_关于写作工具">关于写作工具</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>尝试过使用过编辑工具AsciidocFX，可以实时预览，可以到处各种文档，但是对于中文支持不是很好。所以我现在基本都是用sublime，当然也可以直接使用vim+asciidoc。</p>
+<p>尝试过使用过编辑工具AsciidocFX，可以实时预览，可以到处各种文档，但是对于中文支持不是很好，也不支持半角符号。</p>
+</div>
+<div class="paragraph">
+<p>所以我现在基本都是用sublime进行写作，结合谷歌浏览器插件”Asciidoctor.js Live Preview“进行预览，非常高效。</p>
 </div>
 </div>
 </div>

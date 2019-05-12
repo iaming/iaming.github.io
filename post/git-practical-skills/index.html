@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-01-26T10:10:46&#43;08:00" />
 <meta itemprop="dateModified" content="2019-01-26T10:10:46&#43;08:00" />
-<meta itemprop="wordCount" content="986">
+<meta itemprop="wordCount" content="1137">
 
 
 
@@ -128,8 +128,8 @@
         <div class="post-category">
             <a href="/categories/%E6%95%88%E7%8E%87%E6%95%88%E8%83%BD/"> 效率效能 </a>
             </div>
-          <span class="more-meta"> 约 986 字 </span>
-          <span class="more-meta"> 预计阅读 2 分钟 </span>
+          <span class="more-meta"> 约 1137 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -145,6 +145,8 @@
 <li><a href="#同时提交两个仓库">同时提交两个仓库</a></li>
 <li><a href="#忽略文件属性变更">忽略文件属性变更</a></li>
 <li><a href="#中文显示为unicode编码">中文显示为Unicode编码</a></li>
+<li><a href="#http方式记住密码">HTTP方式记住密码</a></li>
+<li><a href="#全局忽略文件">全局忽略文件</a></li>
 </ul>
 </nav>
   </div>
@@ -344,8 +346,33 @@ git config --global i18n.logoutputencoding utf-8    <span class="c1"># 输出 lo
 <span class="nb">export</span> <span class="nv">LC_ALL</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>NOTE:如果提示没有权限，请以管理员身份运行编辑修改。</p></li>
+<p>NOTE: 如果提示没有权限，请以管理员身份运行编辑修改。</p></li>
 </ol>
+
+<h1 id="http方式记住密码">HTTP方式记住密码</h1>
+
+<p>当使用http:方式操作git，可以设置让git记住密码，这样就可以像git:方式使用秘钥一样不用每次都输入密码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git config --global credential.helper store</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="全局忽略文件">全局忽略文件</h1>
+
+<p>Mac下面的.DS_Store文件非常讨厌，每个项目初始化都要配置项目.gitignore，其实我们可以设置git的全局忽略文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;.DS_Store&#34;</span> &gt;&gt; ~/.gitignore
+git config --global core.excludesfile ~/.gitignore</code></pre></td></tr></table>
+</div>
+</div>
     </div>
 
     <div class="post-copyright">

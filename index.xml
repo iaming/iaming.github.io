@@ -6,10 +6,19 @@
     <description>Recent content on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 27 Apr 2019 10:03:40 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 12 May 2019 16:07:30 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>RESTful资源定义规范及实践</title>
+      <link>https://liming.pub/post/restful-resource-specification/</link>
+      <pubDate>Sun, 12 May 2019 16:07:30 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/restful-resource-specification/</guid>
+      <description>&lt;p&gt;面试了N多的程序员，知道PUT的都寥寥无几，更别说HTTP状态码了，也对接过国内各大厂的API，竟没一家是遵守RESTful的！所以想要真正推行RESTful规范，那是真的困难重重，不光要培训和训练那些写API的程序员，还要跟合作方各种说服和引导。所以一直酝酿着想写个RESTful这个主题，但是由于自己在实践过程中，总是不断冒出新的问题，新的认识，所以一直不忍下手。刚过五一的这个大周末，闲在家没出门，写不了RESTful这个主题，整理一下RESTful资源这块的实践经验我觉得还是够格的。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>从java语言到Go语言</title>
@@ -17,7 +26,9 @@
       <pubDate>Sat, 27 Apr 2019 10:03:40 +0800</pubDate>
       
       <guid>https://liming.pub/post/from-java-to-golang/</guid>
-      <description>java做为大型企业应用的主力开发语言，一直有着任何语言都无法匹敌的优势。但是java虽好，就是太重了，不适合小规模、小场景、小工具的开发，</description>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;java做为大型企业应用的主力开发语言，一直有着任何语言都无法匹敌的优势。但是java虽好，就是太重了，不适合小规模、小场景、小工具的开发，一直架构、开发、运维、运营一线全栈发展的，必须要有一个更加趁手的、轻量小巧、快速高效的开发语言，先后用shell、python等脚本语言写了各种小工具，总感觉气味不对。于是最近抽时间接触了下号称是21世纪编程语言的golang，感觉非常妙，golang的设计目标和思路均是我目前为止最满意的，入坑不会后悔。&lt;/p&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>

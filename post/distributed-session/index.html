@@ -57,7 +57,7 @@
 
 <meta itemprop="datePublished" content="2019-05-26T15:02:11&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-26T15:02:11&#43;08:00" />
-<meta itemprop="wordCount" content="592">
+<meta itemprop="wordCount" content="517">
 
 
 
@@ -137,7 +137,7 @@
         <div class="post-category">
             <a href="/categories/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/"> 技术架构 </a>
             </div>
-          <span class="more-meta"> 约 592 字 </span>
+          <span class="more-meta"> 约 517 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -229,7 +229,7 @@ spring:
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>由于spring session底层采用redis，由于存在反序列化问题，所以尽量减少自定义对象，尽量使用基本类型，如要复杂对象可以使用Map等通用对象。</p>
+<p>由于spring session底层采用redis，由于存在反序列化问题，所以尽量减少自定义对象，尽量使用基本类型，如要复杂对象可以使用Map等通用对象。参考 <a href="https://blog.csdn.net/f641385712/article/details/84679456">常见Redis序列化的坑</a>。</p>
 </li>
 <li>
 <p>如果微服务中不可避免的引入对象session，为了避免系统崩溃，忽略Jdk反序列化中找不到类的错误</p>
@@ -251,9 +251,6 @@ public class CustomSessionDefaultRedisSerializer extends JdkSerializationRedisSe
 }</code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>spring-session同样适用https://blog.csdn.net/f641385712/article/details/84679456[常见Redis序列化的坑]。</p>
 </li>
 </ol>
 </div>
@@ -282,7 +279,11 @@ public class CustomSessionDefaultRedisSerializer extends JdkSerializationRedisSe
           <a href="/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">最佳实践</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/git-branch-develop-specification/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Git分支策略及开发流程规范</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/restful-resource-specification/">
             <span class="next-text nav-default">RESTful资源定义规范及实践</span>
             <span class="next-text nav-mobile">下一篇</span>

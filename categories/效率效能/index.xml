@@ -6,10 +6,21 @@
     <description>Recent content in 效率效能 on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 17 Feb 2019 18:17:15 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 09 Jun 2019 08:29:20 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/categories/%E6%95%88%E7%8E%87%E6%95%88%E8%83%BD/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SSH实用技巧</title>
+      <link>https://liming.pub/post/ssh-practical-skills/</link>
+      <pubDate>Sun, 09 Jun 2019 08:29:20 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/ssh-practical-skills/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。&lt;/p&gt;
+&lt;/div&gt;</description>
+    </item>
     
     <item>
       <title>mac使用技巧及常用设置</title>

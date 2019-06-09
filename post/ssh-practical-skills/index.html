@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SSH实用技巧 - liming.pub</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="liming" /><meta name="description" content="ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。
+" /><meta name="keywords" content="shell, ssh config" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://liming.pub/post/ssh-practical-skills/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.93844dae.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="SSH实用技巧" />
+<meta property="og:description" content="
+ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liming.pub/post/ssh-practical-skills/" /><meta property="article:published_time" content="2019-06-09T08:29:20&#43;08:00"/>
+<meta property="article:modified_time" content="2019-06-09T08:29:20&#43;08:00"/>
+
+<meta itemprop="name" content="SSH实用技巧">
+<meta itemprop="description" content="
+ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。
+">
+
+
+<meta itemprop="datePublished" content="2019-06-09T08:29:20&#43;08:00" />
+<meta itemprop="dateModified" content="2019-06-09T08:29:20&#43;08:00" />
+<meta itemprop="wordCount" content="581">
+
+
+
+<meta itemprop="keywords" content="windows,mac,linux,shell,运维,最佳实践," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SSH实用技巧"/>
+<meta name="twitter:description" content="
+ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">liming.pub</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">栏目</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">liming.pub</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">栏目</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SSH实用技巧</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-06-09 08:29:20 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%88%E7%8E%87%E6%95%88%E8%83%BD/"> 效率效能 </a>
+            </div>
+          <span class="more-meta"> 约 581 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <div class="paragraph">
+<p>ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。</p>
+</div>
+<div class="sect1">
+<h2 id="_概念介绍">概念介绍</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>开始之前让我们先了解一下SSH配置和SSH秘钥对。</p>
+</div>
+<div class="sect2">
+<h3 id="_ssh配置位置">SSH配置位置</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>命令行选项</p>
+</li>
+<li>
+<p>用户配置文件 (~/.ssh/config)</p>
+</li>
+<li>
+<p>系统配置文件 (/etc/ssh/ssh_config)</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ssh秘钥对">SSH秘钥对</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>ssh-kengen命令</p>
+<div class="ulist">
+<ul>
+<li>
+<p>-t 指定加密算法（RSA、DSA、ECDSA等）</p>
+</li>
+<li>
+<p>-b 自定生成密钥长度</p>
+</li>
+<li>
+<p>-C 添加密钥对的说明comment</p>
+</li>
+<li>
+<p>-f 指定生成的私钥存储的文件全路径名称</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>密码短语(Passphras)</p>
+<div class="paragraph">
+<p>默认不设置密码的话，只要私钥被他人获取（比如电脑遗失，root用户），就可以随意访问授权的服务器，所以为了提高安全性，建议都设置自己的密码短语。
+如果没设置，可以给已经生成的秘钥文件增加或修改密码短语： <code>ssh-keygen -f ~/.ssh/id_rsa_liming -p</code></p>
+</div>
+</li>
+<li>
+<p>SSH agent</p>
+<div class="paragraph">
+<p>SSH agent 提供了存储私钥的安全方法，同时也能够将已经解密的私钥缓存起来，这样只需要在加入的时候输入一下密码即可。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>添加 <code>ssh-add</code></p>
+</li>
+<li>
+<p>查看 <code>ssh-add -l</code></p>
+</li>
+<li>
+<p>删除 <code>ssh-add -d</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_配置示例">配置示例</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>命令行选型这种原始用法就不多说，我们重点是将一些配置落地，尽可能减少命令行的输入，如下是一个配置示例：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>生产秘钥对</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ssh-keygen -t ecdsa -b 521 -C "$(whoami)@$(hostname)" -f ~/.ssh/id_rsa_liming
+#Enter passphrase (empty for no passphrase):
+#输入密码
+ssh-add ~/.ssh/id_rsa_liming</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>增加配置</p>
+<div class="listingblock">
+<div class="title">~/.ssh/config</div>
+<div class="content">
+<pre>Host liming.pub
+    HostName ssh.liming.pub
+    User user
+    Port 2222
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/id_rsa_liming</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>TIPS: 具体配置使用方法请 <code>man ssh config</code></p>
+</div>
+</li>
+<li>
+<p>服务器公钥配置</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.ssh
+echo '~/.ssh/id_rsa_liming的内容' &gt;&gt; ~/.ssh/authorized_keys&amp;&amp; chmod 600 ~/.ssh/authorized_keys</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>使用</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ssh liming.pub
+scp liming.pub:~/index.html ./</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">liming</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-06-09 08:29:20</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">保留署名-非商业性使用-禁止演绎 4.0-国际许可协议</a></span>
+  </p>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/windows/">windows</a>
+          <a href="/tags/mac/">mac</a>
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/shell/">shell</a>
+          <a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+          <a href="/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">最佳实践</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/git-branch-develop-specification/">
+            <span class="next-text nav-default">Git分支策略及开发流程规范</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2019-06-09 08:29:20 \x2b0800 CST',
+        title: 'SSH实用技巧',
+        clientID: 'f35ddb3b03b9257b76d0',
+        clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
+        repo: 'iaming.github.io',
+        owner: 'iaming',
+        admin: ['iaming'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/iaming" class="iconfont icon-github" title="github"></a>
+  <a href="https://liming.pub/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019 <span class="division"> published by </span> 
+    <span class="author">liming <span class="division">|</span> generated by hugo&even <span class="division">|</span> hosted by coding.me&github</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

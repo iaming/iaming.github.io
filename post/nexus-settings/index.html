@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>SSH实用技巧 - liming.pub</title>
+  <title>Nexus安装和配置 - liming.pub</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,8 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。
-" /><meta name="keywords" content="shell, ssh config" />
+<meta name="author" content="liming" /><meta name="description" content="Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。
+" /><meta name="keywords" content="liming, iaming, 李明, 最佳实践, 架构, DevOps, linux, 自我管理" />
 
 
 
@@ -27,7 +27,7 @@
 <meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://liming.pub/post/ssh-practical-skills/" />
+<link rel="canonical" href="https://liming.pub/post/nexus-settings/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,31 +39,31 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="SSH实用技巧" />
+<meta property="og:title" content="Nexus安装和配置" />
 <meta property="og:description" content="
-ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。
+Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://liming.pub/post/ssh-practical-skills/" /><meta property="article:published_time" content="2019-06-09T08:29:20&#43;08:00"/>
-<meta property="article:modified_time" content="2019-06-09T08:29:20&#43;08:00"/>
+<meta property="og:url" content="https://liming.pub/post/nexus-settings/" /><meta property="article:published_time" content="2019-06-09T22:22:50&#43;08:00"/>
+<meta property="article:modified_time" content="2019-06-09T22:22:50&#43;08:00"/>
 
-<meta itemprop="name" content="SSH实用技巧">
+<meta itemprop="name" content="Nexus安装和配置">
 <meta itemprop="description" content="
-ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。
+Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。
 ">
 
 
-<meta itemprop="datePublished" content="2019-06-09T08:29:20&#43;08:00" />
-<meta itemprop="dateModified" content="2019-06-09T08:29:20&#43;08:00" />
-<meta itemprop="wordCount" content="744">
+<meta itemprop="datePublished" content="2019-06-09T22:22:50&#43;08:00" />
+<meta itemprop="dateModified" content="2019-06-09T22:22:50&#43;08:00" />
+<meta itemprop="wordCount" content="454">
 
 
 
-<meta itemprop="keywords" content="windows,mac,linux,shell,运维,最佳实践," />
+<meta itemprop="keywords" content="nexus,DevOps,运维,最佳实践," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="SSH实用技巧"/>
+<meta name="twitter:title" content="Nexus安装和配置"/>
 <meta name="twitter:description" content="
-ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。
+Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。
 "/>
 
 <!--[if lte IE 9]>
@@ -127,15 +127,15 @@ ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的�
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">SSH实用技巧</h1>
+      <h1 class="post-title">Nexus安装和配置</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-06-09 08:29:20 </span>
+        <span class="post-time"> 2019-06-09 22:22:50 </span>
         <div class="post-category">
-            <a href="/categories/%E6%95%88%E7%8E%87%E6%95%88%E8%83%BD/"> 效率效能 </a>
+            <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
             </div>
-          <span class="more-meta"> 约 744 字 </span>
-          <span class="more-meta"> 预计阅读 2 分钟 </span>
+          <span class="more-meta"> 约 454 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -148,197 +148,153 @@ ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的�
 </div>
     <div class="post-content">
       <div class="paragraph">
-<p>ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。</p>
+<p>Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。</p>
 </div>
 <div class="sect1">
-<h2 id="_概念介绍">概念介绍</h2>
+<h2 id="_安装">安装</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>开始之前让我们先了解一下SSH配置和SSH秘钥对。</p>
-</div>
-<div class="sect2">
-<h3 id="_ssh配置位置">SSH配置位置</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>命令行选项</p>
-</li>
-<li>
-<p>用户配置文件 (~/.ssh/config)</p>
-</li>
-<li>
-<p>系统配置文件 (/etc/ssh/ssh_config)</p>
+<p>Docker方式</p>
 </li>
 </ol>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">mkdir -p /home/docker/volumes/nexus/nexus-data &amp;&amp; chown -R 200 /home/docker/volumes/nexus/nexus-data
+
+docker run -d -p 8081:8081 -p 8082:8082 -p 8083:8083 -p 8084:8084 --name nexus -e NEXUS_CONTEXT=nexus -v /home/docker/volumes/nexus/nexus-data:/nexus-data
+--restart=always sonatype/nexus3:3.16.2</code></pre>
 </div>
-<div class="sect2">
-<h3 id="_ssh秘钥对">SSH秘钥对</h3>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+默认用户名: admin / admin123，第一次进去后记得修改掉。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_用户设置">用户设置</h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>ssh-kengen命令</p>
+<p>本地用户
+配置位置：Administration &#8594; Security &#8594; Users</p>
+</li>
+<li>
+<p>LDAP用户</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>配置LDAP服务
+Administration &#8594; Security &#8594; LDAP</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Crete Connection</p>
 <div class="ulist">
 <ul>
 <li>
-<p>-t 指定加密算法（RSA、DSA、ECDSA等）</p>
+<p>Search base:dc=,dc=com</p>
 </li>
 <li>
-<p>-b 自定生成密钥长度</p>
+<p>Authentication method: Simple Authentication</p>
 </li>
 <li>
-<p>-C 添加密钥对的说明comment</p>
+<p>Username or DN:管理员dn</p>
 </li>
 <li>
-<p>-f 指定生成的私钥存储的文件全路径名称</p>
+<p>Password：管理员密码</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>密码短语(Passphras)</p>
-<div class="paragraph">
-<p>默认不设置密码的话，只要私钥被他人获取（比如电脑遗失，root用户），就可以随意访问授权的服务器，所以为了提高安全性，建议都设置自己的密码短语。
-如果没设置，可以给已经生成的秘钥文件增加或修改密码短语： <code>ssh-keygen -f ~/.ssh/id_rsa_liming -p</code></p>
-</div>
-</li>
-<li>
-<p>SSH agent</p>
-<div class="paragraph">
-<p>SSH agent 提供了存储私钥的安全方法，同时也能够将已经解密的私钥缓存起来，这样只需要在加入的时候输入一下密码即可。</p>
-</div>
+<p>user and group</p>
 <div class="ulist">
 <ul>
 <li>
-<p>添加 <code>ssh-add</code></p>
+<p>Base DN: 不包含search DN</p>
 </li>
 <li>
-<p>查看 <code>ssh-add -l</code></p>
+<p>User subtree: 如果有组织结构，勾选，如果只有用户列表，则不勾选</p>
 </li>
 <li>
-<p>删除 <code>ssh-add -d</code></p>
+<p>Object class: inetOrgPerson</p>
+</li>
+<li>
+<p>User filter: uid=*</p>
+</li>
+<li>
+<p>User ID attribute: uid</p>
+</li>
+<li>
+<p>Real name attribute: cn</p>
+</li>
+<li>
+<p>Email attribute: mail</p>
+</li>
+<li>
+<p>Password attribute: 不要设置</p>
+</li>
+<li>
+<p>Map LDAP group as roles: 不适用角色</p>
 </li>
 </ul>
 </div>
 </li>
 </ol>
 </div>
+</li>
+<li>
+<p>开启LDAP验证
+Administratio &#8594; Security &#8594; Realms &#8594; LDAP Bearer Token realm</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_配置示例">配置示例</h2>
+<h2 id="_安全设置">安全设置</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>命令行选型这种原始用法就不多说，我们重点是将一些配置落地，尽可能减少命令行的输入，如下是一个配置示例：</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
-<p>生产秘钥对</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">ssh-keygen -t ecdsa -b 521 -C "$(whoami)@$(hostname)" -f ~/.ssh/id_ecdsa_liming
-#Enter passphrase (empty for no passphrase):
-#输入密码
-ssh-add ~/.ssh/id_rsa_liming</code></pre>
-</div>
-</div>
+<p>去掉匿名访问：取消勾选`administration&#8594;security&#8594;Anonymous&#8594;Allow anonymous users to access the server
+`</p>
 </li>
 <li>
-<p>增加配置</p>
-<div class="listingblock">
-<div class="title">~/.ssh/config</div>
-<div class="content">
-<pre>Host liming.pub // <b class="conum">(1)</b>
-    HostName ssh.liming.pub // <b class="conum">(2)</b>
-    User user // <b class="conum">(3)</b>
-    Port 2222 // <b class="conum">(4)</b>
-    PreferredAuthentications publickey // <b class="conum">(5)</b>
-    IdentityFile ~/.ssh/id_rsa_liming // <b class="conum">(6)</b></pre>
+<p>去掉匿名pull：仓库勾选`force basic authentication`</p>
+</li>
+</ul>
 </div>
 </div>
-<div class="colist arabic">
-<ol>
+</div>
+<div class="sect1">
+<h2 id="_相关文章">相关文章</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
 <li>
-<p>Host: 别名，多个别名以空格分割，可以使用通配符：<code>* ? !</code></p>
+<p><a href="../nexus-maven-permission/">Maven私有仓库权限设置</a></p>
 </li>
 <li>
-<p>HostName:: 主机名,如果主机名中包含 ‘%h’ ，则实际使用时会被命令行中的主机名替换</p>
+<p><a href="../nexus-docker-permission/">Docker私有仓库权限设置</a></p>
 </li>
-<li>
-<p>用户</p>
-</li>
-<li>
-<p>端口</p>
-</li>
-<li>
-<p>强制使用Public Key验证</p>
-</li>
-<li>
-<p>密钥文件的路径，文件名称可以使用：</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>'%d' 本地用户目录
-'%u' 本地用户名称
-'%l' 本地主机名
-'%h' 远程主机名
-'%r' 远程用户名</p>
-</div>
-</div>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>匹配所有内网，使用方法：ssh 1.xxx</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>Host 1.*
-    HostName 192.168.%h</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>其他更多配置方法请 <code>man ssh config</code></p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>:
-. 服务器公钥配置</p>
-</div>
-<div class="paragraph">
-<p>+</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.ssh
-echo '~/.ssh/id_rsa_liming的内容' &gt;&gt; ~/.ssh/authorized_keys&amp;&amp; chmod 600 ~/.ssh/authorized_keys</code></pre>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>使用</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">ssh liming.pub
-scp liming.pub:~/index.html ./</code></pre>
-</div>
-</div>
-</li>
-</ol>
+</ul>
 </div>
 </div>
 </div>
@@ -351,7 +307,7 @@ scp liming.pub:~/index.html ./</code></pre>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2019-06-09 08:29:20</span>
+    <span class="item-content">2019-06-09 22:22:50</span>
   </p>
   
   <p class="copyright-item">
@@ -360,21 +316,19 @@ scp liming.pub:~/index.html ./</code></pre>
   </p>
 </div><footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/windows/">windows</a>
-          <a href="/tags/mac/">mac</a>
-          <a href="/tags/linux/">linux</a>
-          <a href="/tags/shell/">shell</a>
+          <a href="/tags/nexus/">nexus</a>
+          <a href="/tags/devops/">DevOps</a>
           <a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
           <a href="/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">最佳实践</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/nexus-settings/">
+        <a class="prev" href="/post/nexus-docker-permission/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Nexus安装和配置</span>
+            <span class="prev-text nav-default">Docker私有仓库权限设置</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/git-branch-develop-specification/">
-            <span class="next-text nav-default">Git分支策略及开发流程规范</span>
+        <a class="next" href="/post/ssh-practical-skills/">
+            <span class="next-text nav-default">SSH实用技巧</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -387,8 +341,8 @@ scp liming.pub:~/index.html ./</code></pre>
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-06-09 08:29:20 \x2b0800 CST',
-        title: 'SSH实用技巧',
+        id: '2019-06-09 22:22:50 \x2b0800 CST',
+        title: 'Nexus安装和配置',
         clientID: 'f35ddb3b03b9257b76d0',
         clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
         repo: 'iaming.github.io',

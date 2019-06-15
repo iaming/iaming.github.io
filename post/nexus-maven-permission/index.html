@@ -16,9 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="基于nexus3，可以做到maven仓库隔离和权限控制，配置maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：
-1. 同步中央仓库（权限：公开） 2. 合作伙伴共享仓库（权限：半公开） 3. 公司自有仓库（权限：私有）
-" /><meta name="keywords" content="nexus, maven" />
+<meta name="author" content="liming" /><meta name="description" content="基于nexus3，可以做到maven仓库隔离和权限控制，配合maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：
+ 同步中央仓库（权限：公开） 合作伙伴共享仓库（权限：半公开） 公司自有仓库（权限：私有） " /><meta name="keywords" content="nexus, maven" />
 
 
 
@@ -41,34 +40,43 @@
 
 
 <meta property="og:title" content="Maven私有仓库权限设置" />
-<meta property="og:description" content="基于nexus3，可以做到maven仓库隔离和权限控制，配置maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：
-1. 同步中央仓库（权限：公开）
-2. 合作伙伴共享仓库（权限：半公开）
-3. 公司自有仓库（权限：私有）" />
+<meta property="og:description" content="基于nexus3，可以做到maven仓库隔离和权限控制，配合maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：
+
+
+同步中央仓库（权限：公开）
+合作伙伴共享仓库（权限：半公开）
+公司自有仓库（权限：私有）
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liming.pub/post/nexus-maven-permission/" /><meta property="article:published_time" content="2019-02-23T11:47:45&#43;08:00"/>
 <meta property="article:modified_time" content="2019-02-23T11:47:45&#43;08:00"/>
 
 <meta itemprop="name" content="Maven私有仓库权限设置">
-<meta itemprop="description" content="基于nexus3，可以做到maven仓库隔离和权限控制，配置maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：
-1. 同步中央仓库（权限：公开）
-2. 合作伙伴共享仓库（权限：半公开）
-3. 公司自有仓库（权限：私有）">
+<meta itemprop="description" content="基于nexus3，可以做到maven仓库隔离和权限控制，配合maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：
+
+
+同步中央仓库（权限：公开）
+合作伙伴共享仓库（权限：半公开）
+公司自有仓库（权限：私有）
+">
 
 
 <meta itemprop="datePublished" content="2019-02-23T11:47:45&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-23T11:47:45&#43;08:00" />
-<meta itemprop="wordCount" content="2275">
+<meta itemprop="wordCount" content="2470">
 
 
 
 <meta itemprop="keywords" content="nexus,maven,DevOps,运维,最佳实践," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Maven私有仓库权限设置"/>
-<meta name="twitter:description" content="基于nexus3，可以做到maven仓库隔离和权限控制，配置maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：
-1. 同步中央仓库（权限：公开）
-2. 合作伙伴共享仓库（权限：半公开）
-3. 公司自有仓库（权限：私有）"/>
+<meta name="twitter:description" content="基于nexus3，可以做到maven仓库隔离和权限控制，配合maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：
+
+
+同步中央仓库（权限：公开）
+合作伙伴共享仓库（权限：半公开）
+公司自有仓库（权限：私有）
+"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -138,7 +146,7 @@
         <div class="post-category">
             <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
             </div>
-          <span class="more-meta"> 约 2275 字 </span>
+          <span class="more-meta"> 约 2470 字 </span>
           <span class="more-meta"> 预计阅读 5 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -150,6 +158,8 @@
     <nav id="TableOfContents">
 <ul>
 <li><a href="#仓库设计">仓库设计</a></li>
+<li><a href="#角色设计">角色设计</a></li>
+<li><a href="#用户设置">用户设置</a></li>
 <li><a href="#访问">访问</a>
 <ul>
 <li><a href="#合作伙伴">合作伙伴</a></li>
@@ -162,16 +172,21 @@
   </div>
 </div>
     <div class="post-content">
-      <p>基于nexus3，可以做到maven仓库隔离和权限控制，配置maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：<br />
-1. 同步中央仓库（权限：公开）
-2. 合作伙伴共享仓库（权限：半公开）
-3. 公司自有仓库（权限：私有）</p>
+      <p>基于nexus3，可以做到maven仓库隔离和权限控制，配合maven工程脚手架可以实现仓库的灵活控制，本文假设maven仓库有如下需求：</p>
+
+<ol>
+<li>同步中央仓库（权限：公开）</li>
+<li>合作伙伴共享仓库（权限：半公开）</li>
+<li>公司自有仓库（权限：私有）</li>
+</ol>
 
 <h1 id="仓库设计">仓库设计</h1>
 
 <ul>
 <li>maven-central<br />
-用户同步中央仓库(<a href="https://repo1.maven.org/maven2/)或者(https://maven.aliyun.com/nexus/content/groups/public">https://repo1.maven.org/maven2/)或者(https://maven.aliyun.com/nexus/content/groups/public</a>)</li>
+用户同步中央仓库(<a href="https://repo1.maven.org/maven2/)或者(https://maven.aliyun.com/repository/central">https://repo1.maven.org/maven2/)或者(https://maven.aliyun.com/repository/central</a>)</li>
+<li>maven-spring<br />
+用户同步中央仓库(<a href="https://repo.spring.io/milestone)或者(https://maven.aliyun.com/repository/spring">https://repo.spring.io/milestone)或者(https://maven.aliyun.com/repository/spring</a>)</li>
 <li>maven-protect-releases<br />
 共享正式版本部署仓库，仓库类型：hosted，meven类型：Release，部署策略：Disable redeploy</li>
 <li>maven-protect-snapshots<br />
@@ -181,16 +196,56 @@
 <li>maven-private-snapshots<br />
 私有开发版本部署仓库，仓库类型：hosted，meven类型：Snapshot，部署策略：Allow redeploy</li>
 <li>maven-protect<br />
-合作伙伴共享访问仓库，仓库类型：group，聚合仓库：maven-central、maven-protect-releases、maven-protect-snapshots</li>
+合作伙伴共享访问仓库，仓库类型：group，聚合仓库：maven-central、maven-spring、maven-protect-releases、maven-protect-snapshots</li>
 <li>maven-private<br />
-公司内部访问仓库，仓库类型：group，聚合仓库：maven-central、maven-protect-releases、maven-protect-snapshots、maven-private-releases、maven-private-snapshots</li>
+公司内部访问仓库，仓库类型：group，聚合仓库：maven-central、maven-spring、maven-protect-releases、maven-protect-snapshots、maven-private-releases、maven-private-snapshots</li>
 </ul>
 
-<p>权限设置:<br />
-Security-&gt;Roles-&gt;Create Role: maven.public.download，Given Privilege：nx-repository-view-maven2-maven-protect-browse\nx-repository-view-maven2-maven-protect-read</p>
+<h1 id="角色设计">角色设计</h1>
 
-<p>用户设置：<br />
-Security-&gt;Users-&gt;Create User：xxx，授予角色：maven.public.download</p>
+<ul>
+<li>maven.protect.download 共享库只读，有如下权限：
+
+<ul>
+<li>nx-repository-view-maven2-maven-protect-read</li>
+<li>nx-repository-view-maven2-maven-protect-browse</li>
+</ul></li>
+<li>maven.private.download 私有库只读，有如下权限：
+
+<ul>
+<li>nx-repository-view-maven2-maven-private-read</li>
+<li>nx-repository-view-maven2-maven-private-browse</li>
+</ul></li>
+<li>maven-private-deploy 私有库部署，有如下权限：
+
+<ul>
+<li>nx-repository-view-maven2-maven-private-releases-add</li>
+<li>nx-repository-view-maven2-maven-private-releases-edit</li>
+<li>nx-repository-view-maven2-maven-private-releases-read</li>
+<li>nx-repository-view-maven2-maven-private-snapshots-add</li>
+<li>nx-repository-view-maven2-maven-private-snapshots-edit</li>
+<li>nx-repository-view-maven2-maven-private-snapshots-read</li>
+</ul></li>
+<li>maven-protect-deploy 共享库部署，有如下权限：
+
+<ul>
+<li>nx-repository-view-maven2-maven-protect-releases-add</li>
+<li>nx-repository-view-maven2-maven-protect-releases-edit</li>
+<li>nx-repository-view-maven2-maven-protect-releases-read</li>
+<li>nx-repository-view-maven2-maven-protect-snapshots-add</li>
+<li>nx-repository-view-maven2-maven-protect-snapshots-edit</li>
+<li>nx-repository-view-maven2-maven-protect-snapshots-read</li>
+</ul></li>
+</ul>
+
+<p>设置方法示例：
+Security-&gt;Roles-&gt;Create Role: maven.protect.download，Given Privilege：nx-repository-view-maven2-maven-protect-browse\nx-repository-view-maven2-maven-protect-read</p>
+
+<p>NOTE: 只读权限是<code>view</code>不是<code>admin</code></p>
+
+<h1 id="用户设置">用户设置</h1>
+
+<p>Security-&gt;Users-&gt;Create User：xxx，授予角色：maven.protect.download</p>
 
 <h1 id="访问">访问</h1>
 

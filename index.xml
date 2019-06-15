@@ -305,20 +305,5 @@ vi /etc/gitlab/gitlab.rb 输入“/”,查找gitlab_rails[&amp;lsquo;rack_attack
       <description>maven多模块设计时，经常会有继承父pom的这种写法，只需要在子pom里什么&amp;lt;paren&amp;gt;&amp;lt;/paren&amp;gt;节点即可。同时代码位置结构层级结构有如下两种： . 目录位置同层级结构 . 目录位置与层级结构无关，这样也有两种方式告诉maven去哪获取父类： .. 通过 parent.relativePath 申明父pom位置，这样maven就可以通过源码找到并自动判断依赖进行安装，好处是从源码打包方便，问题是，其他没有父pom源码的工程当把该子类作为父类时会找不到。 .. 通过maven仓库来找到依赖，好处是使用方简单，问题是第一次源码打包上传仓库时不能自动判断依赖，需要手工判断依赖并依次打包部署到仓库。</description>
     </item>
     
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/nexus-docker-setting/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/nexus-docker-setting/</guid>
-      <description>== 仓库设计 - docker-central 同步官方仓库 - docker-protect-hosted 共享正式版本部署仓库，仓库类型：hosted，http:8082，Storage:docker-protect（限额30G），部署策略：Allow redeploy - maven-private-hosted 公司内部访问部署仓库，仓库类型：hosted，http:8083，Storage:docker-private（限额30G），部署策略：Allow redeploy
-== 角色设计 * docker-protect-pull ** nx-repository-view-docker-docker-protect-hosted-browse ** nx-repository-view-docker-docker-protect-hosted-read * docker-protect-push ** nx-repository-view-docker-docker-protect-hosted-add ** nx-repository-view-docker-docker-protect-hosted-edit ** nx-repository-view-docker-docker-protect-hosted-read
-== 用户设置：
-Security-&amp;gt;Users-&amp;gt;Create User：xxx，授予角色：docker-protect-pull
-== 开启Docker验证 配置位置： Administratio -&amp;gt; Security -&amp;gt; Realms -&amp;gt; Docker Bearer Token realm
-== 前端nginx转发
-[source,xml] server { listen 443 ssl; server_name repo.liming.pub; root /usr/share/nginx/html; index index.html index.htm; ssl_certificate cert/liming.pem; ssl_certificate_key cert/liming.key; ssl_session_timeout 5m; ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4; ssl_protocols TLSv1 TLSv1.</description>
-    </item>
-    
   </channel>
 </rss>

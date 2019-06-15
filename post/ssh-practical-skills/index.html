@@ -199,7 +199,7 @@ ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的�
 <p>密码短语(Passphras)</p>
 <div class="paragraph">
 <p>默认不设置密码的话，只要私钥被他人获取（比如电脑遗失，root用户），就可以随意访问授权的服务器，所以为了提高安全性，建议都设置自己的密码短语。
-如果没设置，可以给已经生成的秘钥文件增加或修改密码短语： <code>ssh-keygen -f ~/.ssh/id_rsa_liming -p</code></p>
+如果没设置，可以给已经生成的秘钥文件增加或修改密码短语： <code>ssh-keygen -f ~/.ssh/id_ecdsa_liming -p</code></p>
 </div>
 </li>
 <li>
@@ -235,18 +235,18 @@ ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的�
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>生产秘钥对</p>
+<p>客户端生产秘钥对</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">ssh-keygen -t ecdsa -b 521 -C "$(whoami)@$(hostname)" -f ~/.ssh/id_ecdsa_liming
 #Enter passphrase (empty for no passphrase):
 #输入密码
-ssh-add ~/.ssh/id_rsa_liming</code></pre>
+ssh-add ~/.ssh/id_ecdsa_liming</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>增加配置</p>
+<p>客户端增加配置</p>
 <div class="listingblock">
 <div class="title">~/.ssh/config</div>
 <div class="content">
@@ -255,80 +255,50 @@ ssh-add ~/.ssh/id_rsa_liming</code></pre>
     User user // <b class="conum">(3)</b>
     Port 2222 // <b class="conum">(4)</b>
     PreferredAuthentications publickey // <b class="conum">(5)</b>
-    IdentityFile ~/.ssh/id_rsa_liming // <b class="conum">(6)</b></pre>
+    IdentityFile ~/.ssh/id_ecdsa_liming // <b class="conum">(6)</b></pre>
 </div>
 </div>
 <div class="colist arabic">
 <ol>
 <li>
-<p>Host: 别名，多个别名以空格分割，可以使用通配符：<code>* ? !</code></p>
+<p>Host: 别名，多个别名以空格分割，可以使用通配符：<code>* ? !</code>，如：<code>1.*</code></p>
 </li>
 <li>
-<p>HostName:: 主机名,如果主机名中包含 ‘%h’ ，则实际使用时会被命令行中的主机名替换</p>
+<p>HostName:: 主机名,如果主机名中包含 ‘%h’ ，则实际使用时会被命令行中的主机名替换，如：<code>192.168.%h</code></p>
 </li>
 <li>
 <p>用户</p>
 </li>
 <li>
-<p>端口</p>
+<p>端口，默认22</p>
 </li>
 <li>
 <p>强制使用Public Key验证</p>
 </li>
 <li>
-<p>密钥文件的路径，文件名称可以使用：</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-<div class="exampleblock">
+<p>密钥文件的路径，文件名称可以使用如下变量</p>
+<div class="listingblock">
 <div class="content">
-<div class="paragraph">
-<p>'%d' 本地用户目录
+<pre>'%d' 本地用户目录
 '%u' 本地用户名称
 '%l' 本地主机名
 '%h' 远程主机名
-'%r' 远程用户名</p>
+'%r' 远程用户名</pre>
 </div>
 </div>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>匹配所有内网，使用方法：ssh 1.xxx</p>
 </li>
 </ol>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>Host 1.*
-    HostName 192.168.%h</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>其他更多配置方法请 <code>man ssh config</code></p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>:
-. 服务器公钥配置</p>
-</div>
-<div class="paragraph">
-<p>+</p>
-</div>
+</li>
+<li>
+<p>服务端配置公钥</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.ssh
-echo '~/.ssh/id_rsa_liming的内容' &gt;&gt; ~/.ssh/authorized_keys&amp;&amp; chmod 600 ~/.ssh/authorized_keys</code></pre>
+echo '~/.ssh/id_ecdsa_liming的内容' &gt;&gt; ~/.ssh/authorized_keys&amp;&amp; chmod 600 ~/.ssh/authorized_keys</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>使用</p>
 <div class="listingblock">

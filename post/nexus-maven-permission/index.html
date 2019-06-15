@@ -63,7 +63,7 @@
 
 <meta itemprop="datePublished" content="2019-02-23T11:47:45&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-23T11:47:45&#43;08:00" />
-<meta itemprop="wordCount" content="2470">
+<meta itemprop="wordCount" content="2765">
 
 
 
@@ -146,8 +146,8 @@
         <div class="post-category">
             <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
             </div>
-          <span class="more-meta"> 约 2470 字 </span>
-          <span class="more-meta"> 预计阅读 5 分钟 </span>
+          <span class="more-meta"> 约 2765 字 </span>
+          <span class="more-meta"> 预计阅读 6 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -167,6 +167,10 @@
 </ul></li>
 <li><a href="#部署">部署</a></li>
 <li><a href="#附1-pom解析">附1. pom解析</a></li>
+<li><a href="#附2-maven常见问题">附2 maven常见问题</a>
+<ul>
+<li><a href="#maven多模块层级结构设计">maven多模块层级结构设计</a></li>
+</ul></li>
 </ul>
 </nav>
   </div>
@@ -702,6 +706,22 @@ Maven首先在当前项目的找父项目的pom，然后在文件系统的这个
 <li><p>dependencyManagement：<br />
 一般在父模块中定义，子模块不会直接引用，但是在引用相同依赖的时候可以不加版本号。</p></li>
 </ul>
+
+<h1 id="附2-maven常见问题">附2 maven常见问题</h1>
+
+<h2 id="maven多模块层级结构设计">maven多模块层级结构设计</h2>
+
+<p>经常会有继承父pom的这种写法，只需要在子pom里什么<code>&lt;paren&gt;&lt;/paren&gt;</code>节点即可。同时代码位置结构层级结构有如下两种：</p>
+
+<ol>
+<li>目录位置同层级结构</li>
+<li>目录位置与层级结构无关，这样也有两种方式告诉maven去哪获取父类：
+
+<ul>
+<li>通过 <code>parent.relativePath</code> 申明父pom位置，这样maven就可以通过源码找到并自动判断依赖进行安装，好处是从源码打包方便，问题是，其他没有父pom源码的工程当把该子类作为父类时会找不到。</li>
+<li>通过maven仓库来找到依赖，好处是使用方简单，问题是第一次源码打包上传仓库时不能自动判断依赖，需要手工判断依赖并依次打包部署到仓库。</li>
+</ul></li>
+</ol>
     </div>
 
     <div class="post-copyright">

@@ -75,7 +75,7 @@ vi /etc/gitlab/gitlab.rb 输入“/”,查找gitlab_rails[&lsquo;rack_attack_git
 
 
 
-<meta itemprop="wordCount" content="90">
+<meta itemprop="wordCount" content="250">
 
 
 
@@ -223,6 +223,106 @@ check_interval = 0</p>
 <pre class="chroma">sudo chmod 666 /var/run/docker.sock</pre></td></tr></table>
 </div>
 </div>
+<p>. gitlab占用内存过高</p>
+
+<ul>
+<li>减少unicorn进程数，设置方法：CPU核心数+1。
++
+./etc/gitlab/gitlab.rb
+[source]
+&mdash;-
+unicorn[&lsquo;worker_processes&rsquo;] = 3
+&mdash;-</li>
+<li>Postgresql占用内存太多，限制一下其内存：
++
+./etc/gitlab/gitlab.rb
+[source]
+&mdash;-
+postgresql[&lsquo;shared_buffers&rsquo;] = &ldquo;256MB&rdquo;
+&mdash;-</li>
+<li>减少sidekiq并发
+./etc/gitlab/gitlab.rb
+[source]
+&mdash;-
+sidekiq[&lsquo;concurrency&rsquo;] = 25
+&mdash;-</li>
+</ul>
+
+<p>. gitlab占用硬盘占用过高
++
+./etc/gitlab/gitlab.rb</p>
+
+<h2 id="source-1">[source]</h2>
+
+<h1 id="修改备份文件位置">修改备份文件位置</h1>
+
+<p>gitlab_rails[&lsquo;backup_path&rsquo;] = &ldquo;/var/opt/gitlab/backups&rdquo;</p>
+
+<h1 id="设置备份文件保留时间为7天-单位-秒">设置备份文件保留时间为7天（单位：秒）</h1>
+
+<h2 id="gitlab-rails-backup-keep-time-604800">gitlab_rails[&lsquo;backup_keep_time&rsquo;] = 604800</h2>
+
+<p>设置完成后重启</p>
+
+<h2 id="source-bash-1">[source,bash]</h2>
+
+<p>sudo gitlab-ctl reconfigure</p>
+
+<h2 id="sudo-gitlab-ctl-restart">sudo gitlab-ctl restart</h2>
+
+<p>=== 异机备份</p>
+
+<p>. 生产本机ssh备份秘钥</p>
+
+<h2 id="source-bash-2">[source,bash]</h2>
+
+<h2 id="ssh-keygen-t-rsa-c-gitlab-back-f-ssh-id-rsa-gitlab-backup">ssh-keygen -t rsa -C gitlab_back -f ~/.ssh/id_rsa_gitlab_backup</h2>
+
+<p>. 设置服务器备份公钥</p>
+
+<h2 id="source-shell">[source,shell]</h2>
+
+<h2 id="cat-ssh-id-rsa-gitlab-backup-pub-ssh-root-192-168-1-xxx-cat-ssh-authorized-keys">cat ~/.ssh/id_rsa_gitlab_backup.pub | ssh root@192.168.1.xxx &ldquo;cat &gt;&gt; ~/.ssh/authorized_keys&rdquo;</h2>
+
+<p>NOTE: 如果服务器没有 <code>.ssh</code> 文件夹，则执行 <code>cat ~/.ssh/id_rsa_gitlab_backup.pub | ssh root@192.168.1.xxx &quot;mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys &amp;&amp; chmod 600 ~/.ssh/authorized_keys&quot;</code></p>
+
+<p>. 设置本地ssh环境</p>
+
+<h2 id="source-shell-1">[source,shell]</h2>
+
+<p>cat &gt;&gt; ~/.ssh/config &lt;&lt; EOF
+Host backup
+     HostName 192.168.1.xxx
+     User root
+     PreferredAuthentications publickey
+     IdentityFile ~/.ssh/id_rsa_gitlab_backup</p>
+
+<h2 id="eof">EOF</h2>
+
+<p>. 备份
+./usr/local/bin/gitlab_backup.sh</p>
+
+<h2 id="source-shell-2">[source,shell]</h2>
+
+<h1 id="输出备份时间">输出备份时间</h1>
+
+<p>echo &ldquo;<code>date '+%FT%T'</code>开始远程备份&hellip;&rdquo;</p>
+
+<h1 id="备份">备份</h1>
+
+<p>rsync -rPz -e ssh /var/opt/gitlab/backups/ backup:/home/data/gitlab</p>
+
+<h2 id="echo-date-ft-t-远程备份完成">echo &ldquo;<code>date '+%FT%T'</code>远程备份完成。&rdquo;</h2>
+
+<p>. 定时后台执行
+.配置<code>crontab -e</code></p>
+
+<h2 id="source-shell-3">[source,shell]</h2>
+
+<p>0 0 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create &gt;&gt; /tmp/gitlab_backup_create.log 2&gt;&amp;1 &amp;</p>
+
+<h2 id="0-1-sh-usr-local-bin-gitlab-backup-sh-tmp-gitlab-backup-log-2-1">0 1 * * * sh /usr/local/bin/gitlab_backup.sh &gt;&gt; /tmp/gitlab_backup.log 2&gt;&amp;1 &amp;</h2>
+
   </div>
 </article>
         </div>

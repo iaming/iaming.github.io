@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-02-09T15:42:15&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-09T15:42:15&#43;08:00" />
-<meta itemprop="wordCount" content="1182">
+<meta itemprop="wordCount" content="1289">
 
 
 
@@ -128,7 +128,7 @@
         <div class="post-category">
             <a href="/categories/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/"> 技术架构 </a>
             </div>
-          <span class="more-meta"> 约 1182 字 </span>
+          <span class="more-meta"> 约 1289 字 </span>
           <span class="more-meta"> 预计阅读 3 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -194,6 +194,11 @@ Spring Cloud的基础组件如下：</p>
 目前Spring Cloud还在高速迭代中，为了能快速跟上新版本，不建议对内核做深度定制，好在spring的扩展性都非常好，总有一种方法让你以插件式方案来完成自己业务特性定制。</li>
 <li>自动化DevOps<br />
 微服务架构是人肉测试和运维的噩梦，如果不能同步推进自动化DevOps，请不要尝试。</li>
+<li>AKF拆分原则
+参考《The Art of Scalability》，应用扩展的三个维度</li>
+<li>X轴: 水平复制。集群负载均衡的模式。</li>
+<li>Z轴：数据分区。水平复制撑不住了，就可以将数据进行分区，多建几个集群。</li>
+<li>Y轴：业务拆分。微服务的拆分模式。</li>
 </ol>
     </div>
 

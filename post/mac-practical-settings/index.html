@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-02-17T18:17:15&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-17T18:17:15&#43;08:00" />
-<meta itemprop="wordCount" content="797">
+<meta itemprop="wordCount" content="854">
 
 
 
@@ -128,7 +128,7 @@
         <div class="post-category">
             <a href="/categories/%E6%95%88%E7%8E%87%E6%95%88%E8%83%BD/"> 效率效能 </a>
             </div>
-          <span class="more-meta"> 约 797 字 </span>
+          <span class="more-meta"> 约 854 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -188,6 +188,19 @@
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash">cat &gt;&gt; ~/.vimrc <span class="s">&lt;&lt;EOF
@@ -198,12 +211,25 @@
 </span><span class="s">set ruler
 </span><span class="s">set showmatch
 </span><span class="s">set cursorline
+</span><span class="s">
+</span><span class="s">map 0 ^
+</span><span class="s">&#34;文本缩进相关
+</span><span class="s">set expandtab
+</span><span class="s">set smarttab
+</span><span class="s">set shiftwidth=4
+</span><span class="s">set tabstop=4
+</span><span class="s">set lbr
+</span><span class="s">set tw=500
+</span><span class="s">set ai
+</span><span class="s">set si
+</span><span class="s">set wrap
+</span><span class="s">
 </span><span class="s">highlight CursorLine cterm=NONE ctermbg=235 ctermfg=NONE guibg=NONE guifg=NONE
 </span><span class="s">EOF</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
-<p>注：ctermbg为终端Vim背景颜色，ctermfg为终端Vim前景颜色，颜色代码可参考<a href="https://en.wikipedia.org/wiki/ANSI_escape_code">维基百科</a></p>
+<p>注：ctermbg为终端Vim背景颜色，ctermfg为终端Vim前景颜色，颜色代码可参考<a href="https://en.wikipedia.org/wiki/ANSI_escape_code">维基百科</a>，可以参考大牛的配置： <a href="https://github.com/amix/vimrc/">https://github.com/amix/vimrc/</a></p>
 </blockquote>
 
 <h1 id="命令自动补全">命令自动补全</h1>

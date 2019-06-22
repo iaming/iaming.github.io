@@ -30,11 +30,19 @@ vi /etc/gitlab/gitlab.rb 输入“/”,查找gitlab_rails[&amp;lsquo;rack_attack
     
     <item>
       <title></title>
-      <link>https://liming.pub/draft/maven/</link>
+      <link>https://liming.pub/draft/rync/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://liming.pub/draft/maven/</guid>
-      <description>maven多模块设计时，经常会有继承父pom的这种写法，只需要在子pom里什么&amp;lt;paren&amp;gt;&amp;lt;/paren&amp;gt;节点即可。同时代码位置结构层级结构有如下两种： . 目录位置同层级结构 . 目录位置与层级结构无关，这样也有两种方式告诉maven去哪获取父类： .. 通过 parent.relativePath 申明父pom位置，这样maven就可以通过源码找到并自动判断依赖进行安装，好处是从源码打包方便，问题是，其他没有父pom源码的工程当把该子类作为父类时会找不到。 .. 通过maven仓库来找到依赖，好处是使用方简单，问题是第一次源码打包上传仓库时不能自动判断依赖，需要手工判断依赖并依次打包部署到仓库。</description>
+      <guid>https://liming.pub/draft/rync/</guid>
+      <description>rsync（remote synchronize）是一个开源数据同步工具，可通过 LAN/WAN/本地 快速同步文件。 NOTE: 官网介绍：https://download.samba.org/pub/rsync/rsync.html
+== 安装 一般只需要在目标主机安装rsync程序：
+.CentOS
+[source,shell] yum install -y rsync .MacOS
+[source,shell] brew install -y rsync == 断点续传
+[source,shell] rsync -P -e ssh SRC_FILE DEST_FILE 关键参数说明 -P 断点续传，显示进度
+-e 替代rsh的shell程序 == 目录同步
+[source,shell] rsync -avz &amp;ndash;delete -e ssh 1.xxx:/var/opt/backups /var/opt/backups 关键参数说明 -a &amp;ndash;archive 归档模式 -v &amp;ndash;verbose 详细输出模式 -z &amp;ndash;compose 传输过程中压缩处理 &amp;ndash;delete 源目录不存在而目标目录存在的文件将被删除
+1.xxx ssh服务器别名 NOTE: 文件名后面是否带 /，含义不同，带 / 是将目录下的文件同步到目标文件夹下，不带 / 是将该目录同步到目标文件夹下。</description>
     </item>
     
   </channel>

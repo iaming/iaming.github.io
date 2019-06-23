@@ -6,10 +6,21 @@
     <description>Recent content in 低碳运维 on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 22 Jun 2019 09:42:35 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 23 Jun 2019 14:48:56 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>rsync实践</title>
+      <link>https://liming.pub/post/rsync/</link>
+      <pubDate>Sun, 23 Jun 2019 14:48:56 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/rsync/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。&lt;/p&gt;
+&lt;/div&gt;</description>
+    </item>
     
     <item>
       <title>Samba实践</title>

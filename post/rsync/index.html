@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Samba实践 - liming.pub</title>
+  <title>rsync实践 - liming.pub</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,8 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="Samba是SMB/CIFS网络协议的重新实现, 可以在跨平台系统间进行文件共享，适用于局域网内数据共享、以及分布式文件系统中的数据一致，Samba的搭建和维护是运维人员的必备技能。
-" /><meta name="keywords" content="samba, linux" />
+<meta name="author" content="liming" /><meta name="description" content="rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。
+" /><meta name="keywords" content="rsync, linux" />
 
 
 
@@ -27,7 +27,7 @@
 <meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://liming.pub/post/samba/" />
+<link rel="canonical" href="https://liming.pub/post/rsync/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,31 +39,31 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Samba实践" />
+<meta property="og:title" content="rsync实践" />
 <meta property="og:description" content="
-Samba是SMB/CIFS网络协议的重新实现, 可以在跨平台系统间进行文件共享，适用于局域网内数据共享、以及分布式文件系统中的数据一致，Samba的搭建和维护是运维人员的必备技能。
+rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://liming.pub/post/samba/" /><meta property="article:published_time" content="2019-06-22T09:42:35&#43;08:00"/>
-<meta property="article:modified_time" content="2019-06-22T09:42:35&#43;08:00"/>
+<meta property="og:url" content="https://liming.pub/post/rsync/" /><meta property="article:published_time" content="2019-06-23T14:48:56&#43;08:00"/>
+<meta property="article:modified_time" content="2019-06-23T14:48:56&#43;08:00"/>
 
-<meta itemprop="name" content="Samba实践">
+<meta itemprop="name" content="rsync实践">
 <meta itemprop="description" content="
-Samba是SMB/CIFS网络协议的重新实现, 可以在跨平台系统间进行文件共享，适用于局域网内数据共享、以及分布式文件系统中的数据一致，Samba的搭建和维护是运维人员的必备技能。
+rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。
 ">
 
 
-<meta itemprop="datePublished" content="2019-06-22T09:42:35&#43;08:00" />
-<meta itemprop="dateModified" content="2019-06-22T09:42:35&#43;08:00" />
-<meta itemprop="wordCount" content="1097">
+<meta itemprop="datePublished" content="2019-06-23T14:48:56&#43;08:00" />
+<meta itemprop="dateModified" content="2019-06-23T14:48:56&#43;08:00" />
+<meta itemprop="wordCount" content="404">
 
 
 
 <meta itemprop="keywords" content="运维,最佳实践," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Samba实践"/>
+<meta name="twitter:title" content="rsync实践"/>
 <meta name="twitter:description" content="
-Samba是SMB/CIFS网络协议的重新实现, 可以在跨平台系统间进行文件共享，适用于局域网内数据共享、以及分布式文件系统中的数据一致，Samba的搭建和维护是运维人员的必备技能。
+rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。
 "/>
 
 <!--[if lte IE 9]>
@@ -127,15 +127,15 @@ Samba是SMB/CIFS网络协议的重新实现, 可以在跨平台系统间进行�
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Samba实践</h1>
+      <h1 class="post-title">rsync实践</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-06-22 09:42:35 </span>
+        <span class="post-time"> 2019-06-23 14:48:56 </span>
         <div class="post-category">
             <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
             </div>
-          <span class="more-meta"> 约 1097 字 </span>
-          <span class="more-meta"> 预计阅读 3 分钟 </span>
+          <span class="more-meta"> 约 404 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -148,158 +148,96 @@ Samba是SMB/CIFS网络协议的重新实现, 可以在跨平台系统间进行�
 </div>
     <div class="post-content">
       <div class="paragraph">
-<p>Samba是SMB/CIFS网络协议的重新实现, 可以在跨平台系统间进行文件共享，适用于局域网内数据共享、以及分布式文件系统中的数据一致，Samba的搭建和维护是运维人员的必备技能。</p>
+<p>rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+官网介绍： <a href="https://download.samba.org/pub/rsync/rsync.html" class="bare">https://download.samba.org/pub/rsync/rsync.html</a>
+</td>
+</tr>
+</table>
 </div>
 <div class="sect1">
 <h2 id="_安装">安装</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>一般只需要在目标主机安装rsync程序：</p>
+</div>
 <div class="listingblock">
+<div class="title">CentOS</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">yum install samba</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">yum install -y rsync</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">MacOS</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">brew install -y rsync</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_配置">配置</h2>
+<h2 id="_断点续传">断点续传</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_匿名用户">匿名用户</h3>
-<div class="listingblock">
-<div class="title">/etc/samba/smb.conf</div>
-<div class="content">
-<pre class="highlight"><code>[global]
-workgroup = workgroup
-security = user
-#匿名访问
-map to guest = Bad User
-hosts allow = 127.0.0.1 192.168.1.
-
-# 匿名可读可写
-[rwshare]
-        comment = readable and writable
-        writable = yes
-        public = yes
-        path = /home/samba/rwshare
-
-# 匿名只读
-[rshare]
-        comment = readable
-        public = yes
-        path = /home/samba/rshare</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_ldap用户">LDAP用户</h3>
-<div class="listingblock">
-<div class="title">/etc/samba/smb.conf</div>
-<div class="content">
-<pre class="highlight"><code>[global]
-workgroup = workgroup
-security = user
-passdb backend = ldapsam:ldap://192.168.1.x:389
-ldap suffix = "dc=liming,dc=pub"
-ldap admin dn = "cn=admin,dc=liming,dc=pub"
-ldap user suffix = "dc=liming,dc=pub"
-ldap delete dn = no
-ldap passwd sync = yes
-ldap ssl = no</code></pre>
-</div>
+<div class="paragraph">
+<p>当传输大文件时，使用scp每次网络断掉后都要重新开始，这时，断点续传这个功能就非常实用。</p>
 </div>
 <div class="listingblock">
-<div class="title">设置ldap管理员密码</div>
 <div class="content">
-<pre class="highlight"><code>smbpasswd -w "ldap admin's password"</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">/etc/samba/smb.conf</div>
-<div class="content">
-<pre class="highlight"><code># 需要用户验证可读写
-[ushare]
-        comment = valid
-        writable = yes
-        public = no
-        path = /home/samba/ushare</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">rsync -P -e ssh SRC_FILE DEST_FILE</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>TIPS: 保存后可以使用 <code>testparm</code> 测试是否配置是否正确。</p>
+<p>关键参数说明</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>-P 断点续传，显示进度
+-e 替代rsh的shell程序</pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_创建共享目录">创建共享目录</h2>
+<h2 id="_目录同步">目录同步</h2>
 <div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">chown nobody:nobody rwshare</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_启动服务">启动服务</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">systemctl start smb
-systemctl enable smb</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_客户端使用">客户端使用</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">mount -t cifs -o username="&lt;username&gt;",password="&lt;password&gt;" -o uid=&lt;linuxuser&gt; -o gid=&lt;linuxgroup&gt; //&lt;WinIP&gt;/&lt;shared_dir&gt; /&lt;path&gt;/&lt;mount_dir&gt;</code></pre>
-</div>
+<div class="paragraph">
+<p>异机备份时很有用。</p>
 </div>
 <div class="listingblock">
-<div class="title">CentOS示例</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">yum -y install cifs-utils
-mkdir -p /mnt/rwshare
-mount -t cifs -l //192.168.1.x/rwshare /mnt/rwshare</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">rsync -avzP --delete -e ssh 1.xxx:/var/opt/backups /var/opt/backups</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>关键参数说明</p>
 </div>
 <div class="listingblock">
-<div class="title">Manjaro示例</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">sudo mount.cifs //192.168.1.x/rwshare /mnt/rwshare</code></pre>
+<pre>-a --archive 归档模式
+-v --verbose 详细输出模式，定时任务或者后天运行的话可以去掉
+-z --compose 传输过程中压缩处理
+   --delete  源目录不存在而目标目录存在的文件将被删除
+   1.xxx     ssh服务器别名</pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_附配置参数">附（配置参数）：</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>comment---------注释说明
-path------------分享资源的完整路径名称，除了路径要正确外，目录的权限也要设对
-browseable------是yes/否no在浏览资源中显示共享目录，若为否则必须指定共享路径才能存取
-printable-------是yes/否no允许打印
-hide dot ftles--是yes/否no隐藏隐藏文件
-public----------是yes/否no公开共享，若为否则进行身份验证(只有当security = share 时此项才起作用)
-guest ok--------是yes/否no公开共享，若为否则进行身份验证(只有当security = share 时此项才起作用)
-read only-------是yes/否no以只读方式共享当与writable发生冲突时也writable为准
-writable--------是yes/否no不以只读方式共享当与read only发生冲突时，无视read only
-vaild users-----设定只有此名单内的用户才能访问共享资源(拒绝优先)(用户名/@组名)
-invalid users---设定只有此名单内的用户不能访问共享资源(拒绝优先)(用户名/@组名)
-read list-------设定此名单内的成员为只读(用户名/@组名)
-write list------若设定为只读时，则只有此设定的名单内的成员才可作写入动作(用户名/@组名)
-create mask-----建立文件时所给的权限
-directory mask--建立目录时所给的权限
-force group-----指定存取资源时须以此设定的群组使用者进入才能存取(用户名/@组名)
-force user------指定存取资源时须以此设定的使用者进入才能存取(用户名/@组名)
-allow hosts-----设定只有此网段/IP的用户才能访问共享资源
-deny hosts------设定只有此网段/IP的用户不能访问共享资源</pre>
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+文件名后面是否带 <code>/</code>，含义不同，带 <code>/</code> 是将目录下的文件同步到目标文件夹下，不带 <code>/</code> 是将该目录同步到目标文件夹下。
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -312,7 +250,7 @@ deny hosts------设定只有此网段/IP的用户不能访问共享资源</pre>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2019-06-22 09:42:35</span>
+    <span class="item-content">2019-06-23 14:48:56</span>
   </p>
   
   <p class="copyright-item">
@@ -325,13 +263,9 @@ deny hosts------设定只有此网段/IP的用户不能访问共享资源</pre>
           <a href="/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">最佳实践</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/rsync/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">rsync实践</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/post/nexus-docker-permission/">
-            <span class="next-text nav-default">Docker私有仓库权限设置</span>
+        
+        <a class="next" href="/post/samba/">
+            <span class="next-text nav-default">Samba实践</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -344,8 +278,8 @@ deny hosts------设定只有此网段/IP的用户不能访问共享资源</pre>
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-06-22 09:42:35 \x2b0800 CST',
-        title: 'Samba实践',
+        id: '2019-06-23 14:48:56 \x2b0800 CST',
+        title: 'rsync实践',
         clientID: 'f35ddb3b03b9257b76d0',
         clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
         repo: 'iaming.github.io',

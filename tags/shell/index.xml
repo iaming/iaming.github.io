@@ -6,10 +6,21 @@
     <description>Recent content in shell on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 09 Jun 2019 08:29:20 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 30 Jun 2019 11:45:39 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/tags/shell/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Linux发送邮件</title>
+      <link>https://liming.pub/post/linux-email-service/</link>
+      <pubDate>Sun, 30 Jun 2019 11:45:39 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/linux-email-service/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;说起发送邮件，我们第一反应就是写代码实现一个，其实在linux里面，无需借助java、c等重型编程语言就能轻松实现发送邮件的需求，下面介绍两种发邮件方法：&lt;/p&gt;
+&lt;/div&gt;</description>
+    </item>
     
     <item>
       <title>SSH实用技巧</title>

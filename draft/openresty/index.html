@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title> - liming.pub</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="liming" /><meta name="description" content="== 安装
+http://openresty.org/cn/linux-packages.html
+参考文档： https://moonbingbing.gitbooks.io/openresty-best-practices/
+https://github.com/auth0/nginx-jwt
+== auth0 .已过时
+[source,bash] curl -L https://github.com/auth0/nginx-jwt/releases/download/v1.0.1/nginx-jwt.tar.gz -o /usr/local/openresty/scripts/nginx-jwt.tar.gz
+tar -xvf nginx-jwt.tar.gz -C /usr/local/openresty/scripts/ .nginx.conf
+[source] server { location / { access_by_lua &amp;lsquo; local jwt = require(&amp;ldquo;nginx-jwt&amp;rdquo;) jwt.auth() &amp;lsquo;;
+1 2  proxy_pass http://my-backend.com$uri; }   } .nginx.conf
+[source] env JWT_SECRET=123; env JWT_SECRET_IS_BASE64_ENCODED=true; http { lua_package_path &amp;ldquo;/usr/local/openresty/scripts/;;&amp;rdquo;; &amp;hellip;
+} == lua-resty-jwt
+[source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0." /><meta name="keywords" content="liming, iaming, 李明, 最佳实践, 架构, DevOps, linux, 自我管理" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://liming.pub/draft/openresty/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.93844dae.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="" />
+<meta property="og:description" content="== 安装
+http://openresty.org/cn/linux-packages.html
+参考文档： https://moonbingbing.gitbooks.io/openresty-best-practices/
+https://github.com/auth0/nginx-jwt
+== auth0 .已过时
+[source,bash] curl -L https://github.com/auth0/nginx-jwt/releases/download/v1.0.1/nginx-jwt.tar.gz -o /usr/local/openresty/scripts/nginx-jwt.tar.gz
+tar -xvf nginx-jwt.tar.gz -C /usr/local/openresty/scripts/ .nginx.conf
+[source] server { location / { access_by_lua &lsquo; local jwt = require(&ldquo;nginx-jwt&rdquo;) jwt.auth() &lsquo;;
+1 2  proxy_pass http://my-backend.com$uri; }   } .nginx.conf
+[source] env JWT_SECRET=123; env JWT_SECRET_IS_BASE64_ENCODED=true; http { lua_package_path &ldquo;/usr/local/openresty/scripts/;;&rdquo;; &hellip;
+} == lua-resty-jwt
+[source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liming.pub/draft/openresty/" />
+
+<meta itemprop="name" content="">
+<meta itemprop="description" content="== 安装
+http://openresty.org/cn/linux-packages.html
+参考文档： https://moonbingbing.gitbooks.io/openresty-best-practices/
+https://github.com/auth0/nginx-jwt
+== auth0 .已过时
+[source,bash] curl -L https://github.com/auth0/nginx-jwt/releases/download/v1.0.1/nginx-jwt.tar.gz -o /usr/local/openresty/scripts/nginx-jwt.tar.gz
+tar -xvf nginx-jwt.tar.gz -C /usr/local/openresty/scripts/ .nginx.conf
+[source] server { location / { access_by_lua &lsquo; local jwt = require(&ldquo;nginx-jwt&rdquo;) jwt.auth() &lsquo;;
+1 2  proxy_pass http://my-backend.com$uri; }   } .nginx.conf
+[source] env JWT_SECRET=123; env JWT_SECRET_IS_BASE64_ENCODED=true; http { lua_package_path &ldquo;/usr/local/openresty/scripts/;;&rdquo;; &hellip;
+} == lua-resty-jwt
+[source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.">
+
+
+
+<meta itemprop="wordCount" content="283">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="== 安装
+http://openresty.org/cn/linux-packages.html
+参考文档： https://moonbingbing.gitbooks.io/openresty-best-practices/
+https://github.com/auth0/nginx-jwt
+== auth0 .已过时
+[source,bash] curl -L https://github.com/auth0/nginx-jwt/releases/download/v1.0.1/nginx-jwt.tar.gz -o /usr/local/openresty/scripts/nginx-jwt.tar.gz
+tar -xvf nginx-jwt.tar.gz -C /usr/local/openresty/scripts/ .nginx.conf
+[source] server { location / { access_by_lua &lsquo; local jwt = require(&ldquo;nginx-jwt&rdquo;) jwt.auth() &lsquo;;
+1 2  proxy_pass http://my-backend.com$uri; }   } .nginx.conf
+[source] env JWT_SECRET=123; env JWT_SECRET_IS_BASE64_ENCODED=true; http { lua_package_path &ldquo;/usr/local/openresty/scripts/;;&rdquo;; &hellip;
+} == lua-resty-jwt
+[source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">liming.pub</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">栏目</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">liming.pub</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">栏目</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    
+
+<p>== 安装</p>
+
+<p><a href="http://openresty.org/cn/linux-packages.html">http://openresty.org/cn/linux-packages.html</a></p>
+
+<p>参考文档： <a href="https://moonbingbing.gitbooks.io/openresty-best-practices/">https://moonbingbing.gitbooks.io/openresty-best-practices/</a></p>
+
+<p><a href="https://github.com/auth0/nginx-jwt">https://github.com/auth0/nginx-jwt</a></p>
+
+<p>== auth0
+.已过时</p>
+
+<h2 id="source-bash">[source,bash]</h2>
+
+<p>curl -L <a href="https://github.com/auth0/nginx-jwt/releases/download/v1.0.1/nginx-jwt.tar.gz">https://github.com/auth0/nginx-jwt/releases/download/v1.0.1/nginx-jwt.tar.gz</a> -o /usr/local/openresty/scripts/nginx-jwt.tar.gz</p>
+
+<h2 id="tar-xvf-nginx-jwt-tar-gz-c-usr-local-openresty-scripts">tar -xvf nginx-jwt.tar.gz -C /usr/local/openresty/scripts/</h2>
+
+<p>.nginx.conf</p>
+
+<h2 id="source">[source]</h2>
+
+<p>server {
+    location / {
+        access_by_lua &lsquo;
+            local jwt = require(&ldquo;nginx-jwt&rdquo;)
+            jwt.auth()
+        &lsquo;;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">    proxy_pass http://my-backend.com$uri;
+}</pre></td></tr></table>
+</div>
+</div>
+<h2 id="toc_3">}</h2>
+
+<p>.nginx.conf</p>
+
+<h2 id="source-1">[source]</h2>
+
+<p>env JWT_SECRET=123;
+env JWT_SECRET_IS_BASE64_ENCODED=true;
+http {
+    lua_package_path &ldquo;/usr/local/openresty/scripts/;;&rdquo;;
+    &hellip;</p>
+
+<h2 id="toc_5">}</h2>
+
+<p>== lua-resty-jwt</p>
+
+<h2 id="source-bash-1">[source,bash]</h2>
+
+<p>mkdir -p /usr/local/openresty/nginx/jwt-lua/
+curl -L <a href="https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz">https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz</a> -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz
+tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz -C /usr/local/openresty/nginx/jwt-lua/
+curl -L <a href="https://raw.githubusercontent.com/jkeys089/lua-resty-hmac/master/lib/resty/hmac.lua">https://raw.githubusercontent.com/jkeys089/lua-resty-hmac/master/lib/resty/hmac.lua</a> -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/hmac.lua</p>
+
+<h2 id="curl-l-https-raw-githubusercontent-com-skylothar-lua-resty-jwt-master-examples-guard-lua-o-usr-local-openresty-nginx-jwt-lua-lua-resty-jwt-0-1-11-lib-resty-guard-lua">curl -L <a href="https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/examples/guard.lua">https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/examples/guard.lua</a> -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/guard.lua</h2>
+
+<p>.nginx.conf</p>
+
+<h2 id="source-2">[source]</h2>
+
+<p>location / {
+    access_log off;
+    default_type text/plain;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">set $jwt_secret &#34;your-own-jwt-secret&#34;;
+access_by_lua &#39;
+    local jwt = require(&#34;resty.nginx-jwt&#34;)
+    local validators = require(&#34;resty.jwt-validators&#34;)
+    jwt.auth(
+        {
+            leeway = validators.set_system_leeway(3600),
+            iss = validators.equals_any_of({ &#34;liming.pub&#34;, &#34;account&#34; }),
+            iat = validators.is_at(),
+            __jwt = validators.require_one_of({ &#34;role&#34;, &#34;viewer&#34; })
+        }
+    )
+&#39;;
+
+echo &#34;i am protected by jwt guard&#34;;</pre></td></tr></table>
+</div>
+</div>
+<h2 id="toc_9">}</h2>
+
+<p>.nginx.conf</p>
+
+<h2 id="source-3">[source]</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">    location = /secure {
+        content_by_lua &#39;
+            local cjson = require &#34;cjson&#34;
+            local jwt = require &#34;resty.jwt&#34;
+
+            local jwt_token = &#34;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&#34; ..
+                &#34;.eyJmb28iOiJiYXIifQ&#34; ..
+                &#34;.VAoRL1IU0nOguxURF2ZcKR0SGKE1gCbqwyh8u2MLAyY&#34;
+            local jwt_obj = jwt:verify(&#34;your-own-jwt-secret&#34;, jwt_token)
+            ngx.say(cjson.encode(jwt_obj))
+        &#39;;
+    }
+    location = /sign {
+        content_by_lua &#39;
+            local cjson = require &#34;cjson&#34;
+            local jwt = require &#34;resty.jwt&#34;
+
+            local jwt_token = jwt:sign(
+                &#34;your-own-jwt-secret&#34;,
+                {
+                    header={typ=&#34;JWT&#34;, alg=&#34;HS256&#34;},
+                    payload={foo=&#34;bar&#34;, iat=system_clock(), exp=system_clock()+900}
+                }
+            )
+            ngx.say(jwt_token)
+        &#39;;
+    }</pre></td></tr></table>
+</div>
+</div>
+<hr />
+
+<p>. JWT验证顺序（Header -&gt; Request -&gt; Cookie）
+.nginx-jwt.lua</p>
+
+<h2 id="source-lua">[source,lua]</h2>
+
+<h2 id="include-nginx-jwt-lua">include::nginx-jwt.lua[]</h2>
+
+<p>== 日志</p>
+
+<h2 id="nginx输出日志主要是-ngx-log-输出的日志文件为-error-log-如-ngx-log-ngx-debug-print-to-error-log-可以在nginx-conf-文件中定义日志输出级别-error-log-logs-error-log-notice-日志级别定义如下">nginx输出日志主要是 ngx.log ，输出的日志文件为：error.log，如 <code>ngx.log(ngx.DEBUG, 'print to error.log')</code> ，可以在nginx.conf 文件中定义日志输出级别 <code>error_log logs/error.log notice;</code>， 日志级别定义如下：</h2>
+
+<p>ngx.STDERR
+ngx.EMERG
+ngx.ALERT
+ngx.CRIT
+ngx.ERR
+ngx.WARN
+ngx.NOTICE
+ngx.INFO</p>
+
+<h2 id="ngx-debug">ngx.DEBUG</h2>
+
+<p>== 访问</p>
+
+<h2 id="source-bash-2">[source,bash]</h2>
+
+<h2 id="curl-i-http-127-0-0-1-h-authorization-bearer-eyjhbgcioijiuzi1niisinr5cci6ikpxvcj9-eyjzdwiioiixmjm0nty3odkwiiwibmftzsi6ikpvag4grg9liiwiawf0ijoxnte2mjm5mdiyfq-kfn4dvqqziingpup1rb6vbcqax7iucsvt6zug3udetm">curl -i <a href="http://127.0.0.1">http://127.0.0.1</a> -H &lsquo;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.kFN4dVqqziINGpuP1rB6vbCqax7IUcSVT6zUG3udEtM&rsquo;</h2>
+
+  </div>
+</article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '0001-01-01 00:00:00 \x2b0000 UTC',
+        title: '',
+        clientID: 'f35ddb3b03b9257b76d0',
+        clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
+        repo: 'iaming.github.io',
+        owner: 'iaming',
+        admin: ['iaming'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/iaming" class="iconfont icon-github" title="github"></a>
+  <a href="https://liming.pub/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019 <span class="division"> published by </span> 
+    <span class="author">liming <span class="division">|</span> generated by hugo&even <span class="division">|</span> hosted by coding.me&github</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

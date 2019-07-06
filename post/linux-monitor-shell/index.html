@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>rsync实践 - liming.pub</title>
+  <title>Linux脚本监控 - liming.pub</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,8 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。
-" /><meta name="keywords" content="rsync, linux" />
+<meta name="author" content="liming" /><meta name="description" content="服务器监控有专业的程序，比如springboot-admin。其实可以手工利用shell配合crond搭建一个轻量级的监控系统，云服务器不便宜，将内存和cpu还给应用系统，低碳运维从我走起。
+" /><meta name="keywords" content="linux, mail" />
 
 
 
@@ -27,7 +27,7 @@
 <meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://liming.pub/post/rsync/" />
+<link rel="canonical" href="https://liming.pub/post/linux-monitor-shell/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,31 +39,31 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="rsync实践" />
+<meta property="og:title" content="Linux脚本监控" />
 <meta property="og:description" content="
-rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。
+服务器监控有专业的程序，比如springboot-admin。其实可以手工利用shell配合crond搭建一个轻量级的监控系统，云服务器不便宜，将内存和cpu还给应用系统，低碳运维从我走起。
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://liming.pub/post/rsync/" /><meta property="article:published_time" content="2019-06-23T14:48:56&#43;08:00"/>
-<meta property="article:modified_time" content="2019-06-23T14:48:56&#43;08:00"/>
+<meta property="og:url" content="https://liming.pub/post/linux-monitor-shell/" /><meta property="article:published_time" content="2019-07-06T08:07:15&#43;08:00"/>
+<meta property="article:modified_time" content="2019-07-06T08:07:15&#43;08:00"/>
 
-<meta itemprop="name" content="rsync实践">
+<meta itemprop="name" content="Linux脚本监控">
 <meta itemprop="description" content="
-rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。
+服务器监控有专业的程序，比如springboot-admin。其实可以手工利用shell配合crond搭建一个轻量级的监控系统，云服务器不便宜，将内存和cpu还给应用系统，低碳运维从我走起。
 ">
 
 
-<meta itemprop="datePublished" content="2019-06-23T14:48:56&#43;08:00" />
-<meta itemprop="dateModified" content="2019-06-23T14:48:56&#43;08:00" />
-<meta itemprop="wordCount" content="406">
+<meta itemprop="datePublished" content="2019-07-06T08:07:15&#43;08:00" />
+<meta itemprop="dateModified" content="2019-07-06T08:07:15&#43;08:00" />
+<meta itemprop="wordCount" content="731">
 
 
 
-<meta itemprop="keywords" content="运维,最佳实践," />
+<meta itemprop="keywords" content="linux,运维,shell,mysql,redis," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="rsync实践"/>
+<meta name="twitter:title" content="Linux脚本监控"/>
 <meta name="twitter:description" content="
-rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。
+服务器监控有专业的程序，比如springboot-admin。其实可以手工利用shell配合crond搭建一个轻量级的监控系统，云服务器不便宜，将内存和cpu还给应用系统，低碳运维从我走起。
 "/>
 
 <!--[if lte IE 9]>
@@ -127,15 +127,15 @@ rsync（remote synchronize）是一个开源的跨操作系统的数据同步工
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">rsync实践</h1>
+      <h1 class="post-title">Linux脚本监控</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-06-23 14:48:56 </span>
+        <span class="post-time"> 2019-07-06 08:07:15 </span>
         <div class="post-category">
             <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
             </div>
-          <span class="more-meta"> 约 406 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+          <span class="more-meta"> 约 731 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -148,96 +148,126 @@ rsync（remote synchronize）是一个开源的跨操作系统的数据同步工
 </div>
     <div class="post-content">
       <div class="paragraph">
-<p>rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">备注</div>
-</td>
-<td class="content">
-官网介绍： <a href="https://download.samba.org/pub/rsync/rsync.html" class="bare">https://download.samba.org/pub/rsync/rsync.html</a>
-</td>
-</tr>
-</table>
+<p>服务器监控有专业的程序，比如springboot-admin。其实可以手工利用shell配合crond搭建一个轻量级的监控系统，云服务器不便宜，将内存和cpu还给应用系统，低碳运维从我走起。</p>
 </div>
 <div class="sect1">
-<h2 id="_安装">安装</h2>
+<h2 id="_磁盘监控">磁盘监控</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>一般只需要在目标主机安装rsync程序：</p>
-</div>
-<div class="listingblock">
-<div class="title">CentOS</div>
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">yum install -y rsync</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">MacOS</div>
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">brew install -y rsync</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_断点续传">断点续传</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>当传输大文件时，使用scp每次网络断掉后都要重新开始，这时，断点续传这个功能就非常实用。</p>
+<p>磁盘使用的增长速度一般可预期，达到阀值即报警，一天一次的频率足以，比如设置为凌晨1点。监控脚本示例如下：</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">rsync -P -e ssh SRC_FILE DEST_FILE</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">#!/bin/bash
+partition_list=(`df -h | awk 'NF&gt;3&amp;&amp;NR&gt;1{sub(/%/,"",$(NF-1));print $NF,$(NF-1)}'`)
+critical=90 # 阀值
+
+notification_email()
+{
+    email_addr="用户名@liming.pub"
+    title="[Warn]xx服务器磁盘空间报警"
+    mail -s "$title" "${email_addr}"
+}
+
+crit_info=""
+for (( i=0;i&lt;${#partition_list[@]};i+=2 ))
+do
+    if [ "${partition_list[((i+1))]}" -lt "$critical" ];then
+        echo "OK! ${partition_list[i]} used ${partition_list[((i+1))]}%"
+    else
+        if [ "${partition_list[((i+1))]}" -gt "$critical" ];then
+            crit_info=$crit_info"Warning!!! ${partition_list[i]} used ${partition_list[((i+1))]}%\n"
+        fi
+    fi
+done
+if [ "$crit_info" != "" ];then
+    echo "发送邮件报警："$crit_info
+    echo -e $crit_info | notification_email  # <b class="conum">(1)</b>
+fi</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>关键参数说明</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>-P 断点续传，显示进度
--e 替代rsh的shell程序</pre>
-</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>发送邮件通知，可以参考 <a href="/post/linux-email-service/">Linux发送邮件</a> 博文。</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_目录同步">目录同步</h2>
+<h2 id="_mysql备库监控">MYSQL备库监控</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>异机备份时很有用。</p>
+<p>备库如未投入生产，监控频率一天一次，如果投入生产，则需要频率高一点，比如5分钟一次。监控脚本示例如下：</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">rsync -avzP --delete -e ssh 1.xxx:/var/opt/backups /var/opt/backups</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">#!/bin/bash
+#define mysql variable
+db_user=""
+db_passwd=""
+db_name=""
+db_port=""
+db_host=""
+
+notification_email()
+{
+    email_addr="用户名@liming.pub"
+    title="[Warn]xxMySQL出问题了"
+    mail -s "$title" "${email_addr}"
+}
+
+mysql_status=`netstat -lnt|grep ${db_port}|wc -l`
+if [ "$mysql_status" -eq 1 ];then
+    slave_status_array=($(mysql -u${db_user} -p${db_passwd} -h${db_host} -P${db_port} -e "show slave status\G"|grep Running|awk -F : '{print $2}'))
+    if [ "${slave_status_array[0]}" == "Yes" ] &amp;&amp; [ "${slave_status_array[1]}" == "Yes" ]; then
+        [ -f "/tmp/slave" ] &amp;&amp; rm -f /tmp/slave
+    else
+        [ ! -f "/tmp/slave" ] &amp;&amp; echo "MySQL主备同步失效！" | notification_email
+        touch /tmp/slave
+    fi
+    [ -f "/tmp/mysql_down" ] &amp;&amp; rm -f /tmp/mysql_down
+else
+    [ ! -f "/tmp/mysql_down" ] &amp;&amp; echo "Mysql宕机！" | notification_email
+    touch /tmp/mysql_down
+fi</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_redis监控">Redis监控</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>关键参数说明</p>
+<p>监控Redis进程，不存在则报警，并尝试重启。也可以使用 <code>redis-cli</code> 命令监控连接数。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>-a --archive 归档模式
--v --verbose 详细输出模式，定时任务或者后天运行的话可以去掉
--z --compose 传输过程中压缩处理
-   --delete  源目录不存在而目标目录存在的文件将被删除
-   1.xxx     ssh服务器别名</pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">#!/bin/bash
+
+notification_email()
+{
+    email_addr="用户名@liming.pub"
+    title="[ERROR]xxRedis宕机了"
+    mail -s "$title" "${email_addr}"
+}
+
+pid=$(ps -ef | grep redis-server | grep -v grep | awk '{print $2}')
+
+if [ "$pid" = '' ]; then
+    echo "Redis-Server xx 宕机，尝试重启！" | notification_email
+    redis-server /etc/redis.conf &amp;
+fi</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">备注</div>
-</td>
-<td class="content">
-文件名后面是否带 <code>/</code>，含义不同，带 <code>/</code> 是将目录下的文件同步到目标文件夹下，不带 <code>/</code> 是将该目录同步到目标文件夹下。
-</td>
-</tr>
-</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_通用监控">通用监控</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>可以使用 <code>curl</code> 来实现远程http服务的监控，使用 <code>netstat</code> 来实现本机服务端口的监控，具体脚本后续完善。</p>
 </div>
 </div>
 </div>
@@ -250,7 +280,7 @@ rsync（remote synchronize）是一个开源的跨操作系统的数据同步工
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2019-06-23 14:48:56</span>
+    <span class="item-content">2019-07-06 08:07:15</span>
   </p>
   
   <p class="copyright-item">
@@ -259,17 +289,16 @@ rsync（remote synchronize）是一个开源的跨操作系统的数据同步工
   </p>
 </div><footer class="post-footer">
       <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
           <a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-          <a href="/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">最佳实践</a>
+          <a href="/tags/shell/">shell</a>
+          <a href="/tags/mysql/">mysql</a>
+          <a href="/tags/redis/">redis</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/linux-email-service/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Linux发送邮件</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/post/samba/">
-            <span class="next-text nav-default">Samba实践</span>
+        
+        <a class="next" href="/post/linux-email-service/">
+            <span class="next-text nav-default">Linux发送邮件</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -282,8 +311,8 @@ rsync（remote synchronize）是一个开源的跨操作系统的数据同步工
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-06-23 14:48:56 \x2b0800 CST',
-        title: 'rsync实践',
+        id: '2019-07-06 08:07:15 \x2b0800 CST',
+        title: 'Linux脚本监控',
         clientID: 'f35ddb3b03b9257b76d0',
         clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
         repo: 'iaming.github.io',

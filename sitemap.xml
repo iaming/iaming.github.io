@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liming.pub/post/linux-monitor-shell/</loc>
+    <lastmod>2019-07-06T08:07:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/post/linux-email-service/</loc>
     <lastmod>2019-06-30T11:45:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -199,13 +206,19 @@
   </url>
   
   <url>
+    <loc>https://liming.pub/draft/asciidoctor/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/draft/gitlab-ci/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://liming.pub/draft/linux-monitor/</loc>
+    <loc>https://liming.pub/draft/homebrew/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -300,7 +313,7 @@
   
   <url>
     <loc>https://liming.pub/post/</loc>
-    <lastmod>2019-06-30T11:45:39+08:00</lastmod>
+    <lastmod>2019-07-06T08:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -405,14 +418,14 @@
   
   <url>
     <loc>https://liming.pub/</loc>
-    <lastmod>2019-06-30T11:45:39+08:00</lastmod>
+    <lastmod>2019-07-06T08:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://liming.pub/tags/linux/</loc>
-    <lastmod>2019-06-30T11:45:39+08:00</lastmod>
+    <lastmod>2019-07-06T08:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -439,6 +452,13 @@
   </url>
   
   <url>
+    <loc>https://liming.pub/tags/mysql/</loc>
+    <lastmod>2019-07-06T08:07:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/tags/nexus/</loc>
     <lastmod>2019-06-15T10:01:11+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -460,8 +480,15 @@
   </url>
   
   <url>
+    <loc>https://liming.pub/tags/redis/</loc>
+    <lastmod>2019-07-06T08:07:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/tags/shell/</loc>
-    <lastmod>2019-06-30T11:45:39+08:00</lastmod>
+    <lastmod>2019-07-06T08:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -475,7 +502,7 @@
   
   <url>
     <loc>https://liming.pub/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/</loc>
-    <lastmod>2019-06-30T11:45:39+08:00</lastmod>
+    <lastmod>2019-07-06T08:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -580,7 +607,7 @@
   
   <url>
     <loc>https://liming.pub/tags/%E8%BF%90%E7%BB%B4/</loc>
-    <lastmod>2019-06-30T11:45:39+08:00</lastmod>
+    <lastmod>2019-07-06T08:07:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

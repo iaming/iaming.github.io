@@ -221,7 +221,7 @@
     <item>
       <title>linux</title>
       <link>https://liming.pub/tags/linux/</link>
-      <pubDate>Sun, 30 Jun 2019 11:45:39 +0800</pubDate>
+      <pubDate>Sat, 06 Jul 2019 08:07:15 +0800</pubDate>
       
       <guid>https://liming.pub/tags/linux/</guid>
       <description></description>
@@ -255,6 +255,15 @@
     </item>
     
     <item>
+      <title>mysql</title>
+      <link>https://liming.pub/tags/mysql/</link>
+      <pubDate>Sat, 06 Jul 2019 08:07:15 +0800</pubDate>
+      
+      <guid>https://liming.pub/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>nexus</title>
       <link>https://liming.pub/tags/nexus/</link>
       <pubDate>Sat, 15 Jun 2019 10:01:11 +0800</pubDate>
@@ -282,9 +291,18 @@
     </item>
     
     <item>
+      <title>redis</title>
+      <link>https://liming.pub/tags/redis/</link>
+      <pubDate>Sat, 06 Jul 2019 08:07:15 +0800</pubDate>
+      
+      <guid>https://liming.pub/tags/redis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>shell</title>
       <link>https://liming.pub/tags/shell/</link>
-      <pubDate>Sun, 30 Jun 2019 11:45:39 +0800</pubDate>
+      <pubDate>Sat, 06 Jul 2019 08:07:15 +0800</pubDate>
       
       <guid>https://liming.pub/tags/shell/</guid>
       <description></description>
@@ -392,7 +410,7 @@
     <item>
       <title>运维</title>
       <link>https://liming.pub/tags/%E8%BF%90%E7%BB%B4/</link>
-      <pubDate>Sun, 30 Jun 2019 11:45:39 +0800</pubDate>
+      <pubDate>Sat, 06 Jul 2019 08:07:15 +0800</pubDate>
       
       <guid>https://liming.pub/tags/%E8%BF%90%E7%BB%B4/</guid>
       <description></description>

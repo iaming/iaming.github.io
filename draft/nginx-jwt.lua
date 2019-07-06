@@ -1,27 +1,24 @@
 local jwt = require "resty.jwt"
 local validators = require "resty.jwt-validators"
 
-local M = {}
+local _M = {}
 
-function M.auth(claim_specs)
+function _M.auth(claim_specs)
     -- get token, header > request > cookie
     local jwt_token = nil
     local auth_header = ngx.var.http_Authorization
     if auth_header == nil then
+        ngx.log(ngx.DEBUG,"Authorization header中无token")
         -- get token from quest
         jwt_token = ngx.var.arg_jwt
-        if jwt_token then
-            ngx.log(ngx.DEBUG,"Query token exist")
-            ngx.header['Set-Cookie'] = "jwt=" .. jwt_token
-        else
-            -- get token from cookie
-            jwt_token = ngx.var.cookie_jwt
-            ngx.log(ngx.DEBUG,"Cookie token exist")
-        end
-
         if jwt_token == nil then
-            ngx.log(ngx.WARN, "No Authorization header")
-            ngx.exit(ngx.HTTP_UNAUTHORIZED)
+            -- Query中无token，从Cookies中获取
+            jwt_token = ngx.var.cookie_jwt
+            ngx.log(ngx.DEBUG,"Query中无token，从Cookies中获取")
+            if jwt_token == nil then
+                ngx.log(ngx.WARN, "Cookies无token，401返回")
+                ngx.exit(ngx.HTTP_UNAUTHORIZED)
+            end
         end
     else
         ngx.log(ngx.INFO, "Authorization: " .. auth_header)
@@ -37,13 +34,13 @@ function M.auth(claim_specs)
         end
     end
 
-    ngx.log(ngx.INFO, "jwt_token: " .. jwt_token)
+    ngx.log(ngx.DEBUG, "获取到jwt_token，开始验证...")
 
     if claim_specs == nil then
         claim_spec = {
-            leeway = validators.set_system_leeway(900),
+            leeway = validators.set_system_leeway(ngx.var.jwt_duration),
             iat = validators.is_at(),
-            __jwt = validators.require_one_of({ "foo", "bar" })
+            __jwt = validators.require_one_of({"lvl", "registed"})
         }
     end
 
@@ -56,24 +53,55 @@ function M.auth(claim_specs)
 
     local payload = jwt_obj["payload"]
     if payload.exp ~= nil then
-        local exp_remain_times = payload.exp - system_clock()
-        if exp_remain_times < 300 and exp_remain_times > 0 then
+        local exp_remain_time = payload["exp"] - ngx.now()
+        ngx.log(ngx.DEBUG, "exp_remain:" .. exp_remain_time)
+        if exp_remain_time < 300 and exp_remain_time > 0 then
             -- refresh jwt
             ngx.log(ngx.DEBUG, "Refresh token")
-            payload["iat"] = system_clock()
-            payload["exp"] = system_clock() + 900
+            local rat = ngx.now()
+            local exp = rat + ngx.var.jwt_duration
+            payload["iat"] = rat
+            payload["exp"] = exp
             local jwt_token = jwt:sign(
                 ngx.var.jwt_secret,
                 {
-                    header=cjson.encode(jwt_obj["header"]),
-                    payload=cjson.encode(payload)
+                    header = jwt_obj["header"],
+                    payload = payload
                 }
             )
-            ngx.header['Set-Cookie'] = "jwt=" .. jwt_token
+            ngx.header['Set-Cookie'] = "jwt=" .. jwt_token .. "; path=/; Expires=" .. ngx.cookie_time(exp)
             ngx.header['Authorization'] = "Bearer " .. jwt_token
         end
     end
 
 end
 
-return M
+-- payload增加uid（用户id）,lvl（等级），jti，lat(登录时间)
+function _M.login(uid)
+    local lat = ngx.now()
+    local exp = lat + ngx.var.jwt_duration
+    local jwt_token = jwt:sign(
+        ngx.var.jwt_secret,
+        {
+            header = {typ = "JWT", alg = "HS256"},
+            payload = {
+                uid = uid,
+                lvl = "registed",
+                lat = lat,
+                iat = lat,
+                exp = exp
+            }
+        }
+    )
+    ngx.header['Set-Cookie'] = "jwt=" .. jwt_token .. "; path=/; Expires=" .. ngx.cookie_time(exp)
+    ngx.header['Authorization'] = "Bearer " .. jwt_token
+    ngx.say("{\"content\":\"" .. jwt_token .. "\"}")
+end
+
+function _M.problem(problem_status,problem_code,problem_message)
+    ngx.status = problem_status
+    ngx.say('{"type": "/problems/'.. problem_code .. '", "title": "'.. problem_code .. '",' .. '"status": ' .. problem_status ..',"message": "' .. problem_message ..'","timestamp": "' .. ngx.time() ..'"}')
+    ngx.exit(ngx.HTTP_OK)
+end
+
+return _M

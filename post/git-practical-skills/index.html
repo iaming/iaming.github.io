@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-01-26T10:10:46&#43;08:00" />
 <meta itemprop="dateModified" content="2019-01-26T10:10:46&#43;08:00" />
-<meta itemprop="wordCount" content="1137">
+<meta itemprop="wordCount" content="1726">
 
 
 
@@ -128,8 +128,8 @@
         <div class="post-category">
             <a href="/categories/%E6%95%88%E7%8E%87%E6%95%88%E8%83%BD/"> 效率效能 </a>
             </div>
-          <span class="more-meta"> 约 1137 字 </span>
-          <span class="more-meta"> 预计阅读 3 分钟 </span>
+          <span class="more-meta"> 约 1726 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -147,6 +147,7 @@
 <li><a href="#中文显示为unicode编码">中文显示为Unicode编码</a></li>
 <li><a href="#http方式记住密码">HTTP方式记住密码</a></li>
 <li><a href="#全局忽略文件">全局忽略文件</a></li>
+<li><a href="#git-reset-和-git-revert">git reset 和 git revert</a></li>
 </ul>
 </nav>
   </div>
@@ -222,7 +223,7 @@ git config --global alias.repo1 <span class="s1">&#39;remote set-url origin /pat
 </span></pre></td>
 <td class="lntd">
 <pre class="chroma">[alias]
-    lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit
+    lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=format:&#39;%m-%d %H:%M&#39;
     st = status
     co = checkout
     ci = commit
@@ -294,7 +295,7 @@ git pull --allow-unrelated-histories</pre></td></tr></table>
 </span></pre></td>
 <td class="lntd">
 <pre class="chroma">[core]
-	filemode = false</pre></td></tr></table>
+    filemode = false</pre></td></tr></table>
 </div>
 </div>
 <p>NOTE: 有安全风险或权限错误，建议脚本、二进制程序权限还是明确配置。</p>
@@ -373,6 +374,47 @@ git config --global i18n.logoutputencoding utf-8    <span class="c1"># 输出 lo
 git config --global core.excludesfile ~/.gitignore</code></pre></td></tr></table>
 </div>
 </div>
+<h1 id="git-reset-和-git-revert">git reset 和 git revert</h1>
+
+<ol>
+<li>git reset 重置，将当前HEAD指针指向某一次提交，也就意味着新指针之后的所有提交记录将被丢弃掉，是比较危险的做法。</li>
+<li>git revert 撤销，将提交记录中的某一次提交撤销掉，撤销操作涉及到的修改将作为一个新的提交记录追加到当前HEAD，对提交历史以及该撤销记录的上下提交都未做改动，是比较安全的做法。</li>
+</ol>
+
+<p>假设我们有如下提交记录 <code>git log --oneline</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">eeeeeee 第五次提交
+ddddddd 第四次提交
+ccccccc 第三次提交
+bbbbbbb 第二次提交
+aaaaaaa 初始化提交</pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>废弃掉最近两次提交，即5和4不要了
+
+<ul>
+<li>软重置
+执行命令： <code>git reset ccccccc</code> 或者 <code>git reset HEAD~2</code> 。
+执行完后效果：提交记录中只有aaaaaaa、bbbbbbb、ccccccc三个，ddddddd、eeeeeee这两个提交记录被删除，但是ddddddd和第eeeeeee的修改内容保存在本地的工作区。</li>
+<li>硬重置
+执行命令： <code>git reset --hard ccccccc</code> 或者 <code>git reset --hard HEAD~2</code> 。  执行完后效果：提交记录中只有aaaaaaa、bbbbbbb、ccccccc三个，ddddddd和第eeeeeee这两个提交记录以及修改内容全部被删除，本地工作区也同步删除。</li>
+</ul></li>
+<li>缓冲区不要了，即还未push的代码需要重新add和commit<br />
+执行命令： <code>git reset</code> 或者 <code>git reset HEAD</code> 。
+执行效果：本地commit但为push的内容从缓冲区恢复到工作区。</li>
+<li>撤销掉第三次提交，但是5和4要保留
+执行命令： <code>git revert ccccccc</code>
+执行完效果： 提交记录中增加了一条 <code>fffffff Revert '第三次提交'</code> ，同时第三次提交的修改内容全部被回退，本地工作区也同步回退。</li>
+</ul>
     </div>
 
     <div class="post-copyright">

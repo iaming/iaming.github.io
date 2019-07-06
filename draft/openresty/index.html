@@ -16,18 +16,13 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="== 安装
-http://openresty.org/cn/linux-packages.html
-参考文档： https://moonbingbing.gitbooks.io/openresty-best-practices/
-https://github.com/auth0/nginx-jwt
-== auth0 .已过时
-[source,bash] curl -L https://github.com/auth0/nginx-jwt/releases/download/v1.0.1/nginx-jwt.tar.gz -o /usr/local/openresty/scripts/nginx-jwt.tar.gz
-tar -xvf nginx-jwt.tar.gz -C /usr/local/openresty/scripts/ .nginx.conf
-[source] server { location / { access_by_lua &amp;lsquo; local jwt = require(&amp;ldquo;nginx-jwt&amp;rdquo;) jwt.auth() &amp;lsquo;;
-1 2  proxy_pass http://my-backend.com$uri; }   } .nginx.conf
-[source] env JWT_SECRET=123; env JWT_SECRET_IS_BASE64_ENCODED=true; http { lua_package_path &amp;ldquo;/usr/local/openresty/scripts/;;&amp;rdquo;; &amp;hellip;
-} == lua-resty-jwt
-[source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0." /><meta name="keywords" content="liming, iaming, 李明, 最佳实践, 架构, DevOps, linux, 自我管理" />
+<meta name="author" content="liming" /><meta name="description" content="== 安装 安装官网步骤安装即可： http://openresty.org/cn/linux-packages.html
+== JWT 由于 https://github.com/auth0/nginx-jwt 已经没人维护，所以这里采用 https://github.com/SkyLothar/lua-resty-jwt。
+=== lua-resty-jwt安装
+[source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz -C /usr/local/openresty/nginx/jwt-lua/ curl -L https://raw.githubusercontent.com/jkeys089/lua-resty-hmac/master/lib/resty/hmac.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/hmac.lua
+curl -L https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/examples/guard.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/guard.lua === 配置保护资源
+.nginx.conf
+[source] error_log logs/error.log debug; #  http { lua_code_cache off; #  lua_package_path &amp;ldquo;/usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/?.lua;;&amp;rdquo;; server { listen 80; charset utf-8; location = /login { set $jwt_secret &amp;ldquo;lua-resty-jwt&amp;rdquo;; set $jwt_duration 900; content_by_lua &amp;lsquo; &amp;ndash;获取get或post参数 local request_method = ngx." /><meta name="keywords" content="liming, iaming, 李明, 最佳实践, 架构, DevOps, linux, 自我管理" />
 
 
 
@@ -50,56 +45,41 @@ tar -xvf nginx-jwt.tar.gz -C /usr/local/openresty/scripts/ .nginx.conf
 
 
 <meta property="og:title" content="" />
-<meta property="og:description" content="== 安装
-http://openresty.org/cn/linux-packages.html
-参考文档： https://moonbingbing.gitbooks.io/openresty-best-practices/
-https://github.com/auth0/nginx-jwt
-== auth0 .已过时
-[source,bash] curl -L https://github.com/auth0/nginx-jwt/releases/download/v1.0.1/nginx-jwt.tar.gz -o /usr/local/openresty/scripts/nginx-jwt.tar.gz
-tar -xvf nginx-jwt.tar.gz -C /usr/local/openresty/scripts/ .nginx.conf
-[source] server { location / { access_by_lua &lsquo; local jwt = require(&ldquo;nginx-jwt&rdquo;) jwt.auth() &lsquo;;
-1 2  proxy_pass http://my-backend.com$uri; }   } .nginx.conf
-[source] env JWT_SECRET=123; env JWT_SECRET_IS_BASE64_ENCODED=true; http { lua_package_path &ldquo;/usr/local/openresty/scripts/;;&rdquo;; &hellip;
-} == lua-resty-jwt
-[source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0." />
+<meta property="og:description" content="== 安装 安装官网步骤安装即可： http://openresty.org/cn/linux-packages.html
+== JWT 由于 https://github.com/auth0/nginx-jwt 已经没人维护，所以这里采用 https://github.com/SkyLothar/lua-resty-jwt。
+=== lua-resty-jwt安装
+[source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz -C /usr/local/openresty/nginx/jwt-lua/ curl -L https://raw.githubusercontent.com/jkeys089/lua-resty-hmac/master/lib/resty/hmac.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/hmac.lua
+curl -L https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/examples/guard.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/guard.lua === 配置保护资源
+.nginx.conf
+[source] error_log logs/error.log debug; #  http { lua_code_cache off; #  lua_package_path &ldquo;/usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/?.lua;;&rdquo;; server { listen 80; charset utf-8; location = /login { set $jwt_secret &ldquo;lua-resty-jwt&rdquo;; set $jwt_duration 900; content_by_lua &lsquo; &ndash;获取get或post参数 local request_method = ngx." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liming.pub/draft/openresty/" />
 
 <meta itemprop="name" content="">
-<meta itemprop="description" content="== 安装
-http://openresty.org/cn/linux-packages.html
-参考文档： https://moonbingbing.gitbooks.io/openresty-best-practices/
-https://github.com/auth0/nginx-jwt
-== auth0 .已过时
-[source,bash] curl -L https://github.com/auth0/nginx-jwt/releases/download/v1.0.1/nginx-jwt.tar.gz -o /usr/local/openresty/scripts/nginx-jwt.tar.gz
-tar -xvf nginx-jwt.tar.gz -C /usr/local/openresty/scripts/ .nginx.conf
-[source] server { location / { access_by_lua &lsquo; local jwt = require(&ldquo;nginx-jwt&rdquo;) jwt.auth() &lsquo;;
-1 2  proxy_pass http://my-backend.com$uri; }   } .nginx.conf
-[source] env JWT_SECRET=123; env JWT_SECRET_IS_BASE64_ENCODED=true; http { lua_package_path &ldquo;/usr/local/openresty/scripts/;;&rdquo;; &hellip;
-} == lua-resty-jwt
-[source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.">
+<meta itemprop="description" content="== 安装 安装官网步骤安装即可： http://openresty.org/cn/linux-packages.html
+== JWT 由于 https://github.com/auth0/nginx-jwt 已经没人维护，所以这里采用 https://github.com/SkyLothar/lua-resty-jwt。
+=== lua-resty-jwt安装
+[source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz -C /usr/local/openresty/nginx/jwt-lua/ curl -L https://raw.githubusercontent.com/jkeys089/lua-resty-hmac/master/lib/resty/hmac.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/hmac.lua
+curl -L https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/examples/guard.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/guard.lua === 配置保护资源
+.nginx.conf
+[source] error_log logs/error.log debug; #  http { lua_code_cache off; #  lua_package_path &ldquo;/usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/?.lua;;&rdquo;; server { listen 80; charset utf-8; location = /login { set $jwt_secret &ldquo;lua-resty-jwt&rdquo;; set $jwt_duration 900; content_by_lua &lsquo; &ndash;获取get或post参数 local request_method = ngx.">
 
 
 
-<meta itemprop="wordCount" content="283">
+<meta itemprop="wordCount" content="567">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="== 安装
-http://openresty.org/cn/linux-packages.html
-参考文档： https://moonbingbing.gitbooks.io/openresty-best-practices/
-https://github.com/auth0/nginx-jwt
-== auth0 .已过时
-[source,bash] curl -L https://github.com/auth0/nginx-jwt/releases/download/v1.0.1/nginx-jwt.tar.gz -o /usr/local/openresty/scripts/nginx-jwt.tar.gz
-tar -xvf nginx-jwt.tar.gz -C /usr/local/openresty/scripts/ .nginx.conf
-[source] server { location / { access_by_lua &lsquo; local jwt = require(&ldquo;nginx-jwt&rdquo;) jwt.auth() &lsquo;;
-1 2  proxy_pass http://my-backend.com$uri; }   } .nginx.conf
-[source] env JWT_SECRET=123; env JWT_SECRET_IS_BASE64_ENCODED=true; http { lua_package_path &ldquo;/usr/local/openresty/scripts/;;&rdquo;; &hellip;
-} == lua-resty-jwt
-[source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0."/>
+<meta name="twitter:description" content="== 安装 安装官网步骤安装即可： http://openresty.org/cn/linux-packages.html
+== JWT 由于 https://github.com/auth0/nginx-jwt 已经没人维护，所以这里采用 https://github.com/SkyLothar/lua-resty-jwt。
+=== lua-resty-jwt安装
+[source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz -C /usr/local/openresty/nginx/jwt-lua/ curl -L https://raw.githubusercontent.com/jkeys089/lua-resty-hmac/master/lib/resty/hmac.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/hmac.lua
+curl -L https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/examples/guard.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/guard.lua === 配置保护资源
+.nginx.conf
+[source] error_log logs/error.log debug; #  http { lua_code_cache off; #  lua_package_path &ldquo;/usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/?.lua;;&rdquo;; server { listen 80; charset utf-8; location = /login { set $jwt_secret &ldquo;lua-resty-jwt&rdquo;; set $jwt_duration 900; content_by_lua &lsquo; &ndash;获取get或post参数 local request_method = ngx."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -163,60 +143,15 @@ tar -xvf nginx-jwt.tar.gz -C /usr/local/openresty/scripts/ .nginx.conf
   <div class="post-content">
     
 
-<p>== 安装</p>
+<p>== 安装
+安装官网步骤安装即可： <a href="http://openresty.org/cn/linux-packages.html">http://openresty.org/cn/linux-packages.html</a></p>
 
-<p><a href="http://openresty.org/cn/linux-packages.html">http://openresty.org/cn/linux-packages.html</a></p>
+<p>== JWT
+由于 <a href="https://github.com/auth0/nginx-jwt">https://github.com/auth0/nginx-jwt</a> 已经没人维护，所以这里采用 <a href="https://github.com/SkyLothar/lua-resty-jwt。">https://github.com/SkyLothar/lua-resty-jwt。</a></p>
 
-<p>参考文档： <a href="https://moonbingbing.gitbooks.io/openresty-best-practices/">https://moonbingbing.gitbooks.io/openresty-best-practices/</a></p>
-
-<p><a href="https://github.com/auth0/nginx-jwt">https://github.com/auth0/nginx-jwt</a></p>
-
-<p>== auth0
-.已过时</p>
+<p>=== lua-resty-jwt安装</p>
 
 <h2 id="source-bash">[source,bash]</h2>
-
-<p>curl -L <a href="https://github.com/auth0/nginx-jwt/releases/download/v1.0.1/nginx-jwt.tar.gz">https://github.com/auth0/nginx-jwt/releases/download/v1.0.1/nginx-jwt.tar.gz</a> -o /usr/local/openresty/scripts/nginx-jwt.tar.gz</p>
-
-<h2 id="tar-xvf-nginx-jwt-tar-gz-c-usr-local-openresty-scripts">tar -xvf nginx-jwt.tar.gz -C /usr/local/openresty/scripts/</h2>
-
-<p>.nginx.conf</p>
-
-<h2 id="source">[source]</h2>
-
-<p>server {
-    location / {
-        access_by_lua &lsquo;
-            local jwt = require(&ldquo;nginx-jwt&rdquo;)
-            jwt.auth()
-        &lsquo;;</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">    proxy_pass http://my-backend.com$uri;
-}</pre></td></tr></table>
-</div>
-</div>
-<h2 id="toc_3">}</h2>
-
-<p>.nginx.conf</p>
-
-<h2 id="source-1">[source]</h2>
-
-<p>env JWT_SECRET=123;
-env JWT_SECRET_IS_BASE64_ENCODED=true;
-http {
-    lua_package_path &ldquo;/usr/local/openresty/scripts/;;&rdquo;;
-    &hellip;</p>
-
-<h2 id="toc_5">}</h2>
-
-<p>== lua-resty-jwt</p>
-
-<h2 id="source-bash-1">[source,bash]</h2>
 
 <p>mkdir -p /usr/local/openresty/nginx/jwt-lua/
 curl -L <a href="https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz">https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz</a> -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz
@@ -225,54 +160,37 @@ curl -L <a href="https://raw.githubusercontent.com/jkeys089/lua-resty-hmac/maste
 
 <h2 id="curl-l-https-raw-githubusercontent-com-skylothar-lua-resty-jwt-master-examples-guard-lua-o-usr-local-openresty-nginx-jwt-lua-lua-resty-jwt-0-1-11-lib-resty-guard-lua">curl -L <a href="https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/examples/guard.lua">https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/examples/guard.lua</a> -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/guard.lua</h2>
 
-<p>.nginx.conf</p>
-
-<h2 id="source-2">[source]</h2>
-
-<p>location / {
-    access_log off;
-    default_type text/plain;</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">set $jwt_secret &#34;your-own-jwt-secret&#34;;
-access_by_lua &#39;
-    local jwt = require(&#34;resty.nginx-jwt&#34;)
-    local validators = require(&#34;resty.jwt-validators&#34;)
-    jwt.auth(
-        {
-            leeway = validators.set_system_leeway(3600),
-            iss = validators.equals_any_of({ &#34;liming.pub&#34;, &#34;account&#34; }),
-            iat = validators.is_at(),
-            __jwt = validators.require_one_of({ &#34;role&#34;, &#34;viewer&#34; })
-        }
-    )
-&#39;;
-
-echo &#34;i am protected by jwt guard&#34;;</pre></td></tr></table>
-</div>
-</div>
-<h2 id="toc_9">}</h2>
+<p>=== 配置保护资源</p>
 
 <p>.nginx.conf</p>
 
-<h2 id="source-3">[source]</h2>
+<h2 id="source">[source]</h2>
+
+<p>error_log logs/error.log debug; # <1>
+http {
+    lua_code_cache off; # <2>
+    lua_package_path &ldquo;/usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/?.lua;;&rdquo;;
+    server {
+        listen 80;
+        charset utf-8;
+        location = /login {
+            set $jwt_secret &ldquo;lua-resty-jwt&rdquo;;
+            set $jwt_duration 900;
+            content_by_lua &lsquo;
+                &ndash;获取get或post参数
+                local request_method = ngx.var.request_method
+                local args = nil
+                local username = nil
+                local password = nil
+                &ndash;获取参数的值
+                if &ldquo;GET&rdquo; == request_method then
+                    args = ngx.req.get_uri_args()
+                elseif &ldquo;POST&rdquo; == request_method then
+                    ngx.req.read_body()
+                    args = ngx.req.get_post_args()
+                end
+                username = args[&ldquo;username&rdquo;]
+                password = args[&ldquo;password&rdquo;]</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt"> 1
@@ -302,66 +220,247 @@ echo &#34;i am protected by jwt guard&#34;;</pre></td></tr></table>
 </span><span class="lnt">25
 </span><span class="lnt">26
 </span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">    location = /secure {
-        content_by_lua &#39;
-            local cjson = require &#34;cjson&#34;
-            local jwt = require &#34;resty.jwt&#34;
-
-            local jwt_token = &#34;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&#34; ..
-                &#34;.eyJmb28iOiJiYXIifQ&#34; ..
-                &#34;.VAoRL1IU0nOguxURF2ZcKR0SGKE1gCbqwyh8u2MLAyY&#34;
-            local jwt_obj = jwt:verify(&#34;your-own-jwt-secret&#34;, jwt_token)
-            ngx.say(cjson.encode(jwt_obj))
+<pre class="chroma">            local jwt = require(&#34;resty.nginx-jwt&#34;)
+            if &#34;admin&#34; == username and &#34;888888&#34; == password then
+                -- 登录成功
+                jwt.login(username)
+            else
+                jwt.problem(
+                    ngx.HTTP_BAD_REQUEST,
+                    &#34;VERIFICATION_FAILED&#34;,
+                    &#34;用户名或密码错误&#34;
+                )
+            end
         &#39;;
     }
-    location = /sign {
-        content_by_lua &#39;
-            local cjson = require &#34;cjson&#34;
-            local jwt = require &#34;resty.jwt&#34;
 
-            local jwt_token = jwt:sign(
-                &#34;your-own-jwt-secret&#34;,
-                {
-                    header={typ=&#34;JWT&#34;, alg=&#34;HS256&#34;},
-                    payload={foo=&#34;bar&#34;, iat=system_clock(), exp=system_clock()+900}
-                }
-            )
-            ngx.say(jwt_token)
-        &#39;;
-    }</pre></td></tr></table>
+    location ~ ^/api/([-_a-zA-Z0-9/]+).json {
+        access_by_lua_file  /path/to/lua/api/access_check.lua;
+        content_by_lua_file /path/to/lua/api/$1.lua;
+        body_filter_by_lua_file  /path/to/lua/api/body_filter.lua;
+    }
+
+    location / {
+        set $jwt_secret &#34;lua-resty-jwt&#34;;
+        set $jwt_duration 900;
+        access_by_lua &#39;
+            local jwt = require(&#34;resty.nginx-jwt&#34;)
+            local validators = require &#34;resty.jwt-validators&#34;
+            local claim_spec = {
+                leeway = validators.set_system_leeway(ngx.var.jwt_duration),
+                iss = validators.equals_any_of({&#34;liming.pub&#34;, &#34;fangmou.com&#34;}),
+                iat = validators.is_at(),
+                __jwt = validators.require_one_of({&#34;lvl&#34;, &#34;registed&#34;})
+            }
+            jwt.auth(claim_spec)
+        &#39;;</pre></td></tr></table>
 </div>
 </div>
-<hr />
+<h1 id="echo-i-am-protected-by-jwt-guard">echo &ldquo;i am protected by jwt guard&rdquo;;</h1>
+
+<h1 id="proxy-pass-http-my-backend-com-uri">proxy_pass <a href="http://my-backend.com$uri">http://my-backend.com$uri</a>;</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">            root /var/www/openresty/html;
+    }
+
+}</pre></td></tr></table>
+</div>
+</div>
+<h2 id="toc_5">}</h2>
+
+<p><1> nginx输出日志主要是 ngx.log ，输出的日志文件为：error.log，如 <code>ngx.log(ngx.DEBUG, 'print to error.log')</code> ，可以在nginx.conf 文件中定义日志输出级别 <code>error_log logs/error.log notice;</code>， 日志级别定义&lt;&lt;附nginx常量&gt;&gt;，生产记得配置为error级别。
+<2> 值为：on | off，开启或关闭 Lua 代码缓存，影响以下指令： set_by_lua_file , content_by_lua_file, rewrite_by_lua_file, access_by_lua_file 及强制加载或者reload Lua 模块等，在开发阶段非常有用，可以避免频繁启动nginx，生产环境记得关闭。</p>
 
 <p>. JWT验证顺序（Header -&gt; Request -&gt; Cookie）
+核心代码：
++
 .nginx-jwt.lua</p>
 
 <h2 id="source-lua">[source,lua]</h2>
 
 <h2 id="include-nginx-jwt-lua">include::nginx-jwt.lua[]</h2>
 
-<p>== 日志</p>
+<p>== 获取参数
+. 普通表单提交: application/x-www-form-urlencoded
++</p>
 
-<h2 id="nginx输出日志主要是-ngx-log-输出的日志文件为-error-log-如-ngx-log-ngx-debug-print-to-error-log-可以在nginx-conf-文件中定义日志输出级别-error-log-logs-error-log-notice-日志级别定义如下">nginx输出日志主要是 ngx.log ，输出的日志文件为：error.log，如 <code>ngx.log(ngx.DEBUG, 'print to error.log')</code> ，可以在nginx.conf 文件中定义日志输出级别 <code>error_log logs/error.log notice;</code>， 日志级别定义如下：</h2>
+<h2 id="source-1">[source]</h2>
 
-<p>ngx.STDERR
-ngx.EMERG
-ngx.ALERT
-ngx.CRIT
-ngx.ERR
-ngx.WARN
-ngx.NOTICE
-ngx.INFO</p>
+<p>ngx.req.read_body()
+local args = ngx.req.get_post_args()</p>
 
-<h2 id="ngx-debug">ngx.DEBUG</h2>
+<h2 id="local-username-args-username">local username = args[&ldquo;username&rdquo;]</h2>
+
+<p>. 含有文件的表单，二进制上传：multipart/form-data
+. 将参数json字符串格式放入body上传，客户端自己解析： application/json</p>
+
+<h2 id="source-2">[source]</h2>
+
+<p>ngx.req.read_body()</p>
+
+<h2 id="local-data-ngx-req-get-body-data">local data = ngx.req.get_body_data()</h2>
 
 <p>== 访问</p>
 
-<h2 id="source-bash-2">[source,bash]</h2>
+<h2 id="source-bash-1">[source,bash]</h2>
 
 <h2 id="curl-i-http-127-0-0-1-h-authorization-bearer-eyjhbgcioijiuzi1niisinr5cci6ikpxvcj9-eyjzdwiioiixmjm0nty3odkwiiwibmftzsi6ikpvag4grg9liiwiawf0ijoxnte2mjm5mdiyfq-kfn4dvqqziingpup1rb6vbcqax7iucsvt6zug3udetm">curl -i <a href="http://127.0.0.1">http://127.0.0.1</a> -H &lsquo;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.kFN4dVqqziINGpuP1rB6vbCqax7IUcSVT6zUG3udEtM&rsquo;</h2>
+
+<h2 id="附nginx常量">== 附nginx常量</h2>
+
+<p>ngx.arg[index]              #ngx指令参数，当这个变量在set_by_lua或者set_by_lua_file内使用的时候是只读的，指的是在配置指令输入的参数.<br />
+ngx.var.varname             #读写NGINX变量的值,最好在lua脚本里缓存变量值，避免在当前请求的生命周期内内存的泄漏<br />
+ngx.config.ngx_lua_version  #当前ngx_lua模块版本号<br />
+ngx.config.nginx_version    #nginx版本<br />
+ngx.worker.exiting          #当前worker进程是否正在关闭<br />
+ngx.worker.pid              #当前worker进程的PID<br />
+ngx.config.nginx_configure  #编译时的./configure命令选项<br />
+ngx.config.prefix           #编译时的prefix选项</p>
+
+<p>core constans:              #ngx_lua 核心常量<br />
+    ngx.OK (0)<br />
+    ngx.ERROR (-1)<br />
+    ngx.AGAIN (-2)<br />
+    ngx.DONE (-4)<br />
+    ngx.DECLINED (-5)<br />
+    ngx.nil<br />
+http method constans:       #经常在ngx.location.catpure和ngx.location.capture_multi方法中被调用.<br />
+    ngx.HTTP_GET<br />
+    ngx.HTTP_HEAD<br />
+    ngx.HTTP_PUT<br />
+    ngx.HTTP_POST<br />
+    ngx.HTTP_DELETE<br />
+    ngx.HTTP_OPTIONS<br />
+    ngx.HTTP_MKCOL<br />
+    ngx.HTTP_COPY<br />
+    ngx.HTTP_MOVE<br />
+    ngx.HTTP_PROPFIND<br />
+    ngx.HTTP_PROPPATCH<br />
+    ngx.HTTP_LOCK<br />
+    ngx.HTTP_UNLOCK<br />
+    ngx.HTTP_PATCH<br />
+    ngx.HTTP_TRACE<br />
+http status constans:       #http请求状态常量<br />
+    ngx.HTTP_OK (200)<br />
+    ngx.HTTP_CREATED (201)<br />
+    ngx.HTTP_SPECIAL_RESPONSE (300)<br />
+    ngx.HTTP_MOVED_PERMANENTLY (301)<br />
+    ngx.HTTP_MOVED_TEMPORARILY (302)<br />
+    ngx.HTTP_SEE_OTHER (303)<br />
+    ngx.HTTP_NOT_MODIFIED (304)<br />
+    ngx.HTTP_BAD_REQUEST (400)<br />
+    ngx.HTTP_UNAUTHORIZED (401)<br />
+    ngx.HTTP_FORBIDDEN (403)<br />
+    ngx.HTTP_NOT_FOUND (404)<br />
+    ngx.HTTP_NOT_ALLOWED (405)<br />
+    ngx.HTTP_GONE (410)<br />
+    ngx.HTTP_INTERNAL_SERVER_ERROR (500)<br />
+    ngx.HTTP_METHOD_NOT_IMPLEMENTED (501)<br />
+    ngx.HTTP_SERVICE_UNAVAILABLE (503)<br />
+    ngx.HTTP_GATEWAY_TIMEOUT (504)</p>
+
+<p>Nginx log level constants：      #错误日志级别常量 ,这些参数经常在ngx.log方法中被使用.<br />
+    ngx.STDERR<br />
+    ngx.EMERG<br />
+    ngx.ALERT<br />
+    ngx.CRIT<br />
+    ngx.ERR<br />
+    ngx.WARN<br />
+    ngx.NOTICE<br />
+    ngx.INFO<br />
+    ngx.DEBUG</p>
+
+<p>##################<br />
+#API中的方法：<br />
+##################<br />
+print()                         #与 ngx.print()方法有区别，print() 相当于ngx.log()<br />
+ngx.ctx                         #这是一个lua的table，用于保存ngx上下文的变量，在整个请求的生命周期内都有效,详细参考官方<br />
+ngx.location.capture()          #发出一个子请求，详细用法参考官方文档。<br />
+ngx.location.capture_multi()    #发出多个子请求，详细用法参考官方文档。<br />
+ngx.status                      #读或者写当前请求的相应状态. 必须在输出相应头之前被调用.<br />
+ngx.header.HEADER               #访问或设置http header头信息，详细参考官方文档。<br />
+ngx.req.set_uri()               #设置当前请求的URI,详细参考官方文档<br />
+ngx.set_uri_args(args)          #根据args参数重新定义当前请求的URI参数.<br />
+ngx.req.get_uri_args()          #返回一个LUA TABLE，包含当前请求的全部的URL参数<br />
+ngx.req.get_post_args()         #返回一个LUA TABLE，包括所有当前请求的POST参数<br />
+ngx.req.get_headers()           #返回一个包含当前请求头信息的lua table.<br />
+ngx.req.set_header()            #设置当前请求头header某字段值.当前请求的子请求不会受到影响.<br />
+ngx.req.read_body()             #在不阻塞ngnix其他事件的情况下同步读取客户端的body信息.[详细]<br />
+ngx.req.discard_body()          #明确丢弃客户端请求的body<br />
+ngx.req.get_body_data()         #以字符串的形式获得客户端的请求body内容<br />
+ngx.req.get_body_file()         #当发送文件请求的时候，获得文件的名字<br />
+ngx.req.set_body_data()         #设置客户端请求的BODY<br />
+ngx.req.set_body_file()         #通过filename来指定当前请求的file data。<br />
+ngx.req.clear_header()          #清求某个请求头<br />
+ngx.exec(uri,args)              #执行内部跳转，根据uri和请求参数<br />
+ngx.redirect(uri, status)       #执行301或者302的重定向。<br />
+ngx.send_headers()              #发送指定的响应头<br />
+ngx.headers_sent                #判断头部是否发送给客户端ngx.headers_sent=true<br />
+ngx.print(str)                  #发送给客户端的响应页面<br />
+ngx.say()                       #作用类似ngx.print，不过say方法输出后会换行<br />
+ngx.log(log.level,&hellip;)          #写入nginx日志<br />
+ngx.flush()                     #将缓冲区内容输出到页面（刷新响应）<br />
+ngx.exit(http-status)           #结束请求并输出状态码<br />
+ngx.eof()                       #明确指定关闭结束输出流<br />
+ngx.escape_uri()                #URI编码(本函数对逗号,不编码，而php的urlencode会编码)<br />
+ngx.unescape_uri()              #uri解码<br />
+ngx.encode_args(table)          #将tabel解析成url参数<br />
+ngx.decode_args(uri)            #将参数字符串编码为一个table<br />
+ngx.encode_base64(str)          #BASE64编码<br />
+ngx.decode_base64(str)          #BASE64解码<br />
+ngx.crc32_short(str)            #字符串的crs32_short哈希<br />
+ngx.crc32_long(str)             #字符串的crs32_long哈希<br />
+ngx.hmac_sha1(str)              #字符串的hmac_sha1哈希<br />
+ngx.md5(str)                    #返回16进制MD5<br />
+ngx.md5_bin(str)                #返回2进制MD5<br />
+ngx.today()                     #返回当前日期yyyy-mm-dd<br />
+ngx.time()                      #返回当前时间戳<br />
+ngx.now()                       #返回当前时间<br />
+ngx.update_time()               #刷新后返回<br />
+ngx.localtime()                 #返回 yyyy-mm-dd hh:ii:ss<br />
+ngx.utctime()                   #返回yyyy-mm-dd hh:ii:ss格式的utc时间<br />
+ngx.cookie_time(sec)            #返回用于COOKIE使用的时间<br />
+ngx.http_time(sec)              #返回可用于http header使用的时间<br />
+ngx.parse_http_time(str)        #解析HTTP头的时间<br />
+ngx.is_subrequest               #是否子请求（值为 true or false）<br />
+ngx.re.match(subject,regex,options,ctx)     #ngx正则表达式匹配，详细参考官网<br />
+ngx.re.gmatch(subject,regex,opt)            #全局正则匹配<br />
+ngx.re.sub(sub,reg,opt)         #匹配和替换（未知）<br />
+ngx.re.gsub()                   #未知<br />
+ngx.shared.DICT                 #ngx.shared.DICT是一个table 里面存储了所有的全局内存共享变量<br />
+    ngx.shared.DICT.get<br />
+    ngx.shared.DICT.get_stale<br />
+    ngx.shared.DICT.set<br />
+    ngx.shared.DICT.safe_set<br />
+    ngx.shared.DICT.add<br />
+    ngx.shared.DICT.safe_add<br />
+    ngx.shared.DICT.replace<br />
+    ngx.shared.DICT.delete<br />
+    ngx.shared.DICT.incr<br />
+    ngx.shared.DICT.flush_all<br />
+    ngx.shared.DICT.flush_expired</p>
+
+<h2 id="ngx-shared-dict-get-keys">ngx.shared.DICT.get_keys</h2>
+
+<p>== 参考
+- <a href="http://openresty.org/cn/[openresty官网">http://openresty.org/cn/[openresty官网</a>]
+- <a href="https://moonbingbing.gitbooks.io/openresty-best-practices/[openresty最佳实践">https://moonbingbing.gitbooks.io/openresty-best-practices/[openresty最佳实践</a>]</p>
 
   </div>
 </article>

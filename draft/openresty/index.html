@@ -16,7 +16,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="== 安装 安装官网步骤安装即可： http://openresty.org/cn/linux-packages.html
+<meta name="author" content="liming" /><meta name="description" content="说起后端Web服务，技术选型主要有两个方向：一是企业大型应用，这块是java称霸，选择没有悬念。还有一个是轻快小省型应用，这块选择就比较多了，比如：以开发效率著称的php，python，ruby on rails；以全栈著称的nodejs；以运行效率和并发著称的go，。
+今天主要介绍的主角是lua和nginx的组合：openresty，他运行效率不输go，开发效率不输python，是追求轻快小省极致的最佳选择。
+== 安装 安装官网步骤安装即可： http://openresty.org/cn/linux-packages.html
 == JWT 由于 https://github.com/auth0/nginx-jwt 已经没人维护，所以这里采用 https://github.com/SkyLothar/lua-resty-jwt。
 === lua-resty-jwt安装
 [source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz -C /usr/local/openresty/nginx/jwt-lua/ curl -L https://raw.githubusercontent.com/jkeys089/lua-resty-hmac/master/lib/resty/hmac.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/hmac.lua
@@ -45,7 +47,9 @@ curl -L https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/example
 
 
 <meta property="og:title" content="" />
-<meta property="og:description" content="== 安装 安装官网步骤安装即可： http://openresty.org/cn/linux-packages.html
+<meta property="og:description" content="说起后端Web服务，技术选型主要有两个方向：一是企业大型应用，这块是java称霸，选择没有悬念。还有一个是轻快小省型应用，这块选择就比较多了，比如：以开发效率著称的php，python，ruby on rails；以全栈著称的nodejs；以运行效率和并发著称的go，。
+今天主要介绍的主角是lua和nginx的组合：openresty，他运行效率不输go，开发效率不输python，是追求轻快小省极致的最佳选择。
+== 安装 安装官网步骤安装即可： http://openresty.org/cn/linux-packages.html
 == JWT 由于 https://github.com/auth0/nginx-jwt 已经没人维护，所以这里采用 https://github.com/SkyLothar/lua-resty-jwt。
 === lua-resty-jwt安装
 [source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz -C /usr/local/openresty/nginx/jwt-lua/ curl -L https://raw.githubusercontent.com/jkeys089/lua-resty-hmac/master/lib/resty/hmac.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/hmac.lua
@@ -56,7 +60,9 @@ curl -L https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/example
 <meta property="og:url" content="https://liming.pub/draft/openresty/" />
 
 <meta itemprop="name" content="">
-<meta itemprop="description" content="== 安装 安装官网步骤安装即可： http://openresty.org/cn/linux-packages.html
+<meta itemprop="description" content="说起后端Web服务，技术选型主要有两个方向：一是企业大型应用，这块是java称霸，选择没有悬念。还有一个是轻快小省型应用，这块选择就比较多了，比如：以开发效率著称的php，python，ruby on rails；以全栈著称的nodejs；以运行效率和并发著称的go，。
+今天主要介绍的主角是lua和nginx的组合：openresty，他运行效率不输go，开发效率不输python，是追求轻快小省极致的最佳选择。
+== 安装 安装官网步骤安装即可： http://openresty.org/cn/linux-packages.html
 == JWT 由于 https://github.com/auth0/nginx-jwt 已经没人维护，所以这里采用 https://github.com/SkyLothar/lua-resty-jwt。
 === lua-resty-jwt安装
 [source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz -C /usr/local/openresty/nginx/jwt-lua/ curl -L https://raw.githubusercontent.com/jkeys089/lua-resty-hmac/master/lib/resty/hmac.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/hmac.lua
@@ -66,14 +72,16 @@ curl -L https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/example
 
 
 
-<meta itemprop="wordCount" content="567">
+<meta itemprop="wordCount" content="649">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="== 安装 安装官网步骤安装即可： http://openresty.org/cn/linux-packages.html
+<meta name="twitter:description" content="说起后端Web服务，技术选型主要有两个方向：一是企业大型应用，这块是java称霸，选择没有悬念。还有一个是轻快小省型应用，这块选择就比较多了，比如：以开发效率著称的php，python，ruby on rails；以全栈著称的nodejs；以运行效率和并发著称的go，。
+今天主要介绍的主角是lua和nginx的组合：openresty，他运行效率不输go，开发效率不输python，是追求轻快小省极致的最佳选择。
+== 安装 安装官网步骤安装即可： http://openresty.org/cn/linux-packages.html
 == JWT 由于 https://github.com/auth0/nginx-jwt 已经没人维护，所以这里采用 https://github.com/SkyLothar/lua-resty-jwt。
 === lua-resty-jwt安装
 [source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz -C /usr/local/openresty/nginx/jwt-lua/ curl -L https://raw.githubusercontent.com/jkeys089/lua-resty-hmac/master/lib/resty/hmac.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/hmac.lua
@@ -142,6 +150,10 @@ curl -L https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/example
           <article class="post">
   <div class="post-content">
     
+
+<p>说起后端Web服务，技术选型主要有两个方向：一是企业大型应用，这块是java称霸，选择没有悬念。还有一个是轻快小省型应用，这块选择就比较多了，比如：以开发效率著称的php，python，ruby on rails；以全栈著称的nodejs；以运行效率和并发著称的go，。</p>
+
+<p>今天主要介绍的主角是lua和nginx的组合：openresty，他运行效率不输go，开发效率不输python，是追求轻快小省极致的最佳选择。</p>
 
 <p>== 安装
 安装官网步骤安装即可： <a href="http://openresty.org/cn/linux-packages.html">http://openresty.org/cn/linux-packages.html</a></p>
@@ -297,24 +309,56 @@ http {
 <h2 id="include-nginx-jwt-lua">include::nginx-jwt.lua[]</h2>
 
 <p>== 获取参数
-. 普通表单提交: application/x-www-form-urlencoded
+. GET
 +</p>
 
 <h2 id="source-1">[source]</h2>
 
-<p>ngx.req.read_body()
-local args = ngx.req.get_post_args()</p>
+<h2 id="local-args-ngx-req-get-uri-args">local args = ngx.req.get_uri_args()</h2>
 
-<h2 id="local-username-args-username">local username = args[&ldquo;username&rdquo;]</h2>
-
-<p>. 含有文件的表单，二进制上传：multipart/form-data
-. 将参数json字符串格式放入body上传，客户端自己解析： application/json</p>
+<p>. POST
+.. 普通表单提交: <code>-H &quot;Content-Type: application/x-www-form-urlencoded&quot;</code>
+访问：<code>curl -X POST -d 'username=admin&amp;password=888881' localhost/login</code>
++</p>
 
 <h2 id="source-2">[source]</h2>
 
-<p>ngx.req.read_body()</p>
+<p>ngx.req.read_body()
+local args = ngx.req.get_post_args()</p>
 
-<h2 id="local-data-ngx-req-get-body-data">local data = ngx.req.get_body_data()</h2>
+<h2 id="ngx-log-ngx-debug-args-username">ngx.log(ngx.DEBUG, args.username)</h2>
+
+<p>.. 将参数json字符串格式放入body上传，客户端自己解析： application/json，
+访问：<code>curl -X POST -d '{&quot;username&quot;: &quot;admin&quot;, &quot;password&quot;:&quot;888881&quot;}' localhost/login</code>
++</p>
+
+<h2 id="source-3">[source]</h2>
+
+<p>ngx.req.read_body()
+local data = ngx.req.get_body_data()
+local cjson = require &ldquo;cjson&rdquo;
+local args = cjson.decode(data)</p>
+
+<h2 id="ngx-log-ngx-debug-args-username-1">ngx.log(ngx.DEBUG, args.username)</h2>
+
+<p>.. 含有文件的表单，二进制上传：multipart/form-data
+访问： <code>curl -d &quot;@data.json&quot; -X POST http://localhost:3000/data</code>
+&hellip; 设置 <a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size[client_max_body_size">http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size[client_max_body_size</a>]
+&hellip; 读取Body文件
++</p>
+
+<h2 id="source-4">[source]</h2>
+
+<p>ngx.req.read_body()
+local data = ngx.req.get_body_data()
+if nil == data then
+    local data_file = ngx.req.get_body_file()
+    ngx.log(ngx.DEBUG, &ldquo;&gt;&gt; temp file: &ldquo;.. data_file)
+    if data_file then
+        data = getFile(data_file)
+    end</p>
+
+<h2 id="end">end</h2>
 
 <p>== 访问</p>
 

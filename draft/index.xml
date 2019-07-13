@@ -12,19 +12,6 @@
     
     <item>
       <title></title>
-      <link>https://liming.pub/draft/asciidoctor/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/asciidoctor/</guid>
-      <description>== 多语言支持 目前官方暂不支持多语言，参考link:https://asciidoctor.org/docs/user-manual/#language-support[文档]和link:https://github.com/asciidoctor/asciidoctor/blob/master/lib/asciidoctor/document.rb[源码]的第361行。
-官方也提供了一个解决方案，就是在具体的adoc文件中通过include来修改中文翻译，如： include::https://raw.githubusercontent.com/asciidoctor/asciidoctor/master/data/locale/attributes-zh_CN.adoc[]。这个方法试了下可以解决问题，但是侵入太大，不是一种优雅的解决方案。
-好在ruby是解释型脚本语言，可以自己动手修改本地运行的源码，修改方法如下：
-. Mac下 brew install asciidoctor 安装后的位置为：/usr/local/Cellar/asciidoctor/2.0.6/libexec/gems/asciidoctor-2.0.6/lib/asciidoctor/document.rb . CentOs下 yum install asciidoctor 安装后的位置为：/usr/share/gems/gems/asciidoctor-1.5.6.1/lib/asciidoctor/document.rb + NOTE: 如果不在此目录，可以使用 gem environment 查看 GEM PATHS 具体路径。 + . 找到如下定义并进行替换修改
-[source,ruby] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  # language strings # TODO load these based on language settings attrs[&amp;#39;caution-caption&amp;#39;] = &amp;#39;注意&amp;#39; attrs[&amp;#39;important-caption&amp;#39;] = &amp;#39;重要&amp;#39; attrs[&amp;#39;note-caption&amp;#39;] = &amp;#39;备注&amp;#39; attrs[&amp;#39;tip-caption&amp;#39;] = &amp;#39;提示&amp;#39; attrs[&amp;#39;warning-caption&amp;#39;] = &amp;#39;警告&amp;#39; attrs[&amp;#39;example-caption&amp;#39;] = &amp;#39;示例&amp;#39; attrs[&amp;#39;figure-caption&amp;#39;] = &amp;#39;数字&amp;#39; #attrs[&amp;#39;listing-caption&amp;#39;] = &amp;#39;清单&amp;#39; attrs[&amp;#39;table-caption&amp;#39;] = &amp;#39;表格&amp;#39; attrs[&amp;#39;toc-title&amp;#39;] = &amp;#39;目录&amp;#39; #attrs[&amp;#39;preface-title&amp;#39;] = &amp;#39;前言&amp;#39; attrs[&amp;#39;section-refsig&amp;#39;] = &amp;#39;章节&amp;#39; attrs[&amp;#39;part-refsig&amp;#39;] = &amp;#39;部&amp;#39; attrs[&amp;#39;chapter-refsig&amp;#39;] = &amp;#39;篇&amp;#39; attrs[&amp;#39;appendix-caption&amp;#39;] = attrs[&amp;#39;appendix-refsig&amp;#39;] = &amp;#39;附录&amp;#39; attrs[&amp;#39;untitled-label&amp;#39;] = &amp;#39;未命名&amp;#39; attrs[&amp;#39;version-label&amp;#39;] = &amp;#39;版本&amp;#39; attrs[&amp;#39;last-update-label&amp;#39;] = &amp;#39;更新于&amp;#39;   == 模板 看了下官方的 https://github.</description>
-    </item>
-    
-    <item>
-      <title></title>
       <link>https://liming.pub/draft/gitlab-ci/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -58,13 +45,33 @@ vi /etc/gitlab/gitlab.rb 输入“/”,查找gitlab_rails[&amp;lsquo;rack_attack
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://liming.pub/draft/openresty/</guid>
-      <description>== 安装 安装官网步骤安装即可： http://openresty.org/cn/linux-packages.html
+      <description>说起后端Web服务，技术选型主要有两个方向：一是企业大型应用，这块是java称霸，选择没有悬念。还有一个是轻快小省型应用，这块选择就比较多了，比如：以开发效率著称的php，python，ruby on rails；以全栈著称的nodejs；以运行效率和并发著称的go，。
+今天主要介绍的主角是lua和nginx的组合：openresty，他运行效率不输go，开发效率不输python，是追求轻快小省极致的最佳选择。
+== 安装 安装官网步骤安装即可： http://openresty.org/cn/linux-packages.html
 == JWT 由于 https://github.com/auth0/nginx-jwt 已经没人维护，所以这里采用 https://github.com/SkyLothar/lua-resty-jwt。
 === lua-resty-jwt安装
 [source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz -C /usr/local/openresty/nginx/jwt-lua/ curl -L https://raw.githubusercontent.com/jkeys089/lua-resty-hmac/master/lib/resty/hmac.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/hmac.lua
 curl -L https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/examples/guard.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/guard.lua === 配置保护资源
 .nginx.conf
 [source] error_log logs/error.log debug; #  http { lua_code_cache off; #  lua_package_path &amp;ldquo;/usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/?.lua;;&amp;rdquo;; server { listen 80; charset utf-8; location = /login { set $jwt_secret &amp;ldquo;lua-resty-jwt&amp;rdquo;; set $jwt_duration 900; content_by_lua &amp;lsquo; &amp;ndash;获取get或post参数 local request_method = ngx.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://liming.pub/draft/ztemplate/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liming.pub/draft/ztemplate/</guid>
+      <description> = 语法规范
+== 语法分析
+.TT2语法概要 [cols=&amp;ldquo;1,4&amp;rdquo;no] |=== |指令|语法
+|赋值 |[% variable = value %]
+|取值 |[% variable %]
+|调用方法 |[% CALL variable %]
+|判断分支 |[% IF condition %] content [% ELSIF condition %] content [% ELSE %] content [% END %]
+|
+|=== [NOTE] 更多语法见link:http://www.template-toolkit.org/docs/modules/Template.html[官网]
+- http://115.236.166.171:9001/framework/file/file-support[Javascript实现] </description>
     </item>
     
   </channel>

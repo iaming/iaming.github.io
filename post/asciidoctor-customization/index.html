@@ -55,7 +55,7 @@
 
 <meta itemprop="datePublished" content="2019-07-13T08:39:51&#43;08:00" />
 <meta itemprop="dateModified" content="2019-07-13T08:39:51&#43;08:00" />
-<meta itemprop="wordCount" content="1373">
+<meta itemprop="wordCount" content="1645">
 
 
 
@@ -134,8 +134,8 @@
         <div class="post-category">
             <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
             </div>
-          <span class="more-meta"> 约 1373 字 </span>
-          <span class="more-meta"> 预计阅读 3 分钟 </span>
+          <span class="more-meta"> 约 1645 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -186,7 +186,7 @@ attrs['example-caption'] = '示例'
 attrs['figure-caption'] = '数字'
 #attrs['listing-caption'] = '清单'
 attrs['table-caption'] = '表格'
-attrs['toc-title'] = '目录'
+attrs['toc-title'] = '本页目录'
 #attrs['preface-title'] = '前言'
 attrs['section-refsig'] = '章节'
 attrs['part-refsig'] = '部'
@@ -245,6 +245,31 @@ attrs['last-update-label'] = '更新于'</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_增加head和foot">增加head和foot</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>当需要在生成的html5的head标签里增加javascript或者一些meta申明时，可以使用docinfo属性， <a href="https://asciidoctor.org/docs/user-manual/#docinfo-file">设置参考</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>在所有生成的html的header中增加一个代码片段</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>新增 /docinfo/dir/docinfo.html 申明js: <code>&lt;script src="/static/js/toc.js"&gt;&lt;/script&gt;</code></p>
+</li>
+<li>
+<p>生成命令中增加属性申明： <code>-a docinfo=shared -a docinfodir=/docinfo/dir/</code></p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_定制模板">定制模板</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -284,6 +309,26 @@ attrs['last-update-label'] = '更新于'</code></pre>
 asciidoctor -D /var/www/document -R . '**/*.adoc'</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>一个完整可用的生成文档命令：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>asciidoctor -a source-highlighter=highlightjs -a linkcss -a stylesdir=/static/css/ -a stylesheet=msdp.css -a toclevels=6 -a toc=right -a toc-title=本页目录 -a last-update-label=更新于 -a sectanchors -a idprefix! -a docinfo=shared -a docinfodir=/static/meta/ -D /var/www/document -R . '**/index.adoc'</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">备注</div>
+</td>
+<td class="content">
+stylesdir 和 docinfodir 为了保证asciidoctor程序和nginx都能找到，可以考虑使用软连接使两个目录保持一致，语法： <code>ln -s 被连接原目录 软连接目录</code>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
     </div>
@@ -308,7 +353,11 @@ asciidoctor -D /var/www/document -R . '**/*.adoc'</code></pre>
           <a href="/tags/shell/">shell</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/nexus-npm-permission/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">npm私有仓库权限设置</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/linux-monitor-shell/">
             <span class="next-text nav-default">Linux脚本监控</span>
             <span class="next-text nav-mobile">下一篇</span>

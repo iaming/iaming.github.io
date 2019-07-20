@@ -17,15 +17,15 @@
       
       <guid>https://liming.pub/draft/gitlab-ci/</guid>
       <description>= Gitlab-CI配置
-== 服务端 === 开启CI === 配置CI == 客户端 === 安装gitlab-runner
+== 服务端 === 开启CI === 配置CI
+. 前端工程 由于npm每次都需要执行 npm install 下载依赖包，所以在配置gitlab-ci.yml的时候把 node_modules/ 目录缓存一下，如下示例：
+[source,yml] stages: - deploy deploy: stage: deploy cache: paths: - node_modules/ script: - angular_npm_publish.sh only: - master tags:
+- deploy angular依赖发布脚本示例：
+.angular_npm_publish.sh
+[source,bash] sed -i &amp;rsquo;s/&amp;ldquo;peerdependencies&amp;rdquo;/&amp;ldquo;dependencies&amp;rdquo;/g&amp;rsquo; package.json npm install sed -i &amp;rsquo;s/&amp;ldquo;dependencies&amp;rdquo;/&amp;ldquo;peerdependencies&amp;rdquo;/g&amp;rsquo; package.json npm run packagr
+npm publish == 客户端 === 安装gitlab-runner
 [source,bash] curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.rpm.sh | sudo bash
-yum install gitlab-ci-multi-runner === 配置gitlab-runner
-vi /etc/gitlab-runner/config.toml
-[source] concurrent = 10 check_interval = 0
-[[runners]] name = &amp;ldquo;name&amp;rdquo; url = &amp;ldquo;http://192.168.1.1/ci&amp;quot; token = &amp;ldquo;&amp;rdquo; executor = &amp;ldquo;shell&amp;rdquo;
-[runners.cache] === 常见问题： . 访问偶尔出现Forbidden 原因：Gitlab使用rack_attack做了并发访问的限制。 解决方案：将Gitlab的IP设置为白名单即可。编辑配置文件：
-vi /etc/gitlab/gitlab.rb 输入“/”,查找gitlab_rails[&amp;lsquo;rack_attack_git_basic_auth&amp;rsquo;]关键词，取消注释。 修改ip_whitelist白名单属性，加入Gitlab部署的IP地址。如下所示：
-1 2 3 4 5 6 7  gitlab_rails[&amp;#39;rack_attack_git_basic_auth&amp;#39;] = { &amp;#39;enabled&amp;#39; =&amp;gt; true, &amp;#39;ip_whitelist&amp;#39; =&amp;gt; [&amp;#34;127.</description>
+yum install gitlab-ci-multi-runner === 配置gitlab-runner</description>
     </item>
     
     <item>
@@ -58,11 +58,24 @@ curl -L https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/example
     
     <item>
       <title></title>
+      <link>https://liming.pub/draft/pandoc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liming.pub/draft/pandoc/</guid>
+      <description> 文档格式转换之王，https://pandoc.org/[Pandoc官网]
+== Word -&amp;gt; Asciidoc
+[source,bash] pandoc &amp;ndash;from=docx &amp;ndash;to=asciidoc &amp;ndash;wrap=none &amp;ndash;atx-headers
+&amp;ndash;extract-media=extracted-media 文件名.docx &amp;gt; 文件名.adoc == Markdown -&amp;gt; Asciidoc
+[source,ash] pandoc -o index.adoc index.md </description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://liming.pub/draft/ztemplate/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://liming.pub/draft/ztemplate/</guid>
-      <description> = 语法规范
+      <description>= 语法规范
 == 语法分析
 .TT2语法概要 [cols=&amp;ldquo;1,4&amp;rdquo;no] |=== |指令|语法
 |赋值 |[% variable = value %]
@@ -70,8 +83,7 @@ curl -L https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/example
 |调用方法 |[% CALL variable %]
 |判断分支 |[% IF condition %] content [% ELSIF condition %] content [% ELSE %] content [% END %]
 |
-|=== [NOTE] 更多语法见link:http://www.template-toolkit.org/docs/modules/Template.html[官网]
-- http://115.236.166.171:9001/framework/file/file-support[Javascript实现] </description>
+|=== [NOTE] 更多语法见link:http://www.template-toolkit.org/docs/modules/Template.html[官网] - http://www.jemplate.net/[Javascript实现] - https://github.com/openresty/lemplate[Lua实现]</description>
     </item>
     
   </channel>

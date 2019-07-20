@@ -16,15 +16,11 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="= 语法规范
-== 语法分析
-.TT2语法概要 [cols=&amp;ldquo;1,4&amp;rdquo;no] |=== |指令|语法
-|赋值 |[% variable = value %]
-|取值 |[% variable %]
-|调用方法 |[% CALL variable %]
-|判断分支 |[% IF condition %] content [% ELSIF condition %] content [% ELSE %] content [% END %]
-|
-|=== [NOTE] 更多语法见link:http://www.template-toolkit.org/docs/modules/Template.html[官网] - http://www.jemplate.net/[Javascript实现] - https://github.com/openresty/lemplate[Lua实现]" /><meta name="keywords" content="liming, iaming, 李明, 最佳实践, 架构, DevOps, linux, 自我管理" />
+<meta name="author" content="liming" /><meta name="description" content=" 文档格式转换之王，https://pandoc.org/[Pandoc官网]
+== Word -&amp;gt; Asciidoc
+[source,bash] pandoc &amp;ndash;from=docx &amp;ndash;to=asciidoc &amp;ndash;wrap=none &amp;ndash;atx-headers
+&amp;ndash;extract-media=extracted-media 文件名.docx &amp;gt; 文件名.adoc == Markdown -&amp;gt; Asciidoc
+[source,ash] pandoc -o index.adoc index.md " /><meta name="keywords" content="liming, iaming, 李明, 最佳实践, 架构, DevOps, linux, 自我管理" />
 
 
 
@@ -34,7 +30,7 @@
 <meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://liming.pub/draft/ztemplate/" />
+<link rel="canonical" href="https://liming.pub/draft/pandoc/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -47,47 +43,35 @@
 
 
 <meta property="og:title" content="" />
-<meta property="og:description" content="= 语法规范
-== 语法分析
-.TT2语法概要 [cols=&ldquo;1,4&rdquo;no] |=== |指令|语法
-|赋值 |[% variable = value %]
-|取值 |[% variable %]
-|调用方法 |[% CALL variable %]
-|判断分支 |[% IF condition %] content [% ELSIF condition %] content [% ELSE %] content [% END %]
-|
-|=== [NOTE] 更多语法见link:http://www.template-toolkit.org/docs/modules/Template.html[官网] - http://www.jemplate.net/[Javascript实现] - https://github.com/openresty/lemplate[Lua实现]" />
+<meta property="og:description" content=" 文档格式转换之王，https://pandoc.org/[Pandoc官网]
+== Word -&gt; Asciidoc
+[source,bash] pandoc &ndash;from=docx &ndash;to=asciidoc &ndash;wrap=none &ndash;atx-headers
+&ndash;extract-media=extracted-media 文件名.docx &gt; 文件名.adoc == Markdown -&gt; Asciidoc
+[source,ash] pandoc -o index.adoc index.md " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://liming.pub/draft/ztemplate/" />
+<meta property="og:url" content="https://liming.pub/draft/pandoc/" />
 
 <meta itemprop="name" content="">
-<meta itemprop="description" content="= 语法规范
-== 语法分析
-.TT2语法概要 [cols=&ldquo;1,4&rdquo;no] |=== |指令|语法
-|赋值 |[% variable = value %]
-|取值 |[% variable %]
-|调用方法 |[% CALL variable %]
-|判断分支 |[% IF condition %] content [% ELSIF condition %] content [% ELSE %] content [% END %]
-|
-|=== [NOTE] 更多语法见link:http://www.template-toolkit.org/docs/modules/Template.html[官网] - http://www.jemplate.net/[Javascript实现] - https://github.com/openresty/lemplate[Lua实现]">
+<meta itemprop="description" content=" 文档格式转换之王，https://pandoc.org/[Pandoc官网]
+== Word -&gt; Asciidoc
+[source,bash] pandoc &ndash;from=docx &ndash;to=asciidoc &ndash;wrap=none &ndash;atx-headers
+&ndash;extract-media=extracted-media 文件名.docx &gt; 文件名.adoc == Markdown -&gt; Asciidoc
+[source,ash] pandoc -o index.adoc index.md ">
 
 
 
-<meta itemprop="wordCount" content="49">
+<meta itemprop="wordCount" content="24">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="= 语法规范
-== 语法分析
-.TT2语法概要 [cols=&ldquo;1,4&rdquo;no] |=== |指令|语法
-|赋值 |[% variable = value %]
-|取值 |[% variable %]
-|调用方法 |[% CALL variable %]
-|判断分支 |[% IF condition %] content [% ELSIF condition %] content [% ELSE %] content [% END %]
-|
-|=== [NOTE] 更多语法见link:http://www.template-toolkit.org/docs/modules/Template.html[官网] - http://www.jemplate.net/[Javascript实现] - https://github.com/openresty/lemplate[Lua实现]"/>
+<meta name="twitter:description" content=" 文档格式转换之王，https://pandoc.org/[Pandoc官网]
+== Word -&gt; Asciidoc
+[source,bash] pandoc &ndash;from=docx &ndash;to=asciidoc &ndash;wrap=none &ndash;atx-headers
+&ndash;extract-media=extracted-media 文件名.docx &gt; 文件名.adoc == Markdown -&gt; Asciidoc
+[source,ash] pandoc -o index.adoc index.md "/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -149,40 +133,23 @@
         <div id="content" class="content">
           <article class="post">
   <div class="post-content">
-    <p>= 语法规范</p>
+    
 
-<p>== 语法分析</p>
+<p>文档格式转换之王，<a href="https://pandoc.org/[Pandoc官网">https://pandoc.org/[Pandoc官网</a>]</p>
 
-<p>.TT2语法概要
-[cols=&ldquo;1,4&rdquo;no]
-|===
-|指令|语法</p>
+<p>== Word -&gt; Asciidoc</p>
 
-<p>|赋值
-|[% variable = value %]</p>
+<h2 id="source-bash">[source,bash]</h2>
 
-<p>|取值
-|[% variable %]</p>
+<p>pandoc &ndash;from=docx &ndash;to=asciidoc &ndash;wrap=none &ndash;atx-headers</p>
 
-<p>|调用方法
-|[% CALL variable %]</p>
+<h2 id="extract-media-extracted-media-文件名-docx-文件名-adoc">&ndash;extract-media=extracted-media 文件名.docx &gt; 文件名.adoc</h2>
 
-<p>|判断分支
-|[% IF condition %]
-   content
-[% ELSIF condition %]
- content
-[% ELSE %]
- content
-[% END %]</p>
+<p>== Markdown -&gt; Asciidoc</p>
 
-<p>|</p>
+<h2 id="source-ash">[source,ash]</h2>
 
-<p>|===
-[NOTE]
-更多语法见link:<a href="http://www.template-toolkit.org/docs/modules/Template.html[官网">http://www.template-toolkit.org/docs/modules/Template.html[官网</a>]
-- <a href="http://www.jemplate.net/[Javascript实现">http://www.jemplate.net/[Javascript实现</a>]
-- <a href="https://github.com/openresty/lemplate[Lua实现">https://github.com/openresty/lemplate[Lua实现</a>]</p>
+<h2 id="pandoc-o-index-adoc-index-md">pandoc -o index.adoc index.md</h2>
 
   </div>
 </article>

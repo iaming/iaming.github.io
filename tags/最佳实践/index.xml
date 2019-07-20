@@ -6,10 +6,21 @@
     <description>Recent content in 最佳实践 on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 23 Jun 2019 14:48:56 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jul 2019 07:57:43 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>npm私有仓库权限设置</title>
+      <link>https://liming.pub/post/nexus-npm-permission/</link>
+      <pubDate>Sat, 20 Jul 2019 07:57:43 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/nexus-npm-permission/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Group聚合仓库，以满足前端日常开发和发布需要。&lt;/p&gt;
+&lt;/div&gt;</description>
+    </item>
     
     <item>
       <title>rsync实践</title>

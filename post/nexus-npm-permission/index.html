@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Nexus安装和配置 - liming.pub</title>
+  <title>npm私有仓库权限设置 - liming.pub</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,8 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。
-" /><meta name="keywords" content="liming, iaming, 李明, 最佳实践, 架构, DevOps, linux, 自我管理" />
+<meta name="author" content="liming" /><meta name="description" content="nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Group聚合仓库，以满足前端日常开发和发布需要。
+" /><meta name="keywords" content="nexus, npm" />
 
 
 
@@ -27,7 +27,7 @@
 <meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://liming.pub/post/nexus-settings/" />
+<link rel="canonical" href="https://liming.pub/post/nexus-npm-permission/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,31 +39,31 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Nexus安装和配置" />
+<meta property="og:title" content="npm私有仓库权限设置" />
 <meta property="og:description" content="
-Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。
+nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Group聚合仓库，以满足前端日常开发和发布需要。
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://liming.pub/post/nexus-settings/" /><meta property="article:published_time" content="2019-06-09T22:22:50&#43;08:00"/>
-<meta property="article:modified_time" content="2019-06-09T22:22:50&#43;08:00"/>
+<meta property="og:url" content="https://liming.pub/post/nexus-npm-permission/" /><meta property="article:published_time" content="2019-07-20T07:57:43&#43;08:00"/>
+<meta property="article:modified_time" content="2019-07-20T07:57:43&#43;08:00"/>
 
-<meta itemprop="name" content="Nexus安装和配置">
+<meta itemprop="name" content="npm私有仓库权限设置">
 <meta itemprop="description" content="
-Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。
+nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Group聚合仓库，以满足前端日常开发和发布需要。
 ">
 
 
-<meta itemprop="datePublished" content="2019-06-09T22:22:50&#43;08:00" />
-<meta itemprop="dateModified" content="2019-06-09T22:22:50&#43;08:00" />
-<meta itemprop="wordCount" content="617">
+<meta itemprop="datePublished" content="2019-07-20T07:57:43&#43;08:00" />
+<meta itemprop="dateModified" content="2019-07-20T07:57:43&#43;08:00" />
+<meta itemprop="wordCount" content="751">
 
 
 
-<meta itemprop="keywords" content="nexus,DevOps,运维,最佳实践," />
+<meta itemprop="keywords" content="nexus,npm,DevOps,运维,最佳实践," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Nexus安装和配置"/>
+<meta name="twitter:title" content="npm私有仓库权限设置"/>
 <meta name="twitter:description" content="
-Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。
+nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Group聚合仓库，以满足前端日常开发和发布需要。
 "/>
 
 <!--[if lte IE 9]>
@@ -127,14 +127,14 @@ Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Nexus安装和配置</h1>
+      <h1 class="post-title">npm私有仓库权限设置</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-06-09 22:22:50 </span>
+        <span class="post-time"> 2019-07-20 07:57:43 </span>
         <div class="post-category">
             <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
             </div>
-          <span class="more-meta"> 约 617 字 </span>
+          <span class="more-meta"> 约 751 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -148,184 +148,138 @@ Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本
 </div>
     <div class="post-content">
       <div class="paragraph">
-<p>Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。</p>
+<p>nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Group聚合仓库，以满足前端日常开发和发布需要。</p>
 </div>
 <div class="sect1">
-<h2 id="_安装">安装</h2>
+<h2 id="_仓库设计">仓库设计</h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
+<div class="paragraph">
+<p>功能入口：Administrator &#8594; Repository &#8594;Blob Stores/Repositories</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p>Docker方式</p>
+<p>npm-proxy
+代理仓库，remote storage设置为官方仓库(<a href="https://registry.npmjs.org)，或者国内镜像(https://registry.npm.taobao.org)。独立Blob" class="bare">https://registry.npmjs.org)，或者国内镜像(https://registry.npm.taobao.org)。独立Blob</a> Stores(npm-proxy)，限额10G。</p>
 </li>
-</ol>
+<li>
+<p>npm-hosted
+自建仓库，用于本地发布。独立Blob Stores(npm-hosted)，限额10G。</p>
+</li>
+<li>
+<p>npm-group
+聚合仓库：代理仓库（npm-proxy）和自建仓库（npm-hosted），方便使用。</p>
+</li>
+</ul>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">mkdir -p /home/docker/volumes/nexus/nexus-data &amp;&amp; chown -R 200 /home/docker/volumes/nexus/nexus-data
-
-docker run -d -p 8081:8081 -p 8082:8082 -p 8083:8083 -p 8084:8084 --name nexus -e NEXUS_CONTEXT=nexus -v /home/docker/volumes/nexus/nexus-data:/nexus-data
---restart=always sonatype/nexus3:3.16.2</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">备注</div>
-</td>
-<td class="content">
-默认用户名: admin / admin123，第一次进去后记得修改掉。
-</td>
-</tr>
-</table>
+<div class="sect1">
+<h2 id="_角色设置">角色设置</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>功能入口：Administration &#8594; Security &#8594; Roles
+. npm-publish 发布npm，有如下权限
+.. nx-repository-view-npm-npm-hosted-add
+.. nx-repository-view-npm-npm-hosted-edit
+.. nx-repository-view-npm-npm-hosted-read
+. npm-download 使用npm，有如下权限
+.. nx-repository-view-npm-npm-group-browse
+.. nx-repository-view-npm-npm-group-read</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_用户设置">用户设置</h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>本地用户
-配置位置：Administration &#8594; Security &#8594; Users</p>
-</li>
-<li>
-<p>LDAP用户</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>配置LDAP服务
-Administration &#8594; Security &#8594; LDAP</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Crete Connection</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Search base:dc=,dc=com</p>
-</li>
-<li>
-<p>Authentication method: Simple Authentication</p>
-</li>
-<li>
-<p>Username or DN:管理员dn</p>
-</li>
-<li>
-<p>Password：管理员密码</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>user and group</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Base DN: 不包含search DN</p>
-</li>
-<li>
-<p>User subtree: 如果有组织结构，勾选，如果只有用户列表，则不勾选</p>
-</li>
-<li>
-<p>Object class: inetOrgPerson</p>
-</li>
-<li>
-<p>User filter: uid=*</p>
-</li>
-<li>
-<p>User ID attribute: uid</p>
-</li>
-<li>
-<p>Real name attribute: cn</p>
-</li>
-<li>
-<p>Email attribute: mail</p>
-</li>
-<li>
-<p>Password attribute: 不要设置</p>
-</li>
-<li>
-<p>Map LDAP group as roles: 不适用角色</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>开启LDAP验证
-Administratio &#8594; Security &#8594; Realms &#8594; LDAP Bearer Token realm</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p>Security&#8594;Users&#8594;Create User：xxx，授予角色：npm-publish、npm-download</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_安全设置">安全设置</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>去掉匿名访问：取消勾选`administration&#8594;security&#8594;Anonymous&#8594;Allow anonymous users to access the server
-`</p>
-</li>
-<li>
-<p>去掉匿名pull：仓库勾选`force basic authentication`</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_磁盘空间设置">磁盘空间设置</h2>
+<h2 id="_开始npm验证">开始npm验证</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>迭代开发过程中会有大量中间过程的仓库文件，所以一定要配置一下磁盘限制和清理，否则nexus会很快就把磁盘空间给填满。</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>磁盘限额，每个仓库都独立一个Blob stores，对Blob设置最大磁盘空间</p>
-</li>
-<li>
-<p>定时清理，设置定时任务清理无用的仓库文件，功能入口： System &#8594; Tasks。主要设置如下几个：</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Docker - Delete unused manifests and images</p>
-</li>
-<li>
-<p>Docker - Delete incomplete uploads</p>
-</li>
-<li>
-<p>Admin - Compact blob store</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
+<p>功能入口：Administration &#8594; Security &#8594; realms &#8594; npm Bearer Token realm</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_相关文章">相关文章</h2>
+<h2 id="_客户端使用">客户端使用</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><a href="../nexus-maven-permission/">Maven私有仓库权限设置</a></p>
+<p>查看仓库列表：<code>cat ~/.npmrc</code></p>
 </li>
 <li>
-<p><a href="../nexus-docker-permission/">Docker私有仓库权限设置</a></p>
+<p>查看当前仓库：<code>npm config get registry</code></p>
+</li>
+<li>
+<p>设置当前仓库：<code>npm config set registry</code></p>
+</li>
+<li>
+<p>登录：<code>npm login</code></p>
 </li>
 </ul>
+</div>
+<div class="sect2">
+<h3 id="_开发人员">开发人员</h3>
+<div class="paragraph">
+<p>开发人员在开发过程中需要下载npm的依赖，包括官方的和私有的。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm config set registry https://repo.liming.pub/nexus/repository/npm-group/ # <b class="conum">(1)</b>
+npm login --registry=https://repo.liming.pub/nexus/repository/npm-group/ # <b class="conum">(2)</b>
+npm get registry # <b class="conum">(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>设置主仓库</p>
+</li>
+<li>
+<p>登录主仓库</p>
+</li>
+<li>
+<p>检查是否设置成功</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_配管人员">配管人员</h3>
+<div class="paragraph">
+<p>配管人员主要职责是发布测试或生产包，所以比开发人员多了个部署发布npm包的权限。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm config set registry https://repo.liming.pub/nexus/repository/npm-group/ # <b class="conum">(1)</b>
+npm login --registry=https://repo.liming.pub/nexus/repository/npm-group/ # <b class="conum">(2)</b>
+
+npm login --registry=https://repo.liming.pub/nexus/repository/npm-hosted/ # <b class="conum">(3)</b>
+npm publish --registry=https://repo.liming.pub/nexus/repository/npm-hosted/ # <b class="conum">(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>设置主仓库为npm-group，可以下载npm-proxy和npm-hosted仓库的npm包</p>
+</li>
+<li>
+<p>主仓库（npm-group）登录</p>
+</li>
+<li>
+<p>自建仓库（npm-hosted）登录，用于发布私有npm包到npm-hosted</p>
+</li>
+<li>
+<p>指定自建仓库（npm-hosted）发布</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
@@ -338,7 +292,7 @@ Administratio &#8594; Security &#8594; Realms &#8594; LDAP Bearer Token realm</p
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2019-06-09 22:22:50</span>
+    <span class="item-content">2019-07-20 07:57:43</span>
   </p>
   
   <p class="copyright-item">
@@ -348,18 +302,15 @@ Administratio &#8594; Security &#8594; Realms &#8594; LDAP Bearer Token realm</p
 </div><footer class="post-footer">
       <div class="post-tags">
           <a href="/tags/nexus/">nexus</a>
+          <a href="/tags/npm/">npm</a>
           <a href="/tags/devops/">DevOps</a>
           <a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
           <a href="/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">最佳实践</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/nexus-docker-permission/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Docker私有仓库权限设置</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/post/ssh-practical-skills/">
-            <span class="next-text nav-default">SSH实用技巧</span>
+        
+        <a class="next" href="/post/asciidoctor-customization/">
+            <span class="next-text nav-default">AsciiDoctor高阶定制</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -372,8 +323,8 @@ Administratio &#8594; Security &#8594; Realms &#8594; LDAP Bearer Token realm</p
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-06-09 22:22:50 \x2b0800 CST',
-        title: 'Nexus安装和配置',
+        id: '2019-07-20 07:57:43 \x2b0800 CST',
+        title: 'npm私有仓库权限设置',
         clientID: 'f35ddb3b03b9257b76d0',
         clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
         repo: 'iaming.github.io',

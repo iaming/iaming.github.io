@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-03-09T21:59:50&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-09T21:59:50&#43;08:00" />
-<meta itemprop="wordCount" content="1544">
+<meta itemprop="wordCount" content="1683">
 
 
 
@@ -128,7 +128,7 @@
         <div class="post-category">
             <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
             </div>
-          <span class="more-meta"> 约 1544 字 </span>
+          <span class="more-meta"> 约 1683 字 </span>
           <span class="more-meta"> 预计阅读 4 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -600,7 +600,11 @@ return 301 https://$host$request_uri;
 <h2 id="安全相关">安全相关</h2>
 
 <ol>
-<li>nginx目录及目录下的所有文件，属主不能是nginx，目录权限只能744，文件权限只能是644。</li>
+<li>nginx目录及目录下的所有文件，属主不能是nginx，目录权限只能744，文件权限只能是644；</li>
+<li>当根目录下没有申明的索引文件时，也会报403错误，不一定是目录权限的问题；</li>
+<li>隐藏nginx版本号，在http节点增加 <code>server_tokens off;</code> ；</li>
+<li>location uri配置中 uri需要带 <code>/</code> ，防止任意文件读取；</li>
+<li>使用 <code>$request_uri</code> 代替 <code>$uri</code> ；</li>
 </ol>
 
 <h2 id="其他">其他</h2>
@@ -610,9 +614,9 @@ return 301 https://$host$request_uri;
 <p>如：</p>
 
 <ol>
-<li>将 <code>root /var/www/html -default/;</code> 配置在server节点，这样所有location不用配置。</li>
+<li>将 <code>root /var/www/html-default/;</code> 配置在server节点，这样所有location不用配置。</li>
 <li>将 <code>index index.htm index.html;</code> 配置在http节点，这样所有的server也不用配置。</li>
-<li>减少使用 if , 借助于重定向301和try_files，如 <code>try_files $uri $uri/ /index.html;</code></li>
+<li>减少使用 if , 借助于重定向301和try_files，如 <code>try_files $uri $uri/index.html /v2/$uri /v2/$uri/index.html =404;</code>，注意try_files的最后一个是内部重定向，前面的值是相对root目录的文件路径。</li>
 </ol>
     </div>
 

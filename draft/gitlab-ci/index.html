@@ -17,15 +17,15 @@
 
 
 <meta name="author" content="liming" /><meta name="description" content="= Gitlab-CI配置
-== 服务端 === 开启CI === 配置CI == 客户端 === 安装gitlab-runner
+== 服务端 === 开启CI === 配置CI
+. 前端工程 由于npm每次都需要执行 npm install 下载依赖包，所以在配置gitlab-ci.yml的时候把 node_modules/ 目录缓存一下，如下示例：
+[source,yml] stages: - deploy deploy: stage: deploy cache: paths: - node_modules/ script: - angular_npm_publish.sh only: - master tags:
+- deploy angular依赖发布脚本示例：
+.angular_npm_publish.sh
+[source,bash] sed -i &amp;rsquo;s/&amp;ldquo;peerdependencies&amp;rdquo;/&amp;ldquo;dependencies&amp;rdquo;/g&amp;rsquo; package.json npm install sed -i &amp;rsquo;s/&amp;ldquo;dependencies&amp;rdquo;/&amp;ldquo;peerdependencies&amp;rdquo;/g&amp;rsquo; package.json npm run packagr
+npm publish == 客户端 === 安装gitlab-runner
 [source,bash] curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.rpm.sh | sudo bash
-yum install gitlab-ci-multi-runner === 配置gitlab-runner
-vi /etc/gitlab-runner/config.toml
-[source] concurrent = 10 check_interval = 0
-[[runners]] name = &amp;ldquo;name&amp;rdquo; url = &amp;ldquo;http://192.168.1.1/ci&amp;quot; token = &amp;ldquo;&amp;rdquo; executor = &amp;ldquo;shell&amp;rdquo;
-[runners.cache] === 常见问题： . 访问偶尔出现Forbidden 原因：Gitlab使用rack_attack做了并发访问的限制。 解决方案：将Gitlab的IP设置为白名单即可。编辑配置文件：
-vi /etc/gitlab/gitlab.rb 输入“/”,查找gitlab_rails[&amp;lsquo;rack_attack_git_basic_auth&amp;rsquo;]关键词，取消注释。 修改ip_whitelist白名单属性，加入Gitlab部署的IP地址。如下所示：
-1 2 3 4 5 6 7  gitlab_rails[&amp;#39;rack_attack_git_basic_auth&amp;#39;] = { &amp;#39;enabled&amp;#39; =&amp;gt; true, &amp;#39;ip_whitelist&amp;#39; =&amp;gt; [&amp;#34;127." /><meta name="keywords" content="liming, iaming, 李明, 最佳实践, 架构, DevOps, linux, 自我管理" />
+yum install gitlab-ci-multi-runner === 配置gitlab-runner" /><meta name="keywords" content="liming, iaming, 李明, 最佳实践, 架构, DevOps, linux, 自我管理" />
 
 
 
@@ -49,33 +49,33 @@ vi /etc/gitlab/gitlab.rb 输入“/”,查找gitlab_rails[&amp;lsquo;rack_attack
 
 <meta property="og:title" content="" />
 <meta property="og:description" content="= Gitlab-CI配置
-== 服务端 === 开启CI === 配置CI == 客户端 === 安装gitlab-runner
+== 服务端 === 开启CI === 配置CI
+. 前端工程 由于npm每次都需要执行 npm install 下载依赖包，所以在配置gitlab-ci.yml的时候把 node_modules/ 目录缓存一下，如下示例：
+[source,yml] stages: - deploy deploy: stage: deploy cache: paths: - node_modules/ script: - angular_npm_publish.sh only: - master tags:
+- deploy angular依赖发布脚本示例：
+.angular_npm_publish.sh
+[source,bash] sed -i &rsquo;s/&ldquo;peerdependencies&rdquo;/&ldquo;dependencies&rdquo;/g&rsquo; package.json npm install sed -i &rsquo;s/&ldquo;dependencies&rdquo;/&ldquo;peerdependencies&rdquo;/g&rsquo; package.json npm run packagr
+npm publish == 客户端 === 安装gitlab-runner
 [source,bash] curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.rpm.sh | sudo bash
-yum install gitlab-ci-multi-runner === 配置gitlab-runner
-vi /etc/gitlab-runner/config.toml
-[source] concurrent = 10 check_interval = 0
-[[runners]] name = &ldquo;name&rdquo; url = &ldquo;http://192.168.1.1/ci&quot; token = &ldquo;&rdquo; executor = &ldquo;shell&rdquo;
-[runners.cache] === 常见问题： . 访问偶尔出现Forbidden 原因：Gitlab使用rack_attack做了并发访问的限制。 解决方案：将Gitlab的IP设置为白名单即可。编辑配置文件：
-vi /etc/gitlab/gitlab.rb 输入“/”,查找gitlab_rails[&lsquo;rack_attack_git_basic_auth&rsquo;]关键词，取消注释。 修改ip_whitelist白名单属性，加入Gitlab部署的IP地址。如下所示：
-1 2 3 4 5 6 7  gitlab_rails[&#39;rack_attack_git_basic_auth&#39;] = { &#39;enabled&#39; =&gt; true, &#39;ip_whitelist&#39; =&gt; [&#34;127." />
+yum install gitlab-ci-multi-runner === 配置gitlab-runner" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liming.pub/draft/gitlab-ci/" />
 
 <meta itemprop="name" content="">
 <meta itemprop="description" content="= Gitlab-CI配置
-== 服务端 === 开启CI === 配置CI == 客户端 === 安装gitlab-runner
+== 服务端 === 开启CI === 配置CI
+. 前端工程 由于npm每次都需要执行 npm install 下载依赖包，所以在配置gitlab-ci.yml的时候把 node_modules/ 目录缓存一下，如下示例：
+[source,yml] stages: - deploy deploy: stage: deploy cache: paths: - node_modules/ script: - angular_npm_publish.sh only: - master tags:
+- deploy angular依赖发布脚本示例：
+.angular_npm_publish.sh
+[source,bash] sed -i &rsquo;s/&ldquo;peerdependencies&rdquo;/&ldquo;dependencies&rdquo;/g&rsquo; package.json npm install sed -i &rsquo;s/&ldquo;dependencies&rdquo;/&ldquo;peerdependencies&rdquo;/g&rsquo; package.json npm run packagr
+npm publish == 客户端 === 安装gitlab-runner
 [source,bash] curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.rpm.sh | sudo bash
-yum install gitlab-ci-multi-runner === 配置gitlab-runner
-vi /etc/gitlab-runner/config.toml
-[source] concurrent = 10 check_interval = 0
-[[runners]] name = &ldquo;name&rdquo; url = &ldquo;http://192.168.1.1/ci&quot; token = &ldquo;&rdquo; executor = &ldquo;shell&rdquo;
-[runners.cache] === 常见问题： . 访问偶尔出现Forbidden 原因：Gitlab使用rack_attack做了并发访问的限制。 解决方案：将Gitlab的IP设置为白名单即可。编辑配置文件：
-vi /etc/gitlab/gitlab.rb 输入“/”,查找gitlab_rails[&lsquo;rack_attack_git_basic_auth&rsquo;]关键词，取消注释。 修改ip_whitelist白名单属性，加入Gitlab部署的IP地址。如下所示：
-1 2 3 4 5 6 7  gitlab_rails[&#39;rack_attack_git_basic_auth&#39;] = { &#39;enabled&#39; =&gt; true, &#39;ip_whitelist&#39; =&gt; [&#34;127.">
+yum install gitlab-ci-multi-runner === 配置gitlab-runner">
 
 
 
-<meta itemprop="wordCount" content="250">
+<meta itemprop="wordCount" content="296">
 
 
 
@@ -83,15 +83,15 @@ vi /etc/gitlab/gitlab.rb 输入“/”,查找gitlab_rails[&lsquo;rack_attack_git
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
 <meta name="twitter:description" content="= Gitlab-CI配置
-== 服务端 === 开启CI === 配置CI == 客户端 === 安装gitlab-runner
+== 服务端 === 开启CI === 配置CI
+. 前端工程 由于npm每次都需要执行 npm install 下载依赖包，所以在配置gitlab-ci.yml的时候把 node_modules/ 目录缓存一下，如下示例：
+[source,yml] stages: - deploy deploy: stage: deploy cache: paths: - node_modules/ script: - angular_npm_publish.sh only: - master tags:
+- deploy angular依赖发布脚本示例：
+.angular_npm_publish.sh
+[source,bash] sed -i &rsquo;s/&ldquo;peerdependencies&rdquo;/&ldquo;dependencies&rdquo;/g&rsquo; package.json npm install sed -i &rsquo;s/&ldquo;dependencies&rdquo;/&ldquo;peerdependencies&rdquo;/g&rsquo; package.json npm run packagr
+npm publish == 客户端 === 安装gitlab-runner
 [source,bash] curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.rpm.sh | sudo bash
-yum install gitlab-ci-multi-runner === 配置gitlab-runner
-vi /etc/gitlab-runner/config.toml
-[source] concurrent = 10 check_interval = 0
-[[runners]] name = &ldquo;name&rdquo; url = &ldquo;http://192.168.1.1/ci&quot; token = &ldquo;&rdquo; executor = &ldquo;shell&rdquo;
-[runners.cache] === 常见问题： . 访问偶尔出现Forbidden 原因：Gitlab使用rack_attack做了并发访问的限制。 解决方案：将Gitlab的IP设置为白名单即可。编辑配置文件：
-vi /etc/gitlab/gitlab.rb 输入“/”,查找gitlab_rails[&lsquo;rack_attack_git_basic_auth&rsquo;]关键词，取消注释。 修改ip_whitelist白名单属性，加入Gitlab部署的IP地址。如下所示：
-1 2 3 4 5 6 7  gitlab_rails[&#39;rack_attack_git_basic_auth&#39;] = { &#39;enabled&#39; =&gt; true, &#39;ip_whitelist&#39; =&gt; [&#34;127."/>
+yum install gitlab-ci-multi-runner === 配置gitlab-runner"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -159,11 +159,45 @@ vi /etc/gitlab/gitlab.rb 输入“/”,查找gitlab_rails[&lsquo;rack_attack_git
 
 <p>== 服务端
 === 开启CI
-=== 配置CI
-== 客户端
-=== 安装gitlab-runner</p>
+=== 配置CI</p>
+
+<p>. 前端工程
+由于npm每次都需要执行 npm install 下载依赖包，所以在配置gitlab-ci.yml的时候把 node_modules/ 目录缓存一下，如下示例：</p>
+
+<h2 id="source-yml">[source,yml]</h2>
+
+<p>stages:
+- deploy
+deploy:
+  stage: deploy
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - angular_npm_publish.sh
+  only:
+    - master
+  tags:</p>
+
+<h2 id="deploy">- deploy</h2>
+
+<p>angular依赖发布脚本示例：</p>
+
+<p>.angular_npm_publish.sh</p>
 
 <h2 id="source-bash">[source,bash]</h2>
+
+<p>sed -i &rsquo;s/&ldquo;peerdependencies&rdquo;/&ldquo;dependencies&rdquo;/g&rsquo; package.json
+npm install
+sed -i &rsquo;s/&ldquo;dependencies&rdquo;/&ldquo;peerdependencies&rdquo;/g&rsquo; package.json
+npm run packagr</p>
+
+<h2 id="npm-publish">npm publish</h2>
+
+<p>== 客户端
+=== 安装gitlab-runner</p>
+
+<h2 id="source-bash-1">[source,bash]</h2>
 
 <p>curl -L <a href="https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.rpm.sh">https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.rpm.sh</a> | sudo bash</p>
 
@@ -264,7 +298,7 @@ sidekiq[&lsquo;concurrency&rsquo;] = 25
 
 <p>设置完成后重启</p>
 
-<h2 id="source-bash-1">[source,bash]</h2>
+<h2 id="source-bash-2">[source,bash]</h2>
 
 <p>sudo gitlab-ctl reconfigure</p>
 
@@ -274,7 +308,7 @@ sidekiq[&lsquo;concurrency&rsquo;] = 25
 
 <p>. 生产本机ssh备份秘钥</p>
 
-<h2 id="source-bash-2">[source,bash]</h2>
+<h2 id="source-bash-3">[source,bash]</h2>
 
 <h2 id="ssh-keygen-t-rsa-c-gitlab-back-f-ssh-id-rsa-gitlab-backup">ssh-keygen -t rsa -C gitlab_back -f ~/.ssh/id_rsa_gitlab_backup</h2>
 

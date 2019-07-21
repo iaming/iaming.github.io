@@ -55,7 +55,7 @@ nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Grou
 
 <meta itemprop="datePublished" content="2019-07-20T07:57:43&#43;08:00" />
 <meta itemprop="dateModified" content="2019-07-20T07:57:43&#43;08:00" />
-<meta itemprop="wordCount" content="751">
+<meta itemprop="wordCount" content="793">
 
 
 
@@ -134,7 +134,7 @@ nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Grou
         <div class="post-category">
             <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
             </div>
-          <span class="more-meta"> 约 751 字 </span>
+          <span class="more-meta"> 约 793 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -160,7 +160,7 @@ nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Grou
 <ul>
 <li>
 <p>npm-proxy
-代理仓库，remote storage设置为官方仓库(<a href="https://registry.npmjs.org)，或者国内镜像(https://registry.npm.taobao.org)。独立Blob" class="bare">https://registry.npmjs.org)，或者国内镜像(https://registry.npm.taobao.org)。独立Blob</a> Stores(npm-proxy)，限额10G。</p>
+代理仓库，remote storage设置为官方仓库(<code><a href="https://registry.npmjs.org" class="bare">https://registry.npmjs.org</a></code>)，或者国内镜像(<code><a href="https://registry.npm.taobao.org" class="bare">https://registry.npm.taobao.org</a></code>)。独立Blob Stores(npm-proxy)，限额10G。</p>
 </li>
 <li>
 <p>npm-hosted
@@ -178,14 +178,40 @@ nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Grou
 <h2 id="_角色设置">角色设置</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>功能入口：Administration &#8594; Security &#8594; Roles
-. npm-publish 发布npm，有如下权限
-.. nx-repository-view-npm-npm-hosted-add
-.. nx-repository-view-npm-npm-hosted-edit
-.. nx-repository-view-npm-npm-hosted-read
-. npm-download 使用npm，有如下权限
-.. nx-repository-view-npm-npm-group-browse
-.. nx-repository-view-npm-npm-group-read</p>
+<p>功能入口：Administration &#8594; Security &#8594; Roles</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>npm-publish 发布npm，有如下权限</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>nx-repository-view-npm-npm-hosted-add</p>
+</li>
+<li>
+<p>nx-repository-view-npm-npm-hosted-edit</p>
+</li>
+<li>
+<p>nx-repository-view-npm-npm-hosted-read</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>npm-download 使用npm，有如下权限</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>nx-repository-view-npm-npm-group-browse</p>
+</li>
+<li>
+<p>nx-repository-view-npm-npm-group-read</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -198,7 +224,7 @@ nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Grou
 </div>
 </div>
 <div class="sect1">
-<h2 id="_开始npm验证">开始npm验证</h2>
+<h2 id="_开启npm验证">开启npm验证</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>功能入口：Administration &#8594; Security &#8594; realms &#8594; npm Bearer Token realm</p>
@@ -225,7 +251,7 @@ nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Grou
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_开发人员">开发人员</h3>
+<h3 id="_开发人员使用方法">开发人员使用方法</h3>
 <div class="paragraph">
 <p>开发人员在开发过程中需要下载npm的依赖，包括官方的和私有的。</p>
 </div>
@@ -251,7 +277,7 @@ npm get registry # <b class="conum">(3)</b></code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_配管人员">配管人员</h3>
+<h3 id="_配管人员使用方法">配管人员使用方法</h3>
 <div class="paragraph">
 <p>配管人员主要职责是发布测试或生产包，所以比开发人员多了个部署发布npm包的权限。</p>
 </div>
@@ -280,6 +306,24 @@ npm publish --registry=https://repo.liming.pub/nexus/repository/npm-hosted/ # <b
 </li>
 </ol>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_相关文章">相关文章</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="/post/nexus-settings/">Nexus安装和配置</a></p>
+</li>
+<li>
+<p><a href="/post/nexus-maven-permission/">Maven私有仓库权限设置</a></p>
+</li>
+<li>
+<p><a href="/post/nexus-docker-permission/">Docker私有仓库权限设置</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>

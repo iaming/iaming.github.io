@@ -16,7 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="" /><meta name="keywords" content="git, git开发流程规范, Git Flow, GitHub Flow, Gitlab Flow" />
+<meta name="author" content="liming" /><meta name="description" content="Git常见的三种协作开发模式：Git Flow &amp;amp; GitHub Flow &amp;amp; Gitlab Flow，本文只是对上述几种模式进行吸收融合，结合项目实战总结出的比较实用的分支写作规范。
+" /><meta name="keywords" content="git, git开发流程规范, Git Flow, GitHub Flow, Gitlab Flow" />
 
 
 
@@ -39,25 +40,31 @@
 
 
 <meta property="og:title" content="Git分支策略及开发流程规范" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="
+Git常见的三种协作开发模式：Git Flow &amp; GitHub Flow &amp; Gitlab Flow，本文只是对上述几种模式进行吸收融合，结合项目实战总结出的比较实用的分支写作规范。
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liming.pub/post/git-branch-develop-specification/" /><meta property="article:published_time" content="2019-06-02T11:35:02&#43;08:00"/>
 <meta property="article:modified_time" content="2019-06-02T11:35:02&#43;08:00"/>
 
 <meta itemprop="name" content="Git分支策略及开发流程规范">
-<meta itemprop="description" content="">
+<meta itemprop="description" content="
+Git常见的三种协作开发模式：Git Flow &amp; GitHub Flow &amp; Gitlab Flow，本文只是对上述几种模式进行吸收融合，结合项目实战总结出的比较实用的分支写作规范。
+">
 
 
 <meta itemprop="datePublished" content="2019-06-02T11:35:02&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-02T11:35:02&#43;08:00" />
-<meta itemprop="wordCount" content="0">
+<meta itemprop="wordCount" content="3364">
 
 
 
 <meta itemprop="keywords" content="git,最佳实践,规范,DevOps," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Git分支策略及开发流程规范"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="
+Git常见的三种协作开发模式：Git Flow &amp; GitHub Flow &amp; Gitlab Flow，本文只是对上述几种模式进行吸收融合，结合项目实战总结出的比较实用的分支写作规范。
+"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -127,8 +134,8 @@
         <div class="post-category">
             <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
             </div>
-          <span class="more-meta"> 约 0 字 </span>
-          <span class="more-meta"> 预计阅读 0 分钟 </span>
+          <span class="more-meta"> 约 3364 字 </span>
+          <span class="more-meta"> 预计阅读 7 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -140,7 +147,458 @@
   </div>
 </div>
     <div class="post-content">
-      
+      <div class="paragraph">
+<p>Git常见的三种协作开发模式：Git Flow &amp; GitHub Flow &amp; Gitlab Flow，本文只是对上述几种模式进行吸收融合，结合项目实战总结出的比较实用的分支写作规范。</p>
+</div>
+<div class="sect1">
+<h2 id="_版本分支介绍">版本分支介绍</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">master分支（生产分支）</dt>
+<dd>
+<p><strong>长期分支</strong>，经过充分测试的<mark>稳定</mark>发布版本，对应线上生产运行环境，只接受来自release分支和hotfix分支的合并。</p>
+</dd>
+<dt class="hdlist1">develep分支（开发分支）</dt>
+<dd>
+<p><strong>长期分支</strong>，经过开发自测过的新功能<mark>集成可用</mark>版本，对应开发集成环境，只接受来自feature分支、bug分支、hotfix分支的合并。</p>
+</dd>
+<dt class="hdlist1">release分支（预发布分支）</dt>
+<dd>
+<p><strong>临时分支</strong>，一个<mark>项目里程碑</mark>的测试预发布版本，对应测试环境，测试通过可用合并到master分支（升级生产），不接受直接提交代码，只接受来自bug分支的合并，演进路径：develop &#8594; release &#8594; master。</p>
+</dd>
+<dt class="hdlist1">feature分支（需求分支）</dt>
+<dd>
+<p><strong>临时分支</strong>，开发者本地正在开发的<mark>新需求</mark>分支，对应需求开发负责人的本地环境，该分支有两个来源：直接提交代码和来自task分支的合并请求，演进路径： develop &#8594; feature &#8594; develop。</p>
+</dd>
+<dt class="hdlist1">task分支（任务分支）</dt>
+<dd>
+<p><strong>临时分支</strong>，开发者本地正在开发的<mark>新任务</mark>分支，对应任务开发者本地环境，该分支可以直接提交代码，演进路径：feature &#8594; task &#8594; feature。</p>
+</dd>
+<dt class="hdlist1">bug分支（测试缺陷分支）</dt>
+<dd>
+<p><strong>临时分支</strong>，开发者本地正在修复的<mark>测试缺陷</mark>分支，对应开发者本地环境，该分支可以直接提交代码，演进路径：release &#8594; bug &#8594; develop&amp;release 或者 develop &#8594; bug &#8594; develop。</p>
+</dd>
+<dt class="hdlist1">hotfix分支（生产缺陷分支）</dt>
+<dd>
+<p><strong>临时分支</strong>，开发者本地正在修复的<mark>生产缺陷</mark>分支，对应开发者本地环境，该分支可以直接提交代码，演进路径：master &#8594; hotfix &#8594; master&amp;develop&amp;release。</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+以上为质保产品推荐分支及版本管理，当产品在新研发阶段，由于未上线，为了简化流程，可以不启用develop分支和release分支，此时master分支等同于develop分支和release分支，即需求开发和缺陷修复都基于master分支。当需要部署测试环境时，启用release分支，当部署了生产环境，则马上启用develop分支。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_develop开发分支">develop：开发分支</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_需求开发过程">需求开发过程</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>需求设计人员获取最新develop分支，从develop分支中新建<strong>需求分支</strong>，分支命名：<mark>feature/${需求id}-英文描述</mark></p>
+</li>
+<li>
+<p>若需求较大涉及多人开发，则需要在需求分支新建任务分支，任务开发人员获取步骤1中新建的需求分支（feature/${需求id}-英文描述），从该分支中新建 <strong>任务分支</strong>，分支命名：<mark>task/${任务id}-英文描述</mark></p>
+</li>
+<li>
+<p>开发完成后发mr请求到需求分支（feature/${需求id}-英文描述），并通知设计人员审核代码并做任务验收，验收通过后合并到需求分支，并删除合并的任务分支</p>
+</li>
+<li>
+<p>需求分支上所有任务都<strong>验收审核</strong>通过后由设计人员发mr请求到develop分支，当<strong>上线评审</strong>通过后由配管合并代码并删除该需求分支</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title">需求开发过程git命令参考</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">git clone 工程地址 <i class="conum" data-value="1"></i><b>(1)</b>
+git checkout develop <i class="conum" data-value="2"></i><b>(2)</b>
+git pull <i class="conum" data-value="3"></i><b>(3)</b>
+git checkout -b feature/xxx-xxxx <i class="conum" data-value="4"></i><b>(4)</b>
+
+<i class="conum" data-value="5"></i><b>(5)</b>
+
+git status <i class="conum" data-value="6"></i><b>(6)</b>
+git diff <i class="conum" data-value="7"></i><b>(7)</b>
+git add . <i class="conum" data-value="8"></i><b>(8)</b>
+git commit -m 任务修改中文描述 <i class="conum" data-value="9"></i><b>(9)</b>
+git push <i class="conum" data-value="10"></i><b>(10)</b>
+
+<i class="conum" data-value="11"></i><b>(11)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>获取最新代码，如果本地已有，可跳过</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>切换到develop分支，如果已在develop分支，可跳过</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>更新服务器最新develop分支代码</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>新建需求分支</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>在当前代码分支进行开发、自测，当阶段性开发完成继续进行下面步骤</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>查看当前分支代码修改情况</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>对比修改内容</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>确认无误后将当前目录的修改全部添加到git</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>提交到本地git仓库，如果任务还未完成，继续回到5进行迭代</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td>推送到git服务器仓库，此时其他人可以获取到该分支的代码，如果任务还未完成，继续回到5进行迭代</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td>自测完成，通过在线提交mr请求到develop进行集成</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_release预发布分支">release：预发布分支</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_测试发布过程">测试发布过程</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>在当前项目全部开发完成时，从上一个发布版本（如果没有待发布版本，用master）基础上新建预发布分支，分支命名：<strong>release/YYYYMMDD</strong></p>
+</li>
+<li>
+<p>配管发起从develop分支到release分支的mr请求，mr请求命名：<strong>YYYYMMDD版本</strong></p>
+</li>
+<li>
+<p>评审会审核通过后配管合并代码</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_测试问题修复过程">测试问题修复过程</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>从release分支中新建问题修复分支，分支命名：<mark>bug/${缺陷ID}-英文描述</mark></p>
+</li>
+<li>
+<p>修复缺陷后分别发mr请求到develop和release分支，通知设计人员审核代码（需要确保一个mr请求保留分支，以免只能合并一次，第二次合并的时候分支被删除）</p>
+</li>
+<li>
+<p>代码审核通过后通知配管合并代码并删除该分支</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title">测试问题修复过程git命令参考</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">git checkout release <i class="conum" data-value="1"></i><b>(1)</b>
+git pull
+git checkout -b bug/xxx-xxxx
+
+<i class="conum" data-value="2"></i><b>(2)</b>
+
+git status
+git diff
+git add .
+git commit -m 缺陷修复中文描述
+git push
+
+<i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>切换到release分支，如果已在release分支，可跳过</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>修复bug，自测</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>自测完成，在线操作：
+<div class="ulist">
+<ul>
+<li>
+<p>通过在线提交mr请求到develop进行集成通过gitlab在线提交该分支的mr请求到develop，注意<mark>去掉勾选</mark>Remove source branch when merge request is accepted.</p>
+</li>
+<li>
+<p>通过gitlab在线提交该分支的mr请求到release，注意<mark>勾选</mark>Remove source branch when merge request is accepted.</p>
+</li>
+</ul>
+</div></td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_master生产分支">master：生产分支</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_生产发布过程">生产发布过程</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>当预生产测试通过后，从release分支发起到master的mr请求，mr请求命名：<strong>YYYYMMDD版本</strong></p>
+</li>
+<li>
+<p>配管审核通过后合并代码并删除该release分支</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_生产问题修复过程">生产问题修复过程</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>从master分支中新建问题修复分支，分支命名：<mark>hotfix/${缺陷ID}-英文描述</mark></p>
+</li>
+<li>
+<p>修复缺陷后分别发mr请求到develop和master分支，通知设计人员审核代码（需要确保一个mr请求保留分支，以免只能合并一次，第二次合并的时候分支被删除）</p>
+</li>
+<li>
+<p>代码审核通过后通知配管合并代码并删除该分支</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title">生产问题修复过程git命令参考</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">git checkout master <i class="conum" data-value="1"></i><b>(1)</b>
+git pull
+git checkout -b hotfix/xxx-xxxx
+
+<i class="conum" data-value="2"></i><b>(2)</b>
+
+git status
+git diff
+git add .
+git commit -m 缺陷修复中文描述
+git push
+
+<i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>切换到master分支，如果已在master分支，可跳过</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>修复bug，自测</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>自测完成，在线操作
+<div class="ulist">
+<ul>
+<li>
+<p>通过gitlab在线提交该分支的mr请求到develop，注意<mark>去掉勾选</mark>Remove source branch when merge request is accepted.</p>
+</li>
+<li>
+<p>如果当前有release分支，则还需要通过gitlab在线提交该分支的mr请求到release分支，注意<mark>去掉勾选</mark>Remove source branch when merge request is accepted.</p>
+</li>
+<li>
+<p>通过gitlab在线提交该分支的mr请求到master，注意<mark>勾选</mark>Remove source branch when merge request is accepted.</p>
+</li>
+</ul>
+</div></td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_其他分支策略">其他分支策略</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_git_flow">Git Flow</h3>
+<div class="paragraph">
+<p>荷兰程序员 <a href="https://nvie.com">Vincent Driessen</a> 提出的一种分支管理策略：https://nvie.com/posts/a-successful-git-branching-model/[A Successful Git Branching Model]。</p>
+</div>
+<div class="paragraph">
+<p>他的核心思想：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>两个长期分支，受保护不能删除</p>
+<div class="ulist">
+<ul>
+<li>
+<p>master：稳定的分布版</p>
+</li>
+<li>
+<p>develop：最新的开发版</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>三个短期分支，用完后删除</p>
+<div class="ulist">
+<ul>
+<li>
+<p>feature：功能分支，演进路径：develop &#8594; feature &#8594; develop</p>
+</li>
+<li>
+<p>release：预发布分支，演进路径：develop &#8594; release &#8594; master &amp; develop</p>
+</li>
+<li>
+<p>hotfix：补丁分支，演进路径：master &#8594; hotfix &#8594; master &amp; develop</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>下面是安装git flow 插件后两个常用场景的操作示例：</p>
+</div>
+<div class="listingblock">
+<div class="title">普通开发流程</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"># 初始化版本流程控制
+git checkout -b develop origin/develop
+# 初始化工作目录(一直回车即可)
+git flow init
+# 开始创建新的需求分支
+git flow feature start xxxx #这时项目会自动切换 feature/xxxx分支
+#
+# 修改代码
+# git commit -a -m 修改说明
+#
+# 提交功能到远程库：
+git flow feature publish xxxx
+# 完成开发分支合并develop(自动)
+git flow feature finish xxxx
+# 发布到远程开发分支
+git push origin develop
+# 删除远程分支
+git push origin :feature/xxxx</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">生产紧急bug修复流程</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"># 更新master分支
+git pull origin master
+# 切换到master分支
+git checkout master
+#生成一个hotfix分支
+git flow hotfix start xxx
+
+# 通知相关得工程师和测试人员hotfix分支名称
+# 最终测试完成后拉回分支最新代码
+git pull origin hotfix/xxx
+# 最终修改和测试完成后，结束hot fix以供发布
+git flow hot fix finish xxx
+# 发布最终的master分支
+git push origin master</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_github_flow">Github Flow</h3>
+<div class="paragraph">
+<p><a href="http://scottchacon.com/2011/08/31/github-flow.html">Github flow</a> 是Git flow的简化版，专门配合"持续发布"。他只有一个长期分支master，不区分功能和补丁，只有一个演进路径：master &#8594; 临时的功能和补丁分支 &#8594; master</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gitlab_flow">Gitlab Flow</h3>
+<div class="paragraph">
+<p><a href="https://docs.gitlab.com/ee/workflow/gitlab_flow.html">Gitlab Flow</a> 综合了Git Flow和Github Flow，是Gitlab官方推荐的版本策略。</p>
+</div>
+<div class="paragraph">
+<p>他的核心思想：</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">一个长期分支</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>master: 开发分支，是所有其他分支的"上游"。只有上游分支采纳的代码变化，才能应用到其他分支。</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">n个环境分支</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>pre-production: "预发布环境"的分支，不接受直接代码提交。</p>
+</li>
+<li>
+<p>production: "生产环境"的分支，不接受直接代码提交。</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">n个发布版本</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>1-0-stable: 1.0稳定版本</p>
+</li>
+<li>
+<p>2-0-stable: 2.0稳定版本</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
     </div>
 
     <div class="post-copyright">

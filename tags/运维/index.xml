@@ -17,7 +17,9 @@
       <pubDate>Sun, 15 Dec 2019 21:36:55 +0800</pubDate>
       
       <guid>https://liming.pub/post/maven-release-plugin/</guid>
-      <description></description>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;当工程上线时，需要发布正式版本，如果是多模块结构，如果一个个工程手工去修改，费时费力，本文主要介绍如何使用maven-release-plugin插件，结合git进行版本发布。&lt;/p&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -26,7 +28,9 @@
       <pubDate>Sat, 20 Jul 2019 07:57:43 +0800</pubDate>
       
       <guid>https://liming.pub/post/nexus-npm-permission/</guid>
-      <description></description>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Group聚合仓库，以满足前端日常开发和发布需要。&lt;/p&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -35,7 +39,9 @@
       <pubDate>Sat, 06 Jul 2019 08:07:15 +0800</pubDate>
       
       <guid>https://liming.pub/post/linux-monitor-shell/</guid>
-      <description></description>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;服务器监控有专业的程序，比如springboot-admin。其实可以手工利用shell配合crond搭建一个轻量级的监控系统，云服务器不便宜，将内存和cpu还给应用系统，低碳运维从我走起。&lt;/p&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -44,7 +50,9 @@
       <pubDate>Sun, 30 Jun 2019 11:45:39 +0800</pubDate>
       
       <guid>https://liming.pub/post/linux-email-service/</guid>
-      <description></description>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;说起发送邮件，我们第一反应就是写代码实现一个，其实在linux里面，无需借助java、c等重型编程语言就能轻松实现发送邮件的需求，下面介绍两种发邮件方法：&lt;/p&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -53,7 +61,9 @@
       <pubDate>Sun, 23 Jun 2019 14:48:56 +0800</pubDate>
       
       <guid>https://liming.pub/post/rsync/</guid>
-      <description></description>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。&lt;/p&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -62,7 +72,9 @@
       <pubDate>Sat, 22 Jun 2019 09:42:35 +0800</pubDate>
       
       <guid>https://liming.pub/post/samba/</guid>
-      <description></description>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Samba是SMB/CIFS网络协议的重新实现, 可以在跨平台系统间进行文件共享，适用于局域网内数据共享、以及分布式文件系统中的数据一致，Samba的搭建和维护是运维人员的必备技能。&lt;/p&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -71,7 +83,19 @@
       <pubDate>Sat, 15 Jun 2019 10:01:11 +0800</pubDate>
       
       <guid>https://liming.pub/post/nexus-docker-permission/</guid>
-      <description></description>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;基于nexus，可以做到docker的仓库隔离和权限控制，本文假设有两类仓库需求：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;合作伙伴共享仓库（权限：半公开）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;公司自有仓库（权限：私有）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -80,7 +104,9 @@
       <pubDate>Sun, 09 Jun 2019 22:22:50 +0800</pubDate>
       
       <guid>https://liming.pub/post/nexus-settings/</guid>
-      <description></description>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。&lt;/p&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -89,7 +115,9 @@
       <pubDate>Sun, 09 Jun 2019 08:29:20 +0800</pubDate>
       
       <guid>https://liming.pub/post/ssh-practical-skills/</guid>
-      <description></description>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。&lt;/p&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>

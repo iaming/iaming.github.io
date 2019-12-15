@@ -16,7 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="" /><meta name="keywords" content="asciidoc, markdown, asciidotor" />
+<meta name="author" content="liming" /><meta name="description" content="Markdown语法过于简单，规范不够标准，经常要花很多时间去适配不同工具，别的语言是熟能生巧，这个语言是越用越怀疑，这对于事事都想精细化控制的我来说是不可接受的。最近通过各种对比和实践，尝试了Asciidoc后，就彻底迷上了，现在日常文档已经基本切换到Asciidoc了，本文则是第一篇Asciidoc格式的文章，自然是贡献给Asciidoc这个主题了。
+" /><meta name="keywords" content="asciidoc, markdown, asciidotor" />
 
 
 
@@ -39,25 +40,31 @@
 
 
 <meta property="og:title" content="用Asciidoc来写作" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="
+Markdown语法过于简单，规范不够标准，经常要花很多时间去适配不同工具，别的语言是熟能生巧，这个语言是越用越怀疑，这对于事事都想精细化控制的我来说是不可接受的。最近通过各种对比和实践，尝试了Asciidoc后，就彻底迷上了，现在日常文档已经基本切换到Asciidoc了，本文则是第一篇Asciidoc格式的文章，自然是贡献给Asciidoc这个主题了。
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liming.pub/post/hugo-with-asciidoc/" /><meta property="article:published_time" content="2019-04-21T21:11:07&#43;08:00"/>
 <meta property="article:modified_time" content="2019-04-21T21:11:07&#43;08:00"/>
 
 <meta itemprop="name" content="用Asciidoc来写作">
-<meta itemprop="description" content="">
+<meta itemprop="description" content="
+Markdown语法过于简单，规范不够标准，经常要花很多时间去适配不同工具，别的语言是熟能生巧，这个语言是越用越怀疑，这对于事事都想精细化控制的我来说是不可接受的。最近通过各种对比和实践，尝试了Asciidoc后，就彻底迷上了，现在日常文档已经基本切换到Asciidoc了，本文则是第一篇Asciidoc格式的文章，自然是贡献给Asciidoc这个主题了。
+">
 
 
 <meta itemprop="datePublished" content="2019-04-21T21:11:07&#43;08:00" />
 <meta itemprop="dateModified" content="2019-04-21T21:11:07&#43;08:00" />
-<meta itemprop="wordCount" content="0">
+<meta itemprop="wordCount" content="1251">
 
 
 
 <meta itemprop="keywords" content="asciidoc,markdown,晨间日记," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="用Asciidoc来写作"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="
+Markdown语法过于简单，规范不够标准，经常要花很多时间去适配不同工具，别的语言是熟能生巧，这个语言是越用越怀疑，这对于事事都想精细化控制的我来说是不可接受的。最近通过各种对比和实践，尝试了Asciidoc后，就彻底迷上了，现在日常文档已经基本切换到Asciidoc了，本文则是第一篇Asciidoc格式的文章，自然是贡献给Asciidoc这个主题了。
+"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -127,8 +134,8 @@
         <div class="post-category">
             <a href="/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"> 最佳实践 </a>
             </div>
-          <span class="more-meta"> 约 0 字 </span>
-          <span class="more-meta"> 预计阅读 0 分钟 </span>
+          <span class="more-meta"> 约 1251 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -140,7 +147,166 @@
   </div>
 </div>
     <div class="post-content">
-      
+      <div class="paragraph">
+<p>Markdown语法过于简单，规范不够标准，经常要花很多时间去适配不同工具，别的语言是熟能生巧，这个语言是越用越怀疑，这对于事事都想精细化控制的我来说是不可接受的。最近通过各种对比和实践，尝试了Asciidoc后，就彻底迷上了，现在日常文档已经基本切换到Asciidoc了，本文则是第一篇Asciidoc格式的文章，自然是贡献给Asciidoc这个主题了。</p>
+</div>
+<div class="sect1">
+<h2 id="_markdown与asciidoc对比">Markdown与Asciidoc对比</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>开始之前建议先过目一下 <a href="https://asciidoctor.org/docs/asciidoc-vs-markdown/#comparison-by-example">Markdown与Asciidoc的语法对比</a>。</p>
+</div>
+<div class="sect2">
+<h3 id="_互相转换">互相转换</h3>
+<div class="paragraph">
+<p>由于目前还是在熟悉asciidoc阶段，所以我是根据需要将markdown语法手工转为asciidoc，后面熟练后可以尝试通过工具（asciidoctor和pandoc）转换，转换方法：markdown &#8594; docbook &#8594; asciidoc 反之亦然。</p>
+</div>
+<div class="paragraph">
+<p>当然，如果嫌过程麻烦，可以自己写个脚本，毕竟大部分文章格式都非常简单，不会使用太多标记语法，比如我的一些文档就是通过批量替换完成的，替换规则：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>`# ` &#8594; `== `，在文档中asciidoc的"="是整个文章的标题，所以markdown中的标题要降级一级标题</p>
+</li>
+<li>
+<p><code>#</code> &#8594; <code>=</code>，在上一步基础上替换</p>
+</li>
+<li>
+<p>`1. ` &#8594; `. `，有序编号替换，以此类推 `2. `、`3. ` &#8230;&#8203;&#8230;&#8203;</p>
+</li>
+<li>
+<p><code>``</code> &#8594; <code>----</code>，代码片段</p>
+</li>
+<li>
+<p>其他常用标记，如url连接，则需要手工修改</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_文本格式">文本格式</h3>
+<div class="paragraph">
+<p>asciidoc做为标记语言，语法优雅而严谨，比如对于markdown暂不支持的表格，不管是文本格式还是预览格式，都非常直观：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-asciidoc" data-lang="asciidoc">.表格标题
+|=============
+|表头1	|表头2
+|11     |22
+|11     |22
+|=============</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_引用">引用</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">几种常见的引用语法</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">include</dt>
+<dd>
+<p>包含外部文件中的内容。语法： <code>include::xx.adoc[]</code> ，可以通过该语法将各个段落或文本片段组织聚合起来，这非常有利于写长篇文字的骨架构思，然后在慢慢的填充各个段落细节，或者是半自动文档，比如程序开发手册，手工写一个指引段落结构，然后引用程序自动生成文本片段。</p>
+</dd>
+<dt class="hdlist1">image</dt>
+<dd>
+<p>嵌入图片。语法： <code>image::xx.jpg[]</code></p>
+</dd>
+<dt class="hdlist1">video</dt>
+<dd>
+<p>嵌入视频。语法： <code>video::xx.mp4[]</code></p>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_转义">转义</h3>
+<div class="paragraph">
+<p>asciidoc在写段落片段时，经常会纠结该用几级标题，我的做法是有内容的段落偏多都只带标题，如果需要层级，则使用有序列表来实现。目前来看确实很灵活，段落片段可以在任何标题层级下引用。当然这里有些语法小缺陷看起来非常难受，就是要要经常用 <code>+</code> 来转义换行符，比如:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>换行符要在文本结尾处加 ` +`</p>
+</li>
+<li>
+<p>引用代码片段或表格等需要加空行隔离的则要在空行开头加 <code>+</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>如：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-asciidoc" data-lang="asciidoc">. 步骤1 +
+步骤1的说明
+.. 部署1.1
++
+|===
+表格或者代码片段
+|===</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_属性">属性</h3>
+<div class="paragraph">
+<p>可以通过定义属性，然后在文本中使用属性。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>定义方法： <code>:属性名: 属性值</code>。</p>
+</li>
+<li>
+<p>使用方法:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>文本： <code>{属性名}</code></p>
+</li>
+<li>
+<p>代码块，在块申明增加subs，如 <code>[source, subs="verbatim,attributes"]</code>，然后在代码块中是 <code>{属性名}</code></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+asciidoctor默认生成html是没有icon小图标，需要手工申明： <code>:icons: font</code>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_关于写作工具">关于写作工具</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>尝试过使用过编辑工具AsciidocFX，可以实时预览，可以到处各种文档，但是对于中文支持不是很好，也不支持半角符号。</p>
+</div>
+<div class="paragraph">
+<p>所以我现在基本都是用sublime进行写作，结合谷歌浏览器插件”Asciidoctor.js Live Preview“进行预览，非常高效。</p>
+</div>
+</div>
+</div>
     </div>
 
     <div class="post-copyright">

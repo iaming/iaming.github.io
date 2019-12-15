@@ -16,7 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="" /><meta name="keywords" content="shell, ssh config" />
+<meta name="author" content="liming" /><meta name="description" content="ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。
+" /><meta name="keywords" content="shell, ssh config" />
 
 
 
@@ -39,25 +40,31 @@
 
 
 <meta property="og:title" content="SSH实用技巧" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="
+ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liming.pub/post/ssh-practical-skills/" /><meta property="article:published_time" content="2019-06-09T08:29:20&#43;08:00"/>
 <meta property="article:modified_time" content="2019-06-09T08:29:20&#43;08:00"/>
 
 <meta itemprop="name" content="SSH实用技巧">
-<meta itemprop="description" content="">
+<meta itemprop="description" content="
+ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。
+">
 
 
 <meta itemprop="datePublished" content="2019-06-09T08:29:20&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-09T08:29:20&#43;08:00" />
-<meta itemprop="wordCount" content="0">
+<meta itemprop="wordCount" content="744">
 
 
 
 <meta itemprop="keywords" content="windows,mac,linux,shell,运维,最佳实践," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SSH实用技巧"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="
+ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。
+"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -127,8 +134,8 @@
         <div class="post-category">
             <a href="/categories/%E6%95%88%E7%8E%87%E6%95%88%E8%83%BD/"> 效率效能 </a>
             </div>
-          <span class="more-meta"> 约 0 字 </span>
-          <span class="more-meta"> 预计阅读 0 分钟 </span>
+          <span class="more-meta"> 约 744 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -140,7 +147,171 @@
   </div>
 </div>
     <div class="post-content">
-      
+      <div class="paragraph">
+<p>ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。</p>
+</div>
+<div class="sect1">
+<h2 id="_概念介绍">概念介绍</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>开始之前让我们先了解一下SSH配置和SSH秘钥对。</p>
+</div>
+<div class="sect2">
+<h3 id="_ssh配置位置">SSH配置位置</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>命令行选项</p>
+</li>
+<li>
+<p>用户配置文件 (~/.ssh/config)</p>
+</li>
+<li>
+<p>系统配置文件 (/etc/ssh/ssh_config)</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ssh秘钥对">SSH秘钥对</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>ssh-kengen命令</p>
+<div class="ulist">
+<ul>
+<li>
+<p>-t 指定加密算法（RSA、DSA、ECDSA等）</p>
+</li>
+<li>
+<p>-b 自定生成密钥长度</p>
+</li>
+<li>
+<p>-C 添加密钥对的说明comment</p>
+</li>
+<li>
+<p>-f 指定生成的私钥存储的文件全路径名称</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>密码短语(Passphras)</p>
+<div class="paragraph">
+<p>默认不设置密码的话，只要私钥被他人获取（比如电脑遗失，root用户），就可以随意访问授权的服务器，所以为了提高安全性，建议都设置自己的密码短语。
+如果没设置，可以给已经生成的秘钥文件增加或修改密码短语： <code>ssh-keygen -f ~/.ssh/id_ecdsa_liming -p</code></p>
+</div>
+</li>
+<li>
+<p>SSH agent</p>
+<div class="paragraph">
+<p>SSH agent 提供了存储私钥的安全方法，同时也能够将已经解密的私钥缓存起来，这样只需要在加入的时候输入一下密码即可。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>添加 <code>ssh-add</code></p>
+</li>
+<li>
+<p>查看 <code>ssh-add -l</code></p>
+</li>
+<li>
+<p>删除 <code>ssh-add -d</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_配置示例">配置示例</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>命令行选型这种原始用法就不多说，我们重点是将一些配置落地，尽可能减少命令行的输入，如下是一个配置示例：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>客户端生产秘钥对</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ssh-keygen -t ecdsa -b 521 -C "$(whoami)@$(hostname)" -f ~/.ssh/id_ecdsa_liming
+#Enter passphrase (empty for no passphrase):
+#输入密码
+ssh-add ~/.ssh/id_ecdsa_liming</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>客户端增加配置</p>
+<div class="listingblock">
+<div class="title">~/.ssh/config</div>
+<div class="content">
+<pre>Host liming.pub // <b class="conum">(1)</b>
+    HostName ssh.liming.pub // <b class="conum">(2)</b>
+    User user // <b class="conum">(3)</b>
+    Port 2222 // <b class="conum">(4)</b>
+    PreferredAuthentications publickey // <b class="conum">(5)</b>
+    IdentityFile ~/.ssh/id_ecdsa_liming // <b class="conum">(6)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Host: 别名，多个别名以空格分割，可以使用通配符：<code>* ? !</code>，如：<code>1.*</code></p>
+</li>
+<li>
+<p>HostName:: 主机名,如果主机名中包含 ‘%h’ ，则实际使用时会被命令行中的主机名替换，如：<code>192.168.%h</code></p>
+</li>
+<li>
+<p>用户</p>
+</li>
+<li>
+<p>端口，默认22</p>
+</li>
+<li>
+<p>强制使用Public Key验证</p>
+</li>
+<li>
+<p>密钥文件的路径，文件名称可以使用如下变量</p>
+<div class="listingblock">
+<div class="content">
+<pre>'%d' 本地用户目录
+'%u' 本地用户名称
+'%l' 本地主机名
+'%h' 远程主机名
+'%r' 远程用户名</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>服务端配置公钥</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.ssh
+echo '~/.ssh/id_ecdsa_liming的内容' &gt;&gt; ~/.ssh/authorized_keys&amp;&amp; chmod 600 ~/.ssh/authorized_keys</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>使用</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ssh liming.pub
+scp liming.pub:~/index.html ./</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
     </div>
 
     <div class="post-copyright">

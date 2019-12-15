@@ -16,7 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="" /><meta name="keywords" content="rsync, linux" />
+<meta name="author" content="liming" /><meta name="description" content="rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。
+" /><meta name="keywords" content="rsync, linux" />
 
 
 
@@ -39,25 +40,31 @@
 
 
 <meta property="og:title" content="rsync实践" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="
+rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liming.pub/post/rsync/" /><meta property="article:published_time" content="2019-06-23T14:48:56&#43;08:00"/>
 <meta property="article:modified_time" content="2019-06-23T14:48:56&#43;08:00"/>
 
 <meta itemprop="name" content="rsync实践">
-<meta itemprop="description" content="">
+<meta itemprop="description" content="
+rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。
+">
 
 
 <meta itemprop="datePublished" content="2019-06-23T14:48:56&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-23T14:48:56&#43;08:00" />
-<meta itemprop="wordCount" content="0">
+<meta itemprop="wordCount" content="404">
 
 
 
 <meta itemprop="keywords" content="运维,最佳实践," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="rsync实践"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="
+rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。
+"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -127,8 +134,8 @@
         <div class="post-category">
             <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
             </div>
-          <span class="more-meta"> 约 0 字 </span>
-          <span class="more-meta"> 预计阅读 0 分钟 </span>
+          <span class="more-meta"> 约 404 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -140,7 +147,100 @@
   </div>
 </div>
     <div class="post-content">
-      
+      <div class="paragraph">
+<p>rsync（remote synchronize）是一个开源的跨操作系统的数据同步工具，可应用于 LAN/WAN/本地 等各种场景下的快速同步文件。rsync有三种工作模式：本地模式、通道模式、服务模式。本文只是通道模式下结合异机之间的同步备份的场景进行简单实践。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+官网介绍： <a href="https://download.samba.org/pub/rsync/rsync.html" class="bare">https://download.samba.org/pub/rsync/rsync.html</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect1">
+<h2 id="_安装">安装</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>一般只需要在目标主机安装rsync程序：</p>
+</div>
+<div class="listingblock">
+<div class="title">CentOS</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">yum install -y rsync</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">MacOS</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">brew install -y rsync</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_断点续传">断点续传</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>当传输大文件时，使用scp每次网络断掉后都要重新开始，这时，断点续传这个功能就非常实用。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">rsync -P -e ssh SRC_FILE DEST_FILE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>关键参数说明</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>-P 断点续传，显示进度
+-e 替代rsh的shell程序</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_目录同步">目录同步</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>异机备份时很有用。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">rsync -avzP --delete -e ssh 1.xxx:/var/opt/backups /var/opt/backups</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>关键参数说明</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>-a --archive 归档模式
+-v --verbose 详细输出模式，定时任务或者后天运行的话可以去掉
+-z --compose 传输过程中压缩处理
+   --delete  源目录不存在而目标目录存在的文件将被删除
+   1.xxx     ssh服务器别名</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+文件名后面是否带 <code>/</code>，含义不同，带 <code>/</code> 是将目录下的文件同步到目标文件夹下，不带 <code>/</code> 是将该目录同步到目标文件夹下。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
     </div>
 
     <div class="post-copyright">

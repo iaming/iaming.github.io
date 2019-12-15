@@ -16,8 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="说起发送邮件，我们第一反应就是写代码实现一个，其实在linux里面，无需借助java、c等重型编程语言就能轻松实现发送邮件的需求，下面介绍两种发邮件方法：
-" /><meta name="keywords" content="linux, mail" />
+<meta name="author" content="liming" /><meta name="description" content="" /><meta name="keywords" content="linux, mail" />
 
 
 
@@ -40,31 +39,25 @@
 
 
 <meta property="og:title" content="Linux发送邮件" />
-<meta property="og:description" content="
-说起发送邮件，我们第一反应就是写代码实现一个，其实在linux里面，无需借助java、c等重型编程语言就能轻松实现发送邮件的需求，下面介绍两种发邮件方法：
-" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liming.pub/post/linux-email-service/" /><meta property="article:published_time" content="2019-06-30T11:45:39&#43;08:00"/>
 <meta property="article:modified_time" content="2019-06-30T11:45:39&#43;08:00"/>
 
 <meta itemprop="name" content="Linux发送邮件">
-<meta itemprop="description" content="
-说起发送邮件，我们第一反应就是写代码实现一个，其实在linux里面，无需借助java、c等重型编程语言就能轻松实现发送邮件的需求，下面介绍两种发邮件方法：
-">
+<meta itemprop="description" content="">
 
 
 <meta itemprop="datePublished" content="2019-06-30T11:45:39&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-30T11:45:39&#43;08:00" />
-<meta itemprop="wordCount" content="547">
+<meta itemprop="wordCount" content="0">
 
 
 
 <meta itemprop="keywords" content="linux,运维,shell,python," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux发送邮件"/>
-<meta name="twitter:description" content="
-说起发送邮件，我们第一反应就是写代码实现一个，其实在linux里面，无需借助java、c等重型编程语言就能轻松实现发送邮件的需求，下面介绍两种发邮件方法：
-"/>
+<meta name="twitter:description" content=""/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -134,8 +127,8 @@
         <div class="post-category">
             <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
             </div>
-          <span class="more-meta"> 约 547 字 </span>
-          <span class="more-meta"> 预计阅读 2 分钟 </span>
+          <span class="more-meta"> 约 0 字 </span>
+          <span class="more-meta"> 预计阅读 0 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -147,111 +140,7 @@
   </div>
 </div>
     <div class="post-content">
-      <div class="paragraph">
-<p>说起发送邮件，我们第一反应就是写代码实现一个，其实在linux里面，无需借助java、c等重型编程语言就能轻松实现发送邮件的需求，下面介绍两种发邮件方法：</p>
-</div>
-<div class="sect1">
-<h2 id="_一linux原生邮件服务">一、linux原生邮件服务</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_增加配置">增加配置</h3>
-<div class="listingblock">
-<div class="title">/etc/mail.rc中追加</div>
-<div class="content">
-<pre class="highlight"><code>set from=发送邮箱
-set smtp="smtps://smtp.liming.pub:465"
-set smtp-auth-user="用户@xxx.com"
-set smtp-auth-password="密码"
-set smtp-auth=login
-set ssl-verify=ignore
-set nss-config-dir=/etc/pki/nssdb/</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_测试发送">测试发送</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">echo hello word | mailx -v -s "demo title" "接受用户1@liming.pub"</code></pre>
-</div>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>多个接收人邮箱以英文逗号 <code>,</code> 号分割，末尾不用加 <code>,</code> 号，如："<a href="mailto:接受用户1@liming.pub">接受用户1@liming.pub</a>,<a href="mailto:接受用户2@liming.pub">接受用户2@liming.pub</a>"</p>
-</div>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_二python发送邮件">二、python发送邮件</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_增加脚本">增加脚本</h3>
-<div class="listingblock">
-<div class="title">/usr/local/bin/mail.py</div>
-<div class="content">
-<pre class="highlight"><code class="language-pytho" data-lang="pytho">#!/usr/bin/env python3
-#coding: utf-8
-
-import sys
-import smtplib
-from email.mime.text import MIMEText
-from email.header import Header
-
-# 第三方STMP服务配置
-sender = '发送用户名@liming.pub;'
-smtp_server = 'smtp.liming.pub'
-username = '发送用户名@liming.pub' # 这里需要带域名后缀
-password = '密码'
-
-def send_mail(title, content, receiver):
-
-    try:
-        msg = MIMEText(content,'html','utf-8')
-        if not isinstance(title,unicode):
-            title = unicode(title, 'utf-8')
-        msg['Subject'] = title
-        msg['From'] = sender
-        msg['To'] = receiver
-        msg["Accept-Language"]="zh-CN"
-        msg["Accept-Charset"]="ISO-8859-1,utf-8"
-
-        smtp = smtplib.SMTP_SSL(smtp_server,465)
-        smtp.login(username, password)
-        smtp.sendmail(sender, receiver, msg.as_string())
-        smtp.quit()
-        return True
-    except Exception, e:
-        print str(e)
-        return False
-
-if send_mail(sys.argv[1], sys.argv[2], sys.argv[3]):
-    print "发送邮件成功!"
-else:
-    print "发送邮件失败!"</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_测试发送_2">测试发送</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">python mail.py "邮件标题" "邮件正文" "接受用户1@liming.pub;"</code></pre>
-</div>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>多个接收人邮箱以英文分号 <code>;</code> 分割，另外末尾也要加 <code>;</code> 号，如："<a href="mailto:接受用户1@liming.pub">接受用户1@liming.pub</a>;<a href="mailto:接受用户2@liming.pub">接受用户2@liming.pub</a>;"</p>
-</div>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
+      
     </div>
 
     <div class="post-copyright">

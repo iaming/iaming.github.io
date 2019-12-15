@@ -17,9 +17,7 @@
       <pubDate>Sat, 13 Jul 2019 08:39:51 +0800</pubDate>
       
       <guid>https://liming.pub/post/asciidoctor-customization/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;前段时间将写作工具全面切换asciidoc后，对asciidoctor也有了进一步定制的要求，仔细看了下官方文档后，一般的定制他已经考虑到了，可以通过配置或者命令行灵活简单的完成，对于复杂一点定制或改造，由于他是开源的，所以也非常容易。下面是自己积累的一些笔记，供大家参考。&lt;/p&gt;
-&lt;/div&gt;</description>
+      <description></description>
     </item>
     
     <item>
@@ -28,9 +26,7 @@
       <pubDate>Sat, 06 Jul 2019 08:07:15 +0800</pubDate>
       
       <guid>https://liming.pub/post/linux-monitor-shell/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;服务器监控有专业的程序，比如springboot-admin。其实可以手工利用shell配合crond搭建一个轻量级的监控系统，云服务器不便宜，将内存和cpu还给应用系统，低碳运维从我走起。&lt;/p&gt;
-&lt;/div&gt;</description>
+      <description></description>
     </item>
     
     <item>
@@ -39,9 +35,7 @@
       <pubDate>Sun, 30 Jun 2019 11:45:39 +0800</pubDate>
       
       <guid>https://liming.pub/post/linux-email-service/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;说起发送邮件，我们第一反应就是写代码实现一个，其实在linux里面，无需借助java、c等重型编程语言就能轻松实现发送邮件的需求，下面介绍两种发邮件方法：&lt;/p&gt;
-&lt;/div&gt;</description>
+      <description></description>
     </item>
     
     <item>
@@ -50,9 +44,7 @@
       <pubDate>Sun, 09 Jun 2019 08:29:20 +0800</pubDate>
       
       <guid>https://liming.pub/post/ssh-practical-skills/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;ssh和基于ssh的命令（如scp）等是运维人员和服务器打交道的通道，当服务器数量较多，要记住那么多的服务器ip和密码也是非常困难的事情。其实有很多技巧和配置可以让ssh跟ls一样简单。&lt;/p&gt;
-&lt;/div&gt;</description>
+      <description></description>
     </item>
     
     <item>

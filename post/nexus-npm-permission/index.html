@@ -16,8 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Group聚合仓库，以满足前端日常开发和发布需要。
-" /><meta name="keywords" content="nexus, npm" />
+<meta name="author" content="liming" /><meta name="description" content="" /><meta name="keywords" content="nexus, npm" />
 
 
 
@@ -40,31 +39,25 @@
 
 
 <meta property="og:title" content="npm私有仓库权限设置" />
-<meta property="og:description" content="
-nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Group聚合仓库，以满足前端日常开发和发布需要。
-" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liming.pub/post/nexus-npm-permission/" /><meta property="article:published_time" content="2019-07-20T07:57:43&#43;08:00"/>
 <meta property="article:modified_time" content="2019-07-20T07:57:43&#43;08:00"/>
 
 <meta itemprop="name" content="npm私有仓库权限设置">
-<meta itemprop="description" content="
-nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Group聚合仓库，以满足前端日常开发和发布需要。
-">
+<meta itemprop="description" content="">
 
 
 <meta itemprop="datePublished" content="2019-07-20T07:57:43&#43;08:00" />
 <meta itemprop="dateModified" content="2019-07-20T07:57:43&#43;08:00" />
-<meta itemprop="wordCount" content="793">
+<meta itemprop="wordCount" content="0">
 
 
 
 <meta itemprop="keywords" content="nexus,npm,DevOps,运维,最佳实践," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="npm私有仓库权限设置"/>
-<meta name="twitter:description" content="
-nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Group聚合仓库，以满足前端日常开发和发布需要。
-"/>
+<meta name="twitter:description" content=""/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -134,8 +127,8 @@ nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Grou
         <div class="post-category">
             <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
             </div>
-          <span class="more-meta"> 约 793 字 </span>
-          <span class="more-meta"> 预计阅读 2 分钟 </span>
+          <span class="more-meta"> 约 0 字 </span>
+          <span class="more-meta"> 预计阅读 0 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -147,186 +140,7 @@ nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Grou
   </div>
 </div>
     <div class="post-content">
-      <div class="paragraph">
-<p>nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Group聚合仓库，以满足前端日常开发和发布需要。</p>
-</div>
-<div class="sect1">
-<h2 id="_仓库设计">仓库设计</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>功能入口：Administrator &#8594; Repository &#8594;Blob Stores/Repositories</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>npm-proxy
-代理仓库，remote storage设置为官方仓库(<code><a href="https://registry.npmjs.org" class="bare">https://registry.npmjs.org</a></code>)，或者国内镜像(<code><a href="https://registry.npm.taobao.org" class="bare">https://registry.npm.taobao.org</a></code>)。独立Blob Stores(npm-proxy)，限额10G。</p>
-</li>
-<li>
-<p>npm-hosted
-自建仓库，用于本地发布。独立Blob Stores(npm-hosted)，限额10G。</p>
-</li>
-<li>
-<p>npm-group
-聚合仓库：代理仓库（npm-proxy）和自建仓库（npm-hosted），方便使用。</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_角色设置">角色设置</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>功能入口：Administration &#8594; Security &#8594; Roles</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>npm-publish 发布npm，有如下权限</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>nx-repository-view-npm-npm-hosted-add</p>
-</li>
-<li>
-<p>nx-repository-view-npm-npm-hosted-edit</p>
-</li>
-<li>
-<p>nx-repository-view-npm-npm-hosted-read</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>npm-download 使用npm，有如下权限</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>nx-repository-view-npm-npm-group-browse</p>
-</li>
-<li>
-<p>nx-repository-view-npm-npm-group-read</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_用户设置">用户设置</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Security&#8594;Users&#8594;Create User：xxx，授予角色：npm-publish、npm-download</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_开启npm验证">开启npm验证</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>功能入口：Administration &#8594; Security &#8594; realms &#8594; npm Bearer Token realm</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_客户端使用">客户端使用</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>查看仓库列表：<code>cat ~/.npmrc</code></p>
-</li>
-<li>
-<p>查看当前仓库：<code>npm config get registry</code></p>
-</li>
-<li>
-<p>设置当前仓库：<code>npm config set registry</code></p>
-</li>
-<li>
-<p>登录：<code>npm login</code></p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="_开发人员使用方法">开发人员使用方法</h3>
-<div class="paragraph">
-<p>开发人员在开发过程中需要下载npm的依赖，包括官方的和私有的。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">npm config set registry https://repo.liming.pub/nexus/repository/npm-group/ # <b class="conum">(1)</b>
-npm login --registry=https://repo.liming.pub/nexus/repository/npm-group/ # <b class="conum">(2)</b>
-npm get registry # <b class="conum">(3)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>设置主仓库</p>
-</li>
-<li>
-<p>登录主仓库</p>
-</li>
-<li>
-<p>检查是否设置成功</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_配管人员使用方法">配管人员使用方法</h3>
-<div class="paragraph">
-<p>配管人员主要职责是发布测试或生产包，所以比开发人员多了个部署发布npm包的权限。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">npm config set registry https://repo.liming.pub/nexus/repository/npm-group/ # <b class="conum">(1)</b>
-npm login --registry=https://repo.liming.pub/nexus/repository/npm-group/ # <b class="conum">(2)</b>
-
-npm login --registry=https://repo.liming.pub/nexus/repository/npm-hosted/ # <b class="conum">(3)</b>
-npm publish --registry=https://repo.liming.pub/nexus/repository/npm-hosted/ # <b class="conum">(4)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>设置主仓库为npm-group，可以下载npm-proxy和npm-hosted仓库的npm包</p>
-</li>
-<li>
-<p>主仓库（npm-group）登录</p>
-</li>
-<li>
-<p>自建仓库（npm-hosted）登录，用于发布私有npm包到npm-hosted</p>
-</li>
-<li>
-<p>指定自建仓库（npm-hosted）发布</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_相关文章">相关文章</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="/post/nexus-settings/">Nexus安装和配置</a></p>
-</li>
-<li>
-<p><a href="/post/nexus-maven-permission/">Maven私有仓库权限设置</a></p>
-</li>
-<li>
-<p><a href="/post/nexus-docker-permission/">Docker私有仓库权限设置</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
+      
     </div>
 
     <div class="post-copyright">
@@ -352,7 +166,11 @@ npm publish --registry=https://repo.liming.pub/nexus/repository/npm-hosted/ # <b
           <a href="/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">最佳实践</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/maven-release-plugin/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用Maven Release Plugin进行版本发布</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/asciidoctor-customization/">
             <span class="next-text nav-default">AsciiDoctor高阶定制</span>
             <span class="next-text nav-mobile">下一篇</span>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title> - liming.pub</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="liming" /><meta name="description" content="我们日常开发中更多的是采用 link:../gitflow/[Gitflow开发流程]，link:../maven-release-plugin/[release插件] 对于多分支的支持不怎么好，本文仅针对 link:../git-branch-develop-specification/[推荐流程]，使用gitflow插件并进行定制配置：
+== POM配置
+. gitflow插件，主要负责gitflow版本管理。 &#43; .pom.xml
+[source,xml]  com.amashchenko.maven.plugin gitflow-maven-plugin 1.14.0  true 1 true revision true true true  开始@{featureName}新特性开发 完成@{featureName}新特性开发 开始修复版本@{version} 完成修复，更新版本为@{version} 更新为修复版本号 开始发布@{version}版本 完成版本发布，开始下一个版本@{version}的开发 更新为发布版本@{version}  
+ . versions插件，主要负责版本号管理，多模块工程非常方便，gitflow会自动调用该插件。 &#43; .pom.xml
+[source,xml]  org.codehaus.mojo versions-maven-plugin 2.7  false 
+ . flatten插件，CI Friendly模式下使用，可以在发布的时候自动将${revision}变量替换为真实的版本号。 &#43; .pom.xml
+[source,xml] ${revision}  1.0.0-SNAPSHOT     org.codehaus.mojo flatten-maven-plugin 1.1.0  true resolveCiFriendliesOnly    flatten process-resources  flatten    flatten." /><meta name="keywords" content="liming, iaming, 李明, 最佳实践, 架构, DevOps, linux, 自我管理" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://liming.pub/draft/gitflow-maven-plugin/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.93844dae.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="" />
+<meta property="og:description" content="我们日常开发中更多的是采用 link:../gitflow/[Gitflow开发流程]，link:../maven-release-plugin/[release插件] 对于多分支的支持不怎么好，本文仅针对 link:../git-branch-develop-specification/[推荐流程]，使用gitflow插件并进行定制配置：
+== POM配置
+. gitflow插件，主要负责gitflow版本管理。 &#43; .pom.xml
+[source,xml]  com.amashchenko.maven.plugin gitflow-maven-plugin 1.14.0  true 1 true revision true true true  开始@{featureName}新特性开发 完成@{featureName}新特性开发 开始修复版本@{version} 完成修复，更新版本为@{version} 更新为修复版本号 开始发布@{version}版本 完成版本发布，开始下一个版本@{version}的开发 更新为发布版本@{version}  
+ . versions插件，主要负责版本号管理，多模块工程非常方便，gitflow会自动调用该插件。 &#43; .pom.xml
+[source,xml]  org.codehaus.mojo versions-maven-plugin 2.7  false 
+ . flatten插件，CI Friendly模式下使用，可以在发布的时候自动将${revision}变量替换为真实的版本号。 &#43; .pom.xml
+[source,xml] ${revision}  1.0.0-SNAPSHOT     org.codehaus.mojo flatten-maven-plugin 1.1.0  true resolveCiFriendliesOnly    flatten process-resources  flatten    flatten." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liming.pub/draft/gitflow-maven-plugin/" />
+
+<meta itemprop="name" content="">
+<meta itemprop="description" content="我们日常开发中更多的是采用 link:../gitflow/[Gitflow开发流程]，link:../maven-release-plugin/[release插件] 对于多分支的支持不怎么好，本文仅针对 link:../git-branch-develop-specification/[推荐流程]，使用gitflow插件并进行定制配置：
+== POM配置
+. gitflow插件，主要负责gitflow版本管理。 &#43; .pom.xml
+[source,xml]  com.amashchenko.maven.plugin gitflow-maven-plugin 1.14.0  true 1 true revision true true true  开始@{featureName}新特性开发 完成@{featureName}新特性开发 开始修复版本@{version} 完成修复，更新版本为@{version} 更新为修复版本号 开始发布@{version}版本 完成版本发布，开始下一个版本@{version}的开发 更新为发布版本@{version}  
+ . versions插件，主要负责版本号管理，多模块工程非常方便，gitflow会自动调用该插件。 &#43; .pom.xml
+[source,xml]  org.codehaus.mojo versions-maven-plugin 2.7  false 
+ . flatten插件，CI Friendly模式下使用，可以在发布的时候自动将${revision}变量替换为真实的版本号。 &#43; .pom.xml
+[source,xml] ${revision}  1.0.0-SNAPSHOT     org.codehaus.mojo flatten-maven-plugin 1.1.0  true resolveCiFriendliesOnly    flatten process-resources  flatten    flatten.">
+
+
+
+<meta itemprop="wordCount" content="151">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="我们日常开发中更多的是采用 link:../gitflow/[Gitflow开发流程]，link:../maven-release-plugin/[release插件] 对于多分支的支持不怎么好，本文仅针对 link:../git-branch-develop-specification/[推荐流程]，使用gitflow插件并进行定制配置：
+== POM配置
+. gitflow插件，主要负责gitflow版本管理。 &#43; .pom.xml
+[source,xml]  com.amashchenko.maven.plugin gitflow-maven-plugin 1.14.0  true 1 true revision true true true  开始@{featureName}新特性开发 完成@{featureName}新特性开发 开始修复版本@{version} 完成修复，更新版本为@{version} 更新为修复版本号 开始发布@{version}版本 完成版本发布，开始下一个版本@{version}的开发 更新为发布版本@{version}  
+ . versions插件，主要负责版本号管理，多模块工程非常方便，gitflow会自动调用该插件。 &#43; .pom.xml
+[source,xml]  org.codehaus.mojo versions-maven-plugin 2.7  false 
+ . flatten插件，CI Friendly模式下使用，可以在发布的时候自动将${revision}变量替换为真实的版本号。 &#43; .pom.xml
+[source,xml] ${revision}  1.0.0-SNAPSHOT     org.codehaus.mojo flatten-maven-plugin 1.1.0  true resolveCiFriendliesOnly    flatten process-resources  flatten    flatten."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">liming.pub</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">栏目</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">liming.pub</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">栏目</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    
+
+<p>我们日常开发中更多的是采用 link:../gitflow/[Gitflow开发流程]，link:../maven-release-plugin/[release插件] 对于多分支的支持不怎么好，本文仅针对 link:../git-branch-develop-specification/[推荐流程]，使用gitflow插件并进行定制配置：</p>
+
+<p>== POM配置</p>
+
+<p>. gitflow插件，主要负责gitflow版本管理。
++
+.pom.xml</p>
+
+<h2 id="source-xml">[source,xml]</h2>
+
+<p><plugin>
+    <groupId>com.amashchenko.maven.plugin</groupId>
+    <artifactId>gitflow-maven-plugin</artifactId>
+    <version>1.14.0</version>
+    <configuration>
+        <versionsForceUpdate>true</versionsForceUpdate>
+        <versionDigitToIncrement>1</versionDigitToIncrement>
+        <skipTestProject>true</skipTestProject>
+        <versionProperty>revision</versionProperty>
+        <skipUpdateVersion>true</skipUpdateVersion>
+        <skipFeatureVersion>true</skipFeatureVersion>
+        <useSnapshotInHotfix>true</useSnapshotInHotfix>
+        <commitMessages>
+            <featureStartMessage>开始@{featureName}新特性开发</featureStartMessage>
+            <featureFinishMessage>完成@{featureName}新特性开发</featureFinishMessage>
+            <hotfixStartMessage>开始修复版本@{version}</hotfixStartMessage>
+            <hotfixFinishMessage>完成修复，更新版本为@{version}</hotfixFinishMessage>
+            <hotfixVersionUpdateMessage>更新为修复版本号</hotfixVersionUpdateMessage>
+            <releaseStartMessage>开始发布@{version}版本</releaseStartMessage>
+            <releaseFinishMessage>完成版本发布，开始下一个版本@{version}的开发</releaseFinishMessage>
+            <releaseVersionUpdateMessage>更新为发布版本@{version}</releaseVersionUpdateMessage>
+        </commitMessages>
+    </configuration></p>
+
+<h2 id="plugin"></plugin></h2>
+
+<p>. versions插件，主要负责版本号管理，多模块工程非常方便，gitflow会自动调用该插件。
++
+.pom.xml</p>
+
+<h2 id="source-xml-1">[source,xml]</h2>
+
+<p><plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>versions-maven-plugin</artifactId>
+    <version>2.7</version>
+    <configuration>
+        <generateBackupPoms>false</generateBackupPoms>
+    </configuration></p>
+
+<h2 id="plugin-1"></plugin></h2>
+
+<p>. flatten插件，CI Friendly模式下使用，可以在发布的时候自动将${revision}变量替换为真实的版本号。
++
+.pom.xml</p>
+
+<h2 id="source-xml-2">[source,xml]</h2>
+
+<p><version>${revision}</version>
+<properties>
+    <revision>1.0.0-SNAPSHOT</revision>
+</properties>
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>flatten-maven-plugin</artifactId>
+            <version>1.1.0</version>
+            <configuration>
+                <updatePomFile>true</updatePomFile>
+                <flattenMode>resolveCiFriendliesOnly</flattenMode>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>flatten</id>
+                    <phase>process-resources</phase>
+                    <goals>
+                        <goal>flatten</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>flatten.clean</id>
+                    <phase>clean</phase>
+                    <goals>
+                        <goal>clean</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins></p>
+
+<h2 id="build"></build></h2>
+
+<p>NOTE: 如果工程子模块和目录层级不一致，则所有逻辑顶层都要加，不然只有符合层级结构的模块才生效。</p>
+
+<p>== CI配置</p>
+
+<p>使用gitflow后提交会比较频繁，需要减少不必要的CI构建。
+推荐只配置两个构建：</p>
+
+<p>. 开发部署（每次提交develop分支自动部署）；
+. 生产部署（手工部署，仅tag有效）。
++
+.gitlab-ci.yml</p>
+
+<h2 id="source-yml">[source,yml]</h2>
+
+<p>stages:
+- develop_deploy
+- deploy
+develop_deploy:
+  stage: develop_deploy
+  script:
+    - echo &ldquo;开发部署&rdquo;
+  only:
+    - develop
+  except:
+    - tags
+  tags:
+    - deploy
+prod_deploy:
+  stage: prod_deploy
+  script:
+    - echo &ldquo;生产部署&rdquo;
+  only:
+    - tags
+  when: manual
+  tags:</p>
+
+<h2 id="deploy">- deploy</h2>
+
+<p>== 命令</p>
+
+<p>=== 交互命令</p>
+
+<p>|===
+|命令|说明</p>
+
+<p>|mvn gitflow:release-start
+|开始发布，会新建发布分支，并更新版本为发布版本号</p>
+
+<p>|mvn gitflow:release-finish
+|完成发布，会合并发布分支到master和develop，然后更新develop分支的版本为下一个开发版本号</p>
+
+<p>|mvn gitflow:release
+|发布，不新建发布分支，直接修改develo分支为发布版本号后合并到master，然后再把develop更新为下一个开发版本号</p>
+
+<p>|mvn gitflow:feature-start
+|开始feature开发，新建feature分支，不更新版本号</p>
+
+<p>|mvn gitflow:feature-finish
+|完成feature开发，合并feature分支到develop</p>
+
+<p>|mvn gitflow:hotfix-start
+|开始缺陷修复，新建hotfix分支，并更新版本号为下一个小版本</p>
+
+<p>|mvn gitflow:hotfix-finish
+|完成缺陷修复，合并hotfix分支到master和develop</p>
+
+<p>|mvn gitflow:support-start
+|开始支持分支，从tag列表中选择一个tag新建一个支持分支
+|===</p>
+
+<p>=== 后台命令
+在交互命令上加参数 <code>-B</code></p>
+
+<p>== 参考
+. <a href="https://github.com/aleksandr-m/gitflow-maven-plugin">https://github.com/aleksandr-m/gitflow-maven-plugin</a>
+. <a href="http://www.mojohaus.org/versions-maven-plugin/">http://www.mojohaus.org/versions-maven-plugin/</a>
+. <a href="https://maven.apache.org/maven-ci-friendly.html">https://maven.apache.org/maven-ci-friendly.html</a>
+. <a href="http://www.mojohaus.org/flatten-maven-plugin/">http://www.mojohaus.org/flatten-maven-plugin/</a></p>
+
+  </div>
+</article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '0001-01-01 00:00:00 \x2b0000 UTC',
+        title: '',
+        clientID: 'f35ddb3b03b9257b76d0',
+        clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
+        repo: 'iaming.github.io',
+        owner: 'iaming',
+        admin: ['iaming'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/iaming" class="iconfont icon-github" title="github"></a>
+  <a href="https://liming.pub/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019 <span class="division"> published by </span> 
+    <span class="author">liming <span class="division">|</span> generated by hugo&even <span class="division">|</span> hosted by coding.me&github</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

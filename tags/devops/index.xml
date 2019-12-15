@@ -6,10 +6,19 @@
     <description>Recent content in DevOps on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 20 Jul 2019 07:57:43 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 15 Dec 2019 21:36:55 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/tags/devops/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用Maven Release Plugin进行版本发布</title>
+      <link>https://liming.pub/post/maven-release-plugin/</link>
+      <pubDate>Sun, 15 Dec 2019 21:36:55 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/maven-release-plugin/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>npm私有仓库权限设置</title>
@@ -17,9 +26,7 @@
       <pubDate>Sat, 20 Jul 2019 07:57:43 +0800</pubDate>
       
       <guid>https://liming.pub/post/nexus-npm-permission/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;nexus支持npm仓库，可以设置Proxy代理仓库、Hosted自建仓库和Group聚合仓库，以满足前端日常开发和发布需要。&lt;/p&gt;
-&lt;/div&gt;</description>
+      <description></description>
     </item>
     
     <item>
@@ -28,19 +35,7 @@
       <pubDate>Sat, 15 Jun 2019 10:01:11 +0800</pubDate>
       
       <guid>https://liming.pub/post/nexus-docker-permission/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;基于nexus，可以做到docker的仓库隔离和权限控制，本文假设有两类仓库需求：&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;合作伙伴共享仓库（权限：半公开）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;公司自有仓库（权限：私有）&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
+      <description></description>
     </item>
     
     <item>
@@ -49,9 +44,7 @@
       <pubDate>Sun, 09 Jun 2019 22:22:50 +0800</pubDate>
       
       <guid>https://liming.pub/post/nexus-settings/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。&lt;/p&gt;
-&lt;/div&gt;</description>
+      <description></description>
     </item>
     
     <item>
@@ -60,9 +53,7 @@
       <pubDate>Sun, 02 Jun 2019 11:35:02 +0800</pubDate>
       
       <guid>https://liming.pub/post/git-branch-develop-specification/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Git常见的三种协作开发模式：Git Flow &amp;amp; GitHub Flow &amp;amp; Gitlab Flow，本文只是对上述几种模式进行吸收融合，结合项目实战总结出的比较实用的分支写作规范。&lt;/p&gt;
-&lt;/div&gt;</description>
+      <description></description>
     </item>
     
     <item>

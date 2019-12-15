@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-02-17T18:17:15&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-17T18:17:15&#43;08:00" />
-<meta itemprop="wordCount" content="854">
+<meta itemprop="wordCount" content="954">
 
 
 
@@ -128,7 +128,7 @@
         <div class="post-category">
             <a href="/categories/%E6%95%88%E7%8E%87%E6%95%88%E8%83%BD/"> 效率效能 </a>
             </div>
-          <span class="more-meta"> 约 854 字 </span>
+          <span class="more-meta"> 约 954 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -147,6 +147,7 @@
 <li><a href="#alfred">Alfred</a></li>
 <li><a href="#禁止自动生成-ds-store">禁止自动生成<code>.DS_Store</code></a></li>
 <li><a href="#系统设置">系统设置</a></li>
+<li><a href="#支持ntfs">支持NTFS</a></li>
 </ul>
 </nav>
   </div>
@@ -410,6 +411,29 @@ Mac用习惯了，切换到windows虚拟机时，因为windows和mac的快捷键
 <ul>
 <li>屏幕触发角设置</li>
 </ul>
+
+<h1 id="支持ntfs">支持NTFS</h1>
+
+<p>查看挂载硬盘的disk_name，比如我的U盘名字为：My Passport，则disk_name为：My\040Passport，做如下设置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">sudo ln -s /Volumes ~/Desktop/Volumes
+sudo vi /etc/fstab</pre></td></tr></table>
+</div>
+</div>
+<p>然后输入如下内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">LABEL=My\040Passport none ntfs rw,auto,nobrowse</pre></td></tr></table>
+</div>
+</div>
     </div>
 
     <div class="post-copyright">

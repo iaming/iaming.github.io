@@ -17,9 +17,7 @@
       <pubDate>Sat, 13 Jul 2019 08:39:51 +0800</pubDate>
       
       <guid>https://liming.pub/post/asciidoctor-customization/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;前段时间将写作工具全面切换asciidoc后，对asciidoctor也有了进一步定制的要求，仔细看了下官方文档后，一般的定制他已经考虑到了，可以通过配置或者命令行灵活简单的完成，对于复杂一点定制或改造，由于他是开源的，所以也非常容易。下面是自己积累的一些笔记，供大家参考。&lt;/p&gt;
-&lt;/div&gt;</description>
+      <description></description>
     </item>
     
     <item>
@@ -28,9 +26,7 @@
       <pubDate>Sun, 02 Jun 2019 11:35:02 +0800</pubDate>
       
       <guid>https://liming.pub/post/git-branch-develop-specification/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Git常见的三种协作开发模式：Git Flow &amp;amp; GitHub Flow &amp;amp; Gitlab Flow，本文只是对上述几种模式进行吸收融合，结合项目实战总结出的比较实用的分支写作规范。&lt;/p&gt;
-&lt;/div&gt;</description>
+      <description></description>
     </item>
     
     <item>
@@ -39,9 +35,7 @@
       <pubDate>Sat, 27 Apr 2019 10:03:40 +0800</pubDate>
       
       <guid>https://liming.pub/post/from-java-to-golang/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;java做为大型企业应用的主力开发语言，一直有着任何语言都无法匹敌的优势。但是java虽好，就是太重了，不适合小规模、小场景、小工具的开发，一直架构、开发、运维、运营一线全栈发展的，必须要有一个更加趁手的、轻量小巧、快速高效的开发语言，先后用shell、python等脚本语言写了各种小工具，总感觉气味不对。于是最近抽时间接触了下号称是21世纪编程语言的golang，感觉非常妙，golang的设计目标和思路均是我目前为止最满意的，入坑不会后悔。&lt;/p&gt;
-&lt;/div&gt;</description>
+      <description></description>
     </item>
     
     <item>
@@ -50,9 +44,7 @@
       <pubDate>Sun, 21 Apr 2019 21:11:07 +0800</pubDate>
       
       <guid>https://liming.pub/post/hugo-with-asciidoc/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Markdown语法过于简单，规范不够标准，经常要花很多时间去适配不同工具，别的语言是熟能生巧，这个语言是越用越怀疑，这对于事事都想精细化控制的我来说是不可接受的。最近通过各种对比和实践，尝试了Asciidoc后，就彻底迷上了，现在日常文档已经基本切换到Asciidoc了，本文则是第一篇Asciidoc格式的文章，自然是贡献给Asciidoc这个主题了。&lt;/p&gt;
-&lt;/div&gt;</description>
+      <description></description>
     </item>
     
     <item>

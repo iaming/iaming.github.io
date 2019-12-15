@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-01-20T21:30:43&#43;08:00" />
 <meta itemprop="dateModified" content="2019-01-20T21:30:43&#43;08:00" />
-<meta itemprop="wordCount" content="910">
+<meta itemprop="wordCount" content="1176">
 
 
 
@@ -128,8 +128,8 @@
         <div class="post-category">
             <a href="/categories/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/"> 技术架构 </a>
             </div>
-          <span class="more-meta"> 约 910 字 </span>
-          <span class="more-meta"> 预计阅读 2 分钟 </span>
+          <span class="more-meta"> 约 1176 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -141,6 +141,10 @@
 <ul>
 <li><a href="#实践要点">实践要点</a>
 <ul>
+<li><a href="#协商缓存">协商缓存</a>
+<ul>
+<li><a href="#last-modified和if-modified-since">Last-Modified和If-Modified-Since</a></li>
+</ul></li>
 <li><a href="#缓存穿透">缓存穿透</a></li>
 <li><a href="#缓存击穿">缓存击穿</a></li>
 <li><a href="#缓存雪崩">缓存雪崩</a></li>
@@ -155,12 +159,25 @@
       <p>应用可以通过分布式集群等方式动态扩容，但数据库不行，一个系统的吞吐量最终取决于数据库，而缓存可以在应用和数据库之间起到一层保护，为了竟可能多的提高缓存命中率，降低数据库压力，做到及时性和性能的平衡，根据不同缓存特点和应用场景采用多级缓存，具体如下：</p>
 
 <ul>
-<li>客户端缓存：本地存储，浏览器使用LocalStorage，APP可以使用SQLite，客户端和服务端采用HTTP头部信息如<code>If-Modified-Since</code>、<code>Etag</code>、<code>If-None-Match</code>进行沟通。</li>
+<li>客户端缓存：本地存储，浏览器使用LocalStorage，APP可以使用SQLite，客户端和服务端采用HTTP头部信息如 <code>Last-Modified</code>和<code>If-Modified-Since</code>、<code>Etag</code>和<code>If-None-Match</code>进行沟通。</li>
 <li>服务端一级缓存：采用目前性能最好的缓存框架Caffeine（参考文章《<a href="https://juejin.im/post/5b7593496fb9a009b62904fa#comment">你应该知道的缓存进化史</a>》）</li>
 <li>服务端二级缓存：采用目前排名第一的分布式键值对缓存数据库Redis（参考月度排行网站DB-Engines.com的数据）</li>
 </ul>
 
 <h1 id="实践要点">实践要点</h1>
+
+<h2 id="协商缓存">协商缓存</h2>
+
+<p>协商缓存就是强制缓存失效后，浏览器携带缓存标识向服务器发起请求，由服务器根据缓存标识决定是否使用缓存的过程，主要有以下两种情况：
+1. 协商缓存生效，返回304和Not Modified
+2. 协商缓存失效，返回200和请求结果</p>
+
+<h3 id="last-modified和if-modified-since">Last-Modified和If-Modified-Since</h3>
+
+<ol>
+<li>浏览器首次请求，服务端返回请求时在response header中设置 <code>Last-Modified</code> 资源上次更新时间，浏览器缓存下这个时间；</li>
+<li>浏览器再次请求，request header中带上if-modified-since:[保存的last-modified的值]</li>
+</ol>
 
 <h2 id="缓存穿透">缓存穿透</h2>
 

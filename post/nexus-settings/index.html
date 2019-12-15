@@ -16,8 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。
-" /><meta name="keywords" content="liming, iaming, 李明, 最佳实践, 架构, DevOps, linux, 自我管理" />
+<meta name="author" content="liming" /><meta name="description" content="" /><meta name="keywords" content="liming, iaming, 李明, 最佳实践, 架构, DevOps, linux, 自我管理" />
 
 
 
@@ -40,31 +39,25 @@
 
 
 <meta property="og:title" content="Nexus安装和配置" />
-<meta property="og:description" content="
-Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。
-" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liming.pub/post/nexus-settings/" /><meta property="article:published_time" content="2019-06-09T22:22:50&#43;08:00"/>
 <meta property="article:modified_time" content="2019-06-09T22:22:50&#43;08:00"/>
 
 <meta itemprop="name" content="Nexus安装和配置">
-<meta itemprop="description" content="
-Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。
-">
+<meta itemprop="description" content="">
 
 
 <meta itemprop="datePublished" content="2019-06-09T22:22:50&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-09T22:22:50&#43;08:00" />
-<meta itemprop="wordCount" content="628">
+<meta itemprop="wordCount" content="0">
 
 
 
 <meta itemprop="keywords" content="nexus,DevOps,运维,最佳实践," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Nexus安装和配置"/>
-<meta name="twitter:description" content="
-Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。
-"/>
+<meta name="twitter:description" content=""/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -134,8 +127,8 @@ Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本
         <div class="post-category">
             <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
             </div>
-          <span class="more-meta"> 约 628 字 </span>
-          <span class="more-meta"> 预计阅读 2 分钟 </span>
+          <span class="more-meta"> 约 0 字 </span>
+          <span class="more-meta"> 预计阅读 0 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -147,191 +140,7 @@ Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本
   </div>
 </div>
     <div class="post-content">
-      <div class="paragraph">
-<p>Nexus在手，私有仓库全都有，目前行业里常用的仓库neuxs3基本都已支持，可以说只需要搭建一个nexus，就能解决了开发过程中涉及到的所有私有仓库或镜像需求。</p>
-</div>
-<div class="sect1">
-<h2 id="_安装">安装</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Docker方式</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">mkdir -p /home/docker/volumes/nexus/nexus-data &amp;&amp; chown -R 200 /home/docker/volumes/nexus/nexus-data
-
-docker run -d -p 8081:8081 -p 8082:8082 -p 8083:8083 -p 8084:8084 --name nexus -e NEXUS_CONTEXT=nexus -v /home/docker/volumes/nexus/nexus-data:/nexus-data
---restart=always sonatype/nexus3:3.16.2</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">备注</div>
-</td>
-<td class="content">
-默认用户名: admin / admin123，第一次进去后记得修改掉。
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_用户设置">用户设置</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>本地用户
-配置位置：Administration &#8594; Security &#8594; Users</p>
-</li>
-<li>
-<p>LDAP用户</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>配置LDAP服务
-Administration &#8594; Security &#8594; LDAP</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Crete Connection</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Search base:dc=,dc=com</p>
-</li>
-<li>
-<p>Authentication method: Simple Authentication</p>
-</li>
-<li>
-<p>Username or DN:管理员dn</p>
-</li>
-<li>
-<p>Password：管理员密码</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>user and group</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Base DN: 不包含search DN</p>
-</li>
-<li>
-<p>User subtree: 如果有组织结构，勾选，如果只有用户列表，则不勾选</p>
-</li>
-<li>
-<p>Object class: inetOrgPerson</p>
-</li>
-<li>
-<p>User filter: uid=*</p>
-</li>
-<li>
-<p>User ID attribute: uid</p>
-</li>
-<li>
-<p>Real name attribute: cn</p>
-</li>
-<li>
-<p>Email attribute: mail</p>
-</li>
-<li>
-<p>Password attribute: 不要设置</p>
-</li>
-<li>
-<p>Map LDAP group as roles: 不适用角色</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>开启LDAP验证
-Administratio &#8594; Security &#8594; Realms &#8594; LDAP Bearer Token realm</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_安全设置">安全设置</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>去掉匿名访问：取消勾选`administration&#8594;security&#8594;Anonymous&#8594;Allow anonymous users to access the server
-`</p>
-</li>
-<li>
-<p>去掉匿名pull：仓库勾选`force basic authentication`</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_磁盘空间设置">磁盘空间设置</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>迭代开发过程中会有大量中间过程的仓库文件，所以一定要配置一下磁盘限制和清理，否则nexus会很快就把磁盘空间给填满。</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>磁盘限额，每个仓库都独立一个Blob stores，对Blob设置最大磁盘空间</p>
-</li>
-<li>
-<p>定时清理，设置定时任务清理无用的仓库文件，功能入口： System &#8594; Tasks。主要设置如下几个：</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Docker - Delete unused manifests and images</p>
-</li>
-<li>
-<p>Docker - Delete incomplete uploads</p>
-</li>
-<li>
-<p>Admin - Compact blob store</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_相关文章">相关文章</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="/post/nexus-maven-permission/">Maven私有仓库权限设置</a></p>
-</li>
-<li>
-<p><a href="/post/nexus-docker-permission/">Docker私有仓库权限设置</a></p>
-</li>
-<li>
-<p><a href="/post/nexus-npm-permission/">npm私有仓库权限设置</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
+      
     </div>
 
     <div class="post-copyright">

@@ -12,6 +12,42 @@
     
     <item>
       <title></title>
+      <link>https://liming.pub/draft/docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liming.pub/draft/docker/</guid>
+      <description> == 常见问题
+. 非root用户使用docker
+[source,bash] chmod o+rw /var/run/docker.sock </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://liming.pub/draft/git-svn-sync/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liming.pub/draft/git-svn-sync/</guid>
+      <description>[source,bash] svn add . &amp;ndash;no-ignore &amp;ndash;force</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://liming.pub/draft/gitflow-maven-plugin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liming.pub/draft/gitflow-maven-plugin/</guid>
+      <description>我们日常开发中更多的是采用 link:../gitflow/[Gitflow开发流程]，link:../maven-release-plugin/[release插件] 对于多分支的支持不怎么好，本文仅针对 link:../git-branch-develop-specification/[推荐流程]，使用gitflow插件并进行定制配置：
+== POM配置
+. gitflow插件，主要负责gitflow版本管理。 + .pom.xml
+[source,xml]  com.amashchenko.maven.plugin gitflow-maven-plugin 1.14.0  true 1 true revision true true true  开始@{featureName}新特性开发 完成@{featureName}新特性开发 开始修复版本@{version} 完成修复，更新版本为@{version} 更新为修复版本号 开始发布@{version}版本 完成版本发布，开始下一个版本@{version}的开发 更新为发布版本@{version}  
+ . versions插件，主要负责版本号管理，多模块工程非常方便，gitflow会自动调用该插件。 + .pom.xml
+[source,xml]  org.codehaus.mojo versions-maven-plugin 2.7  false 
+ . flatten插件，CI Friendly模式下使用，可以在发布的时候自动将${revision}变量替换为真实的版本号。 + .pom.xml
+[source,xml] ${revision}  1.0.0-SNAPSHOT     org.codehaus.mojo flatten-maven-plugin 1.1.0  true resolveCiFriendliesOnly    flatten process-resources  flatten    flatten.</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://liming.pub/draft/gitlab-ci/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -37,6 +73,61 @@ yum install gitlab-ci-multi-runner === 配置gitlab-runner</description>
       <description>== 官网 https://brew.sh/index_zh-cn
 官方的仓库：https://github.com/Homebrew/homebrew-core
 == 定制自己的软件 https://mogeko.me/2019/046/ 参考： https://docs.brew.sh/Taps</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://liming.pub/draft/iconv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liming.pub/draft/iconv/</guid>
+      <description> = 批量转换文件编码
+== Linux
+[source,bash] find intf -type d -exec mkdir -p utf/{} \;
+find intf -type f -exec sh -c &amp;ldquo;iconv -f GBK -t UTF-8 {} -o utf/{}&amp;rdquo; \; == Mac
+[source,bash] find intf -type d -exec mkdir -p utf/{} \; find intf -type f -name &amp;ldquo;*.java&amp;rdquo; -exec sh -c &amp;ldquo;iconv -f GBK -t UTF-8 {} &amp;gt; utf/{}&amp;rdquo; \; cd utf
+find intf -type f -name &amp;ldquo;*.java&amp;rdquo; -exec sh -c &amp;ldquo;cp -fr {} /Users/liming/Downloads/java/target/{}&amp;rdquo; \; </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://liming.pub/draft/java-license/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liming.pub/draft/java-license/</guid>
+      <description>License 分在线和离线两种，在线一般为授权集中控制，要求客户端需要能连License服务器。离线一般为技术加业务双重控制，适用于部署环境的网络隔离。本文主要针对离线控制做相应的分析和描述。
+== 技术控制 由于java字节码基本等同于源码，所以很难在技术上绝对控制，只能在一定程度上增加破解的难度。下面是几个增加难度的点：
+. 设置多个加密点 . 设置多种触发方式 .. 使用触发，在涉及控制的业务使用时触发，结合业务 .. 延时触发，触发时，先不要做出保护动作，让软件正常运行，这样就很难一次性把所有加密点全都找到，能有效增加一次性破解的难度 . 设置多检测机制 .. 启动检测，每次启动时监测，被破解或者超过限制无法启动 .. 定时检测，比如一周监测一次 .. 特定条件检查，在满足特定条件是检测 .. 随机检测，在业务使用过程中随机检测 . 保护动作 .. 如果探测到非法使用行为，可以将软件锁定，比如无法启动或者拒绝提供服务 .. 如果探测到破解，可以暂时加密关键数据，保护数据
+== 业务控制
+. 在软件授权协议中约定，如果有调试、破解、反编译等行为，需要支付违约金</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://liming.pub/draft/json-schema/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liming.pub/draft/json-schema/</guid>
+      <description>JSON作为目前最常用的前后端数据交互格式，具有简洁、可读等优势，我们日常使用时也大部分不会对JSON数据做约束，但有些时候，我们需要对JSON数据做校验或者生成标准代码时，就需要能精确定义JSON的数据结构和约束，和 XML Schema 一样，Json Schema 就是用来定义 json 数据约束的一个标准。
+. https://json-schema.org/understanding-json-schema/index.html . https://json-schema.org/ . https://www.jsonschema.net/</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://liming.pub/draft/nginx-keepalived/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liming.pub/draft/nginx-keepalived/</guid>
+      <description>= Keepalived+Nginx高可用
+== 安装
+[source,bash] #wget https://www.keepalived.org/software/keepalived-2.0.19.tar.gz curl -L https://www.keepalived.org/software/keepalived-2.0.19.tar.gz -o keepalived-2.0.19.tar.gz tar -xvf keepalived-2.0.19.tar.gz -C ./
+yum install gcc cpp glibc-devel glibc-headers kernel-headers libmpc mpfr openssl openssl-devel libnl libnl-devel
+cd keepalived-2.0.19 #执行配置命令 ./configure &amp;ndash;prefix=/usr/local/keepalived #编译 make #安装 make install
+ln -s /usr/local/keepalived/sbin/keepalived /usr/sbin/keepalived == 配置
+=== 主节点配置
+.mkdir /etc/keepalived &amp;amp;&amp;amp; vi /etc/keepalived/keepalived.conf
+[source,bash] global_defs { router_id nginx-01 # 定义路由器标识信息，相同的局域网唯一，标识本节点的字条串 }
+keepalived 会定时执行脚本并对脚本执行的结果进行分析，动态调整 vrrp_instance 的优先级。 如果脚本执行结果为 0，并且 weight 配置的值大于 0，则优先级相应的增加。 如果脚本执行结果非 0，并且 weight配置的值小于 0，则优先级相应的减少。 其他情况，维持原本配置的优先级，即配置文件中 priority 对应的值。 vrrp_script chk_nginx {</description>
     </item>
     
     <item>
@@ -71,6 +162,41 @@ curl -L https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/example
     
     <item>
       <title></title>
+      <link>https://liming.pub/draft/sublime-setting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liming.pub/draft/sublime-setting/</guid>
+      <description>. tab转换为空格 菜单栏: Preferences -&amp;gt; Settings – More -&amp;gt; Syntax Specific – User +
+[source] //把tab 转换成 空格 &amp;ldquo;translate_tabs_to_spaces&amp;rdquo;: true, //设置四个空格代替tab键 &amp;ldquo;tab_size&amp;rdquo;: 4, //设置为 true 时，会在保存时自动将tab符转换为空格，如果有需要，添加这行
+&amp;ldquo;expand_tabs_on_save&amp;rdquo;: true .</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://liming.pub/draft/windows-script/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liming.pub/draft/windows-script/</guid>
+      <description> 用惯了linux的shell，碰到Windows系统，总是各种感叹，几种常用的方法同样可以玩转脚本：
+== 跨平台脚本语言 比如python、ruby等
+== 安装一个shell外壳程序 比如git命令行程序，这样就可以愉快的写shell脚本了
+== 写windows的bat批处理 虽然很丑陋，但是其不需要额外安装程序就能支持，下面介绍几个常用的文件处理命令：
+ 删除文件夹  [source,bash] rd 文件夹路径 /s /q  复制文件夹  [source,bash] xcopy 原路径 目标路径 /s /e /k /i /y </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://liming.pub/draft/yum/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liming.pub/draft/yum/</guid>
+      <description>== 缺少共享库
+[source,shell] yum provides libdbus-glib-1.so.2 # 
+yum install dbus-glib-0.100-7.el7.i686 #   查找该共享库所在包  根据1中查到的包，进行安装</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://liming.pub/draft/ztemplate/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -83,7 +209,8 @@ curl -L https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/example
 |调用方法 |[% CALL variable %]
 |判断分支 |[% IF condition %] content [% ELSIF condition %] content [% ELSE %] content [% END %]
 |
-|=== [NOTE] 更多语法见link:http://www.template-toolkit.org/docs/modules/Template.html[官网] - http://www.jemplate.net/[Javascript实现] - https://github.com/openresty/lemplate[Lua实现]</description>
+|=== [NOTE] 更多语法见link:http://www.template-toolkit.org/docs/modules/Template.html[官网] - http://www.jemplate.net/[Javascript实现] - https://github.com/openresty/lemplate[Lua实现]
+.mustache语法概要 https://mustache.github.io/</description>
     </item>
     
   </channel>

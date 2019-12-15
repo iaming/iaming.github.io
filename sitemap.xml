@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liming.pub/post/maven-release-plugin/</loc>
+    <lastmod>2019-12-15T21:36:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/post/nexus-npm-permission/</loc>
     <lastmod>2019-07-20T07:57:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -220,6 +227,24 @@
   </url>
   
   <url>
+    <loc>https://liming.pub/draft/docker/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/draft/git-svn-sync/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/draft/gitflow-maven-plugin/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/draft/gitlab-ci/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -232,6 +257,30 @@
   </url>
   
   <url>
+    <loc>https://liming.pub/draft/iconv/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/draft/java-license/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/draft/json-schema/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/draft/nginx-keepalived/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/draft/openresty/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -239,6 +288,24 @@
   
   <url>
     <loc>https://liming.pub/draft/pandoc/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/draft/sublime-setting/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/draft/windows-script/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/draft/yum/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -278,7 +345,7 @@
   
   <url>
     <loc>https://liming.pub/tags/devops/</loc>
-    <lastmod>2019-07-20T07:57:43+08:00</lastmod>
+    <lastmod>2019-12-15T21:36:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -333,7 +400,7 @@
   
   <url>
     <loc>https://liming.pub/post/</loc>
-    <lastmod>2019-07-20T07:57:43+08:00</lastmod>
+    <lastmod>2019-12-15T21:36:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -438,7 +505,7 @@
   
   <url>
     <loc>https://liming.pub/</loc>
-    <lastmod>2019-07-20T07:57:43+08:00</lastmod>
+    <lastmod>2019-12-15T21:36:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -466,7 +533,7 @@
   
   <url>
     <loc>https://liming.pub/tags/maven/</loc>
-    <lastmod>2019-02-23T11:47:45+08:00</lastmod>
+    <lastmod>2019-12-15T21:36:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -480,7 +547,7 @@
   
   <url>
     <loc>https://liming.pub/tags/nexus/</loc>
-    <lastmod>2019-07-20T07:57:43+08:00</lastmod>
+    <lastmod>2019-12-15T21:36:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -529,7 +596,7 @@
   
   <url>
     <loc>https://liming.pub/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/</loc>
-    <lastmod>2019-07-20T07:57:43+08:00</lastmod>
+    <lastmod>2019-12-15T21:36:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -634,7 +701,7 @@
   
   <url>
     <loc>https://liming.pub/tags/%E8%BF%90%E7%BB%B4/</loc>
-    <lastmod>2019-07-20T07:57:43+08:00</lastmod>
+    <lastmod>2019-12-15T21:36:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

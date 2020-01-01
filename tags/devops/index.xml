@@ -6,10 +6,21 @@
     <description>Recent content in DevOps on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 15 Dec 2019 21:36:55 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 28 Dec 2019 09:32:19 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/tags/devops/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用Gitflow Maven Plugin进行版本发布</title>
+      <link>https://liming.pub/post/gitflow-maven-plugin/</link>
+      <pubDate>Sat, 28 Dec 2019 09:32:19 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/gitflow-maven-plugin/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;我们日常开发中更多的是采用 Gitflow开发流程，&lt;a href=&#34;../maven-release-plugin/&#34;&gt;release插件&lt;/a&gt; 对于多分支的支持不怎么好，本文仅针对 &lt;a href=&#34;../git-branch-develop-specification/&#34;&gt;gitflow开发流程&lt;/a&gt;，使用gitflow-maven-plugin插件并进行定制配置。&lt;/p&gt;
+&lt;/div&gt;</description>
+    </item>
     
     <item>
       <title>使用Maven Release Plugin进行版本发布</title>

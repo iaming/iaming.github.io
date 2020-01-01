@@ -3,6 +3,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liming.pub/post/keep-running-2020/</loc>
+    <lastmod>2020-01-01T16:20:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/post/gitflow-maven-plugin/</loc>
+    <lastmod>2019-12-28T09:32:19+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/post/maven-release-plugin/</loc>
     <lastmod>2019-12-15T21:36:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -239,12 +253,6 @@
   </url>
   
   <url>
-    <loc>https://liming.pub/draft/gitflow-maven-plugin/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://liming.pub/draft/gitlab-ci/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -345,7 +353,7 @@
   
   <url>
     <loc>https://liming.pub/tags/devops/</loc>
-    <lastmod>2019-12-15T21:36:55+08:00</lastmod>
+    <lastmod>2019-12-28T09:32:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -400,7 +408,7 @@
   
   <url>
     <loc>https://liming.pub/post/</loc>
-    <lastmod>2019-12-15T21:36:55+08:00</lastmod>
+    <lastmod>2020-01-01T16:20:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -477,7 +485,7 @@
   
   <url>
     <loc>https://liming.pub/tags/git/</loc>
-    <lastmod>2019-06-02T11:35:02+08:00</lastmod>
+    <lastmod>2019-12-28T09:32:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -505,7 +513,7 @@
   
   <url>
     <loc>https://liming.pub/</loc>
-    <lastmod>2019-12-15T21:36:55+08:00</lastmod>
+    <lastmod>2020-01-01T16:20:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -533,7 +541,7 @@
   
   <url>
     <loc>https://liming.pub/tags/maven/</loc>
-    <lastmod>2019-12-15T21:36:55+08:00</lastmod>
+    <lastmod>2019-12-28T09:32:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -547,7 +555,7 @@
   
   <url>
     <loc>https://liming.pub/tags/nexus/</loc>
-    <lastmod>2019-12-15T21:36:55+08:00</lastmod>
+    <lastmod>2019-12-28T09:32:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -596,7 +604,7 @@
   
   <url>
     <loc>https://liming.pub/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/</loc>
-    <lastmod>2019-12-15T21:36:55+08:00</lastmod>
+    <lastmod>2019-12-28T09:32:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -651,15 +659,15 @@
   </url>
   
   <url>
-    <loc>https://liming.pub/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2019-07-13T08:39:51+08:00</lastmod>
+    <loc>https://liming.pub/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2019-07-20T07:57:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://liming.pub/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2019-07-20T07:57:43+08:00</lastmod>
+    <loc>https://liming.pub/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2019-07-13T08:39:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -687,7 +695,7 @@
   
   <url>
     <loc>https://liming.pub/categories/%E8%87%AA%E6%88%91%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2019-01-01T19:33:20+08:00</lastmod>
+    <lastmod>2020-01-01T16:20:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -700,8 +708,15 @@
   </url>
   
   <url>
+    <loc>https://liming.pub/tags/%E8%B7%91%E6%AD%A5/</loc>
+    <lastmod>2020-01-01T16:20:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/tags/%E8%BF%90%E7%BB%B4/</loc>
-    <lastmod>2019-12-15T21:36:55+08:00</lastmod>
+    <lastmod>2019-12-28T09:32:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

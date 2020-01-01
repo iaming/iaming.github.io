@@ -32,22 +32,6 @@
     
     <item>
       <title></title>
-      <link>https://liming.pub/draft/gitflow-maven-plugin/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/gitflow-maven-plugin/</guid>
-      <description>我们日常开发中更多的是采用 link:../gitflow/[Gitflow开发流程]，link:../maven-release-plugin/[release插件] 对于多分支的支持不怎么好，本文仅针对 link:../git-branch-develop-specification/[推荐流程]，使用gitflow插件并进行定制配置：
-== POM配置
-. gitflow插件，主要负责gitflow版本管理。 + .pom.xml
-[source,xml]  com.amashchenko.maven.plugin gitflow-maven-plugin 1.14.0  true 1 true revision true true true  开始@{featureName}新特性开发 完成@{featureName}新特性开发 开始修复版本@{version} 完成修复，更新版本为@{version} 更新为修复版本号 开始发布@{version}版本 完成版本发布，开始下一个版本@{version}的开发 更新为发布版本@{version}  
- . versions插件，主要负责版本号管理，多模块工程非常方便，gitflow会自动调用该插件。 + .pom.xml
-[source,xml]  org.codehaus.mojo versions-maven-plugin 2.7  false 
- . flatten插件，CI Friendly模式下使用，可以在发布的时候自动将${revision}变量替换为真实的版本号。 + .pom.xml
-[source,xml] ${revision}  1.0.0-SNAPSHOT     org.codehaus.mojo flatten-maven-plugin 1.1.0  true resolveCiFriendliesOnly    flatten process-resources  flatten    flatten.</description>
-    </item>
-    
-    <item>
-      <title></title>
       <link>https://liming.pub/draft/gitlab-ci/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

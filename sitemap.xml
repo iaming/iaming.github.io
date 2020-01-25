@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liming.pub/post/5i-work/</loc>
+    <lastmod>2020-01-25T18:28:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/post/keep-running-2020/</loc>
     <lastmod>2020-01-01T16:20:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -301,6 +308,18 @@
   </url>
   
   <url>
+    <loc>https://liming.pub/draft/release-note/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/draft/springboot-practical-skills/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://liming.pub/draft/sublime-setting/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -322,6 +341,13 @@
     <loc>https://liming.pub/draft/ztemplate/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://liming.pub/tags/5i/</loc>
+    <lastmod>2020-01-25T18:28:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -408,7 +434,7 @@
   
   <url>
     <loc>https://liming.pub/post/</loc>
-    <lastmod>2020-01-01T16:20:38+08:00</lastmod>
+    <lastmod>2020-01-25T18:28:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -457,7 +483,7 @@
   
   <url>
     <loc>https://liming.pub/tags/</loc>
-    <lastmod>2019-01-19T22:33:53+08:00</lastmod>
+    <lastmod>2020-01-25T18:28:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -471,7 +497,7 @@
   
   <url>
     <loc>https://liming.pub/tags/asciidoc/</loc>
-    <lastmod>2019-07-13T08:39:51+08:00</lastmod>
+    <lastmod>2020-01-25T18:28:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -513,7 +539,7 @@
   
   <url>
     <loc>https://liming.pub/</loc>
-    <lastmod>2020-01-01T16:20:38+08:00</lastmod>
+    <lastmod>2020-01-25T18:28:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -659,15 +685,15 @@
   </url>
   
   <url>
-    <loc>https://liming.pub/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2019-07-20T07:57:43+08:00</lastmod>
+    <loc>https://liming.pub/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2019-07-13T08:39:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://liming.pub/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2019-07-13T08:39:51+08:00</lastmod>
+    <loc>https://liming.pub/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2019-07-20T07:57:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -695,7 +721,7 @@
   
   <url>
     <loc>https://liming.pub/categories/%E8%87%AA%E6%88%91%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2020-01-01T16:20:38+08:00</lastmod>
+    <lastmod>2020-01-25T18:28:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

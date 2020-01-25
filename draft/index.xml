@@ -141,7 +141,36 @@ curl -L https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/example
 == Word -&amp;gt; Asciidoc
 [source,bash] pandoc &amp;ndash;from=docx &amp;ndash;to=asciidoc &amp;ndash;wrap=none &amp;ndash;atx-headers
 &amp;ndash;extract-media=extracted-media 文件名.docx &amp;gt; 文件名.adoc == Markdown -&amp;gt; Asciidoc
-[source,ash] pandoc -o index.adoc index.md </description>
+[source,ash] pandoc -f markdown -t asciidoc -o index.adoc index.md </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://liming.pub/draft/release-note/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liming.pub/draft/release-note/</guid>
+      <description>git-release-notes -t &amp;ldquo;(特性|缺陷)：(.*)&amp;rdquo; -m type -m title 1.8.1&amp;hellip;1.8.3 /Users/liming/guiyanlcs/code/framework/lsmdp/document/static/template/release-note.ejs &amp;gt; ~/release.html</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://liming.pub/draft/springboot-practical-skills/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liming.pub/draft/springboot-practical-skills/</guid>
+      <description>== 瘦客户端
+== 使用systemd优雅启停应用
+. 添加依赖 + .pom.xm的build.plugins节点
+[source,xml]  org.springframework.boot spring-boot-maven-plugin  true 
+ . 添加服务 + ./etc/systemd/system/myapp.service
+[source,bash] [Unit] Description=myapp After=syslog.target
+[Service] User=root ExecStart=/var/myapp/myapp.jar SuccessExitStatus=143
+[Install]
+WantedBy=multi-user.target . 配置 在jar包同目录下增加同名配置文件 + .myapp.conf
+[source,conf] JAVA_OPTS=&amp;ldquo;-server -Xms100m -Xmx300m -Xmn128m -Xss256k&amp;rdquo; . 启停 +
+[source,bash] systemctl enable myapp # 开机自启动 systemctl status|start|stop|restart myapp
+journalctl -u myapp # 看日志，shift+g跳转到最后一行 == 参考 . https://docs.spring.io/spring-boot/docs/current/reference/html/deployment.html</description>
     </item>
     
     <item>

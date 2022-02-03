@@ -6,10 +6,19 @@
     <description>Recent content on liming.pub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 25 Jan 2020 18:28:16 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 02 Feb 2022 12:49:54 +0800</lastBuildDate>
     
 	<atom:link href="https://liming.pub/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Two Years Blank</title>
+      <link>https://liming.pub/post/two-years-blank/</link>
+      <pubDate>Wed, 02 Feb 2022 12:49:54 +0800</pubDate>
+      
+      <guid>https://liming.pub/post/two-years-blank/</guid>
+      <description>&lt;p&gt;今天大年初二，新冠病毒还没消停，总感觉希望貌似就在前方，然后就坚持着，不知不觉两年就这样过去了，这期间博客表面看起来没有更新，其实也有写几十篇草稿，但都没有发出来而已，完美追求者的通病：宁缺毋滥。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>5i.Work</title>
@@ -18,7 +27,7 @@
       
       <guid>https://liming.pub/post/5i-work/</guid>
       <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;大年初一，阴雨绵绵，武汉病毒肆虐，宅家里刷手机都快精神崩溃，于是关掉手机，打开电脑，折腾了一下午，准备正式启用 &lt;a href=&#34;https://5i.work&#34;&gt;5i.work&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;大年初一，阴雨绵绵，新冠病毒肆虐，宅家里刷手机都快精神崩溃，于是关掉手机，打开电脑，折腾了一下午，准备正式启用 &lt;a href=&#34;https://5i.work&#34;&gt;5i.work&lt;/a&gt;。&lt;/p&gt;
 &lt;/div&gt;</description>
     </item>
     
@@ -386,222 +395,6 @@
 &lt;p&gt;所以现在自己还真的没有博客！而且这么多年都没有码字，表达能力已经严重退化，满脑子想说的感慨，却半天蹦不出一个词儿。&lt;/p&gt;
 
 &lt;p&gt;于是趁着元旦放假，酝酿着重拾博客，经过调研，最终按如下方案开始了我的开篇博客：&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/docker/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/docker/</guid>
-      <description> == 常见问题
-. 非root用户使用docker
-[source,bash] chmod o+rw /var/run/docker.sock </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/git-svn-sync/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/git-svn-sync/</guid>
-      <description>[source,bash] svn add . &amp;ndash;no-ignore &amp;ndash;force</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/gitlab-ci/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/gitlab-ci/</guid>
-      <description>= Gitlab-CI配置
-== 服务端 === 开启CI === 配置CI
-. 前端工程 由于npm每次都需要执行 npm install 下载依赖包，所以在配置gitlab-ci.yml的时候把 node_modules/ 目录缓存一下，如下示例：
-[source,yml] stages: - deploy deploy: stage: deploy cache: paths: - node_modules/ script: - angular_npm_publish.sh only: - master tags:
-- deploy angular依赖发布脚本示例：
-.angular_npm_publish.sh
-[source,bash] sed -i &amp;rsquo;s/&amp;ldquo;peerdependencies&amp;rdquo;/&amp;ldquo;dependencies&amp;rdquo;/g&amp;rsquo; package.json npm install sed -i &amp;rsquo;s/&amp;ldquo;dependencies&amp;rdquo;/&amp;ldquo;peerdependencies&amp;rdquo;/g&amp;rsquo; package.json npm run packagr
-npm publish == 客户端 === 安装gitlab-runner
-[source,bash] curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.rpm.sh | sudo bash
-yum install gitlab-ci-multi-runner === 配置gitlab-runner</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/homebrew/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/homebrew/</guid>
-      <description>== 官网 https://brew.sh/index_zh-cn
-官方的仓库：https://github.com/Homebrew/homebrew-core
-== 定制自己的软件 https://mogeko.me/2019/046/ 参考： https://docs.brew.sh/Taps</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/iconv/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/iconv/</guid>
-      <description> = 批量转换文件编码
-== Linux
-[source,bash] find intf -type d -exec mkdir -p utf/{} \;
-find intf -type f -exec sh -c &amp;ldquo;iconv -f GBK -t UTF-8 {} -o utf/{}&amp;rdquo; \; == Mac
-[source,bash] find intf -type d -exec mkdir -p utf/{} \; find intf -type f -name &amp;ldquo;*.java&amp;rdquo; -exec sh -c &amp;ldquo;iconv -f GBK -t UTF-8 {} &amp;gt; utf/{}&amp;rdquo; \; cd utf
-find intf -type f -name &amp;ldquo;*.java&amp;rdquo; -exec sh -c &amp;ldquo;cp -fr {} /Users/liming/Downloads/java/target/{}&amp;rdquo; \; </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/java-license/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/java-license/</guid>
-      <description>License 分在线和离线两种，在线一般为授权集中控制，要求客户端需要能连License服务器。离线一般为技术加业务双重控制，适用于部署环境的网络隔离。本文主要针对离线控制做相应的分析和描述。
-== 技术控制 由于java字节码基本等同于源码，所以很难在技术上绝对控制，只能在一定程度上增加破解的难度。下面是几个增加难度的点：
-. 设置多个加密点 . 设置多种触发方式 .. 使用触发，在涉及控制的业务使用时触发，结合业务 .. 延时触发，触发时，先不要做出保护动作，让软件正常运行，这样就很难一次性把所有加密点全都找到，能有效增加一次性破解的难度 . 设置多检测机制 .. 启动检测，每次启动时监测，被破解或者超过限制无法启动 .. 定时检测，比如一周监测一次 .. 特定条件检查，在满足特定条件是检测 .. 随机检测，在业务使用过程中随机检测 . 保护动作 .. 如果探测到非法使用行为，可以将软件锁定，比如无法启动或者拒绝提供服务 .. 如果探测到破解，可以暂时加密关键数据，保护数据
-== 业务控制
-. 在软件授权协议中约定，如果有调试、破解、反编译等行为，需要支付违约金</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/json-schema/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/json-schema/</guid>
-      <description>JSON作为目前最常用的前后端数据交互格式，具有简洁、可读等优势，我们日常使用时也大部分不会对JSON数据做约束，但有些时候，我们需要对JSON数据做校验或者生成标准代码时，就需要能精确定义JSON的数据结构和约束，和 XML Schema 一样，Json Schema 就是用来定义 json 数据约束的一个标准。
-. https://json-schema.org/understanding-json-schema/index.html . https://json-schema.org/ . https://www.jsonschema.net/</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/nginx-keepalived/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/nginx-keepalived/</guid>
-      <description>= Keepalived+Nginx高可用
-== 安装
-[source,bash] #wget https://www.keepalived.org/software/keepalived-2.0.19.tar.gz curl -L https://www.keepalived.org/software/keepalived-2.0.19.tar.gz -o keepalived-2.0.19.tar.gz tar -xvf keepalived-2.0.19.tar.gz -C ./
-yum install gcc cpp glibc-devel glibc-headers kernel-headers libmpc mpfr openssl openssl-devel libnl libnl-devel
-cd keepalived-2.0.19 #执行配置命令 ./configure &amp;ndash;prefix=/usr/local/keepalived #编译 make #安装 make install
-ln -s /usr/local/keepalived/sbin/keepalived /usr/sbin/keepalived == 配置
-=== 主节点配置
-.mkdir /etc/keepalived &amp;amp;&amp;amp; vi /etc/keepalived/keepalived.conf
-[source,bash] global_defs { router_id nginx-01 # 定义路由器标识信息，相同的局域网唯一，标识本节点的字条串 }
-keepalived 会定时执行脚本并对脚本执行的结果进行分析，动态调整 vrrp_instance 的优先级。 如果脚本执行结果为 0，并且 weight 配置的值大于 0，则优先级相应的增加。 如果脚本执行结果非 0，并且 weight配置的值小于 0，则优先级相应的减少。 其他情况，维持原本配置的优先级，即配置文件中 priority 对应的值。 vrrp_script chk_nginx {</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/openresty/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/openresty/</guid>
-      <description>说起后端Web服务，技术选型主要有两个方向：一是企业大型应用，这块是java称霸，选择没有悬念。还有一个是轻快小省型应用，这块选择就比较多了，比如：以开发效率著称的php，python，ruby on rails；以全栈著称的nodejs；以运行效率和并发著称的go，。
-今天主要介绍的主角是lua和nginx的组合：openresty，他运行效率不输go，开发效率不输python，是追求轻快小省极致的最佳选择。
-== 安装 安装官网步骤安装即可： http://openresty.org/cn/linux-packages.html
-== JWT 由于 https://github.com/auth0/nginx-jwt 已经没人维护，所以这里采用 https://github.com/SkyLothar/lua-resty-jwt。
-=== lua-resty-jwt安装
-[source,bash] mkdir -p /usr/local/openresty/nginx/jwt-lua/ curl -L https://github.com/SkyLothar/lua-resty-jwt/releases/download/v0.1.11/lua-resty-jwt-0.1.11.tar.gz -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz tar -xvf /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11.tar.gz -C /usr/local/openresty/nginx/jwt-lua/ curl -L https://raw.githubusercontent.com/jkeys089/lua-resty-hmac/master/lib/resty/hmac.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/hmac.lua
-curl -L https://raw.githubusercontent.com/SkyLothar/lua-resty-jwt/master/examples/guard.lua -o /usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/resty/guard.lua === 配置保护资源
-.nginx.conf
-[source] error_log logs/error.log debug; #  http { lua_code_cache off; #  lua_package_path &amp;ldquo;/usr/local/openresty/nginx/jwt-lua/lua-resty-jwt-0.1.11/lib/?.lua;;&amp;rdquo;; server { listen 80; charset utf-8; location = /login { set $jwt_secret &amp;ldquo;lua-resty-jwt&amp;rdquo;; set $jwt_duration 900; content_by_lua &amp;lsquo; &amp;ndash;获取get或post参数 local request_method = ngx.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/pandoc/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/pandoc/</guid>
-      <description> 文档格式转换之王，https://pandoc.org/[Pandoc官网]
-== Word -&amp;gt; Asciidoc
-[source,bash] pandoc &amp;ndash;from=docx &amp;ndash;to=asciidoc &amp;ndash;wrap=none &amp;ndash;atx-headers
-&amp;ndash;extract-media=extracted-media 文件名.docx &amp;gt; 文件名.adoc == Markdown -&amp;gt; Asciidoc
-[source,ash] pandoc -f markdown -t asciidoc -o index.adoc index.md </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/release-note/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/release-note/</guid>
-      <description>git-release-notes -t &amp;ldquo;(特性|缺陷)：(.*)&amp;rdquo; -m type -m title 1.8.1&amp;hellip;1.8.3 /Users/liming/guiyanlcs/code/framework/lsmdp/document/static/template/release-note.ejs &amp;gt; ~/release.html</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/springboot-practical-skills/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/springboot-practical-skills/</guid>
-      <description>== 瘦客户端
-== 使用systemd优雅启停应用
-. 添加依赖 + .pom.xm的build.plugins节点
-[source,xml]  org.springframework.boot spring-boot-maven-plugin  true 
- . 添加服务 + ./etc/systemd/system/myapp.service
-[source,bash] [Unit] Description=myapp After=syslog.target
-[Service] User=root ExecStart=/var/myapp/myapp.jar SuccessExitStatus=143
-[Install]
-WantedBy=multi-user.target . 配置 在jar包同目录下增加同名配置文件 + .myapp.conf
-[source,conf] JAVA_OPTS=&amp;ldquo;-server -Xms100m -Xmx300m -Xmn128m -Xss256k&amp;rdquo; . 启停 +
-[source,bash] systemctl enable myapp # 开机自启动 systemctl status|start|stop|restart myapp
-journalctl -u myapp # 看日志，shift+g跳转到最后一行 == 参考 . https://docs.spring.io/spring-boot/docs/current/reference/html/deployment.html</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/sublime-setting/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/sublime-setting/</guid>
-      <description>. tab转换为空格 菜单栏: Preferences -&amp;gt; Settings – More -&amp;gt; Syntax Specific – User +
-[source] //把tab 转换成 空格 &amp;ldquo;translate_tabs_to_spaces&amp;rdquo;: true, //设置四个空格代替tab键 &amp;ldquo;tab_size&amp;rdquo;: 4, //设置为 true 时，会在保存时自动将tab符转换为空格，如果有需要，添加这行
-&amp;ldquo;expand_tabs_on_save&amp;rdquo;: true .</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/windows-script/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/windows-script/</guid>
-      <description> 用惯了linux的shell，碰到Windows系统，总是各种感叹，几种常用的方法同样可以玩转脚本：
-== 跨平台脚本语言 比如python、ruby等
-== 安装一个shell外壳程序 比如git命令行程序，这样就可以愉快的写shell脚本了
-== 写windows的bat批处理 虽然很丑陋，但是其不需要额外安装程序就能支持，下面介绍几个常用的文件处理命令：
- 删除文件夹  [source,bash] rd 文件夹路径 /s /q  复制文件夹  [source,bash] xcopy 原路径 目标路径 /s /e /k /i /y </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/yum/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/yum/</guid>
-      <description>== 缺少共享库
-[source,shell] yum provides libdbus-glib-1.so.2 # 
-yum install dbus-glib-0.100-7.el7.i686 #   查找该共享库所在包  根据1中查到的包，进行安装</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://liming.pub/draft/ztemplate/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://liming.pub/draft/ztemplate/</guid>
-      <description>= 语法规范
-== 语法分析
-.TT2语法概要 [cols=&amp;ldquo;1,4&amp;rdquo;no] |=== |指令|语法
-|赋值 |[% variable = value %]
-|取值 |[% variable %]
-|调用方法 |[% CALL variable %]
-|判断分支 |[% IF condition %] content [% ELSIF condition %] content [% ELSE %] content [% END %]
-|
-|=== [NOTE] 更多语法见link:http://www.template-toolkit.org/docs/modules/Template.html[官网] - http://www.jemplate.net/[Javascript实现] - https://github.com/openresty/lemplate[Lua实现]
-.mustache语法概要 https://mustache.github.io/</description>
     </item>
     
   </channel>

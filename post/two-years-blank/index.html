@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Linux脚本监控 - liming.pub</title>
+  <title>Two Years Blank - liming.pub</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,8 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="liming" /><meta name="description" content="服务器监控有专业的程序，比如springboot-admin。其实可以手工利用shell配合crond搭建一个轻量级的监控系统，云服务器不便宜，将内存和cpu还给应用系统，低碳运维从我走起。
-" /><meta name="keywords" content="linux, mail" />
+<meta name="author" content="liming" /><meta name="description" content="今天大年初二，新冠病毒还没消停，总感觉希望貌似就在前方，然后就坚持着，不知不觉两年就这样过去了，这期间博客表面看起来没有更新，其实也有写几十篇草稿，但都没有发出来而已，完美追求者的通病：宁缺毋滥。
+" /><meta name="keywords" content="自我管理, coding.me" />
 
 
 
@@ -27,7 +27,7 @@
 <meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://liming.pub/post/linux-monitor-shell/" />
+<link rel="canonical" href="https://liming.pub/post/two-years-blank/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,32 +39,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Linux脚本监控" />
-<meta property="og:description" content="
-服务器监控有专业的程序，比如springboot-admin。其实可以手工利用shell配合crond搭建一个轻量级的监控系统，云服务器不便宜，将内存和cpu还给应用系统，低碳运维从我走起。
-" />
+<meta property="og:title" content="Two Years Blank" />
+<meta property="og:description" content="今天大年初二，新冠病毒还没消停，总感觉希望貌似就在前方，然后就坚持着，不知不觉两年就这样过去了，这期间博客表面看起来没有更新，其实也有写几十篇草稿，但都没有发出来而已，完美追求者的通病：宁缺毋滥。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://liming.pub/post/linux-monitor-shell/" /><meta property="article:published_time" content="2019-07-06T08:07:15&#43;08:00"/>
-<meta property="article:modified_time" content="2019-07-06T08:07:15&#43;08:00"/>
+<meta property="og:url" content="https://liming.pub/post/two-years-blank/" /><meta property="article:published_time" content="2022-02-02T12:49:54&#43;08:00"/>
+<meta property="article:modified_time" content="2022-02-02T12:49:54&#43;08:00"/>
 
-<meta itemprop="name" content="Linux脚本监控">
-<meta itemprop="description" content="
-服务器监控有专业的程序，比如springboot-admin。其实可以手工利用shell配合crond搭建一个轻量级的监控系统，云服务器不便宜，将内存和cpu还给应用系统，低碳运维从我走起。
-">
+<meta itemprop="name" content="Two Years Blank">
+<meta itemprop="description" content="今天大年初二，新冠病毒还没消停，总感觉希望貌似就在前方，然后就坚持着，不知不觉两年就这样过去了，这期间博客表面看起来没有更新，其实也有写几十篇草稿，但都没有发出来而已，完美追求者的通病：宁缺毋滥。">
 
 
-<meta itemprop="datePublished" content="2019-07-06T08:07:15&#43;08:00" />
-<meta itemprop="dateModified" content="2019-07-06T08:07:15&#43;08:00" />
-<meta itemprop="wordCount" content="731">
+<meta itemprop="datePublished" content="2022-02-02T12:49:54&#43;08:00" />
+<meta itemprop="dateModified" content="2022-02-02T12:49:54&#43;08:00" />
+<meta itemprop="wordCount" content="649">
 
 
 
-<meta itemprop="keywords" content="linux,运维,shell,mysql,redis," />
+<meta itemprop="keywords" content="5i,github," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Linux脚本监控"/>
-<meta name="twitter:description" content="
-服务器监控有专业的程序，比如springboot-admin。其实可以手工利用shell配合crond搭建一个轻量级的监控系统，云服务器不便宜，将内存和cpu还给应用系统，低碳运维从我走起。
-"/>
+<meta name="twitter:title" content="Two Years Blank"/>
+<meta name="twitter:description" content="今天大年初二，新冠病毒还没消停，总感觉希望貌似就在前方，然后就坚持着，不知不觉两年就这样过去了，这期间博客表面看起来没有更新，其实也有写几十篇草稿，但都没有发出来而已，完美追求者的通病：宁缺毋滥。"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -127,14 +121,14 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Linux脚本监控</h1>
+      <h1 class="post-title">Two Years Blank</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-07-06 08:07:15 </span>
+        <span class="post-time"> 2022-02-02 12:49:54 </span>
         <div class="post-category">
-            <a href="/categories/%E4%BD%8E%E7%A2%B3%E8%BF%90%E7%BB%B4/"> 低碳运维 </a>
+            <a href="/categories/%E8%87%AA%E6%88%91%E7%AE%A1%E7%90%86/"> 自我管理 </a>
             </div>
-          <span class="more-meta"> 约 731 字 </span>
+          <span class="more-meta"> 约 649 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -143,134 +137,37 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
-    
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#工作转型">工作转型</a></li>
+<li><a href="#自我管理">自我管理</a></li>
+<li><a href="#成果输出">成果输出</a></li>
+</ul>
+</nav>
   </div>
 </div>
     <div class="post-content">
-      <div class="paragraph">
-<p>服务器监控有专业的程序，比如springboot-admin。其实可以手工利用shell配合crond搭建一个轻量级的监控系统，云服务器不便宜，将内存和cpu还给应用系统，低碳运维从我走起。</p>
-</div>
-<div class="sect1">
-<h2 id="_磁盘监控">磁盘监控</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>磁盘使用的增长速度一般可预期，达到阀值即报警，一天一次的频率足以，比如设置为凌晨1点。监控脚本示例如下：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">#!/bin/bash
-partition_list=(`df -h | awk 'NF&gt;3&amp;&amp;NR&gt;1{sub(/%/,"",$(NF-1));print $NF,$(NF-1)}'`)
-critical=90 # 阀值
+      <p>今天大年初二，新冠病毒还没消停，总感觉希望貌似就在前方，然后就坚持着，不知不觉两年就这样过去了，这期间博客表面看起来没有更新，其实也有写几十篇草稿，但都没有发出来而已，完美追求者的通病：宁缺毋滥。</p>
 
-notification_email()
-{
-    email_addr="用户名@liming.pub"
-    title="[Warn]xx服务器磁盘空间报警"
-    mail -s "$title" "${email_addr}"
-}
+<h1 id="工作转型">工作转型</h1>
 
-crit_info=""
-for (( i=0;i&lt;${#partition_list[@]};i+=2 ))
-do
-    if [ "${partition_list[((i+1))]}" -lt "$critical" ];then
-        echo "OK! ${partition_list[i]} used ${partition_list[((i+1))]}%"
-    else
-        if [ "${partition_list[((i+1))]}" -gt "$critical" ];then
-            crit_info=$crit_info"Warning!!! ${partition_list[i]} used ${partition_list[((i+1))]}%\n"
-        fi
-    fi
-done
-if [ "$crit_info" != "" ];then
-    echo "发送邮件报警："$crit_info
-    echo -e $crit_info | notification_email  # <b class="conum">(1)</b>
-fi</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>发送邮件通知，可以参考 <a href="/post/linux-email-service/">Linux发送邮件</a> 博文。</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_mysql备库监控">MYSQL备库监控</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>备库如未投入生产，监控频率一天一次，如果投入生产，则需要频率高一点，比如5分钟一次。监控脚本示例如下：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">#!/bin/bash
-#define mysql variable
-db_user=""
-db_passwd=""
-db_name=""
-db_port=""
-db_host=""
+<p>这两年转型做项目，技术也没积累，个人能力也没提升，吃着老本体验着岁月变化。项目现场还要给年轻人示范，自个打头阵往前冲，赚点辛苦钱，其实也没钱，还挺艰难的，新冠背景下，活着就是胜利吧。</p>
 
-notification_email()
-{
-    email_addr="用户名@liming.pub"
-    title="[Warn]xxMySQL出问题了"
-    mail -s "$title" "${email_addr}"
-}
+<h1 id="自我管理">自我管理</h1>
 
-mysql_status=`netstat -lnt|grep ${db_port}|wc -l`
-if [ "$mysql_status" -eq 1 ];then
-    slave_status_array=($(mysql -u${db_user} -p${db_passwd} -h${db_host} -P${db_port} -e "show slave status\G"|grep Running|awk -F : '{print $2}'))
-    if [ "${slave_status_array[0]}" == "Yes" ] &amp;&amp; [ "${slave_status_array[1]}" == "Yes" ]; then
-        [ -f "/tmp/slave" ] &amp;&amp; rm -f /tmp/slave
-    else
-        [ ! -f "/tmp/slave" ] &amp;&amp; echo "MySQL主备同步失效！" | notification_email
-        touch /tmp/slave
-    fi
-    [ -f "/tmp/mysql_down" ] &amp;&amp; rm -f /tmp/mysql_down
-else
-    [ ! -f "/tmp/mysql_down" ] &amp;&amp; echo "Mysql宕机！" | notification_email
-    touch /tmp/mysql_down
-fi</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_redis监控">Redis监控</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>监控Redis进程，不存在则报警，并尝试重启。也可以使用 <code>redis-cli</code> 命令监控连接数。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">#!/bin/bash
+<p>晨间跑步和晨间日记都算是在坚持，也算是唯一能让自己感到有点成就感的了吧</p>
 
-notification_email()
-{
-    email_addr="用户名@liming.pub"
-    title="[ERROR]xxRedis宕机了"
-    mail -s "$title" "${email_addr}"
-}
+<h1 id="成果输出">成果输出</h1>
 
-pid=$(ps -ef | grep redis-server | grep -v grep | awk '{print $2}')
+<p>博客停更了两年，原因如下：
+1. 工作原因，忙然后这两年的工作也没有什么技术含量，没什么太值的写的内容，所以几十篇草稿，但都没有达到能发表出来的程度。
+2. 定位原因，两年前给这个博客定位为自己的心路历程，然后就发现两点一线，没啥能写的了。5i.work也由于主机到期后没续费直接就访问不了了。
+3. 环境原因，阿里云不停的电话说备案信息不准确，然后coding.me停止pages服务，然后就没心情搞了。</p>
 
-if [ "$pid" = '' ]; then
-    echo "Redis-Server xx 宕机，尝试重启！" | notification_email
-    redis-server /etc/redis.conf &amp;
-fi</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_通用监控">通用监控</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>可以使用 <code>curl</code> 来实现远程http服务的监控，使用 <code>netstat</code> 来实现本机服务端口的监控，具体脚本后续完善。</p>
-</div>
-</div>
-</div>
+<p>规划是好的，但是浪费了两年时光，身处在疫情以及雨雪笼罩下，何不乘机把博客和5i.work重新整理开张，点滴积累从宅家开始，静待花开：
+1. 博客：重新启用github的pages，事实证明还是github靠谱，访问是慢点，但不会像coding.me直接给你下线，当然模板里也把coding.me的友情广告删掉。
+2. 知识库：整理一版，然后规划好框架，方便后续能更方便的更新。
+3. 可执行：目标不在大，在于可执行，每天进步一点点，期望能早日达到工作自由。</p>
     </div>
 
     <div class="post-copyright">
@@ -280,7 +177,7 @@ fi</code></pre>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2019-07-06 08:07:15</span>
+    <span class="item-content">2022-02-02 12:49:54</span>
   </p>
   
   <p class="copyright-item">
@@ -289,20 +186,13 @@ fi</code></pre>
   </p>
 </div><footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/linux/">linux</a>
-          <a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-          <a href="/tags/shell/">shell</a>
-          <a href="/tags/mysql/">mysql</a>
-          <a href="/tags/redis/">redis</a>
+          <a href="/tags/5i/">5i</a>
+          <a href="/tags/github/">github</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/asciidoctor-customization/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">AsciiDoctor高阶定制</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/post/linux-email-service/">
-            <span class="next-text nav-default">Linux发送邮件</span>
+        
+        <a class="next" href="/post/5i-work/">
+            <span class="next-text nav-default">5i.Work</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -315,8 +205,8 @@ fi</code></pre>
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-07-06 08:07:15 \x2b0800 CST',
-        title: 'Linux脚本监控',
+        id: '2022-02-02 12:49:54 \x2b0800 CST',
+        title: 'Two Years Blank',
         clientID: 'f35ddb3b03b9257b76d0',
         clientSecret: '07e93acd57a22ffc8fec2de613cc37e2bb44527f',
         repo: 'iaming.github.io',
